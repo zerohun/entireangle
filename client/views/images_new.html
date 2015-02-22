@@ -1,0 +1,19 @@
+<template name="ImagesNew">
+<form role="form" id="image-upload-dropzone" class="center-block text-center" style="max-width: 300px;" enctype="multipart/form-data">
+  <div class="form-group">
+    <input type="text" name="title" placeholder="Enter title" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <input id="oldschool-file-field" type="file" name="image" class="form-control"/>
+    <div id="image-preview"></div>
+    <div id="drag-and-drop-box" style="height:100px; padding-top: 15px; background-color: #E6F6FF; color:#549ED0; margin-top: 10px; border-radius: 25px;">
+      <h4>or drag and drop a file here to upload</h4>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="text" name="desc" placeholder="Describe about the picture or video" class="form-control"/>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>&nbsp;<a href="/images/">
+    <button type="button" class="btn btn-primary">Cancel</button></a>
+</form>
+</template>

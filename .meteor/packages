@@ -11,5 +11,4 @@ iron:router
 yasinuslu:blaze-meta
 twbs:bootstrap
 ian:accounts-ui-bootstrap-3
-accounts-ui
 accounts-password
