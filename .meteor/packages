@@ -15,3 +15,6 @@ accounts-password
 grigio:babel
 mjn:famous
 gadicohen:famous-views
+cfs:standard-packages
+cfs:gridfs
+cfs:graphicsmagick
