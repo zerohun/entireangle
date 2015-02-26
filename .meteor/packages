@@ -13,8 +13,7 @@ twbs:bootstrap
 ian:accounts-ui-bootstrap-3
 accounts-password
 grigio:babel
-mjn:famous
-gadicohen:famous-views
 cfs:standard-packages
 cfs:gridfs
 cfs:graphicsmagick
+cfs:filesystem
