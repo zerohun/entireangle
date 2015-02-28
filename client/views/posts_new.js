@@ -1,4 +1,4 @@
-Template.ImagesNew.events({
+Template.PostsNew.events({
   "submit .new-post": function(event){
     console.log('submit');
     var title = event.target.title.value;
