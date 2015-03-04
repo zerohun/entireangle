@@ -10,7 +10,7 @@
 
 <template name="post">
   <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 center-block text-center">
-    <a href="">
+    <a href="{{pathFor route='posts.show' data=this}}">
       <img class="img-circle" src="{{thumbUrl image._id}}">
       <h5>{{title}}</h5>
       <em>By {{username}}</em>
