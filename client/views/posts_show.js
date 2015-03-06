@@ -1,8 +1,5 @@
-/*
-Template.Posts.helpers({
-  post: Post.find({_id: })
-})
-*/
+//Template.Posts.helpers({
+//})
 
 Template.PostsShow.events({
   "click #vr-mode-button": function(){
@@ -36,6 +33,11 @@ Template.PostsShow.rendered = function() {
     geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
     geometry.applyMatrix( new THREE.Matrix4().makeTranslation( 0,0,0 ) );
 
+    var post = Router.current().data();
+    console.log(post);
+    var image = Image.findOne({_id: post.image._id})
+    var imageFilePath = image.url({store:'images'});
+
     var material = new THREE.MeshBasicMaterial( {
       map: THREE.ImageUtils.loadTexture(imageFilePath)
     } );
@@ -44,7 +46,8 @@ Template.PostsShow.rendered = function() {
     
     scene.add( mesh );
 
-    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer = new THREE.WebGLRenderer({ antialias: true,
+                                         devicePixelRatio: window.devicePixelRatio});
     renderable = renderer;
 
     var element = renderer.domElement;
@@ -78,7 +81,7 @@ Template.PostsShow.rendered = function() {
   function animate() {
 
     requestAnimationFrame( animate );
-    var dt = clock.getDelta();
+//    var dt = clock.getDelta();
     update();
 
   }

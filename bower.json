@@ -1,0 +1,19 @@
+{
+  "name": "scapevr",
+  "version": "0.0.0",
+  "authors": [
+    "Younghun Choi <choi0hun@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vr-devices": "/Users/choi0hun/Project/VRDevices/"
+  }
+}
+
