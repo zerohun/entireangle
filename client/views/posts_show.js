@@ -1,15 +1,16 @@
 //Template.Posts.helpers({
 //})
 
-var camera, scene, renderer, controls;
+var camera, scene, renderer, controls, element;
 var renderable;
 var clock = new THREE.Clock();
 var getSize;
 var vrDeviceInfo
 var vrButton;
 var container;
+var isInVRMode = false;
 
-function fullscreen() {
+function enableFullscreen(container) {
   if (container.requestFullscreen) {
     container.requestFullscreen();
   } else if (container.msRequestFullscreen) {
@@ -21,37 +22,73 @@ function fullscreen() {
   }
 }
 
+function disableFullScreen(){
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+function disableVRMode(){
+
+  controls = new THREE.OrbitControls(camera, element);
+  controls.rotateUp(Math.PI / 4);
+  controls.target.set(
+    0.1,0,0
+  );
+  renderable = renderer;
+  isInVRMode = false;
+}
+
+function enableVRMode(){
+  if(vrDeviceInfo.type === "MOBILE"){
+    effect = new THREE.StereoEffect(renderer);
+    renderable = effect;
+
+    controls = new THREE.DeviceOrientationControls(camera, true);
+    controls.connect();
+    controls.update();
+  }
+  else if(vrDeviceInfo.type === "HMD"){
+
+    controls = new THREE.VRControls(camera, function(error){alert(error);});
+    controls.update();
+    effect = new THREE.VREffect(renderer, function(error){
+      if (error) {
+        vrButton.innerHTML = error;
+        vrButton.classList.add('error');
+      }
+    });
+    renderable = effect;
+  }
+  isInVRMode = true;
+}
+
+function toggleVRMode(){
+  if(vrDeviceInfo.type != "NONE"){
+    if(isInVRMode) { 
+      disableVRMode();
+      disableFullScreen();
+    }
+    else {
+      enableVRMode();
+      enableFullscreen(container);
+    }
+  }
+  else
+    $('#NoneVRModal').modal('show');
+}
+
 Template.PostsShow.events({
   "click #vr-mode-button": function(){
-    if(vrDeviceInfo.type === "MOBILE"){
-      effect = new THREE.StereoEffect(renderer);
-      renderable = effect;
-
-      controls = new THREE.DeviceOrientationControls(camera, true);
-      controls.connect();
-      controls.update();
-      window.addEventListener('click', fullscreen, false);
-      
-    }
-    else if(vrDeviceInfo.type === "HMD"){
-
-      controls = new THREE.VRControls(camera, function(error){alert(error);});
-      controls.update();
-      effect = new THREE.VREffect(renderer, function(error){
-        if (error) {
-          vrButton.innerHTML = error;
-          vrButton.classList.add('error');
-        }
-      });
-      renderable = effect;
-      window.addEventListener('click', function(){
-        fullscreen();
-  //            effect.setFullScreen(true);
-      }, true);
-    }
-    else{
-      $('#NoneVRModal').modal('show');
-    }
+    toggleVRMode();
+  },
+  "click #container": function(){
+    if(isInVRMode) toggleVRMode();
   }
 });
 
