@@ -1,19 +1,61 @@
 //Template.Posts.helpers({
 //})
 
+var camera, scene, renderer, controls;
+var renderable;
+var clock = new THREE.Clock();
+var getSize;
+var vrDeviceInfo
+var vrButton;
+var container;
+
+function fullscreen() {
+  if (container.requestFullscreen) {
+    container.requestFullscreen();
+  } else if (container.msRequestFullscreen) {
+    container.msRequestFullscreen();
+  } else if (container.mozRequestFullScreen) {
+    container.mozRequestFullScreen();
+  } else if (container.webkitRequestFullscreen) {
+    container.webkitRequestFullscreen();
+  }
+}
+
 Template.PostsShow.events({
   "click #vr-mode-button": function(){
-    enableVRmode();
+    if(vrDeviceInfo.type === "MOBILE"){
+      effect = new THREE.StereoEffect(renderer);
+      renderable = effect;
+
+      controls = new THREE.DeviceOrientationControls(camera, true);
+      controls.connect();
+      controls.update();
+      window.addEventListener('click', fullscreen, false);
+      
+    }
+    else if(vrDeviceInfo.type === "HMD"){
+
+      controls = new THREE.VRControls(camera, function(error){alert(error);});
+      controls.update();
+      effect = new THREE.VREffect(renderer, function(error){
+        if (error) {
+          vrButton.innerHTML = error;
+          vrButton.classList.add('error');
+        }
+      });
+      renderable = effect;
+      window.addEventListener('click', function(){
+        fullscreen();
+  //            effect.setFullScreen(true);
+      }, true);
+    }
+    else{
+      $('#NoneVRModal').modal('show');
+    }
   }
 });
 
 Template.PostsShow.rendered = function() {
-  var camera, scene, renderer, controls;
-  var renderable;
-  var clock = new THREE.Clock();
-  var getSize;
-  var vrDeviceInfo
-  var vrButton;
 
   init();
   animate();
@@ -22,7 +64,7 @@ Template.PostsShow.rendered = function() {
 
     vrDeviceInfo = getVRDeviceInfo();
 
-    var container, mesh;
+    var mesh;
 
     container = document.getElementById( 'container' );
     camera = new THREE.PerspectiveCamera( 70, 1, 0.001, 500);
@@ -96,48 +138,5 @@ Template.PostsShow.rendered = function() {
     renderable.render( scene, camera );
   }
 
-  function fullscreen() {
-    if (container.requestFullscreen) {
-      container.requestFullscreen();
-    } else if (container.msRequestFullscreen) {
-      container.msRequestFullscreen();
-    } else if (container.mozRequestFullScreen) {
-      container.mozRequestFullScreen();
-    } else if (container.webkitRequestFullscreen) {
-      container.webkitRequestFullscreen();
-    }
 
-  }
-
-  function enableVRmode(){
-    if(vrDeviceInfo.type === "MOBILE"){
-      effect = new THREE.StereoEffect(renderer);
-      renderable = effect;
-
-      controls = new THREE.DeviceOrientationControls(camera, true);
-      controls.connect();
-      controls.update();
-      window.addEventListener('click', fullscreen, false);
-      
-    }
-    else if(vrDeviceInfo.type === "HMD"){
-
-      controls = new THREE.VRControls(camera, function(error){alert(error);});
-      controls.update();
-      effect = new THREE.VREffect(renderer, function(error){
-        if (error) {
-          vrButton.innerHTML = error;
-          vrButton.classList.add('error');
-        }
-      });
-      renderable = effect;
-      window.addEventListener('click', function(){
-        fullscreen();
-  //            effect.setFullScreen(true);
-      }, true);
-    }
-    else{
-      $('#NoneVRModal').modal('show');
-    }
-  }
 }
