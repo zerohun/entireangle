@@ -8,9 +8,9 @@ Template.PostsNew.events({
     Post.insert({
       title: title,
       desc: desc,
-      image: image
+      image: image,
+      user: Meteor.user()
     });
-    
     Router.go('posts');
     return false;
   }
