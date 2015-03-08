@@ -1,16 +1,12 @@
 Template.PostsNew.events({
   "submit .new-post": function(event){
     console.log('submit');
-    var title = event.target.title.value;
-    var desc = event.target.desc.value;
+    var postObj = {
+      title: event.target.title.value,
+      desc: event.target.desc.value
+    };
     imageFile = event.target.image.files[0];
-    var image = Image.insert(imageFile);
-    Post.insert({
-      title: title,
-      desc: desc,
-      image: image,
-      user: Meteor.user()
-    });
+    Meteor.call("addPost", postObj, imageFile);
     Router.go('posts');
     return false;
   }
