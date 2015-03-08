@@ -5,6 +5,9 @@
       <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#menuModal">Menu</button>
       <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#infoModal">Info</button>
       <button id="vr-mode-button" class="btn btn-success btn-xs">VR mode</button>
+      {{#if isMyPost}}
+        <button id="remove-button" class="btn btn-danger btn-xs">Delete</button>
+      {{/if}}
     </div>
   </div>
 

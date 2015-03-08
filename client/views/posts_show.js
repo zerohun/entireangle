@@ -1,5 +1,3 @@
-//Template.Posts.helpers({
-//})
 
 var camera, scene, renderer, controls, element;
 var renderable;
@@ -9,6 +7,14 @@ var vrDeviceInfo
 var vrButton;
 var container;
 var isInVRMode = false;
+var post = null;
+
+function getCurrentPost(){
+  if(post != null) return post;
+  post = Router.current().data();
+  return post;
+}
+
 
 function enableFullscreen(container) {
   if (container.requestFullscreen) {
@@ -83,13 +89,25 @@ function toggleVRMode(){
     $('#NoneVRModal').modal('show');
 }
 
+Template.PostsShow.helpers({
+  "isMyPost": function(){
+    return getCurrentPost().user._id == Meteor.userId();
+  }
+})
+
+
 Template.PostsShow.events({
   "click #vr-mode-button": function(){
     toggleVRMode();
   },
   "click #container": function(){
     if(isInVRMode) toggleVRMode();
-  }
+  },
+  "click #remove-button": function(){
+    var post = getCurrentPost();
+    Meteor.call("removePost", post._id);
+    Router.go('posts');
+  },
 });
 
 Template.PostsShow.rendered = function() {
@@ -112,9 +130,8 @@ Template.PostsShow.rendered = function() {
     geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
     geometry.applyMatrix( new THREE.Matrix4().makeTranslation( 0,0,0 ) );
 
-    var post = Router.current().data();
-    console.log(post);
-    var image = Image.findOne({_id: post.image._id})
+    post = getCurrentPost();
+    var image = Image.findOne({_id: post.imageId})
     var imageFilePath = image.url({store:'images'});
 
     var material = new THREE.MeshBasicMaterial( {

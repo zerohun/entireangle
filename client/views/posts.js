@@ -1,5 +1,5 @@
 Template.Posts.helpers({
-  posts: Post.find({}),
+  posts: Post.find({})
 });
 
 Template.post.helpers({
