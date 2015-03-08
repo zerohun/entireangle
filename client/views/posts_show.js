@@ -9,6 +9,17 @@ var container;
 var isInVRMode = false;
 var post = null;
 
+function turnEditingMode(onOfOff){
+  if(onOfOff) {
+    $(".view-box").hide();
+    $(".edit-field").show();
+  }
+  else{
+    $(".view-box").show();
+    $(".edit-field").hide();
+  }
+}
+
 function getCurrentPost(){
   if(post != null) return post;
   post = Router.current().data();
@@ -91,7 +102,7 @@ function toggleVRMode(){
 
 Template.PostsShow.helpers({
   "isMyPost": function(){
-    return getCurrentPost().user._id == Meteor.userId();
+    return getCurrentPost().user._id == Meteor.userId(); 
   }
 })
 
@@ -107,7 +118,20 @@ Template.PostsShow.events({
     var post = getCurrentPost();
     Meteor.call("removePost", post._id);
     Router.go('posts');
+    return false;
   },
+  "click #edit-button": function(){
+    turnEditingMode(true);
+    return false;
+  },
+  "submit #edit-post": function(){
+    post = getCurrentPost();
+    post.title = event.target.title.value;
+    post.desc = event.target.desc.value;
+    Meteor.call("updatePost", post)
+    turnEditingMode(false)
+    return false;
+  }
 });
 
 Template.PostsShow.rendered = function() {
@@ -191,6 +215,8 @@ Template.PostsShow.rendered = function() {
 
     renderable.render( scene, camera );
   }
+
+  turnEditingMode(false);
 
 
 }

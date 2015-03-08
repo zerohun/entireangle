@@ -2,7 +2,7 @@
   <div id="container"></div>
   <div id="info">
     <div id="button-container" class="btn-group" role="group">
-      <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#menuModal">Menu</button>
+      <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#shareModal">Share</button>
       <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#infoModal">Info</button>
       <button id="vr-mode-button" class="btn btn-success btn-xs">VR mode</button>
       {{#if isMyPost}}
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
@@ -41,27 +41,41 @@
   <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
-        </div>
-        <div class="modal-body">
-          <p>
-            {{desc}}
-          </p>
-        </div>
+        <form id="edit-post">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title view-box" id="myModalLabel">{{title}}</h4>
+            <input type="text" class="edit-field" name="title" value="{{title}}">
+          </div>
+          <div class="modal-body">
+            <p class="view-box">
+              {{{desc.replace '\n' '<br>'}}}
+            </p>
+            <textarea class="edit-field" name="desc">{{desc}}</textarea>
+            <br>
 
+            {{#if isMyPost}}
+            <button type="submit" class="btn btn-xs btn edit-field">
+              Done
+            </button>
+            <button id="edit-button" class="btn btn-warning btn-xs view-box">
+              Edit
+            </button>
+            {{/if}}
+          </div>
+        </form>
         <div class="modal-footer">
-          <h4>Comments</h4>
-          <form action="">
-            <input type="text">
-            <input type="submit">
-          </form>
-          <ul>
-            <li>comment1</li>
-            <li>comment2</li>
-            <li>comment3</li>
-          </ul>
+
+          <!--<h4>Comments</h4>-->
+          <!--<form action="">-->
+            <!--<input type="text">-->
+            <!--<input type="submit">-->
+          <!--</form>-->
+          <!--<ul>-->
+            <!--<li>comment1</li>-->
+            <!--<li>comment2</li>-->
+            <!--<li>comment3</li>-->
+          <!--</ul>-->
         </div>
       </div>
     </div>
