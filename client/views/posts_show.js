@@ -108,7 +108,8 @@ Template.PostsShow.helpers({
   },
   "embedUrl": function(){
     var hrefList = location.href.split('/');
-    var address = location.protocol + "//" + hrefList[1] + hrefList[2] + "/ep/" + hrefList[4].split('?')[0];
+    console.log(location.href);
+    var address = location.protocol + "//" + hrefList[1] + hrefList[2] + "/ep/" + Router.current().params._id;
     return "<iframe width='560' height='315' src='" + address + "' frameborder='0' allowfullscreen></iframe>";
   }
 })
