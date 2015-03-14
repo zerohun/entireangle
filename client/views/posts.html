@@ -9,10 +9,10 @@
 </template>
 
 <template name="post">
-  <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 center-block text-center">
+  <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 center-block text-center post-item">
     <a href="{{pathFor route='posts.show' data=this}}">
       <img class="img-circle" src="{{thumbUrl imageId}}">
-      <h5>{{title}}</h5>
+      <h4>{{title}}</h4>
       <em>By {{user.username}}</em>
     </a>
   </div>
