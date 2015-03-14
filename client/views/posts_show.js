@@ -21,7 +21,6 @@ function turnEditingMode(onOfOff){
 }
 
 function getCurrentPost(){
-  if(post != null) return post;
   post = Router.current().data();
   return post;
 }
@@ -155,7 +154,7 @@ Template.PostsShow.rendered = function() {
     geometry.applyMatrix( new THREE.Matrix4().makeTranslation( 0,0,0 ) );
 
     post = getCurrentPost();
-    var image = Image.findOne({_id: post.imageId})
+    var image = Image.findOne({_id: post.imageId});
     var imageFilePath = image.url({store:'images'});
 
     var material = new THREE.MeshBasicMaterial( {
