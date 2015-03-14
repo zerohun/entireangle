@@ -2,15 +2,20 @@
   <div id="container"></div>
   <div id="info">
     <div id="button-container" class="btn-group" role="group">
+      {{#unless isEmbedded}}
       <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#shareModal">Share</button>
       <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#infoModal">Info</button>
+      {{/unless}}
       <button id="vr-mode-button" class="btn btn-success btn-xs">VR mode</button>
+      {{#unless isEmbedded}}
       {{#if isMyPost}}
         <button id="remove-button" class="btn btn-danger btn-xs">Delete</button>
       {{/if}}
+      {{/unless}}
     </div>
   </div>
 
+  {{#unless isEmbedded}}
   <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -27,14 +32,10 @@
           <br>
           <br>
           <br>
-          <h4>Embded</h4>
+          <h4>Embed</h4>
           <hr>
+          <input id="embed-url-string" type="text" value="{{embedUrl}}">
         </div>
-        <!--<div class="modal-footer">-->
-          <!--<form action="/images/<%= image.id %>/delete" method="post">-->
-            <!--<input type="submit" class="btn btn-danger" value="Delete"></input>-->
-          <!--</form>-->
-        <!--</div>-->
       </div>
     </div>
   </div>
@@ -80,6 +81,7 @@
       </div>
     </div>
   </div>
+  {{/unless}}
 
   <div class="modal fade" id="NoneVRModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

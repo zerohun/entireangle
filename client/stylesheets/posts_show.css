@@ -27,5 +27,8 @@ body {
   border-radius: 5px;
   border: 2px solid;
 }
+#embed-url-string{
+  width: 100%;
+}
 
 

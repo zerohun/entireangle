@@ -101,7 +101,13 @@ function toggleVRMode(){
 
 Template.PostsShow.helpers({
   "isMyPost": function(){
-    return getCurrentPost().user._id == Meteor.userId(); 
+    return getCurrentPost().user._id == Meteor.userId();
+  },
+  "isEmbedded": function(){
+    return Router.current().params.query.hasOwnProperty("embedded");
+  },
+  "embedUrl": function(){
+    return "<iframe width='560' height='315' src='" + location.href + "?embedded=yes' frameborder='0' allowfullscreen></iframe>";
   }
 })
 
