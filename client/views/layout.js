@@ -11,7 +11,7 @@ Accounts.ui.config({
 
 Meta.config({
   options: {
-    title: "SCAPE-VR",
+    title: "Entire-Angle",
     suffix: "Suffix"
   }
 });

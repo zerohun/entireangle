@@ -225,6 +225,4 @@ Template.PostsShow.rendered = function() {
   }
 
   turnEditingMode(false);
-
-
 }
