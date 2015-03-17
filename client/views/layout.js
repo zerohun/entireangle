@@ -11,7 +11,7 @@ Accounts.ui.config({
 
 Meta.config({
   options: {
-    title: "Entire-Angle",
+    title: "EntireAngle - Pictures for Virtual reality",
     suffix: "Suffix"
   }
 });
