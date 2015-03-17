@@ -129,6 +129,9 @@ Template.PostsShow.events({
   "click #vr-mode-button": function(){
     toggleVRMode();
   },
+  "click #home-button": function(){
+    Router.go("home")
+  },
   "click #container": function(){
     if(isInVRMode) toggleVRMode();
   },
