@@ -21,8 +21,13 @@ function turnEditingMode(onOfOff){
 }
 
 function getCurrentPost(){
+  try{
   post = Router.current().data();
   return post;
+  }
+  catch(e){
+    return null
+  }
 }
 
 
@@ -101,7 +106,12 @@ function toggleVRMode(){
 
 Template.PostsShow.helpers({
   "isMyPost": function(){
+    try{
     return getCurrentPost().user._id == Meteor.userId();
+    }
+    catch(e){
+      return false;
+    }
   },
   "isEmbedded": function(){
     return Router.current().params.query.hasOwnProperty("embedded");
@@ -124,8 +134,8 @@ Template.PostsShow.events({
   },
   "click #remove-button": function(){
     var post = getCurrentPost();
-    Meteor.call("removePost", post._id);
     Router.go('posts');
+    Meteor.call("removePost", post._id);
     return false;
   },
   "click #edit-button": function(){

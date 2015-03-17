@@ -11,7 +11,9 @@
 <template name="post">
   <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 center-block text-center post-item">
     <a href="{{pathFor route='posts.show' data=this}}">
-      <img class="img-circle" src="{{thumbUrl imageId}}">
+      <div style="background-image: url('/images/loading.gif'); background-repeat: no-repeat;background-position: center;">
+        <img class="img-circle" src="{{thumbUrl imageId}}">
+      </div>
       <h4>{{title}}</h4>
       <em>By {{user.username}}</em>
     </a>
