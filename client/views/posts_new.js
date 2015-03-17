@@ -1,7 +1,6 @@
 Template.PostsNew.events({
   "submit .new-post": function(event){
     var image = Image.insert(event.target.image.files[0]);
-    console.log(image._id);
     var postObj = {
       title: event.target.title.value,
       desc: event.target.desc.value,
