@@ -1,5 +1,5 @@
 Template.Posts.helpers({
-  posts: Post.find({})
+  posts: Post.find({}, {sort: {'createdAt': -1}})
 });
 
 Template.post.helpers({
