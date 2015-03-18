@@ -443,12 +443,9 @@ THREE.OrbitControls = function ( object, domElement ) {
 
     if ( delta > 0 ) {
 
-      console.log('out');
       scope.dollyOut();
 
     } else {
-
-      console.log('in');
 
       scope.dollyIn();
 
