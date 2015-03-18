@@ -34,3 +34,9 @@
 .post-item{
   margin-bottom: 20px;
 }
+
+.loading-bg{
+  background-image: url('/images/loading.gif'); 
+  background-repeat: no-repeat;
+  background-position: center;
+}
