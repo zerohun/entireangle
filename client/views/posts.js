@@ -7,3 +7,8 @@ Template.post.helpers({
     return Image.findOne({_id: imageId}).url({store:'thumbs'});
   }
 });
+
+
+Template.Posts.rendered = function() {
+  $("body").css("overflow", "scroll");
+}
