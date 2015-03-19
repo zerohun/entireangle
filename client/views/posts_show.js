@@ -30,6 +30,24 @@ function getCurrentPost(){
   }
 }
 
+function setDefaultControls(camera, element){
+
+  if(isMobile.phone){
+    controls = new THREE.DeviceOrientationControls(camera, true);
+    controls.connect();
+    controls.update();
+  }
+  else{
+    controls = new THREE.OrbitControls(camera, element);
+    controls.rotateUp(Math.PI / 4);
+    controls.target.set(
+      0.1,0,0
+    );
+    controls.noZoom = true;
+    controls.noPan = true;
+  }
+}
+
 
 function enableFullscreen(container) {
   if (container.requestFullscreen) {
@@ -56,11 +74,8 @@ function disableFullScreen(){
 }
 function disableVRMode(){
 
-  controls = new THREE.OrbitControls(camera, element);
-  controls.rotateUp(Math.PI / 4);
-  controls.target.set(
-    0.1,0,0
-  );
+  setDefaultControls(camera, element);
+  
   renderable = renderer;
   isInVRMode = false;
 }
@@ -69,10 +84,6 @@ function enableVRMode(){
   if(vrDeviceInfo.type === "MOBILE"){
     effect = new THREE.StereoEffect(renderer);
     renderable = effect;
-
-    controls = new THREE.DeviceOrientationControls(camera, true);
-    controls.connect();
-    controls.update();
   }
   else if(vrDeviceInfo.type === "HMD"){
 
@@ -192,11 +203,8 @@ Template.PostsShow.rendered = function() {
 
     var element = renderer.domElement;
     container.appendChild(element);
-    controls = new THREE.OrbitControls(camera, element);
-    controls.rotateUp(Math.PI / 4);
-    controls.target.set(
-      0.1,0,0
-    );
+    setDefaultControls(camera,element);
+
   //				window.addEventListener( 'resize', onWindowResize, false );
 
 
