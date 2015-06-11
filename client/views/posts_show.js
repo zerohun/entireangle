@@ -1,5 +1,5 @@
 
-var camera, scene, renderer, controls, element;
+var camera, scene, renderer, controls, element, effect, vrEffect;
 var renderable;
 var clock = new THREE.Clock();
 var getSize;
@@ -87,15 +87,9 @@ function enableVRMode(){
   }
   else if(vrDeviceInfo.type === "HMD"){
 
-    controls = new THREE.VRControls(camera, function(error){alert(error);});
+    controls = new THREE.VRControls(camera, function(error){});
     controls.update();
-    effect = new THREE.VREffect(renderer, function(error){
-      if (error) {
-        vrButton.innerHTML = error;
-        vrButton.classList.add('error');
-      }
-    });
-    renderable = effect;
+    renderable = vrEffect;
   }
   isInVRMode = true;
 }
@@ -108,7 +102,8 @@ function toggleVRMode(){
     }
     else {
       enableVRMode();
-      enableFullscreen(container);
+      renderable.setFullScreen(true);
+//      enableFullscreen(container);
     }
   }
   else
@@ -212,7 +207,20 @@ Template.PostsShow.rendered = function() {
       var width = container.offsetWidth;
       var height = container.offsetHeight;
       return {width: width, height: height};
+    } 
+    if(vrDeviceInfo.type === "HMD"){
+
+	    vrEffect = new THREE.VREffect(renderer, function(error){
+	      if (error) {
+		alert(error);
+		vrButton.innerHTML = error;
+		vrButton.classList.add('error');
+	      }
+	    });
+	    vrEffect.scale = 0; // video doesn't need eye separation
+	    vrEffect.setSize( window.innerWidth, window.innerHeight );
     }
+
   }
 
   function onWindowResize() {
