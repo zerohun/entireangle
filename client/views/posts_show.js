@@ -1,4 +1,4 @@
-
+ 
 var camera, scene, renderer, controls, element, effect, vrEffect;
 var renderable;
 var clock = new THREE.Clock();
@@ -43,7 +43,7 @@ function setDefaultControls(camera, element){
     controls.target.set(
       0.1,0,0
     );
-    controls.noZoom = true;
+    controls.noZoom = false;
     controls.noPan = true;
   }
 }
@@ -166,13 +166,24 @@ Template.PostsShow.rendered = function() {
   animate();
 
   function init() {
+    post = getCurrentPost();
+	Tracker.autorun(function (computation) {
+		var image = Image.findOne({_id: post.imageId});
+		var imageFilePath = image.url({store:'images'});
+		if(imageFilePath){
+			computation.stop();
+			renderPhotoShpere(post, imageFilePath);
+		}
+	});
+  }
 
+  function renderPhotoShpere(post, imageFilePath){
     vrDeviceInfo = getVRDeviceInfo();
 
     var mesh;
 
     container = document.getElementById( 'container' );
-    camera = new THREE.PerspectiveCamera( 70, 1, 0.001, 500);
+    camera = new THREE.PerspectiveCamera( 70, 1, 0.0001, 5000);
     scene = new THREE.Scene();
     scene.add(camera);
 
@@ -180,12 +191,13 @@ Template.PostsShow.rendered = function() {
     geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
     geometry.applyMatrix( new THREE.Matrix4().makeTranslation( 0,0,0 ) );
 
-    post = getCurrentPost();
-    var image = Image.findOne({_id: post.imageId});
-    var imageFilePath = image.url({store:'images'});
+
 
     var material = new THREE.MeshBasicMaterial( {
-      map: THREE.ImageUtils.loadTexture(imageFilePath)
+      map: THREE.ImageUtils.loadTexture(imageFilePath, null, null, function(error){
+		  console.log('error while loading texture - ');
+		  console.log(error);
+	  })
     } );
 
     mesh = new THREE.Mesh( geometry, material );
