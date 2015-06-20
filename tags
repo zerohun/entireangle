@@ -1,0 +1,1446 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ARC	client/lib/three.js	/^	CSPLINE_THRU: 'splineThru',				\/\/ Catmull-rom spline$/;"	p	class:THREE.PathActions
+Array	client/lib/three.js	/^	for ( var p = 0, pl = paths.length; p < pl; p ++ ) {$/;"	c
+Array	client/lib/three.js	/^	var npts = [ new THREE.Vector2( x0, y0 ) ];$/;"	c	class:THREE.Path
+BEZIER_CURVE_TO	client/lib/three.js	/^	QUADRATIC_CURVE_TO: 'quadraticCurveTo', \/\/ Bezier quadratic curve$/;"	p	class:THREE.PathActions
+BOTTOM	client/lib/three.js	/^	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };$/;"	p	class:THREE.OrbitControls.keys
+CATMULLROM	client/lib/three.js	/^	LINEAR: 0,$/;"	p	class:THREE.AnimationHandler
+CATMULLROM_FORWARD	client/lib/three.js	/^	CATMULLROM: 1,$/;"	p	class:THREE.AnimationHandler
+CSPLINE_THRU	client/lib/three.js	/^	BEZIER_CURVE_TO: 'bezierCurveTo', 		\/\/ Bezier cubic curve$/;"	p	class:THREE.PathActions
+DdE1xQ	client/lib/three.js	/^			var DdE1xQ = sign * this.direction.dot( edge1.cross( diff ) );$/;"	v
+DdQxE2	client/lib/three.js	/^			var DdQxE2 = sign * this.direction.dot( edge2.crossVectors( diff, edge2 ) );$/;"	v
+ELLIPSE	client/lib/three.js	/^	ARC: 'arc',								\/\/ Circle$/;"	p	class:THREE.PathActions
+EPS	client/lib/three.js	/^		var EPS = 0.000001;$/;"	v
+InstancedBufferGeometry	client/lib/three.js	/^},$/;"	c
+LEFT	client/lib/three.js	/^	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };$/;"	p	class:THREE.OrbitControls.keys
+LEFT	client/lib/three.js	/^THREE.MOUSE = { LEFT: 0, MIDDLE: 1, RIGHT: 2 };$/;"	p	class:THREE.MOUSE
+LINEAR	client/lib/three.js	/^THREE.AnimationHandler = {$/;"	p	class:THREE.AnimationHandler
+LINE_TO	client/lib/three.js	/^	MOVE_TO: 'moveTo',$/;"	p	class:THREE.PathActions
+LineBasicMaterial	client/lib/three.js	/^		MeshPhongMaterial: 'phong',$/;"	p	class:shaderIDs
+LineDashedMaterial	client/lib/three.js	/^		LineBasicMaterial: 'basic',$/;"	p	class:shaderIDs
+MIDDLE	client/lib/three.js	/^THREE.MOUSE = { LEFT: 0, MIDDLE: 1, RIGHT: 2 };$/;"	p	class:THREE.MOUSE
+MOVE_TO	client/lib/three.js	/^THREE.PathActions = {$/;"	p	class:THREE.PathActions
+Math.sign	client/lib/three.js	/^if ( Math.sign === undefined ) {$/;"	f
+MeshBasicMaterial	client/lib/three.js	/^		MeshNormalMaterial: 'normal',$/;"	p	class:shaderIDs
+MeshDepthMaterial	client/lib/three.js	/^	var shaderIDs = {$/;"	p	class:shaderIDs
+MeshLambertMaterial	client/lib/three.js	/^		MeshBasicMaterial: 'basic',$/;"	p	class:shaderIDs
+MeshNormalMaterial	client/lib/three.js	/^		MeshDepthMaterial: 'depth',$/;"	p	class:shaderIDs
+MeshPhongMaterial	client/lib/three.js	/^		MeshLambertMaterial: 'lambert',$/;"	p	class:shaderIDs
+NONE	client/lib/three.js	/^	var STATE = { NONE : -1, ROTATE : 0, DOLLY : 1, PAN : 2, TOUCH_ROTATE : 3, TOUCH_DOLLY : 4, TOUCH_PAN : 5 };$/;"	p	class:THREE.OrbitControls.STATE
+ORBIT	client/lib/three.js	/^	this.mouseButtons = { ORBIT: THREE.MOUSE.LEFT, ZOOM: THREE.MOUSE.MIDDLE, PAN: THREE.MOUSE.RIGHT };$/;"	p	class:THREE.OrbitControls.mouseButtons
+PointCloudMaterial	client/lib/three.js	/^		LineDashedMaterial: 'dashed',$/;"	p	class:shaderIDs
+QUADRATIC_CURVE_TO	client/lib/three.js	/^	LINE_TO: 'lineTo',$/;"	p	class:THREE.PathActions
+QdN	client/lib/three.js	/^			var QdN = - sign * diff.dot( normal );$/;"	v
+REVISION	client/lib/three.js	/^var THREE = { REVISION: '72dev' };$/;"	p	class:THREE
+RIGHT	client/lib/three.js	/^	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };$/;"	p	class:THREE.OrbitControls.keys
+RIGHT	client/lib/three.js	/^THREE.MOUSE = { LEFT: 0, MIDDLE: 1, RIGHT: 2 };$/;"	p	class:THREE.MOUSE
+Raycaster	client/lib/three.js	/^};$/;"	c
+Sprite	client/lib/three.js	/^		this.params = {$/;"	p	class:Raycaster.params
+THREE.AmbientLight	client/lib/three.js	/^};$/;"	c
+THREE.Animation	client/lib/three.js	/^};$/;"	c
+THREE.ArcCurve	client/lib/three.js	/^};$/;"	c
+THREE.ArcCurve	client/lib/three.js	/^};$/;"	f
+THREE.AreaLight	client/lib/three.js	/^};$/;"	c
+THREE.ArrowHelper	client/lib/three.js	/^}() );$/;"	c
+THREE.Audio	client/lib/three.js	/^};$/;"	c
+THREE.AudioListener	client/lib/three.js	/^} )();$/;"	c
+THREE.AxisHelper	client/lib/three.js	/^THREE.WireframeGeometry.prototype.constructor = THREE.WireframeGeometry;$/;"	f
+THREE.AxisHelper	client/lib/three.js	/^};$/;"	c
+THREE.BinaryTextureLoader	client/lib/three.js	/^};$/;"	c
+THREE.Bone	client/lib/three.js	/^};$/;"	c
+THREE.BoundingBoxHelper	client/lib/three.js	/^};$/;"	c
+THREE.Box2	client/lib/three.js	/^};$/;"	c
+THREE.Box3	client/lib/three.js	/^};$/;"	c
+THREE.BoxGeometry	client/lib/three.js	/^};$/;"	c
+THREE.BoxHelper	client/lib/three.js	/^};$/;"	c
+THREE.BoxHelper	client/lib/three.js	/^};$/;"	f
+THREE.BufferAttribute	client/lib/three.js	/^};$/;"	c
+THREE.BufferGeometry	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.DirectGeometry.prototype );$/;"	c
+THREE.BufferGeometryLoader	client/lib/three.js	/^THREE.DefaultLoadingManager = new THREE.LoadingManager();$/;"	c
+THREE.Camera	client/lib/three.js	/^	var camera = new THREE.OrthographicCamera();$/;"	c	class:THREE.OrthographicCamera
+THREE.Camera	client/lib/three.js	/^	var camera = new THREE.PerspectiveCamera();$/;"	c	class:THREE.PerspectiveCamera
+THREE.Camera	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.InstancedBufferGeometry.prototype );$/;"	c
+THREE.CameraHelper	client/lib/three.js	/^};$/;"	c
+THREE.CanvasRenderer	client/lib/three.js	/^};$/;"	c
+THREE.CircleBufferGeometry	client/lib/three.js	/^THREE.CircleGeometry.prototype.constructor = THREE.CircleGeometry;$/;"	c
+THREE.CircleGeometry	client/lib/three.js	/^THREE.CubeGeometry = THREE.BoxGeometry; \/\/ backwards compatibility$/;"	c
+THREE.Clock	client/lib/three.js	/^};$/;"	c
+THREE.Color	client/lib/three.js	/^};$/;"	c
+THREE.Color	client/lib/three.js	/^};$/;"	f
+THREE.CompressedTexture	client/lib/three.js	/^};$/;"	c
+THREE.CompressedTextureLoader	client/lib/three.js	/^};$/;"	c
+THREE.CubeCamera	client/lib/three.js	/^};$/;"	c
+THREE.CubeTexture	client/lib/three.js	/^THREE.TextureIdCount = 0;$/;"	c
+THREE.CubeTexture.clone	client/lib/three.js	/^THREE.CubeTexture.prototype.constructor = THREE.CubeTexture;$/;"	f
+THREE.CubicBezierCurve	client/lib/three.js	/^};$/;"	c
+THREE.Curve	client/lib/three.js	/^} )();$/;"	f
+THREE.Curve	client/lib/three.js	/^};$/;"	c
+THREE.Curve.create	client/lib/three.js	/^};$/;"	f
+THREE.CurvePath	client/lib/three.js	/^};$/;"	c
+THREE.CylinderGeometry	client/lib/three.js	/^THREE.CircleBufferGeometry.prototype.constructor = THREE.CircleBufferGeometry;$/;"	c
+THREE.DataTexture	client/lib/three.js	/^};$/;"	c
+THREE.DeviceOrientationControls	client/lib/three.js	/^};$/;"	c
+THREE.DirectGeometry	client/lib/three.js	/^THREE.GeometryIdCount = 0;$/;"	c
+THREE.DirectionalLight	client/lib/three.js	/^THREE.AreaLight.prototype.constructor = THREE.AreaLight;$/;"	c
+THREE.DirectionalLightHelper	client/lib/three.js	/^}();$/;"	c
+THREE.DodecahedronGeometry	client/lib/three.js	/^THREE.PolyhedronGeometry.prototype.constructor = THREE.PolyhedronGeometry;$/;"	c
+THREE.DynamicBufferAttribute	client/lib/three.js	/^};$/;"	c
+THREE.EdgesGeometry	client/lib/three.js	/^THREE.CylinderGeometry.prototype.constructor = THREE.CylinderGeometry;$/;"	c
+THREE.EdgesHelper	client/lib/three.js	/^}();$/;"	c
+THREE.EllipseCurve	client/lib/three.js	/^};$/;"	c
+THREE.Euler	client/lib/three.js	/^};$/;"	c
+THREE.EventDispatcher	client/lib/three.js	/^THREE.EventDispatcher = function () {};$/;"	c
+THREE.EventDispatcher	client/lib/three.js	/^};$/;"	f
+THREE.ExtrudeGeometry	client/lib/three.js	/^THREE.EdgesGeometry.prototype.constructor = THREE.EdgesGeometry;$/;"	c
+THREE.Face3	client/lib/three.js	/^THREE.Object3DIdCount = 0;$/;"	c
+THREE.Face4	client/lib/three.js	/^};$/;"	f
+THREE.FaceNormalsHelper	client/lib/three.js	/^THREE.EdgesHelper.prototype.constructor = THREE.EdgesHelper;$/;"	c
+THREE.Float32Attribute	client/lib/three.js	/^};$/;"	f
+THREE.Float64Attribute	client/lib/three.js	/^};$/;"	f
+THREE.Fog	client/lib/three.js	/^};$/;"	c
+THREE.FogExp2	client/lib/three.js	/^};$/;"	c
+THREE.FontUtils.generateShapes	client/lib/three.js	/^};$/;"	f
+THREE.Frustum	client/lib/three.js	/^};$/;"	c
+THREE.Geometry	client/lib/three.js	/^};$/;"	c
+THREE.GridHelper	client/lib/three.js	/^};$/;"	c
+THREE.Group	client/lib/three.js	/^THREE.VideoTexture.prototype.constructor = THREE.VideoTexture;$/;"	c
+THREE.Gyroscope	client/lib/three.js	/^};$/;"	c
+THREE.Gyroscope	client/lib/three.js	/^};$/;"	f
+THREE.HemisphereLight	client/lib/three.js	/^};$/;"	c
+THREE.HemisphereLightHelper	client/lib/three.js	/^};$/;"	c
+THREE.IcosahedronGeometry	client/lib/three.js	/^THREE.DodecahedronGeometry.prototype.constructor = THREE.DodecahedronGeometry;$/;"	c
+THREE.ImageLoader	client/lib/three.js	/^};$/;"	c
+THREE.ImmediateRenderObject	client/lib/three.js	/^THREE.WireframeHelper.prototype.constructor = THREE.WireframeHelper;$/;"	c
+THREE.InstancedBufferAttribute	client/lib/three.js	/^};$/;"	c
+THREE.InstancedBufferGeometry	client/lib/three.js	/^THREE.BufferGeometry.MaxIndex = 65535;$/;"	c
+THREE.InstancedInterleavedBuffer	client/lib/three.js	/^};$/;"	c
+THREE.Int16Attribute	client/lib/three.js	/^};$/;"	f
+THREE.Int32Attribute	client/lib/three.js	/^};$/;"	f
+THREE.Int8Attribute	client/lib/three.js	/^};$/;"	f
+THREE.InterleavedBuffer	client/lib/three.js	/^};$/;"	c
+THREE.InterleavedBufferAttribute	client/lib/three.js	/^};$/;"	c
+THREE.JSONLoader	client/lib/three.js	/^};$/;"	c
+THREE.KeyFrameAnimation	client/lib/three.js	/^};$/;"	c
+THREE.LOD	client/lib/three.js	/^};$/;"	c
+THREE.LatheGeometry	client/lib/three.js	/^};$/;"	c
+THREE.LensFlare	client/lib/three.js	/^THREE.Particle = THREE.Sprite;$/;"	c
+THREE.LensFlarePlugin	client/lib/three.js	/^};$/;"	c
+THREE.Light	client/lib/three.js	/^	var light = new THREE.AmbientLight();$/;"	c	class:THREE.AmbientLight
+THREE.Light	client/lib/three.js	/^	var light = new THREE.DirectionalLight();$/;"	c	class:THREE.DirectionalLight
+THREE.Light	client/lib/three.js	/^	var light = new THREE.HemisphereLight();$/;"	c	class:THREE.HemisphereLight
+THREE.Light	client/lib/three.js	/^	var light = new THREE.PointLight();$/;"	c	class:THREE.PointLight
+THREE.Light	client/lib/three.js	/^	var light = new THREE.SpotLight();$/;"	c	class:THREE.SpotLight
+THREE.Light	client/lib/three.js	/^};$/;"	c
+THREE.Line	client/lib/three.js	/^};$/;"	c
+THREE.Line3	client/lib/three.js	/^};$/;"	c
+THREE.LineBasicMaterial	client/lib/three.js	/^THREE.MaterialIdCount = 0;$/;"	c
+THREE.LineCurve	client/lib/three.js	/^};$/;"	c
+THREE.LineDashedMaterial	client/lib/three.js	/^};$/;"	c
+THREE.LineSegments	client/lib/three.js	/^THREE.LinePieces = 1;$/;"	c
+THREE.Loader	client/lib/three.js	/^};$/;"	c
+THREE.LoadingManager	client/lib/three.js	/^};$/;"	c
+THREE.Material	client/lib/three.js	/^	var material = new THREE.LineBasicMaterial();$/;"	c	class:THREE.LineBasicMaterial
+THREE.Material	client/lib/three.js	/^	var material = new THREE.LineDashedMaterial();$/;"	c	class:THREE.LineDashedMaterial
+THREE.Material	client/lib/three.js	/^	var material = new THREE.MeshBasicMaterial();$/;"	c	class:THREE.MeshBasicMaterial
+THREE.Material	client/lib/three.js	/^	var material = new THREE.MeshDepthMaterial();$/;"	c	class:THREE.MeshDepthMaterial
+THREE.Material	client/lib/three.js	/^	var material = new THREE.MeshLambertMaterial();$/;"	c	class:THREE.MeshLambertMaterial
+THREE.Material	client/lib/three.js	/^	var material = new THREE.MeshNormalMaterial();$/;"	c	class:THREE.MeshNormalMaterial
+THREE.Material	client/lib/three.js	/^	var material = new THREE.MeshPhongMaterial();$/;"	c	class:THREE.MeshPhongMaterial
+THREE.Material	client/lib/three.js	/^	var material = new THREE.PointCloudMaterial();$/;"	c	class:THREE.PointCloudMaterial
+THREE.Material	client/lib/three.js	/^	var material = new THREE.SpriteMaterial();$/;"	c	class:THREE.SpriteMaterial
+THREE.Material	client/lib/three.js	/^};$/;"	c
+THREE.MaterialLoader	client/lib/three.js	/^};$/;"	c
+THREE.Matrix3	client/lib/three.js	/^};$/;"	c
+THREE.Matrix4	client/lib/three.js	/^};$/;"	c
+THREE.Mesh	client/lib/three.js	/^THREE.LineSegments.prototype.constructor = THREE.LineSegments;$/;"	c
+THREE.Mesh	client/lib/three.js	/^THREE.SkinnedMesh.prototype.updateMatrixWorld = function( force ) {$/;"	c	class:THREE.SkinnedMesh
+THREE.MeshBasicMaterial	client/lib/three.js	/^};$/;"	c
+THREE.MeshDepthMaterial	client/lib/three.js	/^};$/;"	c
+THREE.MeshFaceMaterial	client/lib/three.js	/^};$/;"	f
+THREE.MeshLambertMaterial	client/lib/three.js	/^};$/;"	c
+THREE.MeshNormalMaterial	client/lib/three.js	/^};$/;"	c
+THREE.MeshPhongMaterial	client/lib/three.js	/^};$/;"	c
+THREE.MorphAnimMesh	client/lib/three.js	/^};$/;"	c
+THREE.MorphAnimation	client/lib/three.js	/^};$/;"	c
+THREE.MorphBlendMesh	client/lib/three.js	/^THREE.ImmediateRenderObject.prototype.constructor = THREE.ImmediateRenderObject;$/;"	c
+THREE.Object3D	client/lib/three.js	/^}( THREE ) );$/;"	c
+THREE.ObjectLoader	client/lib/three.js	/^};$/;"	c
+THREE.OctahedronGeometry	client/lib/three.js	/^THREE.IcosahedronGeometry.prototype.constructor = THREE.IcosahedronGeometry;$/;"	c
+THREE.OrbitControls	client/lib/three.js	/^};$/;"	c
+THREE.OrthographicCamera	client/lib/three.js	/^THREE.CubeCamera.prototype.constructor = THREE.CubeCamera;$/;"	c
+THREE.ParametricGeometry	client/lib/three.js	/^THREE.TetrahedronGeometry.prototype.constructor = THREE.TetrahedronGeometry;$/;"	c
+THREE.ParticleBasicMaterial	client/lib/three.js	/^};$/;"	f
+THREE.ParticleSystem	client/lib/three.js	/^};$/;"	f
+THREE.ParticleSystemMaterial	client/lib/three.js	/^};$/;"	f
+THREE.Path	client/lib/three.js	/^}() );$/;"	c
+THREE.PerspectiveCamera	client/lib/three.js	/^};$/;"	c
+THREE.Plane	client/lib/three.js	/^};$/;"	c
+THREE.PlaneBufferGeometry	client/lib/three.js	/^THREE.PlaneGeometry.prototype.constructor = THREE.PlaneGeometry;$/;"	c
+THREE.PlaneGeometry	client/lib/three.js	/^THREE.LatheGeometry.prototype.constructor = THREE.LatheGeometry;$/;"	c
+THREE.PointCloud	client/lib/three.js	/^THREE.Group.prototype.constructor = THREE.Group;$/;"	c
+THREE.PointCloudMaterial	client/lib/three.js	/^};$/;"	c
+THREE.PointLight	client/lib/three.js	/^};$/;"	c
+THREE.PointLightHelper	client/lib/three.js	/^}();$/;"	c
+THREE.PolyhedronGeometry	client/lib/three.js	/^};$/;"	c
+THREE.Projector	client/lib/three.js	/^THREE.RGBA_PVRTC_2BPPV1_Format = 2103;$/;"	c
+THREE.QuadraticBezierCurve	client/lib/three.js	/^};$/;"	c
+THREE.Quaternion	client/lib/three.js	/^'violet': 0xEE82EE, 'wheat': 0xF5DEB3, 'white': 0xFFFFFF, 'whitesmoke': 0xF5F5F5, 'yellow': 0xFFFF00, 'yellowgreen': 0x9ACD32 };$/;"	c
+THREE.Quaternion.slerp	client/lib/three.js	/^};$/;"	f
+THREE.RawShaderMaterial	client/lib/three.js	/^};$/;"	c
+THREE.Ray	client/lib/three.js	/^};$/;"	c
+THREE.Raycaster	client/lib/three.js	/^	};$/;"	c
+THREE.RingGeometry	client/lib/three.js	/^THREE.PlaneBufferGeometry.prototype.constructor = THREE.PlaneBufferGeometry;$/;"	c
+THREE.Scene	client/lib/three.js	/^};$/;"	c
+THREE.ShaderMaterial	client/lib/three.js	/^	var material = new THREE.RawShaderMaterial();$/;"	c	class:THREE.RawShaderMaterial
+THREE.ShaderMaterial	client/lib/three.js	/^};$/;"	c
+THREE.Shape	client/lib/three.js	/^};$/;"	c
+THREE.ShapeGeometry	client/lib/three.js	/^};$/;"	c
+THREE.Skeleton	client/lib/three.js	/^THREE.Bone.prototype.constructor = THREE.Bone;$/;"	c
+THREE.SkeletonHelper	client/lib/three.js	/^};$/;"	c
+THREE.SkinnedMesh	client/lib/three.js	/^} )();$/;"	c
+THREE.Sphere	client/lib/three.js	/^};$/;"	c
+THREE.SphereBufferGeometry	client/lib/three.js	/^THREE.SphereGeometry.prototype.constructor = THREE.SphereGeometry;$/;"	c
+THREE.SphereGeometry	client/lib/three.js	/^THREE.RingGeometry.prototype.constructor = THREE.RingGeometry;$/;"	c
+THREE.Spline	client/lib/three.js	/^};$/;"	c
+THREE.SplineCurve	client/lib/three.js	/^};$/;"	c
+THREE.SpotLight	client/lib/three.js	/^};$/;"	c
+THREE.SpotLightHelper	client/lib/three.js	/^};$/;"	c
+THREE.Sprite	client/lib/three.js	/^} )();$/;"	c
+THREE.SpriteMaterial	client/lib/three.js	/^};$/;"	c
+THREE.SpritePlugin	client/lib/three.js	/^};$/;"	c
+THREE.StereoEffect	client/lib/three.js	/^};$/;"	c
+THREE.TetrahedronGeometry	client/lib/three.js	/^THREE.OctahedronGeometry.prototype.constructor = THREE.OctahedronGeometry;$/;"	c
+THREE.TextGeometry	client/lib/three.js	/^THREE.SphereBufferGeometry.prototype.constructor = THREE.SphereBufferGeometry;$/;"	c
+THREE.Texture	client/lib/three.js	/^	var texture = new THREE.CompressedTexture();$/;"	c	class:THREE.CompressedTexture
+THREE.Texture	client/lib/three.js	/^	var texture = new THREE.DataTexture();$/;"	c	class:THREE.DataTexture
+THREE.Texture	client/lib/three.js	/^};$/;"	c
+THREE.TextureLoader	client/lib/three.js	/^};$/;"	c
+THREE.TorusGeometry	client/lib/three.js	/^THREE.TextGeometry.prototype.constructor = THREE.TextGeometry;$/;"	c
+THREE.TorusKnotGeometry	client/lib/three.js	/^THREE.TorusGeometry.prototype.constructor = THREE.TorusGeometry;$/;"	c
+THREE.Triangle	client/lib/three.js	/^};$/;"	c
+THREE.Triangle.barycoordFromPoint	client/lib/three.js	/^}();$/;"	f
+THREE.Triangle.containsPoint	client/lib/three.js	/^}();$/;"	f
+THREE.Triangle.normal	client/lib/three.js	/^};$/;"	f
+THREE.TubeGeometry	client/lib/three.js	/^THREE.TorusKnotGeometry.prototype.constructor = THREE.TorusKnotGeometry;$/;"	c
+THREE.TubeGeometry.FrenetFrames	client/lib/three.js	/^};$/;"	c
+THREE.TubeGeometry.NoTaper	client/lib/three.js	/^THREE.TubeGeometry.prototype.constructor = THREE.TubeGeometry;$/;"	f
+THREE.TubeGeometry.SinusoidalTaper	client/lib/three.js	/^};$/;"	f
+THREE.Uint16Attribute	client/lib/three.js	/^};$/;"	f
+THREE.Uint32Attribute	client/lib/three.js	/^};$/;"	f
+THREE.Uint8Attribute	client/lib/three.js	/^};$/;"	f
+THREE.Uint8ClampedAttribute	client/lib/three.js	/^};$/;"	f
+THREE.VRControls	client/lib/three.js	/^THREE.OrbitControls.prototype.constructor = THREE.OrbitControls;$/;"	c
+THREE.VREffect	client/lib/three.js	/^};$/;"	c
+THREE.Vector2	client/lib/three.js	/^};$/;"	c
+THREE.Vector3	client/lib/three.js	/^};$/;"	c
+THREE.Vector4	client/lib/three.js	/^};$/;"	c
+THREE.VertexNormalsHelper	client/lib/three.js	/^}();$/;"	c
+THREE.VertexTangentsHelper	client/lib/three.js	/^}());$/;"	c
+THREE.VideoTexture	client/lib/three.js	/^};$/;"	c
+THREE.WebGLExtensions	client/lib/three.js	/^THREE.WebGLRenderTargetCube.prototype.constructor = THREE.WebGLRenderTargetCube;$/;"	c
+THREE.WebGLGeometries	client/lib/three.js	/^};$/;"	c
+THREE.WebGLObjects	client/lib/three.js	/^};$/;"	c
+THREE.WebGLRenderTarget	client/lib/three.js	/^};$/;"	c
+THREE.WebGLRenderTargetCube	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.WebGLRenderTarget.prototype );$/;"	c
+THREE.WebGLRenderer	client/lib/three.js	/^};$/;"	c
+THREE.WebGLShadowMap	client/lib/three.js	/^} )();$/;"	c
+THREE.WebGLState	client/lib/three.js	/^};$/;"	c
+THREE.WireframeGeometry	client/lib/three.js	/^THREE.ParametricGeometry.prototype.constructor = THREE.ParametricGeometry;$/;"	f
+THREE.WireframeGeometry	client/lib/three.js	/^};$/;"	c
+THREE.WireframeHelper	client/lib/three.js	/^}());$/;"	c
+THREE.XHRLoader	client/lib/three.js	/^};$/;"	c
+Template.About.rendered	client/views/about.js	/^Template.About.rendered = function() {$/;"	f
+Template.Posts.rendered	client/views/posts.js	/^});$/;"	f
+Template.PostsShow.rendered	client/views/posts_show.js	/^});$/;"	f
+UP	client/lib/three.js	/^	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };$/;"	p	class:THREE.OrbitControls.keys
+_fragmentShaderPrecisionHighpFloat	client/lib/three.js	/^	var _fragmentShaderPrecisionHighpFloat = _gl.getShaderPrecisionFormat( _gl.FRAGMENT_SHADER, _gl.HIGH_FLOAT );$/;"	v
+_fragmentShaderPrecisionMediumpFloat	client/lib/three.js	/^	var _fragmentShaderPrecisionMediumpFloat = _gl.getShaderPrecisionFormat( _gl.FRAGMENT_SHADER, _gl.MEDIUM_FLOAT );$/;"	v
+_gl	client/lib/three.js	/^	var _gl;$/;"	v
+_gl.getShaderPrecisionFormat	client/lib/three.js	/^	if ( _gl.getShaderPrecisionFormat === undefined ) {$/;"	f
+_maxCubemapSize	client/lib/three.js	/^	var _maxCubemapSize = _gl.getParameter( _gl.MAX_CUBE_MAP_TEXTURE_SIZE );$/;"	v
+_maxTextureSize	client/lib/three.js	/^	var _maxTextureSize = _gl.getParameter( _gl.MAX_TEXTURE_SIZE );$/;"	v
+_maxTextures	client/lib/three.js	/^	var _maxTextures = _gl.getParameter( _gl.MAX_TEXTURE_IMAGE_UNITS );$/;"	v
+_maxVertexTextures	client/lib/three.js	/^	var _maxVertexTextures = _gl.getParameter( _gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS );$/;"	v
+_supportsBoneTextures	client/lib/three.js	/^	var _supportsBoneTextures = _supportsVertexTextures && extensions.get( 'OES_texture_float' );$/;"	v
+_supportsInstancedArrays	client/lib/three.js	/^	var _supportsInstancedArrays = extensions.get( 'ANGLE_instanced_arrays' );$/;"	v
+_supportsVertexTextures	client/lib/three.js	/^	var _supportsVertexTextures = _maxVertexTextures > 0;$/;"	v
+_vertexShaderPrecisionHighpFloat	client/lib/three.js	/^	var _vertexShaderPrecisionHighpFloat = _gl.getShaderPrecisionFormat( _gl.VERTEX_SHADER, _gl.HIGH_FLOAT );$/;"	v
+_vertexShaderPrecisionMediumpFloat	client/lib/three.js	/^	var _vertexShaderPrecisionMediumpFloat = _gl.getShaderPrecisionFormat( _gl.VERTEX_SHADER, _gl.MEDIUM_FLOAT );$/;"	v
+a	client/lib/three.js	/^					vertexNormals = { a: new THREE.Vector3(), b: new THREE.Vector3(), c: new THREE.Vector3() };$/;"	p	class:vertexNormals
+a	client/lib/three.js	/^		var a = Math.cos( x ), b = Math.sin( x );$/;"	v
+a	client/lib/three.js	/^		var a = te[ 0 ], b = te[ 1 ], c = te[ 2 ],$/;"	v
+a01	client/lib/three.js	/^			var a01 = - this.direction.dot( segDir );$/;"	v
+a11	client/lib/three.js	/^		var a11 = ae[ 0 ], a12 = ae[ 4 ], a13 = ae[ 8 ], a14 = ae[ 12 ];$/;"	v
+a21	client/lib/three.js	/^		var a21 = ae[ 1 ], a22 = ae[ 5 ], a23 = ae[ 9 ], a24 = ae[ 13 ];$/;"	v
+a31	client/lib/three.js	/^		var a31 = ae[ 2 ], a32 = ae[ 6 ], a33 = ae[ 10 ], a34 = ae[ 14 ];$/;"	v
+a41	client/lib/three.js	/^		var a41 = ae[ 3 ], a42 = ae[ 7 ], a43 = ae[ 11 ], a44 = ae[ 15 ];$/;"	v
+absarc	client/lib/three.js	/^ THREE.Path.prototype.absarc = function ( aX, aY, aRadius,$/;"	m	class:THREE.Path
+absellipse	client/lib/three.js	/^THREE.Path.prototype.absellipse = function ( aX, aY, xRadius, yRadius,$/;"	m	class:THREE.Path
+activeTexture	client/lib/three.js	/^	this.activeTexture = function ( webglSlot ) {$/;"	m	class:THREE.WebGLState
+add	client/lib/three.js	/^	CATMULLROM_FORWARD: 2,$/;"	m	class:THREE.AnimationHandler
+add	client/lib/three.js	/^THREE.CurvePath.prototype.add = function ( curve ) {$/;"	m	class:THREE.CurvePath
+add	client/lib/three.js	/^THREE.LensFlare.prototype.add = function ( texture, size, distance, blending, color, opacity ) {$/;"	m	class:THREE.LensFlare
+addDrawCall	client/lib/three.js	/^THREE.InstancedBufferGeometry.prototype.addDrawCall = function ( start, count, indexOffset, instances ) {$/;"	m	class:THREE.InstancedBufferGeometry
+addFace	client/lib/three.js	/^		var addFace = function ( a, b, c ) {$/;"	f
+addLevel	client/lib/three.js	/^THREE.LOD.prototype.addLevel = function ( object, distance ) {$/;"	m	class:THREE.LOD
+addLine	client/lib/three.js	/^	function addLine( a, b, hex ) {$/;"	f	function:THREE.CameraHelper
+addPoint	client/lib/three.js	/^	function addPoint( id, hex ) {$/;"	f	function:THREE.CameraHelper
+addPostPlugin	client/lib/three.js	/^	this.addPostPlugin = function () {$/;"	f
+addPrePlugin	client/lib/three.js	/^	this.addPrePlugin = function () {$/;"	f
+addShape	client/lib/three.js	/^THREE.ExtrudeGeometry.prototype.addShape = function ( shape, options ) {$/;"	m	class:THREE.ExtrudeGeometry
+addShape	client/lib/three.js	/^THREE.ShapeGeometry.prototype.addShape = function ( shape, options ) {$/;"	m	class:THREE.ShapeGeometry
+addShapeList	client/lib/three.js	/^THREE.ExtrudeGeometry.prototype.addShapeList = function ( shapes, options ) {$/;"	m	class:THREE.ExtrudeGeometry
+addShapeList	client/lib/three.js	/^THREE.ShapeGeometry.prototype.addShapeList = function ( shapes, options ) {$/;"	m	class:THREE.ShapeGeometry
+addWrapPath	client/lib/three.js	/^THREE.CurvePath.prototype.addWrapPath = function ( bendpath ) {$/;"	m	class:THREE.CurvePath
+aliceblue	client/lib/three.js	/^THREE.ColorKeywords = { 'aliceblue': 0xF0F8FF, 'antiquewhite': 0xFAEBD7, 'aqua': 0x00FFFF, 'aquamarine': 0x7FFFD4, 'azure': 0xF0FFFF,$/;"	p	class:THREE.ColorKeywords
+allocateBones	client/lib/three.js	/^	function allocateBones ( object ) {$/;"	f
+allocateLights	client/lib/three.js	/^	function allocateLights( lights ) {$/;"	f
+allocateShadows	client/lib/three.js	/^	function allocateShadows( lights ) {$/;"	f
+alpha	client/lib/three.js	/^		var attributes = {$/;"	p	class:var.attributes
+animate	client/views/posts_show.js	/^  function animate() {$/;"	f
+animationCache	client/lib/three.js	/^			var animationCache = animations[ name ];$/;"	v
+animations	client/lib/three.js	/^				object.animationCache = {$/;"	p	class:object.animationCache
+animations	client/lib/three.js	/^	remove: function () { console.warn( 'THREE.AnimationHandler.remove() has been deprecated.' ); },$/;"	p	class:THREE.AnimationHandler
+antialias	client/lib/three.js	/^			stencil: _stencil,$/;"	p	class:var.attributes
+antiquewhite	client/lib/three.js	/^THREE.ColorKeywords = { 'aliceblue': 0xF0F8FF, 'antiquewhite': 0xFAEBD7, 'aqua': 0x00FFFF, 'aquamarine': 0x7FFFD4, 'azure': 0xF0FFFF,$/;"	p	class:THREE.ColorKeywords
+apply	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.BufferGeometry.prototype );$/;"	m	class:THREE.EventDispatcher
+apply	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.DirectGeometry.prototype );$/;"	m	class:THREE.EventDispatcher
+apply	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.Geometry.prototype );$/;"	m	class:THREE.EventDispatcher
+apply	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.InstancedBufferGeometry.prototype );$/;"	m	class:THREE.EventDispatcher
+apply	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.Material.prototype );$/;"	m	class:THREE.EventDispatcher
+apply	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.Object3D.prototype );$/;"	m	class:THREE.EventDispatcher
+apply	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.Texture.prototype );$/;"	m	class:THREE.EventDispatcher
+apply	client/lib/three.js	/^THREE.EventDispatcher.prototype.apply( THREE.WebGLRenderTarget.prototype );$/;"	m	class:THREE.EventDispatcher
+aqua	client/lib/three.js	/^THREE.ColorKeywords = { 'aliceblue': 0xF0F8FF, 'antiquewhite': 0xFAEBD7, 'aqua': 0x00FFFF, 'aquamarine': 0x7FFFD4, 'azure': 0xF0FFFF,$/;"	p	class:THREE.ColorKeywords
+aquamarine	client/lib/three.js	/^THREE.ColorKeywords = { 'aliceblue': 0xF0F8FF, 'antiquewhite': 0xFAEBD7, 'aqua': 0x00FFFF, 'aquamarine': 0x7FFFD4, 'azure': 0xF0FFFF,$/;"	p	class:THREE.ColorKeywords
+arc	client/lib/three.js	/^		tubularSegments: tubularSegments,$/;"	p	class:THREE.TorusGeometry.parameters
+arc	client/lib/three.js	/^THREE.Path.prototype.arc = function ( aX, aY, aRadius,$/;"	m	class:THREE.Path
+area	client/lib/three.js	/^	var area = function ( contour ) {$/;"	f
+array	client/lib/three.js	/^			this.attributes[ name ] = { array: arguments[ 1 ], itemSize: arguments[ 2 ] };$/;"	p	class:this.attributes
+attach	client/lib/three.js	/^	},$/;"	m	class:THREE.SceneUtils
+attributes	client/lib/three.js	/^		data.data = { attributes: {} };$/;"	p	class:data.data
+attributes	client/lib/three.js	/^		var attributes = geometry.attributes;$/;"	v
+attributes	client/lib/three.js	/^		var attributes = json.data.attributes;$/;"	v
+author	packages/shareit/tests/client.js	/^dataContext = {title: 'Test title', author: 'My Uncle', thumbnail: 'TestPath'};$/;"	p	class:dataContext
+autoCreateAnimations	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.autoCreateAnimations = function ( fps ) {$/;"	m	class:THREE.MorphBlendMesh
+azimuth	client/lib/three.js	/^	function azimuth( vector ) {$/;"	f	function:THREE.PolyhedronGeometry
+azure	client/lib/three.js	/^THREE.ColorKeywords = { 'aliceblue': 0xF0F8FF, 'antiquewhite': 0xFAEBD7, 'aqua': 0x00FFFF, 'aquamarine': 0x7FFFD4, 'azure': 0xF0FFFF,$/;"	p	class:THREE.ColorKeywords
+b0	client/lib/three.js	/^			var b0 = diff.dot( this.direction );$/;"	v
+b1	client/lib/three.js	/^			var b1 = - diff.dot( segDir );$/;"	v
+b11	client/lib/three.js	/^		var b11 = be[ 0 ], b12 = be[ 4 ], b13 = be[ 8 ], b14 = be[ 12 ];$/;"	v
+b2	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+b21	client/lib/three.js	/^		var b21 = be[ 1 ], b22 = be[ 5 ], b23 = be[ 9 ], b24 = be[ 13 ];$/;"	v
+b2p0	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+b2p1	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+b2p2	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+b3	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+b31	client/lib/three.js	/^		var b31 = be[ 2 ], b32 = be[ 6 ], b33 = be[ 10 ], b34 = be[ 14 ];$/;"	v
+b3p0	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+b3p1	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+b3p2	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+b3p3	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+b41	client/lib/three.js	/^		var b41 = be[ 3 ], b42 = be[ 7 ], b43 = be[ 11 ], b44 = be[ 15 ];$/;"	v
+basic	client/lib/three.js	/^THREE.ShaderLib = {$/;"	p	class:THREE.ShaderLib
+be	client/lib/three.js	/^		var be = b.elements;$/;"	v
+beige	client/lib/three.js	/^THREE.ColorKeywords = { 'aliceblue': 0xF0F8FF, 'antiquewhite': 0xFAEBD7, 'aqua': 0x00FFFF, 'aquamarine': 0x7FFFD4, 'azure': 0xF0FFFF,$/;"	p	class:THREE.ColorKeywords
+bezierCurveTo	client/lib/three.js	/^THREE.Path.prototype.bezierCurveTo = function( aCP1x, aCP1y,$/;"	m	class:THREE.Path
+bind	client/lib/three.js	/^THREE.SkinnedMesh.prototype.bind = function( skeleton, bindMatrix ) {$/;"	m	class:THREE.SkinnedMesh
+bindTexture	client/lib/three.js	/^	this.bindTexture = function ( webglType, webglTexture ) {$/;"	m	class:THREE.WebGLState
+bisque	client/lib/three.js	/^'beige': 0xF5F5DC, 'bisque': 0xFFE4C4, 'black': 0x000000, 'blanchedalmond': 0xFFEBCD, 'blue': 0x0000FF, 'blueviolet': 0x8A2BE2,$/;"	p	class:THREE.ColorKeywords
+black	client/lib/three.js	/^'beige': 0xF5F5DC, 'bisque': 0xFFE4C4, 'black': 0x000000, 'blanchedalmond': 0xFFEBCD, 'blue': 0x0000FF, 'blueviolet': 0x8A2BE2,$/;"	p	class:THREE.ColorKeywords
+blanchedalmond	client/lib/three.js	/^'beige': 0xF5F5DC, 'bisque': 0xFFE4C4, 'black': 0x000000, 'blanchedalmond': 0xFFEBCD, 'blue': 0x0000FF, 'blueviolet': 0x8A2BE2,$/;"	p	class:THREE.ColorKeywords
+blue	client/lib/three.js	/^'beige': 0xF5F5DC, 'bisque': 0xFFE4C4, 'black': 0x000000, 'blanchedalmond': 0xFFEBCD, 'blue': 0x0000FF, 'blueviolet': 0x8A2BE2,$/;"	p	class:THREE.ColorKeywords
+blueviolet	client/lib/three.js	/^'beige': 0xF5F5DC, 'bisque': 0xFFE4C4, 'black': 0x000000, 'blanchedalmond': 0xFFEBCD, 'blue': 0x0000FF, 'blueviolet': 0x8A2BE2,$/;"	p	class:THREE.ColorKeywords
+boundingSphere	client/lib/three.js	/^		var boundingSphere = json.data.boundingSphere;$/;"	v
+brown	client/lib/three.js	/^'beige': 0xF5F5DC, 'bisque': 0xFFE4C4, 'black': 0x000000, 'blanchedalmond': 0xFFEBCD, 'blue': 0x0000FF, 'blueviolet': 0x8A2BE2,$/;"	p	class:THREE.ColorKeywords
+buildLidFaces	client/lib/three.js	/^	function buildLidFaces() {$/;"	f	function:function
+buildPlane	client/lib/three.js	/^	function buildPlane( u, v, udir, vdir, width, height, depth ) {$/;"	f	function:THREE.BoxGeometry
+buildSideFaces	client/lib/three.js	/^	function buildSideFaces() {$/;"	f	function:function
+burlywood	client/lib/three.js	/^'brown': 0xA52A2A, 'burlywood': 0xDEB887, 'cadetblue': 0x5F9EA0, 'chartreuse': 0x7FFF00, 'chocolate': 0xD2691E, 'coral': 0xFF7F50,$/;"	p	class:THREE.ColorKeywords
+bx	client/lib/three.js	/^		var bx = b.x, by = b.y, bz = b.z;$/;"	v
+c	client/lib/three.js	/^			var c = diff.lengthSq();$/;"	v
+c	client/lib/three.js	/^		var c = - ( far + near ) \/ ( far - near );$/;"	v
+c	client/lib/three.js	/^		var c = Math.cos( y ), d = Math.sin( y );$/;"	v
+c1	client/lib/three.js	/^		var c1 = Math.cos( euler._x \/ 2 );$/;"	v
+c2	client/lib/three.js	/^		var c2 = Math.cos( euler._y \/ 2 );$/;"	v
+c3	client/lib/three.js	/^		var c3 = Math.cos( euler._z \/ 2 );$/;"	v
+cadetblue	client/lib/three.js	/^'brown': 0xA52A2A, 'burlywood': 0xDEB887, 'cadetblue': 0x5F9EA0, 'chartreuse': 0x7FFF00, 'chocolate': 0xD2691E, 'coral': 0xFF7F50,$/;"	p	class:THREE.ColorKeywords
+calculateInverses	client/lib/three.js	/^THREE.Skeleton.prototype.calculateInverses = function () {$/;"	m	class:THREE.Skeleton
+camera	client/views/posts_show.js	/^var camera, scene, renderer, controls, element, effect, vrEffect;$/;"	v
+center	client/lib/three.js	/^			data.data.boundingSphere = {$/;"	p	class:data.data.boundingSphere
+center	client/lib/three.js	/^		var center = sphere.center;$/;"	v
+center	client/lib/three.js	/^	},$/;"	m	class:THREE.GeometryUtils
+chartreuse	client/lib/three.js	/^'brown': 0xA52A2A, 'burlywood': 0xDEB887, 'cadetblue': 0x5F9EA0, 'chartreuse': 0x7FFF00, 'chocolate': 0xD2691E, 'coral': 0xFF7F50,$/;"	p	class:THREE.ColorKeywords
+checkConnection	client/lib/three.js	/^THREE.CurvePath.prototype.checkConnection = function() {$/;"	m	class:THREE.CurvePath
+chocolate	client/lib/three.js	/^'brown': 0xA52A2A, 'burlywood': 0xDEB887, 'cadetblue': 0x5F9EA0, 'chartreuse': 0x7FFF00, 'chocolate': 0xD2691E, 'coral': 0xFF7F50,$/;"	p	class:THREE.ColorKeywords
+clampToMaxSize	client/lib/three.js	/^	function clampToMaxSize ( image, maxSize ) {$/;"	f
+clear	client/lib/three.js	/^	this.clear = function ( color, depth, stencil ) {$/;"	f
+clear	client/lib/three.js	/^	this.clear = function () {};$/;"	m	class:THREE.CanvasRenderer
+clearColor	client/lib/three.js	/^		var clearColor = _renderer.getClearColor(),$/;"	v
+clearColor	client/lib/three.js	/^	this.clearColor = function () {$/;"	f
+clearDepth	client/lib/three.js	/^	this.clearDepth = function () {$/;"	f
+clearStencil	client/lib/three.js	/^	this.clearStencil = function () {$/;"	f
+clearTarget	client/lib/three.js	/^	this.clearTarget = function ( renderTarget, color, depth, stencil ) {$/;"	c
+clone	client/lib/three.js	/^	THREE.Texture.prototype.clone.call( this, texture );$/;"	m
+clone	client/lib/three.js	/^	},$/;"	m	class:THREE.UniformsUtils
+clone	client/lib/three.js	/^THREE.AmbientLight.prototype.clone = function () {$/;"	m	class:THREE.AmbientLight
+clone	client/lib/three.js	/^THREE.Camera.prototype.clone = function ( camera ) {$/;"	m	class:THREE.Camera
+clone	client/lib/three.js	/^THREE.CompressedTexture.prototype.clone = function () {$/;"	m	class:THREE.CompressedTexture
+clone	client/lib/three.js	/^THREE.DataTexture.prototype.clone = function () {$/;"	m	class:THREE.DataTexture
+clone	client/lib/three.js	/^THREE.DirectionalLight.prototype.clone = function () {$/;"	m	class:THREE.DirectionalLight
+clone	client/lib/three.js	/^THREE.DynamicBufferAttribute.prototype.clone = function () {$/;"	m	class:THREE.DynamicBufferAttribute
+clone	client/lib/three.js	/^THREE.Fog.prototype.clone = function () {$/;"	m	class:THREE.Fog
+clone	client/lib/three.js	/^THREE.FogExp2.prototype.clone = function () {$/;"	m	class:THREE.FogExp2
+clone	client/lib/three.js	/^THREE.HemisphereLight.prototype.clone = function () {$/;"	m	class:THREE.HemisphereLight
+clone	client/lib/three.js	/^THREE.InstancedBufferAttribute.prototype.clone = function () {$/;"	m	class:THREE.InstancedBufferAttribute
+clone	client/lib/three.js	/^THREE.InstancedBufferGeometry.prototype.clone = function () {$/;"	m	class:InstancedBufferGeometry
+clone	client/lib/three.js	/^THREE.InstancedInterleavedBuffer.prototype.clone = function () {$/;"	m	class:THREE.InstancedInterleavedBuffer
+clone	client/lib/three.js	/^THREE.LOD.prototype.clone = function ( object ) {$/;"	m	class:THREE.LOD
+clone	client/lib/three.js	/^THREE.Light.prototype.clone = function ( light ) {$/;"	m	class:THREE.Light
+clone	client/lib/three.js	/^THREE.Line.prototype.clone = function ( object ) {$/;"	m	class:THREE.Line
+clone	client/lib/three.js	/^THREE.LineBasicMaterial.prototype.clone = function () {$/;"	m	class:THREE.LineBasicMaterial
+clone	client/lib/three.js	/^THREE.LineDashedMaterial.prototype.clone = function () {$/;"	m	class:THREE.LineDashedMaterial
+clone	client/lib/three.js	/^THREE.Mesh.prototype.clone = function ( object, recursive ) {$/;"	m	class:THREE.Mesh
+clone	client/lib/three.js	/^THREE.MeshBasicMaterial.prototype.clone = function () {$/;"	m	class:THREE.MeshBasicMaterial
+clone	client/lib/three.js	/^THREE.MeshDepthMaterial.prototype.clone = function () {$/;"	m	class:THREE.MeshDepthMaterial
+clone	client/lib/three.js	/^THREE.MeshLambertMaterial.prototype.clone = function () {$/;"	m	class:THREE.MeshLambertMaterial
+clone	client/lib/three.js	/^THREE.MeshNormalMaterial.prototype.clone = function () {$/;"	m	class:THREE.MeshNormalMaterial
+clone	client/lib/three.js	/^THREE.MeshPhongMaterial.prototype.clone = function () {$/;"	m	class:THREE.MeshPhongMaterial
+clone	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.clone = function ( object ) {$/;"	m	class:THREE.MorphAnimMesh
+clone	client/lib/three.js	/^THREE.OrthographicCamera.prototype.clone = function () {$/;"	m	class:THREE.OrthographicCamera
+clone	client/lib/three.js	/^THREE.PerspectiveCamera.prototype.clone = function () {$/;"	m	class:THREE.PerspectiveCamera
+clone	client/lib/three.js	/^THREE.PointCloud.prototype.clone = function ( object ) {$/;"	m	class:THREE.PointCloud
+clone	client/lib/three.js	/^THREE.PointCloudMaterial.prototype.clone = function () {$/;"	m	class:THREE.PointCloudMaterial
+clone	client/lib/three.js	/^THREE.PointLight.prototype.clone = function () {$/;"	m	class:THREE.PointLight
+clone	client/lib/three.js	/^THREE.RawShaderMaterial.prototype.clone = function () {$/;"	m	class:THREE.RawShaderMaterial
+clone	client/lib/three.js	/^THREE.Scene.prototype.clone = function ( object ) {$/;"	m	class:THREE.Scene
+clone	client/lib/three.js	/^THREE.ShaderMaterial.prototype.clone = function ( material ) {$/;"	m	class:THREE.ShaderMaterial
+clone	client/lib/three.js	/^THREE.SkinnedMesh.prototype.clone = function( object ) {$/;"	m	class:THREE.SkinnedMesh
+clone	client/lib/three.js	/^THREE.SpotLight.prototype.clone = function () {$/;"	m	class:THREE.SpotLight
+clone	client/lib/three.js	/^THREE.Sprite.prototype.clone = function ( object ) {$/;"	m	class:THREE.Sprite
+clone	client/lib/three.js	/^THREE.SpriteMaterial.prototype.clone = function () {$/;"	m	class:THREE.SpriteMaterial
+closePath	client/lib/three.js	/^THREE.CurvePath.prototype.closePath = function() {$/;"	m	class:THREE.CurvePath
+closed	client/lib/three.js	/^		radialSegments: radialSegments,$/;"	p	class:THREE.TubeGeometry.parameters
+color	client/lib/three.js	/^		var mpars = { color: 0xeeeeee, opacity: 1.0, map: null, lightMap: null, normalMap: null, bumpMap: null, wireframe: false };$/;"	p	class:mpars
+color	client/lib/three.js	/^	this.defaultAttributeValues = {$/;"	p	class:THREE.ShaderMaterial.defaultAttributeValues
+colors	client/lib/three.js	/^		var colors = [];$/;"	v
+colors	client/lib/three.js	/^		var colors = attributes.color !== undefined ? attributes.color.array : undefined;$/;"	v
+colorsHash	client/lib/three.js	/^		var colorsHash = {};$/;"	v
+common	client/lib/three.js	/^THREE.UniformsLib = {$/;"	p	class:THREE.UniformsLib
+compressedTexImage2D	client/lib/three.js	/^	this.compressedTexImage2D = function () {$/;"	m	class:THREE.WebGLState
+connect	client/lib/three.js	/^	this.connect = function() {$/;"	f
+constructor	client/lib/three.js	/^	THREE.Raycaster.prototype = {$/;"	p	class:THREE.Raycaster
+constructor	client/lib/three.js	/^	constructor.prototype.constructor = constructor;$/;"	m	class:constructor
+constructor	client/lib/three.js	/^THREE.AmbientLight.prototype.constructor = THREE.AmbientLight;$/;"	m	class:THREE.AmbientLight
+constructor	client/lib/three.js	/^THREE.Animation.prototype = {$/;"	p	class:THREE.Animation
+constructor	client/lib/three.js	/^THREE.ArcCurve.prototype.constructor = THREE.ArcCurve;$/;"	m	class:THREE.ArcCurve
+constructor	client/lib/three.js	/^THREE.AreaLight.prototype.constructor = THREE.AreaLight;$/;"	m	class:THREE.AreaLight
+constructor	client/lib/three.js	/^THREE.ArrowHelper.prototype.constructor = THREE.ArrowHelper;$/;"	m	class:THREE.ArrowHelper
+constructor	client/lib/three.js	/^THREE.Audio.prototype.constructor = THREE.Audio;$/;"	m	class:THREE.Audio
+constructor	client/lib/three.js	/^THREE.AudioListener.prototype.constructor = THREE.AudioListener;$/;"	m	class:THREE.AudioListener
+constructor	client/lib/three.js	/^THREE.AxisHelper.prototype.constructor = THREE.AxisHelper;$/;"	m	class:THREE.AxisHelper
+constructor	client/lib/three.js	/^THREE.BinaryTextureLoader.prototype = {$/;"	p	class:THREE.BinaryTextureLoader
+constructor	client/lib/three.js	/^THREE.Bone.prototype.constructor = THREE.Bone;$/;"	m	class:THREE.Bone
+constructor	client/lib/three.js	/^THREE.BoundingBoxHelper.prototype.constructor = THREE.BoundingBoxHelper;$/;"	m	class:THREE.BoundingBoxHelper
+constructor	client/lib/three.js	/^THREE.Box2.prototype = {$/;"	p	class:THREE.Box2
+constructor	client/lib/three.js	/^THREE.Box3.prototype = {$/;"	p	class:THREE.Box3
+constructor	client/lib/three.js	/^THREE.BoxGeometry.prototype.constructor = THREE.BoxGeometry;$/;"	m	class:THREE.BoxGeometry
+constructor	client/lib/three.js	/^THREE.BoxHelper.prototype.constructor = THREE.BoxHelper;$/;"	m	class:THREE.BoxHelper
+constructor	client/lib/three.js	/^THREE.BufferAttribute.prototype = {$/;"	p	class:THREE.BufferAttribute
+constructor	client/lib/three.js	/^THREE.BufferGeometry.prototype = {$/;"	p	class:THREE.BufferGeometry
+constructor	client/lib/three.js	/^THREE.BufferGeometryLoader.prototype = {$/;"	p	class:THREE.BufferGeometryLoader
+constructor	client/lib/three.js	/^THREE.Camera.prototype.constructor = THREE.Camera;$/;"	m	class:THREE.Camera
+constructor	client/lib/three.js	/^THREE.CameraHelper.prototype.constructor = THREE.CameraHelper;$/;"	m	class:THREE.CameraHelper
+constructor	client/lib/three.js	/^THREE.CircleBufferGeometry.prototype.constructor = THREE.CircleBufferGeometry;$/;"	m	class:THREE.CircleBufferGeometry
+constructor	client/lib/three.js	/^THREE.CircleGeometry.prototype.constructor = THREE.CircleGeometry;$/;"	m	class:THREE.CircleGeometry
+constructor	client/lib/three.js	/^THREE.Clock.prototype = {$/;"	p	class:THREE.Clock
+constructor	client/lib/three.js	/^THREE.Color.prototype = {$/;"	p	class:THREE.Color
+constructor	client/lib/three.js	/^THREE.CompressedTexture.prototype.constructor = THREE.CompressedTexture;$/;"	m	class:THREE.CompressedTexture
+constructor	client/lib/three.js	/^THREE.CompressedTextureLoader.prototype = {$/;"	p	class:THREE.CompressedTextureLoader
+constructor	client/lib/three.js	/^THREE.CubeCamera.prototype.constructor = THREE.CubeCamera;$/;"	m	class:THREE.CubeCamera
+constructor	client/lib/three.js	/^THREE.CubeTexture.prototype.constructor = THREE.CubeTexture;$/;"	m	class:THREE.CubeTexture
+constructor	client/lib/three.js	/^THREE.CubicBezierCurve.prototype.constructor = THREE.CubicBezierCurve;$/;"	m	class:THREE.CubicBezierCurve
+constructor	client/lib/three.js	/^THREE.Curve.create = function ( constructor, getPointFunc ) {$/;"	c
+constructor	client/lib/three.js	/^THREE.CurvePath.prototype.constructor = THREE.CurvePath;$/;"	m	class:THREE.CurvePath
+constructor	client/lib/three.js	/^THREE.CylinderGeometry.prototype.constructor = THREE.CylinderGeometry;$/;"	m	class:THREE.CylinderGeometry
+constructor	client/lib/three.js	/^THREE.DataTexture.prototype.constructor = THREE.DataTexture;$/;"	m	class:THREE.DataTexture
+constructor	client/lib/three.js	/^THREE.DirectGeometry.prototype = {$/;"	p	class:THREE.DirectGeometry
+constructor	client/lib/three.js	/^THREE.DirectionalLight.prototype.constructor = THREE.DirectionalLight;$/;"	m	class:THREE.DirectionalLight
+constructor	client/lib/three.js	/^THREE.DirectionalLightHelper.prototype.constructor = THREE.DirectionalLightHelper;$/;"	m	class:THREE.DirectionalLightHelper
+constructor	client/lib/three.js	/^THREE.DodecahedronGeometry.prototype.constructor = THREE.DodecahedronGeometry;$/;"	m	class:THREE.DodecahedronGeometry
+constructor	client/lib/three.js	/^THREE.DynamicBufferAttribute.prototype.constructor = THREE.DynamicBufferAttribute;$/;"	m	class:THREE.DynamicBufferAttribute
+constructor	client/lib/three.js	/^THREE.EdgesGeometry.prototype.constructor = THREE.EdgesGeometry;$/;"	m	class:THREE.EdgesGeometry
+constructor	client/lib/three.js	/^THREE.EdgesHelper.prototype.constructor = THREE.EdgesHelper;$/;"	m	class:THREE.EdgesHelper
+constructor	client/lib/three.js	/^THREE.EllipseCurve.prototype.constructor = THREE.EllipseCurve;$/;"	m	class:THREE.EllipseCurve
+constructor	client/lib/three.js	/^THREE.Euler.prototype = {$/;"	p	class:THREE.Euler
+constructor	client/lib/three.js	/^THREE.EventDispatcher.prototype = {$/;"	p	class:THREE.EventDispatcher
+constructor	client/lib/three.js	/^THREE.ExtrudeGeometry.prototype.constructor = THREE.ExtrudeGeometry;$/;"	m	class:THREE.ExtrudeGeometry
+constructor	client/lib/three.js	/^THREE.Face3.prototype = {$/;"	p	class:THREE.Face3
+constructor	client/lib/three.js	/^THREE.FaceNormalsHelper.prototype.constructor = THREE.FaceNormalsHelper;$/;"	m	class:THREE.FaceNormalsHelper
+constructor	client/lib/three.js	/^THREE.Frustum.prototype = {$/;"	p	class:THREE.Frustum
+constructor	client/lib/three.js	/^THREE.Geometry.prototype = {$/;"	p	class:THREE.Geometry
+constructor	client/lib/three.js	/^THREE.GridHelper.prototype.constructor = THREE.GridHelper;$/;"	m	class:THREE.GridHelper
+constructor	client/lib/three.js	/^THREE.Group.prototype.constructor = THREE.Group;$/;"	m	class:THREE.Group
+constructor	client/lib/three.js	/^THREE.Gyroscope.prototype.constructor = THREE.Gyroscope;$/;"	m	class:THREE.Gyroscope
+constructor	client/lib/three.js	/^THREE.HemisphereLight.prototype.constructor = THREE.HemisphereLight;$/;"	m	class:THREE.HemisphereLight
+constructor	client/lib/three.js	/^THREE.HemisphereLightHelper.prototype.constructor = THREE.HemisphereLightHelper;$/;"	m	class:THREE.HemisphereLightHelper
+constructor	client/lib/three.js	/^THREE.IcosahedronGeometry.prototype.constructor = THREE.IcosahedronGeometry;$/;"	m	class:THREE.IcosahedronGeometry
+constructor	client/lib/three.js	/^THREE.ImageLoader.prototype = {$/;"	p	class:THREE.ImageLoader
+constructor	client/lib/three.js	/^THREE.ImmediateRenderObject.prototype.constructor = THREE.ImmediateRenderObject;$/;"	m	class:THREE.ImmediateRenderObject
+constructor	client/lib/three.js	/^THREE.InstancedBufferAttribute.prototype.constructor = THREE.InstancedBufferAttribute;$/;"	m	class:THREE.InstancedBufferAttribute
+constructor	client/lib/three.js	/^THREE.InstancedBufferGeometry.prototype.constructor = THREE.InstancedBufferGeometry;$/;"	m	class:THREE.InstancedBufferGeometry
+constructor	client/lib/three.js	/^THREE.InstancedInterleavedBuffer.prototype.constructor = THREE.InstancedInterleavedBuffer;$/;"	m	class:THREE.InstancedInterleavedBuffer
+constructor	client/lib/three.js	/^THREE.InterleavedBuffer.prototype = {$/;"	p	class:THREE.InterleavedBuffer
+constructor	client/lib/three.js	/^THREE.InterleavedBufferAttribute.prototype = {$/;"	p	class:THREE.InterleavedBufferAttribute
+constructor	client/lib/three.js	/^THREE.JSONLoader.prototype.constructor = THREE.JSONLoader;$/;"	m	class:THREE.JSONLoader
+constructor	client/lib/three.js	/^THREE.KeyFrameAnimation.prototype = {$/;"	p	class:THREE.KeyFrameAnimation
+constructor	client/lib/three.js	/^THREE.LOD.prototype.constructor = THREE.LOD;$/;"	m	class:THREE.LOD
+constructor	client/lib/three.js	/^THREE.LatheGeometry.prototype.constructor = THREE.LatheGeometry;$/;"	m	class:THREE.LatheGeometry
+constructor	client/lib/three.js	/^THREE.LensFlare.prototype.constructor = THREE.LensFlare;$/;"	m	class:THREE.LensFlare
+constructor	client/lib/three.js	/^THREE.Light.prototype.constructor = THREE.Light;$/;"	m	class:THREE.Light
+constructor	client/lib/three.js	/^THREE.Line.prototype.constructor = THREE.Line;$/;"	m	class:THREE.Line
+constructor	client/lib/three.js	/^THREE.Line3.prototype = {$/;"	p	class:THREE.Line3
+constructor	client/lib/three.js	/^THREE.LineBasicMaterial.prototype.constructor = THREE.LineBasicMaterial;$/;"	m	class:THREE.LineBasicMaterial
+constructor	client/lib/three.js	/^THREE.LineCurve.prototype.constructor = THREE.LineCurve;$/;"	m	class:THREE.LineCurve
+constructor	client/lib/three.js	/^THREE.LineDashedMaterial.prototype.constructor = THREE.LineDashedMaterial;$/;"	m	class:THREE.LineDashedMaterial
+constructor	client/lib/three.js	/^THREE.LineSegments.prototype.constructor = THREE.LineSegments;$/;"	m	class:THREE.LineSegments
+constructor	client/lib/three.js	/^THREE.Loader.prototype = {$/;"	p	class:THREE.Loader
+constructor	client/lib/three.js	/^THREE.Material.prototype = {$/;"	p	class:THREE.Material
+constructor	client/lib/three.js	/^THREE.MaterialLoader.prototype = {$/;"	p	class:THREE.MaterialLoader
+constructor	client/lib/three.js	/^THREE.Matrix3.prototype = {$/;"	p	class:THREE.Matrix3
+constructor	client/lib/three.js	/^THREE.Matrix4.prototype = {$/;"	p	class:THREE.Matrix4
+constructor	client/lib/three.js	/^THREE.Mesh.prototype.constructor = THREE.Mesh;$/;"	m	class:THREE.Mesh
+constructor	client/lib/three.js	/^THREE.MeshBasicMaterial.prototype.constructor = THREE.MeshBasicMaterial;$/;"	m	class:THREE.MeshBasicMaterial
+constructor	client/lib/three.js	/^THREE.MeshDepthMaterial.prototype.constructor = THREE.MeshDepthMaterial;$/;"	m	class:THREE.MeshDepthMaterial
+constructor	client/lib/three.js	/^THREE.MeshLambertMaterial.prototype.constructor = THREE.MeshLambertMaterial;$/;"	m	class:THREE.MeshLambertMaterial
+constructor	client/lib/three.js	/^THREE.MeshNormalMaterial.prototype.constructor = THREE.MeshNormalMaterial;$/;"	m	class:THREE.MeshNormalMaterial
+constructor	client/lib/three.js	/^THREE.MeshPhongMaterial.prototype.constructor = THREE.MeshPhongMaterial;$/;"	m	class:THREE.MeshPhongMaterial
+constructor	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.constructor = THREE.MorphAnimMesh;$/;"	m	class:THREE.MorphAnimMesh
+constructor	client/lib/three.js	/^THREE.MorphAnimation.prototype = {$/;"	p	class:THREE.MorphAnimation
+constructor	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.constructor = THREE.MorphBlendMesh;$/;"	m	class:THREE.MorphBlendMesh
+constructor	client/lib/three.js	/^THREE.Object3D.prototype = {$/;"	p	class:THREE.Object3D
+constructor	client/lib/three.js	/^THREE.ObjectLoader.prototype = {$/;"	p	class:THREE.ObjectLoader
+constructor	client/lib/three.js	/^THREE.OctahedronGeometry.prototype.constructor = THREE.OctahedronGeometry;$/;"	m	class:THREE.OctahedronGeometry
+constructor	client/lib/three.js	/^THREE.OrbitControls.prototype.constructor = THREE.OrbitControls;$/;"	m	class:THREE.OrbitControls
+constructor	client/lib/three.js	/^THREE.OrthographicCamera.prototype.constructor = THREE.OrthographicCamera;$/;"	m	class:THREE.OrthographicCamera
+constructor	client/lib/three.js	/^THREE.ParametricGeometry.prototype.constructor = THREE.ParametricGeometry;$/;"	m	class:THREE.ParametricGeometry
+constructor	client/lib/three.js	/^THREE.Path.prototype.constructor = THREE.Path;$/;"	m	class:THREE.Path
+constructor	client/lib/three.js	/^THREE.PerspectiveCamera.prototype.constructor = THREE.PerspectiveCamera;$/;"	m	class:THREE.PerspectiveCamera
+constructor	client/lib/three.js	/^THREE.Plane.prototype = {$/;"	p	class:THREE.Plane
+constructor	client/lib/three.js	/^THREE.PlaneBufferGeometry.prototype.constructor = THREE.PlaneBufferGeometry;$/;"	m	class:THREE.PlaneBufferGeometry
+constructor	client/lib/three.js	/^THREE.PlaneGeometry.prototype.constructor = THREE.PlaneGeometry;$/;"	m	class:THREE.PlaneGeometry
+constructor	client/lib/three.js	/^THREE.PointCloud.prototype.constructor = THREE.PointCloud;$/;"	m	class:THREE.PointCloud
+constructor	client/lib/three.js	/^THREE.PointCloudMaterial.prototype.constructor = THREE.PointCloudMaterial;$/;"	m	class:THREE.PointCloudMaterial
+constructor	client/lib/three.js	/^THREE.PointLight.prototype.constructor = THREE.PointLight;$/;"	m	class:THREE.PointLight
+constructor	client/lib/three.js	/^THREE.PointLightHelper.prototype.constructor = THREE.PointLightHelper;$/;"	m	class:THREE.PointLightHelper
+constructor	client/lib/three.js	/^THREE.PolyhedronGeometry.prototype.constructor = THREE.PolyhedronGeometry;$/;"	m	class:THREE.PolyhedronGeometry
+constructor	client/lib/three.js	/^THREE.QuadraticBezierCurve.prototype.constructor = THREE.QuadraticBezierCurve;$/;"	m	class:THREE.QuadraticBezierCurve
+constructor	client/lib/three.js	/^THREE.Quaternion.prototype = {$/;"	p	class:THREE.Quaternion
+constructor	client/lib/three.js	/^THREE.RawShaderMaterial.prototype.constructor = THREE.RawShaderMaterial;$/;"	m	class:THREE.RawShaderMaterial
+constructor	client/lib/three.js	/^THREE.Ray.prototype = {$/;"	p	class:THREE.Ray
+constructor	client/lib/three.js	/^THREE.RingGeometry.prototype.constructor = THREE.RingGeometry;$/;"	m	class:THREE.RingGeometry
+constructor	client/lib/three.js	/^THREE.Scene.prototype.constructor = THREE.Scene;$/;"	m	class:THREE.Scene
+constructor	client/lib/three.js	/^THREE.ShaderMaterial.prototype.constructor = THREE.ShaderMaterial;$/;"	m	class:THREE.ShaderMaterial
+constructor	client/lib/three.js	/^THREE.Shape.prototype.constructor = THREE.Shape;$/;"	m	class:THREE.Shape
+constructor	client/lib/three.js	/^THREE.ShapeGeometry.prototype.constructor = THREE.ShapeGeometry;$/;"	m	class:THREE.ShapeGeometry
+constructor	client/lib/three.js	/^THREE.SkeletonHelper.prototype.constructor = THREE.SkeletonHelper;$/;"	m	class:THREE.SkeletonHelper
+constructor	client/lib/three.js	/^THREE.SkinnedMesh.prototype.constructor = THREE.SkinnedMesh;$/;"	m	class:THREE.SkinnedMesh
+constructor	client/lib/three.js	/^THREE.Sphere.prototype = {$/;"	p	class:THREE.Sphere
+constructor	client/lib/three.js	/^THREE.SphereBufferGeometry.prototype.constructor = THREE.SphereBufferGeometry;$/;"	m	class:THREE.SphereBufferGeometry
+constructor	client/lib/three.js	/^THREE.SphereGeometry.prototype.constructor = THREE.SphereGeometry;$/;"	m	class:THREE.SphereGeometry
+constructor	client/lib/three.js	/^THREE.SplineCurve.prototype.constructor = THREE.SplineCurve;$/;"	m	class:THREE.SplineCurve
+constructor	client/lib/three.js	/^THREE.SpotLight.prototype.constructor = THREE.SpotLight;$/;"	m	class:THREE.SpotLight
+constructor	client/lib/three.js	/^THREE.SpotLightHelper.prototype.constructor = THREE.SpotLightHelper;$/;"	m	class:THREE.SpotLightHelper
+constructor	client/lib/three.js	/^THREE.Sprite.prototype.constructor = THREE.Sprite;$/;"	m	class:THREE.Sprite
+constructor	client/lib/three.js	/^THREE.SpriteMaterial.prototype.constructor = THREE.SpriteMaterial;$/;"	m	class:THREE.SpriteMaterial
+constructor	client/lib/three.js	/^THREE.TetrahedronGeometry.prototype.constructor = THREE.TetrahedronGeometry;$/;"	m	class:THREE.TetrahedronGeometry
+constructor	client/lib/three.js	/^THREE.TextGeometry.prototype.constructor = THREE.TextGeometry;$/;"	m	class:THREE.TextGeometry
+constructor	client/lib/three.js	/^THREE.Texture.prototype = {$/;"	p	class:THREE.Texture
+constructor	client/lib/three.js	/^THREE.TextureLoader.prototype = {$/;"	p	class:THREE.TextureLoader
+constructor	client/lib/three.js	/^THREE.TorusGeometry.prototype.constructor = THREE.TorusGeometry;$/;"	m	class:THREE.TorusGeometry
+constructor	client/lib/three.js	/^THREE.TorusKnotGeometry.prototype.constructor = THREE.TorusKnotGeometry;$/;"	m	class:THREE.TorusKnotGeometry
+constructor	client/lib/three.js	/^THREE.Triangle.prototype = {$/;"	p	class:THREE.Triangle
+constructor	client/lib/three.js	/^THREE.TubeGeometry.prototype.constructor = THREE.TubeGeometry;$/;"	m	class:THREE.TubeGeometry
+constructor	client/lib/three.js	/^THREE.Vector2.prototype = {$/;"	p	class:THREE.Vector2
+constructor	client/lib/three.js	/^THREE.Vector3.prototype = {$/;"	p	class:THREE.Vector3
+constructor	client/lib/three.js	/^THREE.Vector4.prototype = {$/;"	p	class:THREE.Vector4
+constructor	client/lib/three.js	/^THREE.VertexNormalsHelper.prototype.constructor = THREE.VertexNormalsHelper;$/;"	m	class:THREE.VertexNormalsHelper
+constructor	client/lib/three.js	/^THREE.VertexTangentsHelper.prototype.constructor = THREE.VertexTangentsHelper;$/;"	m	class:THREE.VertexTangentsHelper
+constructor	client/lib/three.js	/^THREE.VideoTexture.prototype.constructor = THREE.VideoTexture;$/;"	m	class:THREE.VideoTexture
+constructor	client/lib/three.js	/^THREE.WebGLRenderTarget.prototype = {$/;"	p	class:THREE.WebGLRenderTarget
+constructor	client/lib/three.js	/^THREE.WebGLRenderTargetCube.prototype.constructor = THREE.WebGLRenderTargetCube;$/;"	m	class:THREE.WebGLRenderTargetCube
+constructor	client/lib/three.js	/^THREE.WireframeGeometry.prototype.constructor = THREE.WireframeGeometry;$/;"	m	class:THREE.WireframeGeometry
+constructor	client/lib/three.js	/^THREE.WireframeHelper.prototype.constructor = THREE.WireframeHelper;$/;"	m	class:THREE.WireframeHelper
+constructor	client/lib/three.js	/^THREE.XHRLoader.prototype = {$/;"	p	class:THREE.XHRLoader
+container	client/views/posts_show.js	/^var container;$/;"	v
+contour	client/lib/three.js	/^	var contour = vertices;$/;"	v
+coral	client/lib/three.js	/^'brown': 0xA52A2A, 'burlywood': 0xDEB887, 'cadetblue': 0x5F9EA0, 'chartreuse': 0x7FFF00, 'chocolate': 0xD2691E, 'coral': 0xFF7F50,$/;"	p	class:THREE.ColorKeywords
+cornflowerblue	client/lib/three.js	/^'brown': 0xA52A2A, 'burlywood': 0xDEB887, 'cadetblue': 0x5F9EA0, 'chartreuse': 0x7FFF00, 'chocolate': 0xD2691E, 'coral': 0xFF7F50,$/;"	p	class:THREE.ColorKeywords
+cornsilk	client/lib/three.js	/^'cornflowerblue': 0x6495ED, 'cornsilk': 0xFFF8DC, 'crimson': 0xDC143C, 'cyan': 0x00FFFF, 'darkblue': 0x00008B, 'darkcyan': 0x008B8B,$/;"	p	class:THREE.ColorKeywords
+correctUV	client/lib/three.js	/^	function correctUV( uv, vector, azimuth ) {$/;"	f	function:THREE.PolyhedronGeometry
+cosHalfTheta	client/lib/three.js	/^		var cosHalfTheta = w * qb._w + x * qb._x + y * qb._y + z * qb._z;$/;"	v
+count	client/lib/three.js	/^				var new_offset = { start:indexPtr, count:0, index:vertexPtr };$/;"	p	class:var.new_offset
+count	client/lib/three.js	/^	this.updateRange = { offset: 0, count: -1 };$/;"	p	class:THREE.DynamicBufferAttribute.updateRange
+count	client/lib/three.js	/^	this.updateRange = { offset: 0, count: -1 };$/;"	p	class:THREE.InterleavedBuffer.updateRange
+createAnimation	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.createAnimation = function ( name, start, end, fps ) {$/;"	m	class:THREE.MorphBlendMesh
+createGeometry	client/lib/three.js	/^THREE.CurvePath.prototype.createGeometry = function( points ) {$/;"	m	class:THREE.CurvePath
+createMultiMaterialObject	client/lib/three.js	/^THREE.SceneUtils = {$/;"	m	class:THREE.SceneUtils
+createPointsGeometry	client/lib/three.js	/^THREE.CurvePath.prototype.createPointsGeometry = function( divisions ) {$/;"	m	class:THREE.CurvePath
+createProgram	client/lib/three.js	/^	function createProgram ( shader ) {$/;"	f	function:THREE.LensFlarePlugin
+createProgram	client/lib/three.js	/^	function createProgram () {$/;"	f	function:THREE.SpritePlugin
+createSpacedPointsGeometry	client/lib/three.js	/^THREE.CurvePath.prototype.createSpacedPointsGeometry = function( divisions ) {$/;"	m	class:THREE.CurvePath
+createVirtualLight	client/lib/three.js	/^	function createVirtualLight( light, cascade ) {$/;"	f
+create_texture	client/lib/three.js	/^		function create_texture( where, name, sourceFile, repeat, offset, wrap, anisotropy ) {$/;"	f
+crimson	client/lib/three.js	/^'cornflowerblue': 0x6495ED, 'cornsilk': 0xFFF8DC, 'crimson': 0xDC143C, 'cyan': 0x00FFFF, 'darkblue': 0x00008B, 'darkcyan': 0x008B8B,$/;"	p	class:THREE.ColorKeywords
+cross	client/lib/three.js	/^		var cross = function ( a, b ) {$/;"	f	function:getNormalMap
+crossOrigin	client/lib/three.js	/^THREE.ImageUtils = {$/;"	p	class:THREE.ImageUtils
+curveSegments	client/lib/three.js	/^	var curveSegments = options.curveSegments !== undefined ? options.curveSegments : 12;$/;"	v
+cyan	client/lib/three.js	/^'cornflowerblue': 0x6495ED, 'cornsilk': 0xFFF8DC, 'crimson': 0xDC143C, 'cyan': 0x00FFFF, 'darkblue': 0x00008B, 'darkcyan': 0x008B8B,$/;"	p	class:THREE.ColorKeywords
+d	client/lib/three.js	/^		var d = - 2 * far * near \/ ( far - near );$/;"	v
+d	client/lib/three.js	/^		var d = 1 \/ ( e[ 3 ] * x + e[ 7 ] * y + e[ 11 ] * z + e[ 15 ] ); \/\/ perspective divide$/;"	v
+d2	client/lib/three.js	/^			var d2 = v1.dot( v1 ) - tca * tca;$/;"	v
+darkblue	client/lib/three.js	/^'cornflowerblue': 0x6495ED, 'cornsilk': 0xFFF8DC, 'crimson': 0xDC143C, 'cyan': 0x00FFFF, 'darkblue': 0x00008B, 'darkcyan': 0x008B8B,$/;"	p	class:THREE.ColorKeywords
+darkcyan	client/lib/three.js	/^'cornflowerblue': 0x6495ED, 'cornsilk': 0xFFF8DC, 'crimson': 0xDC143C, 'cyan': 0x00FFFF, 'darkblue': 0x00008B, 'darkcyan': 0x008B8B,$/;"	p	class:THREE.ColorKeywords
+darkgoldenrod	client/lib/three.js	/^'cornflowerblue': 0x6495ED, 'cornsilk': 0xFFF8DC, 'crimson': 0xDC143C, 'cyan': 0x00FFFF, 'darkblue': 0x00008B, 'darkcyan': 0x008B8B,$/;"	p	class:THREE.ColorKeywords
+darkgray	client/lib/three.js	/^'darkgoldenrod': 0xB8860B, 'darkgray': 0xA9A9A9, 'darkgreen': 0x006400, 'darkgrey': 0xA9A9A9, 'darkkhaki': 0xBDB76B, 'darkmagenta': 0x8B008B,$/;"	p	class:THREE.ColorKeywords
+darkgreen	client/lib/three.js	/^'darkgoldenrod': 0xB8860B, 'darkgray': 0xA9A9A9, 'darkgreen': 0x006400, 'darkgrey': 0xA9A9A9, 'darkkhaki': 0xBDB76B, 'darkmagenta': 0x8B008B,$/;"	p	class:THREE.ColorKeywords
+darkgrey	client/lib/three.js	/^'darkgoldenrod': 0xB8860B, 'darkgray': 0xA9A9A9, 'darkgreen': 0x006400, 'darkgrey': 0xA9A9A9, 'darkkhaki': 0xBDB76B, 'darkmagenta': 0x8B008B,$/;"	p	class:THREE.ColorKeywords
+darkkhaki	client/lib/three.js	/^'darkgoldenrod': 0xB8860B, 'darkgray': 0xA9A9A9, 'darkgreen': 0x006400, 'darkgrey': 0xA9A9A9, 'darkkhaki': 0xBDB76B, 'darkmagenta': 0x8B008B,$/;"	p	class:THREE.ColorKeywords
+darkmagenta	client/lib/three.js	/^'darkgoldenrod': 0xB8860B, 'darkgray': 0xA9A9A9, 'darkgreen': 0x006400, 'darkgrey': 0xA9A9A9, 'darkkhaki': 0xBDB76B, 'darkmagenta': 0x8B008B,$/;"	p	class:THREE.ColorKeywords
+darkolivegreen	client/lib/three.js	/^'darkgoldenrod': 0xB8860B, 'darkgray': 0xA9A9A9, 'darkgreen': 0x006400, 'darkgrey': 0xA9A9A9, 'darkkhaki': 0xBDB76B, 'darkmagenta': 0x8B008B,$/;"	p	class:THREE.ColorKeywords
+darkorange	client/lib/three.js	/^'darkolivegreen': 0x556B2F, 'darkorange': 0xFF8C00, 'darkorchid': 0x9932CC, 'darkred': 0x8B0000, 'darksalmon': 0xE9967A, 'darkseagreen': 0x8FBC8F,$/;"	p	class:THREE.ColorKeywords
+darkorchid	client/lib/three.js	/^'darkolivegreen': 0x556B2F, 'darkorange': 0xFF8C00, 'darkorchid': 0x9932CC, 'darkred': 0x8B0000, 'darksalmon': 0xE9967A, 'darkseagreen': 0x8FBC8F,$/;"	p	class:THREE.ColorKeywords
+darkred	client/lib/three.js	/^'darkolivegreen': 0x556B2F, 'darkorange': 0xFF8C00, 'darkorchid': 0x9932CC, 'darkred': 0x8B0000, 'darksalmon': 0xE9967A, 'darkseagreen': 0x8FBC8F,$/;"	p	class:THREE.ColorKeywords
+darksalmon	client/lib/three.js	/^'darkolivegreen': 0x556B2F, 'darkorange': 0xFF8C00, 'darkorchid': 0x9932CC, 'darkred': 0x8B0000, 'darksalmon': 0xE9967A, 'darkseagreen': 0x8FBC8F,$/;"	p	class:THREE.ColorKeywords
+darkseagreen	client/lib/three.js	/^'darkolivegreen': 0x556B2F, 'darkorange': 0xFF8C00, 'darkorchid': 0x9932CC, 'darkred': 0x8B0000, 'darksalmon': 0xE9967A, 'darkseagreen': 0x8FBC8F,$/;"	p	class:THREE.ColorKeywords
+darkslateblue	client/lib/three.js	/^'darkolivegreen': 0x556B2F, 'darkorange': 0xFF8C00, 'darkorchid': 0x9932CC, 'darkred': 0x8B0000, 'darksalmon': 0xE9967A, 'darkseagreen': 0x8FBC8F,$/;"	p	class:THREE.ColorKeywords
+darkslategray	client/lib/three.js	/^'darkslateblue': 0x483D8B, 'darkslategray': 0x2F4F4F, 'darkslategrey': 0x2F4F4F, 'darkturquoise': 0x00CED1, 'darkviolet': 0x9400D3,$/;"	p	class:THREE.ColorKeywords
+darkslategrey	client/lib/three.js	/^'darkslateblue': 0x483D8B, 'darkslategray': 0x2F4F4F, 'darkslategrey': 0x2F4F4F, 'darkturquoise': 0x00CED1, 'darkviolet': 0x9400D3,$/;"	p	class:THREE.ColorKeywords
+darkturquoise	client/lib/three.js	/^'darkslateblue': 0x483D8B, 'darkslategray': 0x2F4F4F, 'darkslategrey': 0x2F4F4F, 'darkturquoise': 0x00CED1, 'darkviolet': 0x9400D3,$/;"	p	class:THREE.ColorKeywords
+darkviolet	client/lib/three.js	/^'darkslateblue': 0x483D8B, 'darkslategray': 0x2F4F4F, 'darkslategrey': 0x2F4F4F, 'darkturquoise': 0x00CED1, 'darkviolet': 0x9400D3,$/;"	p	class:THREE.ColorKeywords
+data	client/lib/three.js	/^		var data = {};$/;"	v
+data	client/lib/three.js	/^	this.image = { data: data, width: width, height: height };$/;"	p	class:THREE.DataTexture.image
+deallocateMaterial	client/lib/three.js	/^	var deallocateMaterial = function ( material ) {$/;"	f
+deallocateRenderTarget	client/lib/three.js	/^	var deallocateRenderTarget = function ( renderTarget ) {$/;"	f
+deallocateTexture	client/lib/three.js	/^	var deallocateTexture = function ( texture ) {$/;"	f
+deeppink	client/lib/three.js	/^'darkslateblue': 0x483D8B, 'darkslategray': 0x2F4F4F, 'darkslategrey': 0x2F4F4F, 'darkturquoise': 0x00CED1, 'darkviolet': 0x9400D3,$/;"	p	class:THREE.ColorKeywords
+deepskyblue	client/lib/three.js	/^'deeppink': 0xFF1493, 'deepskyblue': 0x00BFFF, 'dimgray': 0x696969, 'dimgrey': 0x696969, 'dodgerblue': 0x1E90FF, 'firebrick': 0xB22222,$/;"	p	class:THREE.ColorKeywords
+denominator	client/lib/three.js	/^		var denominator = plane.normal.dot( this.direction );$/;"	v
+depth	client/lib/three.js	/^			alpha: _alpha,$/;"	p	class:var.attributes
+depth	client/lib/three.js	/^		height: height,$/;"	p	class:THREE.BoxGeometry.parameters
+depthSegments	client/lib/three.js	/^		heightSegments: heightSegments,$/;"	p	class:THREE.BoxGeometry.parameters
+descSort	client/lib/three.js	/^	var descSort = function ( a, b ) {$/;"	f
+det	client/lib/three.js	/^			var det = Math.abs( 1 - a01 * a01 );$/;"	v
+det	client/lib/three.js	/^		var det = me[ 0 ] * te[ 0 ] + me[ 1 ] * te[ 3 ] + me[ 2 ] * te[ 6 ];$/;"	v
+det	client/lib/three.js	/^		var det = n11 * te[ 0 ] + n21 * te[ 4 ] + n31 * te[ 8 ] + n41 * te[ 12 ];$/;"	v
+detach	client/lib/three.js	/^	},$/;"	m	class:THREE.SceneUtils
+detail	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.DodecahedronGeometry.parameters
+detail	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.IcosahedronGeometry.parameters
+detail	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.OctahedronGeometry.parameters
+detail	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.PolyhedronGeometry.parameters
+detail	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.THREE.OctahedronGeometry.parameters
+detail	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.TetrahedronGeometry.parameters
+dimgray	client/lib/three.js	/^'deeppink': 0xFF1493, 'deepskyblue': 0x00BFFF, 'dimgray': 0x696969, 'dimgrey': 0x696969, 'dodgerblue': 0x1E90FF, 'firebrick': 0xB22222,$/;"	p	class:THREE.ColorKeywords
+dimgrey	client/lib/three.js	/^'deeppink': 0xFF1493, 'deepskyblue': 0x00BFFF, 'dimgray': 0x696969, 'dimgrey': 0x696969, 'dodgerblue': 0x1E90FF, 'firebrick': 0xB22222,$/;"	p	class:THREE.ColorKeywords
+direction	client/lib/three.js	/^			var direction = line.delta( v1 );$/;"	v
+directionDistance	client/lib/three.js	/^		var directionDistance = result.dot( this.direction );$/;"	v
+disableFullScreen	client/views/posts_show.js	/^function disableFullScreen(){$/;"	f
+disableUnusedAttributes	client/lib/three.js	/^	this.disableUnusedAttributes = function () {$/;"	m	class:THREE.WebGLState
+disableVRMode	client/views/posts_show.js	/^function disableVRMode(){$/;"	f
+disconnect	client/lib/three.js	/^	this.disconnect = function() {$/;"	f
+dispose	client/lib/three.js	/^THREE.DirectionalLightHelper.prototype.dispose = function () {$/;"	m	class:THREE.DirectionalLightHelper
+dispose	client/lib/three.js	/^THREE.HemisphereLightHelper.prototype.dispose = function () {$/;"	m	class:THREE.HemisphereLightHelper
+dispose	client/lib/three.js	/^THREE.PointLightHelper.prototype.dispose = function () {$/;"	m	class:THREE.PointLightHelper
+dispose	client/lib/three.js	/^THREE.SpotLightHelper.prototype.dispose = function () {$/;"	m	class:THREE.SpotLightHelper
+dodgerblue	client/lib/three.js	/^'deeppink': 0xFF1493, 'deepskyblue': 0x00BFFF, 'dimgray': 0x696969, 'dimgrey': 0x696969, 'dodgerblue': 0x1E90FF, 'firebrick': 0xB22222,$/;"	p	class:THREE.ColorKeywords
+dollyIn	client/lib/three.js	/^	this.dollyIn = function ( dollyScale ) {$/;"	m	class:THREE.OrbitControls
+dollyOut	client/lib/three.js	/^	this.dollyOut = function ( dollyScale ) {$/;"	m	class:THREE.OrbitControls
+duplicatedVertices	client/lib/three.js	/^		var duplicatedVertices = 0;$/;"	v
+e	client/lib/three.js	/^		var e = Math.cos( z ), f = Math.sin( z );$/;"	v
+e	client/lib/three.js	/^		var e = m.elements;$/;"	v
+ellipse	client/lib/three.js	/^THREE.Path.prototype.ellipse = function ( aX, aY, xRadius, yRadius,$/;"	m	class:THREE.Path
+enableAttribute	client/lib/three.js	/^	this.enableAttribute = function ( attribute ) {$/;"	m	class:THREE.WebGLState
+enableFullscreen	client/views/posts_show.js	/^function enableFullscreen(container) {$/;"	f
+enableScissorTest	client/lib/three.js	/^	this.enableScissorTest = function ( enable ) {$/;"	f
+enableVRMode	client/views/posts_show.js	/^function enableVRMode(){$/;"	f
+end	client/lib/three.js	/^	this.geometry.animations[ label ] = { start: start, end: end };$/;"	p	class:geometry.animations
+endFrame	client/lib/three.js	/^		startFrame: start,$/;"	p	class:THREE.MorphBlendMesh.var.animation
+extractAllPoints	client/lib/three.js	/^THREE.Shape.prototype.extractAllPoints = function ( divisions ) {$/;"	m	class:THREE.Shape
+extractAllSpacedPoints	client/lib/three.js	/^THREE.Shape.prototype.extractAllSpacedPoints = function ( divisions ) {$/;"	m	class:THREE.Shape
+extractFromCache	client/lib/three.js	/^		function extractFromCache ( cache ) {$/;"	f
+extractPoints	client/lib/three.js	/^THREE.Shape.prototype.extractPoints = function ( divisions ) {$/;"	m	class:THREE.Shape
+extractSubpaths	client/lib/three.js	/^	function extractSubpaths( inActions ) {$/;"	f	function:THREE.Path.function
+extrude	client/lib/three.js	/^THREE.Shape.prototype.extrude = function ( options ) {$/;"	m	class:THREE.Shape
+f3	client/lib/three.js	/^	function f3( a, b, c ) {$/;"	f	function:function
+f4	client/lib/three.js	/^	function f4( a, b, c, d, wallContour, stepIndex, stepsLength, contourIndex1, contourIndex2 ) {$/;"	f	function:function
+face	client/lib/three.js	/^	var face, flen = faces.length;$/;"	v
+faceIndex	client/lib/three.js	/^		var faceIndex = [ 'a', 'b', 'c', 'd' ];$/;"	v
+faceIndicesToRemove	client/lib/three.js	/^		var faceIndicesToRemove = [];$/;"	v
+faceVertexUvs	client/lib/three.js	/^		var faceVertexUvs = geometry.faceVertexUvs;$/;"	v
+faces	client/lib/three.js	/^		var faces = [];$/;"	v
+faces	client/lib/three.js	/^	var faces = THREE.Shape.Utils.triangulateShape( vertices, holes );$/;"	v
+faces	client/lib/three.js	/^THREE.FontUtils = {$/;"	p	class:THREE.FontUtils
+faces	client/lib/three.js	/^THREE.typeface_js = { faces: THREE.FontUtils.faces, loadFace: THREE.FontUtils.loadFace };$/;"	p	class:THREE.typeface_js
+files	client/lib/three.js	/^THREE.Cache = {$/;"	p	class:THREE.Cache
+filterFallback	client/lib/three.js	/^	function filterFallback ( f ) {$/;"	f
+filterInvalidDevices	client/lib/three.js	/^	function filterInvalidDevices( devices ) {$/;"	f	function:THREE.VRControls
+firebrick	client/lib/three.js	/^'deeppink': 0xFF1493, 'deepskyblue': 0x00BFFF, 'dimgray': 0x696969, 'dimgrey': 0x696969, 'dodgerblue': 0x1E90FF, 'firebrick': 0xB22222,$/;"	p	class:THREE.ColorKeywords
+firstAnimation	client/lib/three.js	/^	var firstAnimation, animations = geometry.animations;$/;"	v
+floralwhite	client/lib/three.js	/^'deeppink': 0xFF1493, 'deepskyblue': 0x00BFFF, 'dimgray': 0x696969, 'dimgrey': 0x696969, 'dodgerblue': 0x1E90FF, 'firebrick': 0xB22222,$/;"	p	class:THREE.ColorKeywords
+forceContextLoss	client/lib/three.js	/^	this.forceContextLoss = function () {$/;"	f
+forestgreen	client/lib/three.js	/^'floralwhite': 0xFFFAF0, 'forestgreen': 0x228B22, 'fuchsia': 0xFF00FF, 'gainsboro': 0xDCDCDC, 'ghostwhite': 0xF8F8FF, 'gold': 0xFFD700,$/;"	p	class:THREE.ColorKeywords
+format	client/lib/three.js	/^				var pars = { minFilter: shadowFilter, magFilter: shadowFilter, format: THREE.RGBAFormat };$/;"	p	class:var.pars
+fovPortToProjection	client/lib/three.js	/^	function fovPortToProjection( fov, rightHanded, zNear, zFar ) {$/;"	f
+fovToNDCScaleOffset	client/lib/three.js	/^	function fovToNDCScaleOffset( fov ) {$/;"	f	function:THREE.VREffect
+fovToProjection	client/lib/three.js	/^	function fovToProjection( fov, rightHanded, zNear, zFar ) {$/;"	f
+frame	client/lib/three.js	/^		var frame = Math.floor( this.currentTime \/ interpolation );$/;"	v
+fromPoints	client/lib/three.js	/^THREE.Path.prototype.fromPoints = function ( vectors ) {$/;"	m	class:THREE.Path
+fuchsia	client/lib/three.js	/^'floralwhite': 0xFFFAF0, 'forestgreen': 0x228B22, 'fuchsia': 0xFF00FF, 'gainsboro': 0xDCDCDC, 'ghostwhite': 0xF8F8FF, 'gold': 0xFFD700,$/;"	p	class:THREE.ColorKeywords
+func	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.ParametricGeometry.parameters
+gainsboro	client/lib/three.js	/^'floralwhite': 0xFFFAF0, 'forestgreen': 0x228B22, 'fuchsia': 0xFF00FF, 'gainsboro': 0xDCDCDC, 'ghostwhite': 0xF8F8FF, 'gold': 0xFFD700,$/;"	p	class:THREE.ColorKeywords
+generateDataTexture	client/lib/three.js	/^	},$/;"	m	class:THREE.ImageUtils
+generateSideWallUV	client/lib/three.js	/^	},$/;"	m	class:THREE.ExtrudeGeometry.WorldUVGenerator
+generateTopUV	client/lib/three.js	/^THREE.ExtrudeGeometry.WorldUVGenerator = {$/;"	m	class:THREE.ExtrudeGeometry.WorldUVGenerator
+generateUUID	client/lib/three.js	/^THREE.Math = {$/;"	m	class:THREE.Math
+geometries	client/lib/three.js	/^			meta = {$/;"	p	class:meta
+get	client/lib/three.js	/^	add: function () { console.warn( 'THREE.AnimationHandler.add() has been deprecated.' ); },$/;"	m	class:THREE.AnimationHandler
+get	client/lib/three.js	/^	this.get = function ( name ) {$/;"	m	class:THREE.WebGLExtensions
+get	client/lib/three.js	/^	this.get = function ( object ) {$/;"	m	class:THREE.WebGLGeometries
+getAnimationDuration	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.getAnimationDuration = function ( name ) {$/;"	m	class:THREE.MorphBlendMesh
+getAnimationTime	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.getAnimationTime = function ( name ) {$/;"	m	class:THREE.MorphBlendMesh
+getAutoRotationAngle	client/lib/three.js	/^	function getAutoRotationAngle() {$/;"	f	function:THREE.OrbitControls
+getAzimuthalAngle	client/lib/three.js	/^	this.getAzimuthalAngle = function () {$/;"	m	class:THREE.OrbitControls
+getBevelVec	client/lib/three.js	/^	function getBevelVec( inPt, inPrev, inNext ) {$/;"	f	function:function
+getBoneList	client/lib/three.js	/^THREE.SkeletonHelper.prototype.getBoneList = function( object ) {$/;"	m	class:THREE.SkeletonHelper
+getBoundingBox	client/lib/three.js	/^THREE.CurvePath.prototype.getBoundingBox = function () {$/;"	m	class:THREE.CurvePath
+getClearAlpha	client/lib/three.js	/^	this.getClearAlpha = function () {$/;"	f
+getClearColor	client/lib/three.js	/^	this.getClearColor = function () {$/;"	f
+getColorIndex	client/lib/three.js	/^		function getColorIndex( color ) {$/;"	f
+getContext	client/lib/three.js	/^	this.getContext = function () {$/;"	f
+getControlPointsArray	client/lib/three.js	/^	this.getControlPointsArray = function () {$/;"	m	class:THREE.Spline
+getCurrentPost	client/views/posts_show.js	/^function getCurrentPost(){$/;"	f
+getCurveLengths	client/lib/three.js	/^THREE.CurvePath.prototype.getCurveLengths = function() {$/;"	m	class:THREE.CurvePath
+getDataURL	client/lib/three.js	/^		function getDataURL( image ) {$/;"	f
+getGeometry	client/lib/three.js	/^			var getGeometry = function ( name ) {$/;"	f
+getLength	client/lib/three.js	/^	this.getLength = function ( nSubDivisions ) {$/;"	m	class:THREE.Spline
+getLength	client/lib/three.js	/^THREE.Curve.prototype.getLength = function () {$/;"	m	class:THREE.Curve
+getLength	client/lib/three.js	/^THREE.CurvePath.prototype.getLength = function() {$/;"	m	class:THREE.CurvePath
+getLengths	client/lib/three.js	/^THREE.Curve.prototype.getLengths = function ( divisions ) {$/;"	m	class:THREE.Curve
+getMaterial	client/lib/three.js	/^			var getMaterial = function ( name ) {$/;"	f
+getMorphTargetIndexByName	client/lib/three.js	/^THREE.Mesh.prototype.getMorphTargetIndexByName = function ( name ) {$/;"	m	class:THREE.Mesh
+getNormalIndex	client/lib/three.js	/^		function getNormalIndex( normal ) {$/;"	f
+getNormalMap	client/lib/three.js	/^	},$/;"	m	class:THREE.ImageUtils
+getObjectForDistance	client/lib/three.js	/^THREE.LOD.prototype.getObjectForDistance = function ( distance ) {$/;"	m	class:THREE.LOD
+getObjectMaterial	client/lib/three.js	/^	function getObjectMaterial( object ) {$/;"	f
+getPixelRatio	client/lib/three.js	/^	this.getPixelRatio = function () {$/;"	f
+getPoint	client/lib/three.js	/^	constructor.prototype.getPoint = getPointFunc;$/;"	m	class:constructor
+getPoint	client/lib/three.js	/^	this.getPoint = function ( k ) {$/;"	m	class:THREE.Spline
+getPoint	client/lib/three.js	/^THREE.CubicBezierCurve.prototype.getPoint = function ( t ) {$/;"	m	class:THREE.CubicBezierCurve
+getPoint	client/lib/three.js	/^THREE.Curve.prototype.getPoint = function ( t ) {$/;"	m	class:THREE.Curve
+getPoint	client/lib/three.js	/^THREE.CurvePath.prototype.getPoint = function( t ) {$/;"	m	class:THREE.CurvePath
+getPoint	client/lib/three.js	/^THREE.EllipseCurve.prototype.getPoint = function ( t ) {$/;"	m	class:THREE.EllipseCurve
+getPoint	client/lib/three.js	/^THREE.LineCurve.prototype.getPoint = function ( t ) {$/;"	m	class:THREE.LineCurve
+getPoint	client/lib/three.js	/^THREE.QuadraticBezierCurve.prototype.getPoint = function ( t ) {$/;"	m	class:THREE.QuadraticBezierCurve
+getPoint	client/lib/three.js	/^THREE.SplineCurve.prototype.getPoint = function ( t ) {$/;"	m	class:THREE.SplineCurve
+getPointAt	client/lib/three.js	/^THREE.Curve.prototype.getPointAt = function ( u ) {$/;"	m	class:THREE.Curve
+getPointAt	client/lib/three.js	/^THREE.LineCurve.prototype.getPointAt = function ( u ) {$/;"	m	class:THREE.LineCurve
+getPoints	client/lib/three.js	/^THREE.Curve.prototype.getPoints = function ( divisions ) {$/;"	m	class:THREE.Curve
+getPoints	client/lib/three.js	/^THREE.Path.prototype.getPoints = function( divisions, closedPath ) {$/;"	m	class:THREE.Path
+getPointsHoles	client/lib/three.js	/^THREE.Shape.prototype.getPointsHoles = function ( divisions ) {$/;"	m	class:THREE.Shape
+getPolarAngle	client/lib/three.js	/^	this.getPolarAngle = function () {$/;"	m	class:THREE.OrbitControls
+getPos	client/lib/three.js	/^	function getPos( u, in_q, in_p, radius, heightScale ) {$/;"	f	function:THREE.TorusKnotGeometry
+getPrecision	client/lib/three.js	/^	this.getPrecision = function () {$/;"	f
+getSize	client/lib/three.js	/^	this.getSize = function () {$/;"	f
+getSize	client/views/posts_show.js	/^    setDefaultControls(camera,element);$/;"	f
+getSize	client/views/posts_show.js	/^var getSize;$/;"	v
+getSpacedPoints	client/lib/three.js	/^THREE.Curve.prototype.getSpacedPoints = function ( divisions ) {$/;"	m	class:THREE.Curve
+getSpacedPoints	client/lib/three.js	/^THREE.Path.prototype.getSpacedPoints = function ( divisions, closedPath ) {$/;"	m	class:THREE.Path
+getSpacedPointsHoles	client/lib/three.js	/^THREE.Shape.prototype.getSpacedPointsHoles = function ( divisions ) {$/;"	m	class:THREE.Shape
+getTangent	client/lib/three.js	/^THREE.CubicBezierCurve.prototype.getTangent = function( t ) {$/;"	m	class:THREE.CubicBezierCurve
+getTangent	client/lib/three.js	/^THREE.Curve.prototype.getTangent = function( t ) {$/;"	m	class:THREE.Curve
+getTangent	client/lib/three.js	/^THREE.LineCurve.prototype.getTangent = function( t ) {$/;"	m	class:THREE.LineCurve
+getTangent	client/lib/three.js	/^THREE.QuadraticBezierCurve.prototype.getTangent = function( t ) {$/;"	m	class:THREE.QuadraticBezierCurve
+getTangentAt	client/lib/three.js	/^THREE.Curve.prototype.getTangentAt = function ( u ) {$/;"	m	class:THREE.Curve
+getTexture	client/lib/three.js	/^			var getTexture = function ( name ) {$/;"	f	function:var
+getTextureUnit	client/lib/three.js	/^	function getTextureUnit() {$/;"	f
+getTransformedPoints	client/lib/three.js	/^THREE.CurvePath.prototype.getTransformedPoints = function( segments, bends ) {$/;"	m	class:THREE.CurvePath
+getTransformedSpacedPoints	client/lib/three.js	/^THREE.CurvePath.prototype.getTransformedSpacedPoints = function( segments, bends ) {$/;"	m	class:THREE.CurvePath
+getUtoTmapping	client/lib/three.js	/^THREE.Curve.prototype.getUtoTmapping = function ( u, distance ) {$/;"	m	class:THREE.Curve
+getUvIndex	client/lib/three.js	/^		function getUvIndex( uv ) {$/;"	f
+getWorldDirection	client/lib/three.js	/^THREE.Camera.prototype.getWorldDirection = function () {$/;"	m	class:THREE.Camera
+getWrapPoints	client/lib/three.js	/^THREE.CurvePath.prototype.getWrapPoints = function ( oldPts, path ) {$/;"	m	class:THREE.CurvePath
+getZoomScale	client/lib/three.js	/^	function getZoomScale() {$/;"	f	function:THREE.OrbitControls
+ghostwhite	client/lib/three.js	/^'floralwhite': 0xFFFAF0, 'forestgreen': 0x228B22, 'fuchsia': 0xFF00FF, 'gainsboro': 0xDCDCDC, 'ghostwhite': 0xF8F8FF, 'gold': 0xFFD700,$/;"	p	class:THREE.ColorKeywords
+glClearColor	client/lib/three.js	/^	var glClearColor = function ( r, g, b, a ) {$/;"	f
+gold	client/lib/three.js	/^'floralwhite': 0xFFFAF0, 'forestgreen': 0x228B22, 'fuchsia': 0xFF00FF, 'gainsboro': 0xDCDCDC, 'ghostwhite': 0xF8F8FF, 'gold': 0xFFD700,$/;"	p	class:THREE.ColorKeywords
+goldenrod	client/lib/three.js	/^'floralwhite': 0xFFFAF0, 'forestgreen': 0x228B22, 'fuchsia': 0xFF00FF, 'gainsboro': 0xDCDCDC, 'ghostwhite': 0xF8F8FF, 'gold': 0xFFD700,$/;"	p	class:THREE.ColorKeywords
+gotVRDevices	client/lib/three.js	/^	function gotVRDevices( devices ) {$/;"	f	function:THREE.VRControls
+gotVRDevices	client/lib/three.js	/^	function gotVRDevices( devices ) {$/;"	f	function:THREE.VREffect
+gray	client/lib/three.js	/^'goldenrod': 0xDAA520, 'gray': 0x808080, 'green': 0x008000, 'greenyellow': 0xADFF2F, 'grey': 0x808080, 'honeydew': 0xF0FFF0, 'hotpink': 0xFF69B4,$/;"	p	class:THREE.ColorKeywords
+green	client/lib/three.js	/^'goldenrod': 0xDAA520, 'gray': 0x808080, 'green': 0x008000, 'greenyellow': 0xADFF2F, 'grey': 0x808080, 'honeydew': 0xF0FFF0, 'hotpink': 0xFF69B4,$/;"	p	class:THREE.ColorKeywords
+greenyellow	client/lib/three.js	/^'goldenrod': 0xDAA520, 'gray': 0x808080, 'green': 0x008000, 'greenyellow': 0xADFF2F, 'grey': 0x808080, 'honeydew': 0xF0FFF0, 'hotpink': 0xFF69B4,$/;"	p	class:THREE.ColorKeywords
+grey	client/lib/three.js	/^'goldenrod': 0xDAA520, 'gray': 0x808080, 'green': 0x008000, 'greenyellow': 0xADFF2F, 'grey': 0x808080, 'honeydew': 0xF0FFF0, 'hotpink': 0xFF69B4,$/;"	p	class:THREE.ColorKeywords
+h	client/lib/three.js	/^		var h = top - bottom;$/;"	v
+halfTheta	client/lib/three.js	/^		var halfTheta = Math.acos( cosHalfTheta );$/;"	v
+handleTriangle	client/lib/three.js	/^		function handleTriangle( context, a, b, c, ua, ub, uc ) {$/;"	f
+handleVertex	client/lib/three.js	/^		function handleVertex( v ) {$/;"	f
+handlers	client/lib/three.js	/^THREE.Loader.Handlers = {$/;"	p	class:THREE.Loader.Handlers
+hasFaceVertexUv	client/lib/three.js	/^		var hasFaceVertexUv = faceVertexUvs[ 0 ] && faceVertexUvs[ 0 ].length > 0;$/;"	v
+hasFaceVertexUv2	client/lib/three.js	/^		var hasFaceVertexUv2 = faceVertexUvs[ 1 ] && faceVertexUvs[ 1 ].length > 0;$/;"	v
+hasSkinIndices	client/lib/three.js	/^		var hasSkinIndices = skinIndices.length === vertices.length;$/;"	v
+hasSkinWeights	client/lib/three.js	/^		var hasSkinWeights = skinWeights.length === vertices.length;$/;"	v
+height	client/lib/three.js	/^		radiusBottom: radiusBottom,$/;"	p	class:THREE.CylinderGeometry.parameters
+height	client/lib/three.js	/^		width: width,$/;"	p	class:THREE.BoxGeometry.parameters
+height	client/lib/three.js	/^		width: width,$/;"	p	class:THREE.PlaneBufferGeometry.parameters
+height	client/lib/three.js	/^		width: width,$/;"	p	class:THREE.PlaneGeometry.parameters
+height	client/lib/three.js	/^	this.image = { data: data, width: width, height: height };$/;"	p	class:THREE.DataTexture.image
+height	client/lib/three.js	/^	this.image = { width: width, height: height };$/;"	p	class:THREE.CompressedTexture.image
+heightScale	client/lib/three.js	/^		q: q,$/;"	p	class:THREE.TorusKnotGeometry.parameters
+heightSegments	client/lib/three.js	/^		radialSegments: radialSegments,$/;"	p	class:THREE.CylinderGeometry.parameters
+heightSegments	client/lib/three.js	/^		widthSegments: widthSegments,$/;"	p	class:THREE.BoxGeometry.parameters
+heightSegments	client/lib/three.js	/^		widthSegments: widthSegments,$/;"	p	class:THREE.PlaneBufferGeometry.parameters
+heightSegments	client/lib/three.js	/^		widthSegments: widthSegments,$/;"	p	class:THREE.PlaneGeometry.parameters
+heightSegments	client/lib/three.js	/^		widthSegments: widthSegments,$/;"	p	class:THREE.SphereBufferGeometry.parameters
+heightSegments	client/lib/three.js	/^		widthSegments: widthSegments,$/;"	p	class:THREE.SphereGeometry.parameters
+highpAvailable	client/lib/three.js	/^	var highpAvailable = _vertexShaderPrecisionHighpFloat.precision > 0 && _fragmentShaderPrecisionHighpFloat.precision > 0;$/;"	v
+holes	client/lib/three.js	/^	var holes = shapePoints.holes;$/;"	v
+honeydew	client/lib/three.js	/^'goldenrod': 0xDAA520, 'gray': 0x808080, 'green': 0x008000, 'greenyellow': 0xADFF2F, 'grey': 0x808080, 'honeydew': 0xF0FFF0, 'hotpink': 0xFF69B4,$/;"	p	class:THREE.ColorKeywords
+hotpink	client/lib/three.js	/^'goldenrod': 0xDAA520, 'gray': 0x808080, 'green': 0x008000, 'greenyellow': 0xADFF2F, 'grey': 0x808080, 'honeydew': 0xF0FFF0, 'hotpink': 0xFF69B4,$/;"	p	class:THREE.ColorKeywords
+hue	client/lib/three.js	/^		var hue, saturation;$/;"	v
+hue2rgb	client/lib/three.js	/^			var hue2rgb = function ( p, q, t ) {$/;"	f	function:var
+i	client/lib/three.js	/^		var i, i2, divisions,$/;"	v
+i	client/lib/three.js	/^		var i, il, face;$/;"	v
+i	client/lib/three.js	/^		var i, il;$/;"	v
+i	client/lib/three.js	/^	var i, l, hole;$/;"	v
+iA	client/lib/three.js	/^		var iA, iB, iC;$/;"	v
+id	client/lib/three.js	/^				objects[ object.id ] = {$/;"	p	class:objects
+images	client/lib/three.js	/^		var images = {};$/;"	v
+inclination	client/lib/three.js	/^	function inclination( vector ) {$/;"	f	function:THREE.PolyhedronGeometry
+index	client/lib/three.js	/^				var new_offset = { start:indexPtr, count:0, index:vertexPtr };$/;"	p	class:var.new_offset
+indexPtr	client/lib/three.js	/^		var indexPtr = 0;$/;"	v
+indianred	client/lib/three.js	/^'goldenrod': 0xDAA520, 'gray': 0x808080, 'green': 0x008000, 'greenyellow': 0xADFF2F, 'grey': 0x808080, 'honeydew': 0xF0FFF0, 'hotpink': 0xFF69B4,$/;"	p	class:THREE.ColorKeywords
+indices	client/lib/three.js	/^		var indices = attributes.index !== undefined ? attributes.index.array : undefined;$/;"	v
+indices	client/lib/three.js	/^		var indices, j, jl;$/;"	v
+indices	client/lib/three.js	/^		vertices: vertices,$/;"	p	class:THREE.PolyhedronGeometry.parameters
+indigo	client/lib/three.js	/^'indianred': 0xCD5C5C, 'indigo': 0x4B0082, 'ivory': 0xFFFFF0, 'khaki': 0xF0E68C, 'lavender': 0xE6E6FA, 'lavenderblush': 0xFFF0F5, 'lawngreen': 0x7CFC00,$/;"	p	class:THREE.ColorKeywords
+init	client/lib/three.js	/^	this.init = function ( object ) {$/;"	m	class:THREE.WebGLObjects
+init	client/lib/three.js	/^	var init = function () {$/;"	f	function:THREE.LensFlarePlugin
+init	client/lib/three.js	/^	var init = function () {$/;"	f	function:THREE.SpritePlugin
+init	client/views/posts_show.js	/^  function init() {$/;"	f	function:Template.PostsShow.rendered
+initAttributes	client/lib/three.js	/^	this.initAttributes = function () {$/;"	m	class:THREE.WebGLState
+initFromArray	client/lib/three.js	/^	this.initFromArray = function ( a ) {$/;"	m	class:THREE.Spline
+initMaterial	client/lib/three.js	/^	function initMaterial( material, lights, fog, object ) {$/;"	f
+initialNormal3	client/lib/three.js	/^	function initialNormal3() {$/;"	f	function:THREE.TubeGeometry.FrenetFrames
+innerRadius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.RingGeometry.parameters
+interpolate	client/lib/three.js	/^	function interpolate( p0, p1, p2, p3, t, t2, t3 ) {$/;"	f
+interpolate	client/lib/three.js	/^	},$/;"	m	class:THREE.Curve.Utils
+interpolateTargets	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.interpolateTargets = function ( a, b, t ) {$/;"	m	class:THREE.MorphAnimMesh
+intersectObject	client/lib/three.js	/^	var intersectObject = function ( object, raycaster, intersects, recursive ) {$/;"	f
+intersect_segments_2D	client/lib/three.js	/^		function intersect_segments_2D( inSeg1Pt1, inSeg1Pt2, inSeg2Pt1, inSeg2Pt2, inExcludeAdjacentSegs ) {$/;"	f	function:triangulateShape
+intersectsHoleEdge	client/lib/three.js	/^			function intersectsHoleEdge( inShapePt, inHolePt ) {$/;"	f	function:triangulateShape.removeHoles
+intersectsShapeEdge	client/lib/three.js	/^			function intersectsShapeEdge( inShapePt, inHolePt ) {$/;"	f	function:triangulateShape.removeHoles
+invSX	client/lib/three.js	/^			var invSX = 1 \/ sx;$/;"	v
+invSY	client/lib/three.js	/^			var invSY = 1 \/ sy;$/;"	v
+invSZ	client/lib/three.js	/^			var invSZ = 1 \/ sz;$/;"	v
+invdirx	client/lib/three.js	/^		var invdirx = 1 \/ this.direction.x,$/;"	v
+isBitSet	client/lib/three.js	/^		function isBitSet( value, position ) {$/;"	f	function:function.parseModel
+isClockWise	client/lib/three.js	/^	},$/;"	m	class:THREE.Shape.Utils
+isCutLineInsideAngles	client/lib/three.js	/^			function isCutLineInsideAngles( inShapeIdx, inHoleIdx ) {$/;"	f	function:triangulateShape.removeHoles
+isInVRMode	client/views/posts_show.js	/^var isInVRMode = false;$/;"	v
+isPointInsideAngle	client/lib/three.js	/^		function isPointInsideAngle( inVertex, inLegFromPt, inLegToPt, inOtherPt ) {$/;"	f	function:triangulateShape
+isPointInsidePolygon	client/lib/three.js	/^	function isPointInsidePolygon( inPt, inPolygon ) {$/;"	f	function:THREE.Path.function
+itemEnd	client/lib/three.js	/^	this.itemEnd = function ( url ) {$/;"	m	class:THREE.LoadingManager
+itemSize	client/lib/three.js	/^			data.data.attributes[ key ] = {$/;"	p	class:data.data.attributes
+itemStart	client/lib/three.js	/^	this.itemStart = function ( url ) {$/;"	m	class:THREE.LoadingManager
+ivory	client/lib/three.js	/^'indianred': 0xCD5C5C, 'indigo': 0x4B0082, 'ivory': 0xFFFFF0, 'khaki': 0xF0E68C, 'lavender': 0xE6E6FA, 'lavenderblush': 0xFFF0F5, 'lawngreen': 0x7CFC00,$/;"	p	class:THREE.ColorKeywords
+iw	client/lib/three.js	/^		var iw = - qx * x - qy * y - qz * z;$/;"	v
+ix	client/lib/three.js	/^		var ix =  qw * x + qy * z - qz * y;$/;"	v
+iy	client/lib/three.js	/^		var iy =  qw * y + qz * x - qx * z;$/;"	v
+iz	client/lib/three.js	/^		var iz =  qw * z + qx * y - qy * x;$/;"	v
+j	client/lib/three.js	/^		var j, jl;$/;"	v
+khaki	client/lib/three.js	/^'indianred': 0xCD5C5C, 'indigo': 0x4B0082, 'ivory': 0xFFFFF0, 'khaki': 0xF0E68C, 'lavender': 0xE6E6FA, 'lavenderblush': 0xFFF0F5, 'lawngreen': 0x7CFC00,$/;"	p	class:THREE.ColorKeywords
+lavender	client/lib/three.js	/^'indianred': 0xCD5C5C, 'indigo': 0x4B0082, 'ivory': 0xFFFFF0, 'khaki': 0xF0E68C, 'lavender': 0xE6E6FA, 'lavenderblush': 0xFFF0F5, 'lawngreen': 0x7CFC00,$/;"	p	class:THREE.ColorKeywords
+lavenderblush	client/lib/three.js	/^'indianred': 0xCD5C5C, 'indigo': 0x4B0082, 'ivory': 0xFFFFF0, 'khaki': 0xF0E68C, 'lavender': 0xE6E6FA, 'lavenderblush': 0xFFF0F5, 'lawngreen': 0x7CFC00,$/;"	p	class:THREE.ColorKeywords
+lawngreen	client/lib/three.js	/^'indianred': 0xCD5C5C, 'indigo': 0x4B0082, 'ivory': 0xFFFFF0, 'khaki': 0xF0E68C, 'lavender': 0xE6E6FA, 'lavenderblush': 0xFFF0F5, 'lawngreen': 0x7CFC00,$/;"	p	class:THREE.ColorKeywords
+lemonchiffon	client/lib/three.js	/^'indianred': 0xCD5C5C, 'indigo': 0x4B0082, 'ivory': 0xFFFFF0, 'khaki': 0xF0E68C, 'lavender': 0xE6E6FA, 'lavenderblush': 0xFFF0F5, 'lawngreen': 0x7CFC00,$/;"	p	class:THREE.ColorKeywords
+length	client/lib/three.js	/^		endFrame: end,$/;"	p	class:THREE.MorphBlendMesh.var.animation
+lightblue	client/lib/three.js	/^'lemonchiffon': 0xFFFACD, 'lightblue': 0xADD8E6, 'lightcoral': 0xF08080, 'lightcyan': 0xE0FFFF, 'lightgoldenrodyellow': 0xFAFAD2, 'lightgray': 0xD3D3D3,$/;"	p	class:THREE.ColorKeywords
+lightcoral	client/lib/three.js	/^'lemonchiffon': 0xFFFACD, 'lightblue': 0xADD8E6, 'lightcoral': 0xF08080, 'lightcyan': 0xE0FFFF, 'lightgoldenrodyellow': 0xFAFAD2, 'lightgray': 0xD3D3D3,$/;"	p	class:THREE.ColorKeywords
+lightcyan	client/lib/three.js	/^'lemonchiffon': 0xFFFACD, 'lightblue': 0xADD8E6, 'lightcoral': 0xF08080, 'lightcyan': 0xE0FFFF, 'lightgoldenrodyellow': 0xFAFAD2, 'lightgray': 0xD3D3D3,$/;"	p	class:THREE.ColorKeywords
+lightgoldenrodyellow	client/lib/three.js	/^'lemonchiffon': 0xFFFACD, 'lightblue': 0xADD8E6, 'lightcoral': 0xF08080, 'lightcyan': 0xE0FFFF, 'lightgoldenrodyellow': 0xFAFAD2, 'lightgray': 0xD3D3D3,$/;"	p	class:THREE.ColorKeywords
+lightgray	client/lib/three.js	/^'lemonchiffon': 0xFFFACD, 'lightblue': 0xADD8E6, 'lightcoral': 0xF08080, 'lightcyan': 0xE0FFFF, 'lightgoldenrodyellow': 0xFAFAD2, 'lightgray': 0xD3D3D3,$/;"	p	class:THREE.ColorKeywords
+lightgreen	client/lib/three.js	/^'lemonchiffon': 0xFFFACD, 'lightblue': 0xADD8E6, 'lightcoral': 0xF08080, 'lightcyan': 0xE0FFFF, 'lightgoldenrodyellow': 0xFAFAD2, 'lightgray': 0xD3D3D3,$/;"	p	class:THREE.ColorKeywords
+lightgrey	client/lib/three.js	/^'lightgreen': 0x90EE90, 'lightgrey': 0xD3D3D3, 'lightpink': 0xFFB6C1, 'lightsalmon': 0xFFA07A, 'lightseagreen': 0x20B2AA, 'lightskyblue': 0x87CEFA,$/;"	p	class:THREE.ColorKeywords
+lightpink	client/lib/three.js	/^'lightgreen': 0x90EE90, 'lightgrey': 0xD3D3D3, 'lightpink': 0xFFB6C1, 'lightsalmon': 0xFFA07A, 'lightseagreen': 0x20B2AA, 'lightskyblue': 0x87CEFA,$/;"	p	class:THREE.ColorKeywords
+lightsalmon	client/lib/three.js	/^'lightgreen': 0x90EE90, 'lightgrey': 0xD3D3D3, 'lightpink': 0xFFB6C1, 'lightsalmon': 0xFFA07A, 'lightseagreen': 0x20B2AA, 'lightskyblue': 0x87CEFA,$/;"	p	class:THREE.ColorKeywords
+lightseagreen	client/lib/three.js	/^'lightgreen': 0x90EE90, 'lightgrey': 0xD3D3D3, 'lightpink': 0xFFB6C1, 'lightsalmon': 0xFFA07A, 'lightseagreen': 0x20B2AA, 'lightskyblue': 0x87CEFA,$/;"	p	class:THREE.ColorKeywords
+lightskyblue	client/lib/three.js	/^'lightgreen': 0x90EE90, 'lightgrey': 0xD3D3D3, 'lightpink': 0xFFB6C1, 'lightsalmon': 0xFFA07A, 'lightseagreen': 0x20B2AA, 'lightskyblue': 0x87CEFA,$/;"	p	class:THREE.ColorKeywords
+lightslategray	client/lib/three.js	/^'lightgreen': 0x90EE90, 'lightgrey': 0xD3D3D3, 'lightpink': 0xFFB6C1, 'lightsalmon': 0xFFA07A, 'lightseagreen': 0x20B2AA, 'lightskyblue': 0x87CEFA,$/;"	p	class:THREE.ColorKeywords
+lightslategrey	client/lib/three.js	/^'lightslategray': 0x778899, 'lightslategrey': 0x778899, 'lightsteelblue': 0xB0C4DE, 'lightyellow': 0xFFFFE0, 'lime': 0x00FF00, 'limegreen': 0x32CD32,$/;"	p	class:THREE.ColorKeywords
+lightsteelblue	client/lib/three.js	/^'lightslategray': 0x778899, 'lightslategrey': 0x778899, 'lightsteelblue': 0xB0C4DE, 'lightyellow': 0xFFFFE0, 'lime': 0x00FF00, 'limegreen': 0x32CD32,$/;"	p	class:THREE.ColorKeywords
+lightyellow	client/lib/three.js	/^'lightslategray': 0x778899, 'lightslategrey': 0x778899, 'lightsteelblue': 0xB0C4DE, 'lightyellow': 0xFFFFE0, 'lime': 0x00FF00, 'limegreen': 0x32CD32,$/;"	p	class:THREE.ColorKeywords
+lime	client/lib/three.js	/^'lightslategray': 0x778899, 'lightslategrey': 0x778899, 'lightsteelblue': 0xB0C4DE, 'lightyellow': 0xFFFFE0, 'lime': 0x00FF00, 'limegreen': 0x32CD32,$/;"	p	class:THREE.ColorKeywords
+limegreen	client/lib/three.js	/^'lightslategray': 0x778899, 'lightslategrey': 0x778899, 'lightsteelblue': 0xB0C4DE, 'lightyellow': 0xFFFFE0, 'lime': 0x00FF00, 'limegreen': 0x32CD32,$/;"	p	class:THREE.ColorKeywords
+lineTo	client/lib/three.js	/^THREE.Path.prototype.lineTo = function ( x, y ) {$/;"	m	class:THREE.Path
+linen	client/lib/three.js	/^'lightslategray': 0x778899, 'lightslategrey': 0x778899, 'lightsteelblue': 0xB0C4DE, 'lightyellow': 0xFFFFE0, 'lime': 0x00FF00, 'limegreen': 0x32CD32,$/;"	p	class:THREE.ColorKeywords
+listenerArray	client/lib/three.js	/^		var listenerArray = listeners[ event.type ];$/;"	v
+listenerArray	client/lib/three.js	/^		var listenerArray = listeners[ type ];$/;"	v
+load	client/lib/three.js	/^THREE.Audio.prototype.load = function ( file ) {$/;"	m	class:THREE.Audio
+load	client/lib/three.js	/^THREE.JSONLoader.prototype.load = function ( url, callback, texturePath ) {$/;"	m	class:THREE.JSONLoader
+loadAjaxJSON	client/lib/three.js	/^THREE.JSONLoader.prototype.loadAjaxJSON = function ( context, url, callback, texturePath, callbackProgress ) {$/;"	m	class:THREE.JSONLoader
+loadCompressedTexture	client/lib/three.js	/^	},$/;"	m	class:THREE.ImageUtils
+loadCompressedTextureCube	client/lib/three.js	/^	},$/;"	m	class:THREE.ImageUtils
+loadImage	client/lib/three.js	/^			var loadImage = function ( url ) {$/;"	f	function:var
+loadTexture	client/lib/three.js	/^			var loadTexture = function ( i ) {$/;"	f	function:var
+loadTexture	client/lib/three.js	/^		var loadTexture = function ( i ) {$/;"	f	function:loadTextureCube
+loadTexture	client/lib/three.js	/^	crossOrigin: undefined,$/;"	m	class:THREE.ImageUtils
+loadTextureCube	client/lib/three.js	/^	},$/;"	m	class:THREE.ImageUtils
+loadUniformsGeneric	client/lib/three.js	/^	function loadUniformsGeneric ( uniforms ) {$/;"	f
+loadUniformsMatrices	client/lib/three.js	/^	function loadUniformsMatrices ( uniforms, object ) {$/;"	f
+lookAt	client/lib/three.js	/^THREE.Camera.prototype.lookAt = function () {$/;"	m	class:THREE.Camera
+m11	client/lib/three.js	/^		var m11 = te[ 0 ], m12 = te[ 4 ], m13 = te[ 8 ];$/;"	v
+m21	client/lib/three.js	/^		var m21 = te[ 1 ], m22 = te[ 5 ], m23 = te[ 9 ];$/;"	v
+m31	client/lib/three.js	/^		var m31 = te[ 2 ], m32 = te[ 6 ], m33 = te[ 10 ];$/;"	v
+magFilter	client/lib/three.js	/^				var pars = { minFilter: shadowFilter, magFilter: shadowFilter, format: THREE.RGBAFormat };$/;"	p	class:var.pars
+magenta	client/lib/three.js	/^'linen': 0xFAF0E6, 'magenta': 0xFF00FF, 'maroon': 0x800000, 'mediumaquamarine': 0x66CDAA, 'mediumblue': 0x0000CD, 'mediumorchid': 0xBA55D3,$/;"	p	class:THREE.ColorKeywords
+make	client/lib/three.js	/^	function make( v1, v2, v3 ) {$/;"	f	function:THREE.PolyhedronGeometry
+makeGeometry	client/lib/three.js	/^THREE.Shape.prototype.makeGeometry = function ( options ) {$/;"	m	class:THREE.Shape
+map	client/lib/three.js	/^			supportsVertexTextures: _supportsVertexTextures,$/;"	p	class:initMaterial.parameters
+markUniformsLightsNeedsUpdate	client/lib/three.js	/^	function markUniformsLightsNeedsUpdate ( uniforms, value ) {$/;"	f
+maroon	client/lib/three.js	/^'linen': 0xFAF0E6, 'magenta': 0xFF00FF, 'maroon': 0x800000, 'mediumaquamarine': 0x66CDAA, 'mediumblue': 0x0000CD, 'mediumorchid': 0xBA55D3,$/;"	p	class:THREE.ColorKeywords
+material	client/lib/three.js	/^	var material = options.material;$/;"	v
+max	client/lib/three.js	/^		var max = Math.max( r, g, b );$/;"	v
+maxRadiusSq	client/lib/three.js	/^			var maxRadiusSq = 0;$/;"	v
+maxX	client/lib/three.js	/^		minY: minY,$/;"	p	class:ret
+maxY	client/lib/three.js	/^		maxX: maxX,$/;"	p	class:ret
+me	client/lib/three.js	/^			var me = m.elements;$/;"	v
+me	client/lib/three.js	/^		var me = m.elements;$/;"	v
+me	client/lib/three.js	/^		var me = matrix.elements;$/;"	v
+me0	client/lib/three.js	/^		var me0 = me[ 0 ], me1 = me[ 1 ], me2 = me[ 2 ], me3 = me[ 3 ];$/;"	v
+me12	client/lib/three.js	/^		var me12 = me[ 12 ], me13 = me[ 13 ], me14 = me[ 14 ], me15 = me[ 15 ];$/;"	v
+me4	client/lib/three.js	/^		var me4 = me[ 4 ], me5 = me[ 5 ], me6 = me[ 6 ], me7 = me[ 7 ];$/;"	v
+me8	client/lib/three.js	/^		var me8 = me[ 8 ], me9 = me[ 9 ], me10 = me[ 10 ], me11 = me[ 11 ];$/;"	v
+mediumaquamarine	client/lib/three.js	/^'linen': 0xFAF0E6, 'magenta': 0xFF00FF, 'maroon': 0x800000, 'mediumaquamarine': 0x66CDAA, 'mediumblue': 0x0000CD, 'mediumorchid': 0xBA55D3,$/;"	p	class:THREE.ColorKeywords
+mediumblue	client/lib/three.js	/^'linen': 0xFAF0E6, 'magenta': 0xFF00FF, 'maroon': 0x800000, 'mediumaquamarine': 0x66CDAA, 'mediumblue': 0x0000CD, 'mediumorchid': 0xBA55D3,$/;"	p	class:THREE.ColorKeywords
+mediumorchid	client/lib/three.js	/^'linen': 0xFAF0E6, 'magenta': 0xFF00FF, 'maroon': 0x800000, 'mediumaquamarine': 0x66CDAA, 'mediumblue': 0x0000CD, 'mediumorchid': 0xBA55D3,$/;"	p	class:THREE.ColorKeywords
+mediumpAvailable	client/lib/three.js	/^	var mediumpAvailable = _vertexShaderPrecisionMediumpFloat.precision > 0 && _fragmentShaderPrecisionMediumpFloat.precision > 0;$/;"	v
+mediumpurple	client/lib/three.js	/^'linen': 0xFAF0E6, 'magenta': 0xFF00FF, 'maroon': 0x800000, 'mediumaquamarine': 0x66CDAA, 'mediumblue': 0x0000CD, 'mediumorchid': 0xBA55D3,$/;"	p	class:THREE.ColorKeywords
+mediumseagreen	client/lib/three.js	/^'mediumpurple': 0x9370DB, 'mediumseagreen': 0x3CB371, 'mediumslateblue': 0x7B68EE, 'mediumspringgreen': 0x00FA9A, 'mediumturquoise': 0x48D1CC,$/;"	p	class:THREE.ColorKeywords
+mediumslateblue	client/lib/three.js	/^'mediumpurple': 0x9370DB, 'mediumseagreen': 0x3CB371, 'mediumslateblue': 0x7B68EE, 'mediumspringgreen': 0x00FA9A, 'mediumturquoise': 0x48D1CC,$/;"	p	class:THREE.ColorKeywords
+mediumspringgreen	client/lib/three.js	/^'mediumpurple': 0x9370DB, 'mediumseagreen': 0x3CB371, 'mediumslateblue': 0x7B68EE, 'mediumspringgreen': 0x00FA9A, 'mediumturquoise': 0x48D1CC,$/;"	p	class:THREE.ColorKeywords
+mediumturquoise	client/lib/three.js	/^'mediumpurple': 0x9370DB, 'mediumseagreen': 0x3CB371, 'mediumslateblue': 0x7B68EE, 'mediumspringgreen': 0x00FA9A, 'mediumturquoise': 0x48D1CC,$/;"	p	class:THREE.ColorKeywords
+mediumvioletred	client/lib/three.js	/^'mediumpurple': 0x9370DB, 'mediumseagreen': 0x3CB371, 'mediumslateblue': 0x7B68EE, 'mediumspringgreen': 0x00FA9A, 'mediumturquoise': 0x48D1CC,$/;"	p	class:THREE.ColorKeywords
+memory	client/lib/three.js	/^	this.info = {$/;"	p	class:THREE.WebGLRenderer.info
+merge	client/lib/three.js	/^THREE.GeometryUtils = {$/;"	m	class:THREE.GeometryUtils
+merge	client/lib/three.js	/^THREE.UniformsUtils = {$/;"	m	class:THREE.UniformsUtils
+metadata	client/lib/three.js	/^		var data = {$/;"	p
+metadata	client/lib/three.js	/^		var output = {$/;"	p	class:output
+midnightblue	client/lib/three.js	/^'mediumvioletred': 0xC71585, 'midnightblue': 0x191970, 'mintcream': 0xF5FFFA, 'mistyrose': 0xFFE4E1, 'moccasin': 0xFFE4B5, 'navajowhite': 0xFFDEAD,$/;"	p	class:THREE.ColorKeywords
+min	client/lib/three.js	/^		var min = Math.min( r, g, b );$/;"	v
+minFilter	client/lib/three.js	/^				var pars = { minFilter: shadowFilter, magFilter: shadowFilter, format: THREE.RGBAFormat };$/;"	p	class:var.pars
+minX	client/lib/three.js	/^	var ret = {$/;"	p	class:ret
+minY	client/lib/three.js	/^		minX: minX,$/;"	p	class:ret
+mintcream	client/lib/three.js	/^'mediumvioletred': 0xC71585, 'midnightblue': 0x191970, 'mintcream': 0xF5FFFA, 'mistyrose': 0xFFE4E1, 'moccasin': 0xFFE4B5, 'navajowhite': 0xFFDEAD,$/;"	p	class:THREE.ColorKeywords
+mistyrose	client/lib/three.js	/^'mediumvioletred': 0xC71585, 'midnightblue': 0x191970, 'mintcream': 0xF5FFFA, 'mistyrose': 0xFFE4E1, 'moccasin': 0xFFE4B5, 'navajowhite': 0xFFDEAD,$/;"	p	class:THREE.ColorKeywords
+moccasin	client/lib/three.js	/^'mediumvioletred': 0xC71585, 'midnightblue': 0x191970, 'mintcream': 0xF5FFFA, 'mistyrose': 0xFFE4E1, 'moccasin': 0xFFE4B5, 'navajowhite': 0xFFDEAD,$/;"	p	class:THREE.ColorKeywords
+morphColors	client/lib/three.js	/^		var morphColors = geometry.morphColors;$/;"	v
+morphColorsLength	client/lib/three.js	/^		var morphColorsLength = morphColors.length;$/;"	v
+morphNormals	client/lib/three.js	/^		var morphNormals = geometry.morphNormals;$/;"	v
+morphNormalsLength	client/lib/three.js	/^		var morphNormalsLength = morphNormals.length;$/;"	v
+morphTargets	client/lib/three.js	/^		var morphTargets = geometry.morphTargets;$/;"	v
+morphTargetsLength	client/lib/three.js	/^		var morphTargetsLength = morphTargets.length;$/;"	v
+moveTo	client/lib/three.js	/^THREE.Path.prototype.moveTo = function ( x, y ) {$/;"	m	class:THREE.Path
+mtype	client/lib/three.js	/^		var mtype = 'MeshLambertMaterial';$/;"	v
+n11	client/lib/three.js	/^		var n11 = me[ 0 ], n12 = me[ 4 ], n13 = me[ 8 ], n14 = me[ 12 ];$/;"	v
+n11	client/lib/three.js	/^		var n11 = te[ 0 ], n12 = te[ 4 ], n13 = te[ 8 ], n14 = te[ 12 ];$/;"	v
+n21	client/lib/three.js	/^		var n21 = me[ 1 ], n22 = me[ 5 ], n23 = me[ 9 ], n24 = me[ 13 ];$/;"	v
+n21	client/lib/three.js	/^		var n21 = te[ 1 ], n22 = te[ 5 ], n23 = te[ 9 ], n24 = te[ 13 ];$/;"	v
+n31	client/lib/three.js	/^		var n31 = me[ 2 ], n32 = me[ 6 ], n33 = me[ 10 ], n34 = me[ 14 ];$/;"	v
+n31	client/lib/three.js	/^		var n31 = te[ 2 ], n32 = te[ 6 ], n33 = te[ 10 ], n34 = te[ 14 ];$/;"	v
+n41	client/lib/three.js	/^		var n41 = me[ 3 ], n42 = me[ 7 ], n43 = me[ 11 ], n44 = me[ 15 ];$/;"	v
+n41	client/lib/three.js	/^		var n41 = te[ 3 ], n42 = te[ 7 ], n43 = te[ 11 ], n44 = te[ 15 ];$/;"	v
+nVertices	client/lib/three.js	/^		var nVertices = positions.length \/ 3;$/;"	v
+navajowhite	client/lib/three.js	/^'mediumvioletred': 0xC71585, 'midnightblue': 0x191970, 'mintcream': 0xF5FFFA, 'mistyrose': 0xFFE4E1, 'moccasin': 0xFFE4B5, 'navajowhite': 0xFFDEAD,$/;"	p	class:THREE.ColorKeywords
+navy	client/lib/three.js	/^'mediumvioletred': 0xC71585, 'midnightblue': 0x191970, 'mintcream': 0xF5FFFA, 'mistyrose': 0xFFE4E1, 'moccasin': 0xFFE4B5, 'navajowhite': 0xFFDEAD,$/;"	p	class:THREE.ColorKeywords
+nearest_pow2	client/lib/three.js	/^		function nearest_pow2( n ) {$/;"	f
+negRadius	client/lib/three.js	/^		var negRadius = - sphere.radius;$/;"	v
+newNormal	client/lib/three.js	/^			var newNormal = v1.copy( this.normal ).applyMatrix3( normalMatrix );$/;"	v
+newVerticeMaps	client/lib/three.js	/^		var newVerticeMaps = 0;$/;"	v
+normalize	client/lib/three.js	/^		var normalize = function ( a ) {$/;"	f	function:getNormalMap
+normalizeSkinWeights	client/lib/three.js	/^THREE.SkinnedMesh.prototype.normalizeSkinWeights = function () {$/;"	m	class:THREE.SkinnedMesh
+normals	client/lib/three.js	/^		var normals = [];$/;"	v
+normals	client/lib/three.js	/^		var normals = attributes.normal !== undefined ? attributes.normal.array : undefined;$/;"	v
+normalsHash	client/lib/three.js	/^		var normalsHash = {};$/;"	v
+numericalSort	client/lib/three.js	/^	function numericalSort ( a, b ) {$/;"	f	function:THREE.WebGLObjects
+offset	client/lib/three.js	/^		var offset = offsets[ 0 ];$/;"	v
+offset	client/lib/three.js	/^	this.updateRange = { offset: 0, count: -1 };$/;"	p	class:THREE.DynamicBufferAttribute.updateRange
+offset	client/lib/three.js	/^	this.updateRange = { offset: 0, count: -1 };$/;"	p	class:THREE.InterleavedBuffer.updateRange
+offsets	client/lib/three.js	/^		var offsets = geometry.offsets;$/;"	v
+offsets	client/lib/three.js	/^		var offsets = json.data.offsets;$/;"	v
+oldlace	client/lib/three.js	/^'navy': 0x000080, 'oldlace': 0xFDF5E6, 'olive': 0x808000, 'olivedrab': 0x6B8E23, 'orange': 0xFFA500, 'orangered': 0xFF4500, 'orchid': 0xDA70D6,$/;"	p	class:THREE.ColorKeywords
+olive	client/lib/three.js	/^'navy': 0x000080, 'oldlace': 0xFDF5E6, 'olive': 0x808000, 'olivedrab': 0x6B8E23, 'orange': 0xFFA500, 'orangered': 0xFF4500, 'orchid': 0xDA70D6,$/;"	p	class:THREE.ColorKeywords
+olivedrab	client/lib/three.js	/^'navy': 0x000080, 'oldlace': 0xFDF5E6, 'olive': 0x808000, 'olivedrab': 0x6B8E23, 'orange': 0xFFA500, 'orangered': 0xFF4500, 'orchid': 0xDA70D6,$/;"	p	class:THREE.ColorKeywords
+onDeviceOrientationChangeEvent	client/lib/three.js	/^	var onDeviceOrientationChangeEvent = function ( event ) {$/;"	m	class:THREE.DeviceOrientationControls
+onEnded	client/lib/three.js	/^THREE.Audio.prototype.onEnded = function() {$/;"	m	class:THREE.Audio
+onGeometryDispose	client/lib/three.js	/^	function onGeometryDispose( event ) {$/;"	f	function:THREE.WebGLGeometries
+onKeyDown	client/lib/three.js	/^	function onKeyDown( event ) {$/;"	f	function:THREE.OrbitControls
+onLoadComplete	client/lib/three.js	/^	this.onLoadComplete = function () {};$/;"	m	class:THREE.Loader
+onLoadProgress	client/lib/three.js	/^	this.onLoadProgress = function () {};$/;"	m	class:THREE.Loader
+onLoadStart	client/lib/three.js	/^	this.onLoadStart = function () {};$/;"	m	class:THREE.Loader
+onMaterialDispose	client/lib/three.js	/^	var onMaterialDispose = function ( event ) {$/;"	f
+onMouseDown	client/lib/three.js	/^	function onMouseDown( event ) {$/;"	f	function:THREE.OrbitControls
+onMouseMove	client/lib/three.js	/^	function onMouseMove( event ) {$/;"	f	function:THREE.OrbitControls
+onMouseUp	client/lib/three.js	/^	function onMouseUp( \/* event *\/ ) {$/;"	f	function:THREE.OrbitControls
+onMouseWheel	client/lib/three.js	/^	function onMouseWheel( event ) {$/;"	f	function:THREE.OrbitControls
+onObjectRemoved	client/lib/three.js	/^	function onObjectRemoved( event ) {$/;"	f	function:THREE.WebGLObjects
+onQuaternionChange	client/lib/three.js	/^	var onQuaternionChange = function () {$/;"	m	class:THREE.Object3D
+onRenderTargetDispose	client/lib/three.js	/^	var onRenderTargetDispose = function ( event ) {$/;"	f
+onRotationChange	client/lib/three.js	/^	var onRotationChange = function () {$/;"	m	class:THREE.Object3D
+onScreenOrientationChangeEvent	client/lib/three.js	/^	var onScreenOrientationChangeEvent = function () {$/;"	m	class:THREE.DeviceOrientationControls
+onTextureDispose	client/lib/three.js	/^	var onTextureDispose = function ( event ) {$/;"	f
+onWindowResize	client/views/posts_show.js	/^  function onWindowResize() {$/;"	f
+opacity	client/lib/three.js	/^		var mpars = { color: 0xeeeeee, opacity: 1.0, map: null, lightMap: null, normalMap: null, bumpMap: null, wireframe: false };$/;"	p	class:mpars
+openEnded	client/lib/three.js	/^		heightSegments: heightSegments,$/;"	p	class:THREE.CylinderGeometry.parameters
+orange	client/lib/three.js	/^'navy': 0x000080, 'oldlace': 0xFDF5E6, 'olive': 0x808000, 'olivedrab': 0x6B8E23, 'orange': 0xFFA500, 'orangered': 0xFF4500, 'orchid': 0xDA70D6,$/;"	p	class:THREE.ColorKeywords
+orangered	client/lib/three.js	/^'navy': 0x000080, 'oldlace': 0xFDF5E6, 'olive': 0x808000, 'olivedrab': 0x6B8E23, 'orange': 0xFFA500, 'orangered': 0xFF4500, 'orchid': 0xDA70D6,$/;"	p	class:THREE.ColorKeywords
+orchid	client/lib/three.js	/^'navy': 0x000080, 'oldlace': 0xFDF5E6, 'olive': 0x808000, 'olivedrab': 0x6B8E23, 'orange': 0xFFA500, 'orangered': 0xFF4500, 'orchid': 0xDA70D6,$/;"	p	class:THREE.ColorKeywords
+outerRadius	client/lib/three.js	/^		innerRadius: innerRadius,$/;"	p	class:THREE.RingGeometry.parameters
+output	client/lib/three.js	/^		var output = {};$/;"	v
+p	client/lib/three.js	/^		tubularSegments: tubularSegments,$/;"	p	class:THREE.TorusKnotGeometry.parameters
+p	client/lib/three.js	/^		var p = far - near;$/;"	v
+p	client/lib/three.js	/^	var p, sum = 0;$/;"	v
+painterSortStable	client/lib/three.js	/^	function painterSortStable ( a, b ) {$/;"	f
+painterSortStable	client/lib/three.js	/^	function painterSortStable ( a, b ) {$/;"	f	function:THREE.SpritePlugin
+palegoldenrod	client/lib/three.js	/^'navy': 0x000080, 'oldlace': 0xFDF5E6, 'olive': 0x808000, 'olivedrab': 0x6B8E23, 'orange': 0xFFA500, 'orangered': 0xFF4500, 'orchid': 0xDA70D6,$/;"	p	class:THREE.ColorKeywords
+palegreen	client/lib/three.js	/^'palegoldenrod': 0xEEE8AA, 'palegreen': 0x98FB98, 'paleturquoise': 0xAFEEEE, 'palevioletred': 0xDB7093, 'papayawhip': 0xFFEFD5, 'peachpuff': 0xFFDAB9,$/;"	p	class:THREE.ColorKeywords
+paleturquoise	client/lib/three.js	/^'palegoldenrod': 0xEEE8AA, 'palegreen': 0x98FB98, 'paleturquoise': 0xAFEEEE, 'palevioletred': 0xDB7093, 'papayawhip': 0xFFEFD5, 'peachpuff': 0xFFDAB9,$/;"	p	class:THREE.ColorKeywords
+palevioletred	client/lib/three.js	/^'palegoldenrod': 0xEEE8AA, 'palegreen': 0x98FB98, 'paleturquoise': 0xAFEEEE, 'palevioletred': 0xDB7093, 'papayawhip': 0xFFEFD5, 'peachpuff': 0xFFDAB9,$/;"	p	class:THREE.ColorKeywords
+pan	client/lib/three.js	/^	this.pan = function ( deltaX, deltaY ) {$/;"	m	class:THREE.OrbitControls
+panLeft	client/lib/three.js	/^	this.panLeft = function ( distance ) {$/;"	m	class:THREE.OrbitControls
+panUp	client/lib/three.js	/^	this.panUp = function ( distance ) {$/;"	m	class:THREE.OrbitControls
+papayawhip	client/lib/three.js	/^'palegoldenrod': 0xEEE8AA, 'palegreen': 0x98FB98, 'paleturquoise': 0xAFEEEE, 'palevioletred': 0xDB7093, 'papayawhip': 0xFFEFD5, 'peachpuff': 0xFFDAB9,$/;"	p	class:THREE.ColorKeywords
+paramThreeToGL	client/lib/three.js	/^	function paramThreeToGL ( p ) {$/;"	f
+parse	client/lib/three.js	/^THREE.JSONLoader.prototype.parse = function ( json, texturePath ) {$/;"	m	class:THREE.JSONLoader
+parseAnimations	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.parseAnimations = function () {$/;"	m	class:THREE.MorphAnimMesh
+parseModel	client/lib/three.js	/^	function parseModel( scale ) {$/;"	f	function:function
+parseMorphing	client/lib/three.js	/^	function parseMorphing( scale ) {$/;"	f	function:function
+parseSkin	client/lib/three.js	/^	function parseSkin() {$/;"	f	function:function
+path	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.TubeGeometry.parameters
+pause	client/lib/three.js	/^THREE.Audio.prototype.pause = function () {$/;"	m	class:THREE.Audio
+peachpuff	client/lib/three.js	/^'palegoldenrod': 0xEEE8AA, 'palegreen': 0x98FB98, 'paleturquoise': 0xAFEEEE, 'palevioletred': 0xDB7093, 'papayawhip': 0xFFEFD5, 'peachpuff': 0xFFDAB9,$/;"	p	class:THREE.ColorKeywords
+peru	client/lib/three.js	/^'palegoldenrod': 0xEEE8AA, 'palegreen': 0x98FB98, 'paleturquoise': 0xAFEEEE, 'palevioletred': 0xDB7093, 'papayawhip': 0xFFEFD5, 'peachpuff': 0xFFDAB9,$/;"	p	class:THREE.ColorKeywords
+phiLength	client/lib/three.js	/^		phiStart: phiStart,$/;"	p	class:THREE.LatheGeometry.parameters
+phiLength	client/lib/three.js	/^		phiStart: phiStart,$/;"	p	class:THREE.SphereBufferGeometry.parameters
+phiLength	client/lib/three.js	/^		phiStart: phiStart,$/;"	p	class:THREE.SphereGeometry.parameters
+phiSegments	client/lib/three.js	/^		thetaSegments: thetaSegments,$/;"	p	class:THREE.RingGeometry.parameters
+phiStart	client/lib/three.js	/^		heightSegments: heightSegments,$/;"	p	class:THREE.SphereBufferGeometry.parameters
+phiStart	client/lib/three.js	/^		heightSegments: heightSegments,$/;"	p	class:THREE.SphereGeometry.parameters
+phiStart	client/lib/three.js	/^		segments: segments,$/;"	p	class:THREE.LatheGeometry.parameters
+pickingRay	client/lib/three.js	/^	this.pickingRay = function ( vector, camera ) {$/;"	m	class:THREE.Projector
+pink	client/lib/three.js	/^'peru': 0xCD853F, 'pink': 0xFFC0CB, 'plum': 0xDDA0DD, 'powderblue': 0xB0E0E6, 'purple': 0x800080, 'red': 0xFF0000, 'rosybrown': 0xBC8F8F,$/;"	p	class:THREE.ColorKeywords
+play	client/lib/three.js	/^THREE.Audio.prototype.play = function () {$/;"	m	class:THREE.Audio
+playAnimation	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.playAnimation = function ( label, fps ) {$/;"	m	class:THREE.MorphAnimMesh
+playAnimation	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.playAnimation = function ( name ) {$/;"	m	class:THREE.MorphBlendMesh
+plum	client/lib/three.js	/^'peru': 0xCD853F, 'pink': 0xFFC0CB, 'plum': 0xDDA0DD, 'powderblue': 0xB0E0E6, 'purple': 0x800080, 'red': 0xFF0000, 'rosybrown': 0xBC8F8F,$/;"	p	class:THREE.ColorKeywords
+point_in_segment_2D_colin	client/lib/three.js	/^		function point_in_segment_2D_colin( inSegPt1, inSegPt2, inOtherPt ) {$/;"	f	function:triangulateShape
+points	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.LatheGeometry.parameters
+pose	client/lib/three.js	/^THREE.Skeleton.prototype.pose = function () {$/;"	m	class:THREE.Skeleton
+pose	client/lib/three.js	/^THREE.SkinnedMesh.prototype.pose = function () {$/;"	m	class:THREE.SkinnedMesh
+position	client/lib/three.js	/^		attributes = {$/;"	p	class:attributes
+post	client/views/posts_show.js	/^var post = null;$/;"	v
+powderblue	client/lib/three.js	/^'peru': 0xCD853F, 'pink': 0xFFC0CB, 'plum': 0xDDA0DD, 'powderblue': 0xB0E0E6, 'purple': 0x800080, 'red': 0xFF0000, 'rosybrown': 0xBC8F8F,$/;"	p	class:THREE.ColorKeywords
+precision	client/lib/three.js	/^		var parameters = {$/;"	p	class:initMaterial.parameters
+precision	client/lib/three.js	/^		var precision = Math.pow( 10, precisionPoints );$/;"	v
+precisionPoints	client/lib/three.js	/^		var precisionPoints = 4; \/\/ number of decimal points, eg. 4 for epsilon of 0.0001$/;"	v
+premultipliedAlpha	client/lib/three.js	/^			antialias: _antialias,$/;"	p	class:var.attributes
+prepare	client/lib/three.js	/^	function prepare( vector ) {$/;"	f	function:THREE.PolyhedronGeometry
+preserveDrawingBuffer	client/lib/three.js	/^			premultipliedAlpha: _premultipliedAlpha,$/;"	p	class:var.attributes
+prevKey	client/lib/three.js	/^				animationCache = {$/;"	p	class:animationCache
+process	client/lib/three.js	/^	var process = function ( contour, indices ) {$/;"	f
+projectObject	client/lib/three.js	/^	function projectObject( object ) {$/;"	f
+projectVector	client/lib/three.js	/^	this.projectVector = function ( vector, camera ) {$/;"	m	class:THREE.Projector
+purple	client/lib/three.js	/^'peru': 0xCD853F, 'pink': 0xFFC0CB, 'plum': 0xDDA0DD, 'powderblue': 0xB0E0E6, 'purple': 0x800080, 'red': 0xFF0000, 'rosybrown': 0xBC8F8F,$/;"	p	class:THREE.ColorKeywords
+push	client/lib/three.js	/^			Array.prototype.push.apply( allpoints, holes[h] );$/;"	m	class:Array
+push	client/lib/three.js	/^		Array.prototype.push.apply( shapes, paths[ p ].toShapes() );$/;"	m	class:Array
+q	client/lib/three.js	/^		p: p,$/;"	p	class:THREE.TorusKnotGeometry.parameters
+qbx	client/lib/three.js	/^		var qbx = b._x, qby = b._y, qbz = b._z, qbw = b._w;$/;"	v
+quadraticCurveTo	client/lib/three.js	/^THREE.Path.prototype.quadraticCurveTo = function( aCPx, aCPy, aX, aY ) {$/;"	m	class:THREE.Path
+qw	client/lib/three.js	/^		var qw = q.w;$/;"	v
+qx	client/lib/three.js	/^		var qx = q.x;$/;"	v
+qy	client/lib/three.js	/^		var qy = q.y;$/;"	v
+qz	client/lib/three.js	/^		var qz = q.z;$/;"	v
+radialSegments	client/lib/three.js	/^		height: height,$/;"	p	class:THREE.CylinderGeometry.parameters
+radialSegments	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.TubeGeometry.parameters
+radialSegments	client/lib/three.js	/^		tube: tube,$/;"	p	class:THREE.TorusGeometry.parameters
+radialSegments	client/lib/three.js	/^		tube: tube,$/;"	p	class:THREE.TorusKnotGeometry.parameters
+radius	client/lib/three.js	/^		indices: indices,$/;"	p	class:THREE.PolyhedronGeometry.parameters
+radius	client/lib/three.js	/^		segments: segments,$/;"	p	class:THREE.TubeGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.CircleBufferGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.CircleGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.DodecahedronGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.IcosahedronGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.OctahedronGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.SphereBufferGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.SphereGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.THREE.OctahedronGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.TetrahedronGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.TorusGeometry.parameters
+radius	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.TorusKnotGeometry.parameters
+radius2	client/lib/three.js	/^			var radius2 = sphere.radius * sphere.radius;$/;"	v
+radiusBottom	client/lib/three.js	/^		radiusTop: radiusTop,$/;"	p	class:THREE.CylinderGeometry.parameters
+radiusTop	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.CylinderGeometry.parameters
+ratioA	client/lib/three.js	/^		var ratioA = Math.sin( ( 1 - t ) * halfTheta ) \/ sinHalfTheta,$/;"	v
+raycast	client/lib/three.js	/^THREE.LOD.prototype.raycast = ( function () {$/;"	m	class:THREE.LOD
+raycast	client/lib/three.js	/^THREE.Line.prototype.raycast = ( function () {$/;"	m	class:THREE.Line
+raycast	client/lib/three.js	/^THREE.Mesh.prototype.raycast = ( function () {$/;"	m	class:THREE.Mesh
+raycast	client/lib/three.js	/^THREE.PointCloud.prototype.raycast = ( function () {$/;"	m	class:THREE.PointCloud
+raycast	client/lib/three.js	/^THREE.Sprite.prototype.raycast = ( function () {$/;"	m	class:THREE.Sprite
+readRenderTargetPixels	client/lib/three.js	/^	this.readRenderTargetPixels = function( renderTarget, x, y, width, height, buffer ) {$/;"	f
+red	client/lib/three.js	/^'peru': 0xCD853F, 'pink': 0xFFC0CB, 'plum': 0xDDA0DD, 'powderblue': 0xB0E0E6, 'purple': 0x800080, 'red': 0xFF0000, 'rosybrown': 0xBC8F8F,$/;"	p	class:THREE.ColorKeywords
+refreshUniformsBasic	client/lib/three.js	/^	function refreshUniformsBasic ( uniforms, material ) {$/;"	f
+refreshUniformsCommon	client/lib/three.js	/^	function refreshUniformsCommon ( uniforms, material ) {$/;"	f
+refreshUniformsDash	client/lib/three.js	/^	function refreshUniformsDash ( uniforms, material ) {$/;"	f
+refreshUniformsFog	client/lib/three.js	/^	function refreshUniformsFog ( uniforms, fog ) {$/;"	f
+refreshUniformsLambert	client/lib/three.js	/^	function refreshUniformsLambert ( uniforms, material ) {$/;"	f
+refreshUniformsLights	client/lib/three.js	/^	function refreshUniformsLights ( uniforms, lights ) {$/;"	f
+refreshUniformsLine	client/lib/three.js	/^	function refreshUniformsLine ( uniforms, material ) {$/;"	f
+refreshUniformsParticle	client/lib/three.js	/^	function refreshUniformsParticle ( uniforms, material ) {$/;"	f
+refreshUniformsPhong	client/lib/three.js	/^	function refreshUniformsPhong ( uniforms, material ) {$/;"	f
+refreshUniformsShadow	client/lib/three.js	/^	function refreshUniformsShadow ( uniforms, lights ) {$/;"	f
+remove	client/lib/three.js	/^	get: function () { console.warn( 'THREE.AnimationHandler.get() has been deprecated.' ); },$/;"	m	class:THREE.AnimationHandler
+removeHoles	client/lib/three.js	/^		function removeHoles( contour, holes ) {$/;"	f	function:triangulateShape
+removeInstances	client/lib/three.js	/^	function removeInstances( objlist, object ) {$/;"	f	function:THREE.WebGLObjects
+removeObject	client/lib/three.js	/^	function removeObject( object ) {$/;"	f	function:THREE.WebGLObjects
+render	client/lib/three.js	/^	this.render = function ( renderCallback ) {};$/;"	m	class:THREE.ImmediateRenderObject
+render	client/lib/three.js	/^	this.render = function ( scene, camera ) {$/;"	m	class:THREE.SpritePlugin
+render	client/lib/three.js	/^	this.render = function ( scene, camera ) {$/;"	m	class:THREE.StereoEffect
+render	client/lib/three.js	/^	this.render = function ( scene, camera ) {$/;"	m	class:THREE.VREffect
+render	client/lib/three.js	/^	this.render = function ( scene, camera ) {$/;"	m	class:THREE.WebGLShadowMap
+render	client/lib/three.js	/^	this.render = function ( scene, camera, renderTarget, forceClear ) {$/;"	c
+render	client/lib/three.js	/^	this.render = function ( scene, camera, viewportWidth, viewportHeight ) {$/;"	m	class:THREE.LensFlarePlugin
+render	client/lib/three.js	/^	this.render = function () {};$/;"	m	class:THREE.CanvasRenderer
+renderBufferDirect	client/lib/three.js	/^	this.renderBufferDirect = function ( camera, lights, fog, material, object ) {$/;"	f
+renderBufferImmediate	client/lib/three.js	/^	this.renderBufferImmediate = function ( object, program, material ) {$/;"	f
+renderImmediateObject	client/lib/three.js	/^	this.renderImmediateObject = function ( camera, lights, fog, material, object ) {$/;"	f
+renderLine	client/lib/three.js	/^	function renderLine( material, geometry, object, program, updateBuffers ) {$/;"	f
+renderMesh	client/lib/three.js	/^	function renderMesh( material, geometry, object, program, updateBuffers ) {$/;"	f
+renderObjects	client/lib/three.js	/^	function renderObjects( renderList, camera, lights, fog, overrideMaterial ) {$/;"	f
+renderObjectsImmediate	client/lib/three.js	/^	function renderObjectsImmediate ( renderList, materialType, camera, lights, fog, overrideMaterial ) {$/;"	f
+renderPhotoShpere	client/views/posts_show.js	/^  function renderPhotoShpere(post, imageFilePath){$/;"	f	function:Template.PostsShow.rendered
+renderPointCloud	client/lib/three.js	/^	function renderPointCloud( material, geometry, object, program, updateBuffers ) {$/;"	f
+renderType	client/lib/three.js	/^		uniforms = {$/;"	p	class:uniforms
+renderable	client/views/posts_show.js	/^var renderable;$/;"	v
+reparametrizeByArcLength	client/lib/three.js	/^	this.reparametrizeByArcLength = function ( samplingCoef ) {$/;"	c
+repeat	client/lib/three.js	/^				var wrapMap = {$/;"	p	class:var.wrapMap
+request.onload	client/lib/three.js	/^	request.responseType = 'arraybuffer';$/;"	f
+reset	client/lib/three.js	/^	this.reset = function () {$/;"	m	class:THREE.OrbitControls
+reset	client/lib/three.js	/^	this.reset = function () {$/;"	m	class:THREE.WebGLState
+resetGLState	client/lib/three.js	/^	var resetGLState = function () {$/;"	f
+resetSensor	client/lib/three.js	/^	this.resetSensor = function () {$/;"	m	class:THREE.VRControls
+result	client/lib/three.js	/^		var result = optionalTarget || new THREE.Vector3();$/;"	v
+reversePainterSortStable	client/lib/three.js	/^	function reversePainterSortStable ( a, b ) {$/;"	f
+rgb2hex	client/lib/three.js	/^		function rgb2hex( rgb ) {$/;"	f
+rosybrown	client/lib/three.js	/^'peru': 0xCD853F, 'pink': 0xFFC0CB, 'plum': 0xDDA0DD, 'powderblue': 0xB0E0E6, 'purple': 0x800080, 'red': 0xFF0000, 'rosybrown': 0xBC8F8F,$/;"	p	class:THREE.ColorKeywords
+rotateLeft	client/lib/three.js	/^	this.rotateLeft = function ( angle ) {$/;"	m	class:THREE.OrbitControls
+rotateUp	client/lib/three.js	/^	this.rotateUp = function ( angle ) {$/;"	m	class:THREE.OrbitControls
+royalblue	client/lib/three.js	/^'peru': 0xCD853F, 'pink': 0xFFC0CB, 'plum': 0xDDA0DD, 'powderblue': 0xB0E0E6, 'purple': 0x800080, 'red': 0xFF0000, 'rosybrown': 0xBC8F8F,$/;"	p	class:THREE.ColorKeywords
+s	client/lib/three.js	/^			newShapes[mainIdx] = { s: new THREE.Shape(), p: tmpPoints };$/;"	p
+s	client/lib/three.js	/^		var s = Math.sin( angle );$/;"	v
+s	client/lib/three.js	/^		var s = Math.sqrt( ( m32 - m23 ) * ( m32 - m23 )$/;"	v
+s	client/lib/three.js	/^		var s = Math.sqrt( 1 - q.w * q.w );$/;"	v
+s	client/lib/three.js	/^		var s = radius === 0 ? 1 : 1.0 \/ radius;$/;"	v
+s0	client/lib/three.js	/^			var s0, s1, sqrDist, extDet;$/;"	v
+s1	client/lib/three.js	/^		var s1 = Math.sin( euler._x \/ 2 );$/;"	v
+s2	client/lib/three.js	/^		var s2 = Math.sin( euler._y \/ 2 );$/;"	v
+s3	client/lib/three.js	/^		var s3 = Math.sin( euler._z \/ 2 );$/;"	v
+saddlebrown	client/lib/three.js	/^'royalblue': 0x4169E1, 'saddlebrown': 0x8B4513, 'salmon': 0xFA8072, 'sandybrown': 0xF4A460, 'seagreen': 0x2E8B57, 'seashell': 0xFFF5EE,$/;"	p	class:THREE.ColorKeywords
+salmon	client/lib/three.js	/^'royalblue': 0x4169E1, 'saddlebrown': 0x8B4513, 'salmon': 0xFA8072, 'sandybrown': 0xF4A460, 'seagreen': 0x2E8B57, 'seashell': 0xFFF5EE,$/;"	p	class:THREE.ColorKeywords
+sandybrown	client/lib/three.js	/^'royalblue': 0x4169E1, 'saddlebrown': 0x8B4513, 'salmon': 0xFA8072, 'sandybrown': 0xF4A460, 'seagreen': 0x2E8B57, 'seashell': 0xFFF5EE,$/;"	p	class:THREE.ColorKeywords
+scalePt2	client/lib/three.js	/^	function scalePt2 ( pt, vec, size ) {$/;"	f	function:function
+scaleX	client/lib/three.js	/^			var scaleX = 1 \/ v1.set( me[ 0 ], me[ 1 ], me[ 2 ] ).length();$/;"	v
+scaleXSq	client/lib/three.js	/^		var scaleXSq = te[ 0 ] * te[ 0 ] + te[ 1 ] * te[ 1 ] + te[ 2 ] * te[ 2 ];$/;"	v
+scaleY	client/lib/three.js	/^			var scaleY = 1 \/ v1.set( me[ 4 ], me[ 5 ], me[ 6 ] ).length();$/;"	v
+scaleYSq	client/lib/three.js	/^		var scaleYSq = te[ 4 ] * te[ 4 ] + te[ 5 ] * te[ 5 ] + te[ 6 ] * te[ 6 ];$/;"	v
+scaleZ	client/lib/three.js	/^			var scaleZ = 1 \/ v1.set( me[ 8 ], me[ 9 ], me[ 10 ] ).length();$/;"	v
+scaleZSq	client/lib/three.js	/^		var scaleZSq = te[ 8 ] * te[ 8 ] + te[ 9 ] * te[ 9 ] + te[ 10 ] * te[ 10 ];$/;"	v
+seagreen	client/lib/three.js	/^'royalblue': 0x4169E1, 'saddlebrown': 0x8B4513, 'salmon': 0xFA8072, 'sandybrown': 0xF4A460, 'seagreen': 0x2E8B57, 'seashell': 0xFFF5EE,$/;"	p	class:THREE.ColorKeywords
+seashell	client/lib/three.js	/^'royalblue': 0x4169E1, 'saddlebrown': 0x8B4513, 'salmon': 0xFA8072, 'sandybrown': 0xF4A460, 'seagreen': 0x2E8B57, 'seashell': 0xFFF5EE,$/;"	p	class:THREE.ColorKeywords
+segExtent	client/lib/three.js	/^			var segExtent = v0.distanceTo( v1 ) * 0.5;$/;"	v
+segments	client/lib/three.js	/^		path: path,$/;"	p	class:THREE.TubeGeometry.parameters
+segments	client/lib/three.js	/^		points: points,$/;"	p	class:THREE.LatheGeometry.parameters
+segments	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.CircleBufferGeometry.parameters
+segments	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.CircleGeometry.parameters
+setAnimationDirectionBackward	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.setAnimationDirectionBackward = function ( name ) {$/;"	m	class:THREE.MorphBlendMesh
+setAnimationDirectionForward	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.setAnimationDirectionForward = function ( name ) {$/;"	m	class:THREE.MorphBlendMesh
+setAnimationDuration	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.setAnimationDuration = function ( name, duration ) {$/;"	m	class:THREE.MorphBlendMesh
+setAnimationFPS	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.setAnimationFPS = function ( name, fps ) {$/;"	m	class:THREE.MorphBlendMesh
+setAnimationLabel	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.setAnimationLabel = function ( label, start, end ) {$/;"	m	class:THREE.MorphAnimMesh
+setAnimationTime	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.setAnimationTime = function ( name, time ) {$/;"	m	class:THREE.MorphBlendMesh
+setAnimationWeight	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.setAnimationWeight = function ( name, weight ) {$/;"	m	class:THREE.MorphBlendMesh
+setBit	client/lib/three.js	/^		function setBit( value, position, enabled ) {$/;"	f
+setBlending	client/lib/three.js	/^	this.setBlending = function ( blending, blendEquation, blendSrc, blendDst, blendEquationAlpha, blendSrcAlpha, blendDstAlpha ) {$/;"	m	class:THREE.WebGLState
+setClearAlpha	client/lib/three.js	/^	this.setClearAlpha = function ( alpha ) {$/;"	f
+setClearColor	client/lib/three.js	/^	this.setClearColor = function ( color, alpha ) {$/;"	f
+setClearColor	client/lib/three.js	/^	this.setClearColor = function () {};$/;"	m	class:THREE.CanvasRenderer
+setColor	client/lib/three.js	/^THREE.ArrowHelper.prototype.setColor = function ( color ) {$/;"	m	class:THREE.ArrowHelper
+setColorLinear	client/lib/three.js	/^	function setColorLinear( array, offset, color, intensity ) {$/;"	f
+setColorWrite	client/lib/three.js	/^	this.setColorWrite = function ( colorWrite ) {$/;"	m	class:THREE.WebGLState
+setColors	client/lib/three.js	/^THREE.GridHelper.prototype.setColors = function( colorCenterLine, colorGrid ) {$/;"	m	class:THREE.GridHelper
+setCubeTexture	client/lib/three.js	/^	function setCubeTexture ( texture, slot ) {$/;"	f
+setCubeTextureDynamic	client/lib/three.js	/^	function setCubeTextureDynamic ( texture, slot ) {$/;"	f
+setDefaultControls	client/views/posts_show.js	/^function setDefaultControls(camera, element){$/;"	f
+setDefaultGLState	client/lib/three.js	/^	var setDefaultGLState = function () {$/;"	f
+setDepthFunc	client/lib/three.js	/^	this.setDepthFunc = function ( depthFunc ) {$/;"	m	class:THREE.WebGLState
+setDepthTest	client/lib/three.js	/^	this.setDepthTest = function ( depthTest ) {$/;"	m	class:THREE.WebGLState
+setDepthWrite	client/lib/three.js	/^	this.setDepthWrite = function ( depthWrite ) {$/;"	m	class:THREE.WebGLState
+setDirection	client/lib/three.js	/^THREE.ArrowHelper.prototype.setDirection = ( function () {$/;"	m	class:THREE.ArrowHelper
+setDirectionBackward	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.setDirectionBackward = function () {$/;"	m	class:THREE.MorphAnimMesh
+setDirectionForward	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.setDirectionForward = function () {$/;"	m	class:THREE.MorphAnimMesh
+setDoubleSided	client/lib/three.js	/^	this.setDoubleSided = function ( doubleSided ) {$/;"	m	class:THREE.WebGLState
+setFaceCulling	client/lib/three.js	/^	this.setFaceCulling = function ( cullFace, frontFaceDirection ) {$/;"	f
+setFlipSided	client/lib/three.js	/^	this.setFlipSided = function ( flipSided ) {$/;"	m	class:THREE.WebGLState
+setFrameRange	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.setFrameRange = function ( start, end ) {$/;"	m	class:THREE.MorphAnimMesh
+setFullScreen	client/lib/three.js	/^	this.setFullScreen = function ( boolean ) {$/;"	m	class:THREE.VREffect
+setLength	client/lib/three.js	/^THREE.ArrowHelper.prototype.setLength = function ( length, headLength, headWidth ) {$/;"	m	class:THREE.ArrowHelper
+setLens	client/lib/three.js	/^THREE.PerspectiveCamera.prototype.setLens = function ( focalLength, frameHeight ) {$/;"	m	class:THREE.PerspectiveCamera
+setLineWidth	client/lib/three.js	/^	this.setLineWidth = function ( width ) {$/;"	m	class:THREE.WebGLState
+setLoop	client/lib/three.js	/^THREE.Audio.prototype.setLoop = function ( value ) {$/;"	m	class:THREE.Audio
+setMaterial	client/lib/three.js	/^	function setMaterial( material ) {$/;"	f
+setMaterialFaces	client/lib/three.js	/^	this.setMaterialFaces = function ( material ) {$/;"	f
+setObjectQuaternion	client/lib/three.js	/^	var setObjectQuaternion = function () {$/;"	m	class:THREE.DeviceOrientationControls
+setPixelRatio	client/lib/three.js	/^	this.setPixelRatio = function ( value ) {$/;"	f
+setPoint	client/lib/three.js	/^	var setPoint = function ( point, x, y, z ) {$/;"	f	function:THREE.CameraHelper.var
+setPolygonOffset	client/lib/three.js	/^	this.setPolygonOffset = function ( polygonoffset, factor, units ) {$/;"	m	class:THREE.WebGLState
+setProgram	client/lib/three.js	/^	function setProgram( camera, lights, fog, material, object ) {$/;"	f
+setRefDistance	client/lib/three.js	/^THREE.Audio.prototype.setRefDistance = function ( value ) {$/;"	m	class:THREE.Audio
+setRenderTarget	client/lib/three.js	/^	this.setRenderTarget = function ( renderTarget ) {$/;"	f
+setRolloffFactor	client/lib/three.js	/^THREE.Audio.prototype.setRolloffFactor = function ( value ) {$/;"	m	class:THREE.Audio
+setScissor	client/lib/three.js	/^	this.setScissor = function ( x, y, width, height ) {$/;"	f
+setSize	client/lib/three.js	/^	this.setSize = function ( width, height ) {$/;"	m	class:THREE.StereoEffect
+setSize	client/lib/three.js	/^	this.setSize = function ( width, height, updateStyle ) {$/;"	c
+setSize	client/lib/three.js	/^	this.setSize = function () {};$/;"	m	class:THREE.CanvasRenderer
+setSize	client/lib/three.js	/^	this.setSize = function( width, height ) {$/;"	m	class:THREE.VREffect
+setTexture	client/lib/three.js	/^	this.setTexture = function ( texture, slot ) {$/;"	f
+setTextureParameters	client/lib/three.js	/^	function setTextureParameters ( textureType, texture, isImagePowerOfTwo ) {$/;"	f
+setViewOffset	client/lib/three.js	/^THREE.PerspectiveCamera.prototype.setViewOffset = function ( fullWidth, fullHeight, x, y, width, height ) {$/;"	m	class:THREE.PerspectiveCamera
+setViewport	client/lib/three.js	/^	this.setViewport = function ( x, y, width, height ) {$/;"	f
+setVolume	client/lib/three.js	/^THREE.Audio.prototype.setVolume = function ( value ) {$/;"	m	class:THREE.Audio
+setupFrameBuffer	client/lib/three.js	/^	function setupFrameBuffer ( framebuffer, renderTarget, textureTarget ) {$/;"	f
+setupLights	client/lib/three.js	/^	function setupLights ( lights ) {$/;"	f
+setupMatrices	client/lib/three.js	/^	function setupMatrices ( object, camera ) {$/;"	f
+setupRenderBuffer	client/lib/three.js	/^	function setupRenderBuffer ( renderbuffer, renderTarget ) {$/;"	f
+setupVertexAttributes	client/lib/three.js	/^	function setupVertexAttributes( material, program, geometry, startIndex ) {$/;"	f
+shapePoints	client/lib/three.js	/^	var shapePoints = shape.extractPoints( curveSegments );$/;"	v
+sidewalls	client/lib/three.js	/^	function sidewalls( contour, layeroffset ) {$/;"	f	function:function
+sienna	client/lib/three.js	/^'royalblue': 0x4169E1, 'saddlebrown': 0x8B4513, 'salmon': 0xFA8072, 'sandybrown': 0xF4A460, 'seagreen': 0x2E8B57, 'seashell': 0xFFF5EE,$/;"	p	class:THREE.ColorKeywords
+sign	client/lib/three.js	/^			var sign;$/;"	v
+silver	client/lib/three.js	/^'sienna': 0xA0522D, 'silver': 0xC0C0C0, 'skyblue': 0x87CEEB, 'slateblue': 0x6A5ACD, 'slategray': 0x708090, 'slategrey': 0x708090, 'snow': 0xFFFAFA,$/;"	p	class:THREE.ColorKeywords
+sinHalfTheta	client/lib/three.js	/^		var sinHalfTheta = Math.sqrt( 1.0 - cosHalfTheta * cosHalfTheta );$/;"	v
+skinIndices	client/lib/three.js	/^		var skinIndices = geometry.skinIndices;$/;"	v
+skinWeights	client/lib/three.js	/^		var skinWeights = geometry.skinWeights;$/;"	v
+skyblue	client/lib/three.js	/^'sienna': 0xA0522D, 'silver': 0xC0C0C0, 'skyblue': 0x87CEEB, 'slateblue': 0x6A5ACD, 'slategray': 0x708090, 'slategrey': 0x708090, 'snow': 0xFFFAFA,$/;"	p	class:THREE.ColorKeywords
+slateblue	client/lib/three.js	/^'sienna': 0xA0522D, 'silver': 0xC0C0C0, 'skyblue': 0x87CEEB, 'slateblue': 0x6A5ACD, 'slategray': 0x708090, 'slategrey': 0x708090, 'snow': 0xFFFAFA,$/;"	p	class:THREE.ColorKeywords
+slategray	client/lib/three.js	/^'sienna': 0xA0522D, 'silver': 0xC0C0C0, 'skyblue': 0x87CEEB, 'slateblue': 0x6A5ACD, 'slategray': 0x708090, 'slategrey': 0x708090, 'snow': 0xFFFAFA,$/;"	p	class:THREE.ColorKeywords
+slategrey	client/lib/three.js	/^'sienna': 0xA0522D, 'silver': 0xC0C0C0, 'skyblue': 0x87CEEB, 'slateblue': 0x6A5ACD, 'slategray': 0x708090, 'slategrey': 0x708090, 'snow': 0xFFFAFA,$/;"	p	class:THREE.ColorKeywords
+slices	client/lib/three.js	/^		func: func,$/;"	p	class:THREE.ParametricGeometry.parameters
+snip	client/lib/three.js	/^	var snip = function ( contour, u, v, w, n, verts ) {$/;"	f
+snow	client/lib/three.js	/^'sienna': 0xA0522D, 'silver': 0xC0C0C0, 'skyblue': 0x87CEEB, 'slateblue': 0x6A5ACD, 'slategray': 0x708090, 'slategrey': 0x708090, 'snow': 0xFFFAFA,$/;"	p	class:THREE.ColorKeywords
+sortFunction	client/lib/three.js	/^	var sortFunction = function ( a, b ) { return a - b };$/;"	f	function:THREE.EdgesGeometry
+sortFunction	client/lib/three.js	/^	var sortFunction = function ( a, b ) { return a - b };$/;"	f	function:THREE.WireframeGeometry
+splineThru	client/lib/three.js	/^THREE.Path.prototype.splineThru = function( pts \/*Array of Vector*\/ ) {$/;"	m	class:THREE.Path
+springgreen	client/lib/three.js	/^'sienna': 0xA0522D, 'silver': 0xC0C0C0, 'skyblue': 0x87CEEB, 'slateblue': 0x6A5ACD, 'slategray': 0x708090, 'slategrey': 0x708090, 'snow': 0xFFFAFA,$/;"	p	class:THREE.ColorKeywords
+stacks	client/lib/three.js	/^		slices: slices,$/;"	p	class:THREE.ParametricGeometry.parameters
+start	client/lib/three.js	/^				var new_offset = { start:indexPtr, count:0, index:vertexPtr };$/;"	p	class:var.new_offset
+start	client/lib/three.js	/^	this.geometry.animations[ label ] = { start: start, end: end };$/;"	p	class:geometry.animations
+startEnd2	client/lib/three.js	/^			var startEnd2 = startEnd.dot( startEnd );$/;"	v
+startEnd_startP	client/lib/three.js	/^			var startEnd_startP = startEnd.dot( startP );$/;"	v
+startFrame	client/lib/three.js	/^	var animation = {$/;"	p	class:THREE.MorphBlendMesh.var.animation
+steelblue	client/lib/three.js	/^'springgreen': 0x00FF7F, 'steelblue': 0x4682B4, 'tan': 0xD2B48C, 'teal': 0x008080, 'thistle': 0xD8BFD8, 'tomato': 0xFF6347, 'turquoise': 0x40E0D0,$/;"	p	class:THREE.ColorKeywords
+stencil	client/lib/three.js	/^			depth: _depth,$/;"	p	class:var.attributes
+stop	client/lib/three.js	/^THREE.Audio.prototype.stop = function () {$/;"	m	class:THREE.Audio
+stopAnimation	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.stopAnimation = function ( name ) {$/;"	m	class:THREE.MorphBlendMesh
+subdivide	client/lib/three.js	/^	function subdivide( face, detail ) {$/;"	f	function:THREE.PolyhedronGeometry
+subtract	client/lib/three.js	/^		var subtract = function ( a, b ) {$/;"	f	function:getNormalMap
+supportsBlendMinMax	client/lib/three.js	/^	this.supportsBlendMinMax = function () {$/;"	f
+supportsCompressedTexturePVRTC	client/lib/three.js	/^	this.supportsCompressedTexturePVRTC = function () {$/;"	f
+supportsCompressedTextureS3TC	client/lib/three.js	/^	this.supportsCompressedTextureS3TC = function () {$/;"	f
+supportsFloatTextures	client/lib/three.js	/^	this.supportsFloatTextures = function () {$/;"	f
+supportsHalfFloatTextures	client/lib/three.js	/^	this.supportsHalfFloatTextures = function () {$/;"	f
+supportsInstancedArrays	client/lib/three.js	/^	this.supportsInstancedArrays = function () {$/;"	f
+supportsStandardDerivatives	client/lib/three.js	/^	this.supportsStandardDerivatives = function () {$/;"	f
+supportsVertexTextures	client/lib/three.js	/^			precision: _precision,$/;"	p	class:initMaterial.parameters
+supportsVertexTextures	client/lib/three.js	/^	this.supportsVertexTextures = function () {$/;"	f
+sx	client/lib/three.js	/^			var sx = vector.set( te[ 0 ], te[ 1 ], te[ 2 ] ).length();$/;"	v
+sy	client/lib/three.js	/^			var sy = vector.set( te[ 4 ], te[ 5 ], te[ 6 ] ).length();$/;"	v
+sz	client/lib/three.js	/^			var sz = vector.set( te[ 8 ], te[ 9 ], te[ 10 ] ).length();$/;"	v
+t	client/lib/three.js	/^			var t = - ( line.start.dot( this.normal ) + this.constant ) \/ denominator;$/;"	v
+t	client/lib/three.js	/^			var t = startEnd_startP \/ startEnd2;$/;"	v
+t	client/lib/three.js	/^		var t = - ( this.origin.dot( plane.normal ) + plane.constant ) \/ denominator;$/;"	v
+t	client/lib/three.js	/^		var t = 1 - c;$/;"	v
+t0	client/lib/three.js	/^			var t0 = tca - thc;$/;"	v
+t1	client/lib/three.js	/^			var t1 = tca + thc;$/;"	v
+tan	client/lib/three.js	/^'springgreen': 0x00FF7F, 'steelblue': 0x4682B4, 'tan': 0xD2B48C, 'teal': 0x008080, 'thistle': 0xD8BFD8, 'tomato': 0xFF6347, 'turquoise': 0x40E0D0,$/;"	p	class:THREE.ColorKeywords
+tan1	client/lib/three.js	/^		var tan1 = [], tan2 = [];$/;"	v
+tangentCubicBezier	client/lib/three.js	/^	},$/;"	m	class:THREE.Curve.Utils
+tangentQuadraticBezier	client/lib/three.js	/^THREE.Curve.Utils = {$/;"	m	class:THREE.Curve.Utils
+tangentSpline	client/lib/three.js	/^	},$/;"	m	class:THREE.Curve.Utils
+tca	client/lib/three.js	/^			var tca = v1.dot( this.direction );$/;"	v
+te	client/lib/three.js	/^		var te = m.elements;$/;"	v
+teal	client/lib/three.js	/^'springgreen': 0x00FF7F, 'steelblue': 0x4682B4, 'tan': 0xD2B48C, 'teal': 0x008080, 'thistle': 0xD8BFD8, 'tomato': 0xFF6347, 'turquoise': 0x40E0D0,$/;"	p	class:THREE.ColorKeywords
+tempNormals	client/lib/three.js	/^		var tempNormals = [];$/;"	v
+tempUVs	client/lib/three.js	/^		var tempUVs = [];$/;"	v
+texImage2D	client/lib/three.js	/^	this.texImage2D = function () {$/;"	m	class:THREE.WebGLState
+texture	client/lib/three.js	/^			boundTexture = { type: undefined, texture: undefined };$/;"	p	class:boundTexture
+textures	client/lib/three.js	/^		var textures = {};$/;"	v
+thetaLength	client/lib/three.js	/^		thetaStart: thetaStart,$/;"	p	class:THREE.CircleBufferGeometry.parameters
+thetaLength	client/lib/three.js	/^		thetaStart: thetaStart,$/;"	p	class:THREE.CircleGeometry.parameters
+thetaLength	client/lib/three.js	/^		thetaStart: thetaStart,$/;"	p	class:THREE.CylinderGeometry.parameters
+thetaLength	client/lib/three.js	/^		thetaStart: thetaStart,$/;"	p	class:THREE.RingGeometry.parameters
+thetaLength	client/lib/three.js	/^		thetaStart: thetaStart,$/;"	p	class:THREE.SphereBufferGeometry.parameters
+thetaLength	client/lib/three.js	/^		thetaStart: thetaStart,$/;"	p	class:THREE.SphereGeometry.parameters
+thetaSegments	client/lib/three.js	/^		outerRadius: outerRadius,$/;"	p	class:THREE.RingGeometry.parameters
+thetaStart	client/lib/three.js	/^		openEnded: openEnded,$/;"	p	class:THREE.CylinderGeometry.parameters
+thetaStart	client/lib/three.js	/^		phiLength: phiLength,$/;"	p	class:THREE.SphereBufferGeometry.parameters
+thetaStart	client/lib/three.js	/^		phiLength: phiLength,$/;"	p	class:THREE.SphereGeometry.parameters
+thetaStart	client/lib/three.js	/^		phiSegments: phiSegments,$/;"	p	class:THREE.RingGeometry.parameters
+thetaStart	client/lib/three.js	/^		segments: segments,$/;"	p	class:THREE.CircleBufferGeometry.parameters
+thetaStart	client/lib/three.js	/^		segments: segments,$/;"	p	class:THREE.CircleGeometry.parameters
+thistle	client/lib/three.js	/^'springgreen': 0x00FF7F, 'steelblue': 0x4682B4, 'tan': 0xD2B48C, 'teal': 0x008080, 'thistle': 0xD8BFD8, 'tomato': 0xFF6347, 'turquoise': 0x40E0D0,$/;"	p	class:THREE.ColorKeywords
+thumbnail	packages/shareit/tests/client.js	/^dataContext = {title: 'Test title', author: 'My Uncle', thumbnail: 'TestPath'};$/;"	p	class:dataContext
+title	packages/shareit/tests/client.js	/^dataContext = {title: 'Test title', author: 'My Uncle', thumbnail: 'TestPath'};$/;"	p	class:dataContext
+tmp	client/lib/three.js	/^		var tmp;$/;"	v
+tmpHoles	client/lib/three.js	/^	var tmpHoles, j, jl;$/;"	v
+toJSON	client/lib/three.js	/^THREE.AmbientLight.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.AmbientLight
+toJSON	client/lib/three.js	/^THREE.DirectionalLight.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.DirectionalLight
+toJSON	client/lib/three.js	/^THREE.HemisphereLight.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.HemisphereLight
+toJSON	client/lib/three.js	/^THREE.Line.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.Line
+toJSON	client/lib/three.js	/^THREE.Mesh.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.Mesh
+toJSON	client/lib/three.js	/^THREE.OrthographicCamera.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.OrthographicCamera
+toJSON	client/lib/three.js	/^THREE.PerspectiveCamera.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.PerspectiveCamera
+toJSON	client/lib/three.js	/^THREE.PointCloud.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.PointCloud
+toJSON	client/lib/three.js	/^THREE.PointLight.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.PointLight
+toJSON	client/lib/three.js	/^THREE.ShaderMaterial.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.ShaderMaterial
+toJSON	client/lib/three.js	/^THREE.SpotLight.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.SpotLight
+toJSON	client/lib/three.js	/^THREE.Sprite.prototype.toJSON = function ( meta ) {$/;"	m	class:THREE.Sprite
+toShapes	client/lib/three.js	/^THREE.Path.prototype.toShapes = function( isCCW, noHoles ) {$/;"	m	class:THREE.Path
+toShapesNoHoles	client/lib/three.js	/^	function toShapesNoHoles( inSubpaths ) {$/;"	f	function:THREE.Path.function
+toggleVRMode	client/views/posts_show.js	/^function toggleVRMode(){$/;"	f
+tomato	client/lib/three.js	/^'springgreen': 0x00FF7F, 'steelblue': 0x4682B4, 'tan': 0xD2B48C, 'teal': 0x008080, 'thistle': 0xD8BFD8, 'tomato': 0xFF6347, 'turquoise': 0x40E0D0,$/;"	p	class:THREE.ColorKeywords
+touchend	client/lib/three.js	/^	function touchend( \/* event *\/ ) {$/;"	f
+touchmove	client/lib/three.js	/^	function touchmove( event ) {$/;"	f
+touchstart	client/lib/three.js	/^	function touchstart( event ) {$/;"	f
+triangulateShape	client/lib/three.js	/^THREE.Shape.Utils = {$/;"	m	class:THREE.Shape.Utils
+tube	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.TorusGeometry.parameters
+tube	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.TorusKnotGeometry.parameters
+tubularSegments	client/lib/three.js	/^		radialSegments: radialSegments,$/;"	p	class:THREE.TorusGeometry.parameters
+tubularSegments	client/lib/three.js	/^		radialSegments: radialSegments,$/;"	p	class:THREE.TorusKnotGeometry.parameters
+turnEditingMode	client/views/posts_show.js	/^function turnEditingMode(onOfOff){$/;"	f
+turquoise	client/lib/three.js	/^'springgreen': 0x00FF7F, 'steelblue': 0x4682B4, 'tan': 0xD2B48C, 'teal': 0x008080, 'thistle': 0xD8BFD8, 'tomato': 0xFF6347, 'turquoise': 0x40E0D0,$/;"	p	class:THREE.ColorKeywords
+tx	client/lib/three.js	/^		var tx = t * x, ty = t * y;$/;"	v
+type	client/lib/three.js	/^			boundTexture = { type: undefined, texture: undefined };$/;"	p	class:boundTexture
+type	client/lib/three.js	/^	var changeEvent = { type: 'change' };$/;"	p	class:THREE.OrbitControls.changeEvent
+type	client/lib/three.js	/^	var endEvent = { type: 'end' };$/;"	p	class:THREE.OrbitControls.endEvent
+type	client/lib/three.js	/^	var startEvent = { type: 'start' };$/;"	p	class:THREE.OrbitControls.startEvent
+uniforms	client/lib/three.js	/^			material.__webglShader = {$/;"	p	class:material.__webglShader
+unique	client/lib/three.js	/^		var unique = [], changes = [];$/;"	v
+unprojectVector	client/lib/three.js	/^	this.unprojectVector = function ( vector, camera ) {$/;"	m	class:THREE.Projector
+upTan	client/lib/three.js	/^		var fovPort = {$/;"	p	class:fovToProjection.fovPort
+update	client/lib/three.js	/^	this.update = function ( renderList ) {$/;"	m	class:THREE.WebGLObjects
+update	client/lib/three.js	/^	this.update = function () {$/;"	f
+update	client/lib/three.js	/^	this.update = function () {$/;"	m	class:THREE.OrbitControls
+update	client/lib/three.js	/^	this.update = function () {$/;"	m	class:THREE.VRControls
+update	client/lib/three.js	/^	var update = function () {$/;"	m	class:THREE.VideoTexture
+update	client/lib/three.js	/^THREE.BoundingBoxHelper.prototype.update = function () {$/;"	m	class:THREE.BoundingBoxHelper
+update	client/lib/three.js	/^THREE.BoxHelper.prototype.update = function ( object ) {$/;"	m	class:THREE.BoxHelper
+update	client/lib/three.js	/^THREE.CameraHelper.prototype.update = function () {$/;"	m	class:THREE.CameraHelper
+update	client/lib/three.js	/^THREE.DirectionalLightHelper.prototype.update = function () {$/;"	m	class:THREE.DirectionalLightHelper
+update	client/lib/three.js	/^THREE.FaceNormalsHelper.prototype.update = function () {$/;"	m	class:THREE.FaceNormalsHelper
+update	client/lib/three.js	/^THREE.HemisphereLightHelper.prototype.update = function () {$/;"	m	class:THREE.HemisphereLightHelper
+update	client/lib/three.js	/^THREE.LOD.prototype.update = function () {$/;"	m	class:THREE.LOD
+update	client/lib/three.js	/^THREE.MorphBlendMesh.prototype.update = function ( delta ) {$/;"	m	class:THREE.MorphBlendMesh
+update	client/lib/three.js	/^THREE.PointLightHelper.prototype.update = function () {$/;"	m	class:THREE.PointLightHelper
+update	client/lib/three.js	/^THREE.Skeleton.prototype.update = ( function () {$/;"	m	class:THREE.Skeleton
+update	client/lib/three.js	/^THREE.SkeletonHelper.prototype.update = function () {$/;"	m	class:THREE.SkeletonHelper
+update	client/lib/three.js	/^THREE.SpotLightHelper.prototype.update = function () {$/;"	m	class:THREE.SpotLightHelper
+update	client/lib/three.js	/^THREE.VertexNormalsHelper.prototype.update = ( function ( object ) {$/;"	m	class:THREE.VertexNormalsHelper
+update	client/lib/three.js	/^THREE.VertexTangentsHelper.prototype.update = ( function ( object ) {$/;"	m	class:THREE.VertexTangentsHelper
+update	client/views/posts_show.js	/^  function update(dt) {$/;"	f
+updateAnimation	client/lib/three.js	/^THREE.MorphAnimMesh.prototype.updateAnimation = function ( delta ) {$/;"	m	class:THREE.MorphAnimMesh
+updateArcLengths	client/lib/three.js	/^THREE.Curve.prototype.updateArcLengths = function() {$/;"	m	class:THREE.Curve
+updateCubeMap	client/lib/three.js	/^	this.updateCubeMap = function ( renderer, scene ) {$/;"	m	class:cameraPX.cameraNX.cameraPY.cameraNY.cameraPZ.cameraNZ.THREE.CubeCamera
+updateLensFlares	client/lib/three.js	/^THREE.LensFlare.prototype.updateLensFlares = function () {$/;"	m	class:THREE.LensFlare
+updateMatrixWorld	client/lib/three.js	/^THREE.Audio.prototype.updateMatrixWorld = ( function () {$/;"	m	class:THREE.Audio
+updateMatrixWorld	client/lib/three.js	/^THREE.AudioListener.prototype.updateMatrixWorld = ( function () {$/;"	m	class:THREE.AudioListener
+updateMatrixWorld	client/lib/three.js	/^THREE.Gyroscope.prototype.updateMatrixWorld = ( function () {$/;"	m	class:THREE.Gyroscope
+updateMatrixWorld	client/lib/three.js	/^THREE.SkinnedMesh.prototype.updateMatrixWorld = function( force ) {$/;"	m	class:THREE.SkinnedMesh
+updateMorphTargets	client/lib/three.js	/^THREE.Mesh.prototype.updateMorphTargets = function () {$/;"	m	class:THREE.Mesh
+updateObject	client/lib/three.js	/^	function updateObject( object ) {$/;"	f	function:THREE.WebGLObjects
+updateProjectionMatrix	client/lib/three.js	/^THREE.OrthographicCamera.prototype.updateProjectionMatrix = function () {$/;"	m	class:THREE.OrthographicCamera
+updateProjectionMatrix	client/lib/three.js	/^THREE.PerspectiveCamera.prototype.updateProjectionMatrix = function () {$/;"	m	class:THREE.PerspectiveCamera
+updateRenderTargetMipmap	client/lib/three.js	/^	function updateRenderTargetMipmap ( renderTarget ) {$/;"	f
+updateShadowCamera	client/lib/three.js	/^	function updateShadowCamera( camera, light ) {$/;"	f
+updateShadowMap	client/lib/three.js	/^	this.updateShadowMap = function () {$/;"	f
+updateVirtualLight	client/lib/three.js	/^	function updateVirtualLight( light, cascade ) {$/;"	f
+uploadTexture	client/lib/three.js	/^	this.uploadTexture = function ( texture, slot ) {$/;"	f
+uuid	client/lib/three.js	/^				meta.images[ image.uuid ] = {$/;"	p	class:meta.images
+uvOffset	client/lib/three.js	/^		uniforms = {$/;"	p	class:uniforms
+uvgen	client/lib/three.js	/^	var uvgen = options.UVGenerator === undefined ? THREE.ExtrudeGeometry.WorldUVGenerator : options.UVGenerator;$/;"	v
+uvs	client/lib/three.js	/^		var uvs = [];$/;"	v
+uvs	client/lib/three.js	/^		var uvs = attributes.uv !== undefined ? attributes.uv.array : undefined;$/;"	v
+uvsHash	client/lib/three.js	/^		var uvsHash = {};$/;"	v
+v	client/lib/three.js	/^		var v, key;$/;"	v
+v	client/lib/three.js	/^	function v( x, y, z ) {$/;"	f	function:function
+version	client/lib/three.js	/^			data.metadata = {$/;"	p	class:data.metadata
+vert	client/lib/three.js	/^	function vert( x, y, z ) {$/;"	f	function:THREE.TubeGeometry
+vert	client/lib/three.js	/^	var vert, vlen = vertices.length;$/;"	v
+vert1	client/lib/three.js	/^				hash[ key ] = { vert1: edge[ 0 ], vert2: edge[ 1 ], face1: i, face2: undefined };$/;"	p	class:hash
+vertex	client/lib/three.js	/^		attributes = {$/;"	p	class:attributes
+vertexPtr	client/lib/three.js	/^		var vertexPtr = 0;$/;"	v
+vertexShader	client/lib/three.js	/^			shader = {$/;"	p	class:shader
+vertices	client/lib/three.js	/^		var vertices = [];$/;"	v
+vertices	client/lib/three.js	/^		var vertices = attributes.position.array;$/;"	v
+vertices	client/lib/three.js	/^		var vertices = geometry.vertices;$/;"	v
+vertices	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.PolyhedronGeometry.parameters
+vertices	client/lib/three.js	/^	var vertices = shapePoints.shape;$/;"	v
+violet	client/lib/three.js	/^'springgreen': 0x00FF7F, 'steelblue': 0x4682B4, 'tan': 0xD2B48C, 'teal': 0x008080, 'thistle': 0xD8BFD8, 'tomato': 0xFF6347, 'turquoise': 0x40E0D0,$/;"	p	class:THREE.ColorKeywords
+vrDeviceInfo	client/views/posts_show.js	/^var vrDeviceInfo$/;"	v
+w	client/lib/three.js	/^		var w = right - left;$/;"	v
+w	client/lib/three.js	/^		var w, t, test;$/;"	v
+wheat	client/lib/three.js	/^'violet': 0xEE82EE, 'wheat': 0xF5DEB3, 'white': 0xFFFFFF, 'whitesmoke': 0xF5F5F5, 'yellow': 0xFFFF00, 'yellowgreen': 0x9ACD32 };$/;"	p	class:THREE.ColorKeywords
+white	client/lib/three.js	/^'violet': 0xEE82EE, 'wheat': 0xF5DEB3, 'white': 0xFFFFFF, 'whitesmoke': 0xF5F5F5, 'yellow': 0xFFFF00, 'yellowgreen': 0x9ACD32 };$/;"	p	class:THREE.ColorKeywords
+whitesmoke	client/lib/three.js	/^'violet': 0xEE82EE, 'wheat': 0xF5DEB3, 'white': 0xFFFFFF, 'whitesmoke': 0xF5F5F5, 'yellow': 0xFFFF00, 'yellowgreen': 0x9ACD32 };$/;"	p	class:THREE.ColorKeywords
+width	client/lib/three.js	/^		var width = offset \/ 2;$/;"	v
+width	client/lib/three.js	/^	this.image = { data: data, width: width, height: height };$/;"	p	class:THREE.DataTexture.image
+width	client/lib/three.js	/^	this.image = { width: width, height: height };$/;"	p	class:THREE.CompressedTexture.image
+width	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.BoxGeometry.parameters
+width	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.PlaneBufferGeometry.parameters
+width	client/lib/three.js	/^	this.parameters = {$/;"	p	class:THREE.PlaneGeometry.parameters
+widthSegments	client/lib/three.js	/^		depth: depth,$/;"	p	class:THREE.BoxGeometry.parameters
+widthSegments	client/lib/three.js	/^		height: height,$/;"	p	class:THREE.PlaneBufferGeometry.parameters
+widthSegments	client/lib/three.js	/^		height: height,$/;"	p	class:THREE.PlaneGeometry.parameters
+widthSegments	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.SphereBufferGeometry.parameters
+widthSegments	client/lib/three.js	/^		radius: radius,$/;"	p	class:THREE.SphereGeometry.parameters
+wx	client/lib/three.js	/^		var wx = w * x2, wy = w * y2, wz = w * z2;$/;"	v
+x	client/lib/three.js	/^			this.points[ i ] = { x: a[ i ][ 0 ], y: a[ i ][ 1 ], z: a[ i ][ 2 ] };$/;"	p	class:THREE.Spline.this.points
+x	client/lib/three.js	/^		var x = 2 * near \/ ( right - left );$/;"	v
+x	client/lib/three.js	/^		var x = axis.x, y = axis.y, z = axis.z;$/;"	v
+x	client/lib/three.js	/^		var x = euler.x, y = euler.y, z = euler.z;$/;"	v
+x	client/lib/three.js	/^		var x = q.x, y = q.y, z = q.z, w = q.w;$/;"	v
+x	client/lib/three.js	/^		var x = v.x, y = v.y, z = v.z;$/;"	v
+x	client/lib/three.js	/^		var x, y, z, n;$/;"	v
+x2	client/lib/three.js	/^		var x2 = x + x, y2 = y + y, z2 = z + z;$/;"	v
+xhr.onreadystatechange	client/lib/three.js	/^	var length = 0;$/;"	f	function:THREE.JSONLoader
+xmax	client/lib/three.js	/^		var xmax = ymax * aspect;$/;"	v
+xmin	client/lib/three.js	/^		var xmin = ymin * aspect;$/;"	v
+xx	client/lib/three.js	/^		var xx = x * x2, xy = x * y2, xz = x * z2;$/;"	v
+y	client/lib/three.js	/^		var y = 2 * near \/ ( top - bottom );$/;"	v
+yellow	client/lib/three.js	/^'violet': 0xEE82EE, 'wheat': 0xF5DEB3, 'white': 0xFFFFFF, 'whitesmoke': 0xF5F5F5, 'yellow': 0xFFFF00, 'yellowgreen': 0x9ACD32 };$/;"	p	class:THREE.ColorKeywords
+yellowgreen	client/lib/three.js	/^'violet': 0xEE82EE, 'wheat': 0xF5DEB3, 'white': 0xFFFFFF, 'whitesmoke': 0xF5F5F5, 'yellow': 0xFFFF00, 'yellowgreen': 0x9ACD32 };$/;"	p	class:THREE.ColorKeywords
+ymin	client/lib/three.js	/^		var ymin = - ymax;$/;"	v
+yy	client/lib/three.js	/^		var yy = y * y2, yz = y * z2, zz = z * z2;$/;"	v
+zeroSensor	client/lib/three.js	/^	this.zeroSensor = function () {$/;"	m	class:THREE.VRControls

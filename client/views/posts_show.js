@@ -1,8 +1,5 @@
- 
-var camera, scene, renderer, controls, element, effect, vrEffect;
-var renderable;
-var clock = new THREE.Clock();
-var getSize;
+var orb; 
+var container;
 var vrDeviceInfo
 var vrButton;
 var container;
@@ -30,7 +27,8 @@ function getCurrentPost(){
   }
 }
 
-function setDefaultControls(camera, element){
+function getDefaultControls(camera, element){
+  var controls;
 
   if(isMobile.phone){
     controls = new THREE.DeviceOrientationControls(camera, true);
@@ -46,6 +44,7 @@ function setDefaultControls(camera, element){
     controls.noZoom = false;
     controls.noPan = true;
   }
+  return controls;
 }
 
 
@@ -73,23 +72,23 @@ function disableFullScreen(){
   }
 }
 function disableVRMode(){
-
-  setDefaultControls(camera, element);
-  
-  renderable = renderer;
+  if(vrDeviceInfo.type === "MOBILE"){
+	  OrbBuilders.setOrb(OrbBuilders.MobileControlOrbBuilder, orb);
+	  disableFullScreen();
+  }
+  else if(vrDeviceInfo.type = "HMD"){ 
+	  orb.setFullScreen(false);
+  }
   isInVRMode = false;
 }
 
 function enableVRMode(){
   if(vrDeviceInfo.type === "MOBILE"){
-    effect = new THREE.StereoEffect(renderer);
-    renderable = effect;
+	  OrbBuilders.setOrb(OrbBuilders.CardboardControlOrbBuilder, orb);
+	  enableFullscreen(container);
   }
-  else if(vrDeviceInfo.type === "HMD"){
-
-    controls = new THREE.VRControls(camera, function(error){});
-    controls.update();
-    renderable = vrEffect;
+  else if(vrDeviceInfo.type == "HMD"){
+	  orb.setFullScreen(true);
   }
   isInVRMode = true;
 }
@@ -98,11 +97,9 @@ function toggleVRMode(){
   if(vrDeviceInfo.type != "NONE"){
     if(isInVRMode) { 
       disableVRMode();
-      disableFullScreen();
     }
     else {
       enableVRMode();
-      renderable.setFullScreen(true);
 //      enableFullscreen(container);
     }
   }
@@ -162,36 +159,22 @@ Template.PostsShow.events({
 
 Template.PostsShow.rendered = function() {
 
-  init();
-  animate();
+  turnEditingMode(false);
 
-  function init() {
-    post = getCurrentPost();
+	post = getCurrentPost();
 	Tracker.autorun(function (computation) {
 		var image = Image.findOne({_id: post.imageId});
 		var imageFilePath = image.url({store:'images'});
 		if(imageFilePath){
 			computation.stop();
-			renderPhotoShpere(post, imageFilePath);
+			renderPhotoShpere(imageFilePath);
 		}
 	});
-  }
 
-  function renderPhotoShpere(post, imageFilePath){
+  function renderPhotoShpere(imageFilePath){
     vrDeviceInfo = getVRDeviceInfo();
 
-    var mesh;
-
     container = document.getElementById( 'container' );
-    camera = new THREE.PerspectiveCamera( 70, 1, 0.0001, 5000);
-    scene = new THREE.Scene();
-    scene.add(camera);
-
-    var geometry = new THREE.SphereGeometry( 500, 60, 40 );
-    geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
-    geometry.applyMatrix( new THREE.Matrix4().makeTranslation( 0,0,0 ) );
-
-
 
     var material = new THREE.MeshBasicMaterial( {
       map: THREE.ImageUtils.loadTexture(imageFilePath, null, null, function(error){
@@ -200,71 +183,47 @@ Template.PostsShow.rendered = function() {
 	  })
     } );
 
-    mesh = new THREE.Mesh( geometry, material );
-    
-    scene.add( mesh );
-
-    renderer = new THREE.WebGLRenderer({ antialias: true,
-                                         devicePixelRatio: window.devicePixelRatio});
-    renderable = renderer;
-
-    var element = renderer.domElement;
-    container.appendChild(element);
-    setDefaultControls(camera,element);
-
-  //				window.addEventListener( 'resize', onWindowResize, false );
-
-
-    getSize = function(container){
-      var width = container.offsetWidth;
-      var height = container.offsetHeight;
-      return {width: width, height: height};
-    } 
     if(vrDeviceInfo.type === "HMD"){
-
-	    vrEffect = new THREE.VREffect(renderer, function(error){
-	      if (error) {
-		alert(error);
-		vrButton.innerHTML = error;
-		vrButton.classList.add('error');
-	      }
-	    });
-	    vrEffect.scale = 0; // video doesn't need eye separation
-	    vrEffect.setSize( window.innerWidth, window.innerHeight );
+		orb = OrbBuilders.createOrb(OrbBuilders.HMDControlOrbBuilder, material, container);
     }
+	else if(vrDeviceInfo.type === "MOBILE"){
+		orb = OrbBuilders.createOrb(OrbBuilders.MobileControlOrbBuilder, material, container);
+	}
+	else{
+		orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
+	}
+	orb.render();
+
+	/*
+
+	var camera = new three.perspectivecamera( 70, 1, 0.0001, 5000);
+
+	var renderer = new THREE.WebGLRenderer({ antialias: true,
+										 devicePixelRatio: window.devicePixelRatio});
+
+	var element = renderer.domElement;
+    var controls = new THREE.OrbitControls(camera, element);
+    controls.rotateUp(Math.PI / 4);
+    controls.target.set(
+      0.1,0,0
+    );
+    controls.noZoom = false;
+    controls.noPan = true;
+
+	var orb = new Orb({
+		material: material,
+		controls: controls,
+		container: container,
+	    renderer: renderer,
+		camera: camera
+	});
+
+	orb.render();
+	*/
 
   }
 
-  function onWindowResize() {
-    var containerSize = getSize(container);
-    
-    camera.aspect = containerSize.width/containerSize.height;
-    camera.updateProjectionMatrix();
-    renderable.setSize(containerSize.width, containerSize.height);
-    
-  }
 
-  window.addEventListener('resize', onWindowResize, false);
-
-  function animate() {
-
-    requestAnimationFrame( animate );
-//    var dt = clock.getDelta();
-    update();
-
-  }
-
-  function update(dt) {
-  //        console.log(controls);
-    onWindowResize();
-    camera.updateProjectionMatrix();
-    controls.update(dt);
-  //				camera.position.copy( camera.target ).negate();
-
-    renderable.render( scene, camera );
-  }
-
-  turnEditingMode(false);
 
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
