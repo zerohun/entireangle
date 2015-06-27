@@ -13,7 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "vr-devices": "/Users/choi0hun/Project/VRDevices/"
+    "vr-devices": "/home/zerohoon/Projects/VRDevices/"
   }
 }
 

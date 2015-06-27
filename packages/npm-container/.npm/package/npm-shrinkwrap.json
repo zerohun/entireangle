@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "stream-transcoder": {
+      "version": "0.0.5"
+    }
+  }
+}
