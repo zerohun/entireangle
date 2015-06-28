@@ -129,7 +129,12 @@ Template.VideoPostsShow.helpers({
 
 Template.VideoPostsShow.events({
   "click #vr-mode-button": function(){
-    toggleVRMode();
+    if(vrDeviceInfo.type === "MOBILE"){
+        alert("Sorry Video VR mode is not supported in mobile devices yet");
+    }
+    else{
+        toggleVRMode();
+    }
   },
   "click #home-button": function(){
     Router.go("home")
@@ -184,24 +189,30 @@ Template.VideoPostsShow.rendered = function() {
     video.id = "orb-player";
 	console.log('play video');
 
-	texture = new THREE.VideoTexture( video );
-	texture.minFilter = THREE.LinearFilter;
-	texture.format = THREE.RGBFormat;
-	texture.generateMipmaps = false;
-
-	var material = new THREE.MeshBasicMaterial( { map: texture } );
-
-    if(vrDeviceInfo.type === "HMD"){
-		orb = OrbBuilders.createOrb(OrbBuilders.HMDControlOrbBuilder, material, container);
+    if(vrDeviceInfo.type === "MOBILE" ){
+        $(video).attr("controls", "controls");
+        $(video).css("width", "100%");
+        $(video).parent().css("display", "block");
+        $(container).remove();
+        toastr.warning("Sorry. Play video sphere is not supported for mobile devices yet. I recommned you watch to this video in desktop or laptop computer for now");
     }
-	else if(vrDeviceInfo.type === "MOBILE"){
-		orb = OrbBuilders.createOrb(OrbBuilders.MobileControlOrbBuilder, material, container);
-	}
-	else{
-		orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
-	}
-	orb.render();
-	console.log('orb is rendered');
+    else{
+        texture = new THREE.VideoTexture( video );
+        texture.minFilter = THREE.LinearFilter;
+        texture.format = THREE.RGBFormat;
+        texture.generateMipmaps = false;
+
+        var material = new THREE.MeshBasicMaterial( { map: texture } );
+
+        if(vrDeviceInfo.type === "HMD"){
+            orb = OrbBuilders.createOrb(OrbBuilders.HMDControlOrbBuilder, material, container);
+        }
+        else{
+            orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
+        }
+        orb.render();
+        console.log('orb is rendered');
+    }
 
 	/*
 
