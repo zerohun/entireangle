@@ -1,6 +1,12 @@
 Template.Posts.helpers({
   posts: function(){ 
      return Router.current().data().posts;
+  },
+  nextLimit: function(){
+    return Router.current().data().limit + 10;
+  },
+  isLoadMoreBtnVisible: function(){
+    return Post.find().count() == Router.current().data().limit;
   }
 });
 
@@ -18,10 +24,5 @@ Template.post.helpers({
 
 Template.Posts.rendered = function() {
   $("body").css("overflow", "scroll");
-  $(window).scroll(function(){
-    if(Post.find().count() == Router.current().data().limit &&
-          $(document).innerHeight()  - $(window).scrollTop() < 1000){
-        Router.go("Posts", {}, {query: "postsLimit=" + (Router.current().data().limit + 10)});
-    }
-  });
+  $(window).scroll(function(){console.log('scroll'});
 }
