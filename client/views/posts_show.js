@@ -47,49 +47,19 @@ function getDefaultControls(camera, element){
   return controls;
 }
 
-
-function enableFullscreen(container) {
-  if (container.requestFullscreen) {
-    container.requestFullscreen();
-  } else if (container.msRequestFullscreen) {
-    container.msRequestFullscreen();
-  } else if (container.mozRequestFullScreen) {
-    container.mozRequestFullScreen();
-  } else if (container.webkitRequestFullscreen) {
-    container.webkitRequestFullscreen();
-  }
-}
-
-function disableFullScreen(){
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
-  } else if (document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  }
-}
 function disableVRMode(){
-  if(vrDeviceInfo.type === "MOBILE"){
+  if(vrDeviceInfo.type === "MOBILE")
 	  OrbBuilders.setOrb(OrbBuilders.MobileControlOrbBuilder, orb);
-	  disableFullScreen();
-  }
-  else if(vrDeviceInfo.type = "HMD"){ 
-	  orb.setFullScreen(false);
-  }
+
+  orb.setFullScreen(false);
   isInVRMode = false;
 }
 
 function enableVRMode(){
-  if(vrDeviceInfo.type === "MOBILE"){
+  if(vrDeviceInfo.type === "MOBILE")
 	  OrbBuilders.setOrb(OrbBuilders.CardboardControlOrbBuilder, orb);
-	  enableFullscreen(container);
-  }
-  else if(vrDeviceInfo.type == "HMD"){
-	  orb.setFullScreen(true);
-  }
+
+  orb.setFullScreen(true);
   isInVRMode = true;
 }
 
@@ -100,7 +70,6 @@ function toggleVRMode(){
     }
     else {
       enableVRMode();
-//      enableFullscreen(container);
     }
   }
   else
@@ -193,34 +162,6 @@ Template.PostsShow.rendered = function() {
 		orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
 	}
 	orb.render();
-
-	/*
-
-	var camera = new three.perspectivecamera( 70, 1, 0.0001, 5000);
-
-	var renderer = new THREE.WebGLRenderer({ antialias: true,
-										 devicePixelRatio: window.devicePixelRatio});
-
-	var element = renderer.domElement;
-    var controls = new THREE.OrbitControls(camera, element);
-    controls.rotateUp(Math.PI / 4);
-    controls.target.set(
-      0.1,0,0
-    );
-    controls.noZoom = false;
-    controls.noPan = true;
-
-	var orb = new Orb({
-		material: material,
-		controls: controls,
-		container: container,
-	    renderer: renderer,
-		camera: camera
-	});
-
-	orb.render();
-	*/
-
   }
 
 

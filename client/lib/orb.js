@@ -33,6 +33,7 @@ window.Orb = function(reqiredParams, options){
 
 	this.renderer = renderer;
 	this.renderable = renderable;
+    this.container = container;
 
 	this.render = function(){
 		init();

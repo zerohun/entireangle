@@ -49,7 +49,7 @@ var createNormalControlOrbBuilder = function(){
 var createMobileControlOrbBuilder = function(){
 	return{
 		far: 500,
-		create: function(material){
+		create: function(material, container){
 			var camera = createCamera(this.far);
 			var renderer = getRenderer();
 			var element = renderer.domElement;
@@ -76,7 +76,7 @@ var createMobileControlOrbBuilder = function(){
 
 var createCardboardControlOrbBuilder = function(){
 	var getSetFullScreenFunc = function(container){
-	return function(trueOrFalse){
+        return function(trueOrFalse){
 			if(trueOrFalse){
 				if (container.requestFullscreen) {
 					container.requestFullscreen();
@@ -103,7 +103,7 @@ var createCardboardControlOrbBuilder = function(){
 	}
 	return{
 		far: 500,
-		create: function(material){
+		create: function(material, container){
 			var camera = createCamera(this.far);
 			var renderer = getRenderer();
 			var effect = new THREE.StereoEffect(renderer);
@@ -129,7 +129,7 @@ var createCardboardControlOrbBuilder = function(){
 			var renderer = orb.renderer;
 			var effect = new THREE.StereoEffect(renderer);
 			orb.setEffect(effect);
-			org.setFullScreen = getSetFullScreenFunc(orb.container);
+			orb.setFullScreen = getSetFullScreenFunc(orb.container);
 		}
 	}
 }
@@ -141,7 +141,7 @@ var createHMDControlOrbBuilder = function(){
 	}
 	return{
 		far: 1000,
-		create: function(material){
+		create: function(material, container){
 			var camera = createCamera(this.far);
 			var renderer = getRenderer();
 			var element = renderer.domElement;
