@@ -5,6 +5,26 @@ var vrButton;
 var container;
 var isInVRMode = false;
 var post = null;
+var originalPosition = new THREE.Vector3();
+
+function observeViewPosition(orb){
+    originalPosition.copy(orb.controls.object.position);
+
+    var positionCheckSrc = Rx.Observable.
+        interval(100).
+        takeUntil(Rx.Observable.fromEvent($("a"), "click"));
+
+    var positionCheckSub = positionCheckSrc.subscribe(function(){
+        var currentPosition = orb.controls.object.position;
+        if(originalPosition.x !=  currentPosition.x ||
+            originalPosition.y !=  currentPosition.y ||
+            originalPosition.z !=  currentPosition.z){
+
+            $("#position-save-button").show();
+            positionCheckSub.dispose();
+        }
+    });
+}
 
 function turnEditingMode(onOfOff){
   if(onOfOff) {
@@ -123,6 +143,12 @@ Template.PostsShow.events({
     Meteor.call("updatePost", post)
     turnEditingMode(false)
     return false;
+  },
+  "click #position-save-button": function(){
+    post = getCurrentPost();
+    Meteor.call("updatePostViewPosition", post, orb.controls.object.position);
+    $("#position-save-button").hide();
+    observeViewPosition(orb);
   }
 });
 
@@ -162,6 +188,16 @@ Template.PostsShow.rendered = function() {
 		orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
 	}
 	orb.render();
+    if(post.viewPosition){
+        orb.controls.object.position.x = post.viewPosition.x;
+        orb.controls.object.position.y = post.viewPosition.y;
+        orb.controls.object.position.z = post.viewPosition.z;
+    }
+    observeViewPosition(orb);
+
+
+
+    window.o = orb;
   }
 
 
