@@ -18,10 +18,18 @@ Template.post.helpers({
 
 Template.Posts.rendered = function() {
   $("body").css("overflow", "scroll");
-  $(window).scroll(function(){
-    if(Post.find().count() == Router.current().data().limit &&
-          $(document).innerHeight()  - $(window).scrollTop() < 1000){
-        Router.go("Posts", {}, {query: "postsLimit=" + (Router.current().data().limit + 10)});
-    }
-  });
+
+  if(Post.find().count() == Router.current().data().limit){ 
+      var scrollEventSrc = Rx.Observable.fromEvent($(window), "scroll").
+                        filter(function(){
+                            return ($(window).scrollTop() >= $(document).height() - $(window).height() - 10)
+                        })
+
+      var scrollEventSub = scrollEventSrc.subscribe(function(e){
+          scrollEventSub.dispose();
+          Router.go("Posts", {}, {query: "postsLimit=" + (Router.current().data().limit + 10)});
+      });
+  }
+                        
+
 }

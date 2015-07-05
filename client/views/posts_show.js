@@ -193,7 +193,8 @@ Template.PostsShow.rendered = function() {
         orb.controls.object.position.y = post.viewPosition.y;
         orb.controls.object.position.z = post.viewPosition.z;
     }
-    observeViewPosition(orb);
+    if(Meteor.userId() && Meteor.userId() == post.user._id)
+        observeViewPosition(orb);
 
 
 
