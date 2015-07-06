@@ -25,9 +25,9 @@ Template.Posts.rendered = function() {
 
   var scrollEventSub = scrollEventSrc.subscribe(function(e){
       var limit = Router.current().data().limit;
-      if(Post.find().count() >= limit) 
+      if(Post.find().count() >= limit){ 
+          $("#list-fetching-bar").fadeIn("slow");;
           Session.set("PostsLimit", limit + 10);
-
-
+      }
   });
 }
