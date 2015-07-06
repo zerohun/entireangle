@@ -25,10 +25,9 @@ Template.Posts.rendered = function() {
 
   var scrollEventSub = scrollEventSrc.subscribe(function(e){
       var limit = Router.current().data().limit;
-      if(Post.find().count() == limit) 
+      if(Post.find().count() >= limit) 
           Session.set("PostsLimit", limit + 10);
-      else
-          scrollEventSub.dispose();
+
 
   });
 }
