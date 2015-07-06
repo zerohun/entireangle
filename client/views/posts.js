@@ -15,21 +15,20 @@ Template.post.helpers({
   }
 });
 
-
 Template.Posts.rendered = function() {
   $("body").css("overflow", "scroll");
+  var scrollEventSrc = Rx.Observable.fromEvent(window, "scroll").
+                    filter(function(){
+                        return ($(window).scrollTop() >= $(document).height() - $(window).height() - 10)
+                    }).
+                    takeUntil(Rx.Observable.fromEvent(window, 'popstate'));
 
-  if(Post.find().count() == Router.current().data().limit){ 
-      var scrollEventSrc = Rx.Observable.fromEvent($(window), "scroll").
-                        filter(function(){
-                            return ($(window).scrollTop() >= $(document).height() - $(window).height() - 10)
-                        })
-
-      var scrollEventSub = scrollEventSrc.subscribe(function(e){
+  var scrollEventSub = scrollEventSrc.subscribe(function(e){
+      var limit = Router.current().data().limit;
+      if(Post.find().count() == limit) 
+          Session.set("PostsLimit", limit + 10);
+      else
           scrollEventSub.dispose();
-          Router.go("Posts", {}, {query: "postsLimit=" + (Router.current().data().limit + 10)});
-      });
-  }
-                        
 
+  });
 }
