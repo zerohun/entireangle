@@ -1,12 +1,28 @@
 Accounts.ui.config({
     requestPermissions: {},
     extraSignupFields: [{
-        fieldName: 'username',
-        fieldLabel: 'username',
-        inputType: 'text',
-        visible: true,
-        saveToProfile: true
-    }]
+            fieldName: 'username',
+            fieldLabel: 'username',
+            inputType: 'text',
+            visible: true,
+            saveToProfile: true
+        },
+        {
+            fieldName: 'terms',
+            fieldLabel: 'I accept the <a href="/private_policy">terms and conditions</a>',
+            inputType: 'checkbox',
+            visible: true,
+            saveToProfile: false,
+            validate: function(value, errorFunction) {
+                if (value) {
+                    return true;
+                } else {
+                    errorFunction('You must accept the terms and conditions.');
+                    return false;
+                }   
+            }
+        }
+    ]
 });
 
 Meta.config({
