@@ -34,7 +34,6 @@ deps@1.0.7
 ejson@1.0.6
 email@1.0.6
 fastclick@1.0.3
-fortawesome:fontawesome@4.2.0_2
 geojson-utils@1.0.3
 grigio:babel@0.1.3
 html-tools@1.0.4
@@ -50,7 +49,7 @@ iron:location@1.0.9
 iron:middleware-stack@1.0.9
 iron:router@1.0.9
 iron:url@1.0.9
-joshowens:shareit@0.4.0
+joshowens:shareit@0.3.1
 jquery@1.11.3_2
 json@1.0.3
 launch-screen@1.0.2
