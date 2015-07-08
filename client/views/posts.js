@@ -17,6 +17,10 @@ Template.post.helpers({
 
 Template.Posts.rendered = function() {
   $("body").css("overflow", "scroll");
+  var limit = Router.current().data().limit; 
+  if(Post.find().count() < limit) 
+      $("#list-fetching-bar").hide();
+
   var scrollEventSrc = Rx.Observable.fromEvent(window, "scroll").
                     filter(function(){
                         return ($(window).scrollTop() >= $(document).height() - $(window).height() - 10)
@@ -24,13 +28,10 @@ Template.Posts.rendered = function() {
                     takeUntil(Rx.Observable.fromEvent(window, 'popstate'));
 
   var scrollEventSub = scrollEventSrc.subscribe(function(e){
-      var limit = Router.current().data().limit;
-      if(Post.find().count() >= limit){ 
-          $("#list-fetching-bar").show();
-          Session.set("PostsLimit", limit + 10);
-      }
-      else{
+      var limit = Router.current().data().limit; 
+      if(Post.find().count() < limit){ 
           $("#list-fetching-bar").hide();
       }
+
   });
 }
