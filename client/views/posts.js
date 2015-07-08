@@ -17,9 +17,20 @@ Template.post.helpers({
 
 Template.Posts.rendered = function() {
   $("body").css("overflow", "scroll");
-  var limit = Router.current().data().limit; 
-  if(Post.find().count() < limit) 
-      $("#list-fetching-bar").hide();
+
+  Tracker.autorun(function(computation){
+      var limit = Router.current().data().limit; 
+      if(Post.find().count() < limit) 
+          $("#list-fetching-bar").fadeOut(2000);
+      else
+          $("#list-fetching-bar").show();
+
+      var popStateSub = Rx.Observable.fromEvent(window, "popstate").
+                            subscribe(function(e){
+                                computation.stop();
+                                popStateSub.dispose();
+                            });
+  });
 
   var scrollEventSrc = Rx.Observable.fromEvent(window, "scroll").
                     filter(function(){
@@ -29,11 +40,7 @@ Template.Posts.rendered = function() {
 
   var scrollEventSub = scrollEventSrc.subscribe(function(e){
       var limit = Router.current().data().limit; 
-      if(Post.find().count() < limit){ 
-          $("#list-fetching-bar").fadeOut(3000);
-      }
-      else{
+      if(Post.find().count() >= limit) 
           Session.set("PostsLimit", limit + 10);
-      }
   });
 }
