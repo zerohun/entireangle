@@ -4,6 +4,15 @@ Template.Posts.helpers({
   }
 });
 
+Template.Posts.events({
+    "click #image-list": function(){
+        Session.set('isVideo', false);
+    },
+    "click #video-list": function(){
+        Session.set('isVideo', true);
+    }
+});
+
 Template.post.helpers({
   thumbUrl: function(imageId, isVideo){
     if(isVideo){
@@ -14,6 +23,7 @@ Template.post.helpers({
     }
   }
 });
+
 
 Template.Posts.rendered = function() {
   $("body").css("overflow", "scroll");

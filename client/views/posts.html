@@ -1,4 +1,9 @@
 <template name="Posts">
+<div id="button-toggle-group" class="btn-group" data-toggle="buttons-radio">
+    <button id="image-list" type="button" class="btn btn-info list-tabs active" aria-pressed="true">Image</button>
+    <button id="video-list" type="button" class="btn btn-info list-tabs">Video</button>
+</div>
+<br>
 <div class="container-fluid">
   <div class="row center-block">
     {{#each posts}}
