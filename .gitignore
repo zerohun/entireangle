@@ -1,3 +1,5 @@
 .meteor/local
 *.swp
+*.swl
+*.swo
 
