@@ -197,6 +197,7 @@ Template.VideoPostsShow.rendered = function() {
         $(video).css("width", "100%");
         $(video).parent().css("display", "block");
         $(container).remove();
+        $("#loading-box").hide();
         toastr.warning("Sorry. Play video sphere is not supported for mobile devices yet. I recommned you watch to this video in desktop or laptop computer for now");
     }
     else{
