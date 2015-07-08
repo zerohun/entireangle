@@ -30,8 +30,10 @@ Template.Posts.rendered = function() {
   var scrollEventSub = scrollEventSrc.subscribe(function(e){
       var limit = Router.current().data().limit; 
       if(Post.find().count() < limit){ 
-          $("#list-fetching-bar").hide();
+          $("#list-fetching-bar").fadeOut(3000);
       }
-
+      else{
+          Session.set("PostsLimit", limit + 10);
+      }
   });
 }
