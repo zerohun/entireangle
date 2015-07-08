@@ -1,0 +1,19 @@
+#loading-box{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 1px;
+    background-color: white;
+    text-align: center;
+    opacity: 0.4;
+}
+#loading-box div{
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 20px;
+}

@@ -172,7 +172,9 @@ Template.PostsShow.rendered = function() {
     container = document.getElementById( 'container' );
 
     var material = new THREE.MeshBasicMaterial( {
-      map: THREE.ImageUtils.loadTexture(imageFilePath, null, null, function(error){
+      map: THREE.ImageUtils.loadTexture(imageFilePath, null, function(){
+          $("#loading-box").hide();
+      }, function(error){
 		  console.log('error while loading texture - ');
 		  console.log(error);
 	  })
