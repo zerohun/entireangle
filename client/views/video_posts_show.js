@@ -185,8 +185,11 @@ Template.VideoPostsShow.rendered = function() {
     document.getElementById('hidden-video').appendChild(video);
 	video.loop = true;
 	video.src = videoFilePath;
-	video.play();
     video.id = "orb-player";
+    video.onloadeddata = function(){
+        $("#loading-box").hide();
+        video.play();
+    }
 	console.log('play video');
 
     if(vrDeviceInfo.type === "MOBILE" ){
