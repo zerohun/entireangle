@@ -7,9 +7,11 @@ Template.Posts.helpers({
 Template.Posts.events({
     "click #image-list": function(){
         Session.set('isVideo', false);
+        Session.set('limit', 10);
     },
     "click #video-list": function(){
         Session.set('isVideo', true);
+        Session.set('limit', 10);
     }
 });
 
