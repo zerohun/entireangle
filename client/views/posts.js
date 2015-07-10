@@ -31,6 +31,7 @@ Template.post.helpers({
 
 Template.Posts.rendered = function() {
   $("body").css("overflow", "scroll");
+  $("#loading-box").hide();
 
   Tracker.autorun(function(computation){
       var limit = Router.current().data().limit; 
