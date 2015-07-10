@@ -144,7 +144,7 @@ Template.VideoPostsShow.events({
   },
   "click #remove-button": function(){
     var post = getCurrentPost();
-    Router.go('posts');
+    Router.go('Posts');
     Meteor.call("removePost", post._id);
     return false;
   },
