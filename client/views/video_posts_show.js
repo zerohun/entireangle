@@ -164,6 +164,7 @@ Template.VideoPostsShow.events({
 
 Template.VideoPostsShow.rendered = function() {
 
+  $("#loading-box").show();
   var popStateSub = Rx.Observable.fromEvent(window, "popstate").
                             subscribe(function(e){
                                 $(".modal").modal('hide');
