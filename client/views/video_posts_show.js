@@ -164,6 +164,13 @@ Template.VideoPostsShow.events({
 
 Template.VideoPostsShow.rendered = function() {
 
+  var popStateSub = Rx.Observable.fromEvent(window, "popstate").
+                            subscribe(function(e){
+                                $(".modal").modal('hide');
+                                $(".modal-backdrop").remove();
+                                popStateSub.dispose();
+                            });
+
   turnEditingMode(false);
 
 	post = getCurrentPost();

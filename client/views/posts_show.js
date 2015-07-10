@@ -12,7 +12,7 @@ function observeViewPosition(orb){
 
     var positionCheckSrc = Rx.Observable.
         interval(100).
-        takeUntil(Rx.Observable.fromEvent($("a"), "click"));
+        takeUntil(Rx.Observable.fromEvent(window, "popstate"));
 
     var positionCheckSub = positionCheckSrc.subscribe(function(){
         var currentPosition = orb.controls.object.position;
@@ -154,6 +154,13 @@ Template.PostsShow.events({
 
 Template.PostsShow.rendered = function() {
 
+  var popStateSub = Rx.Observable.fromEvent(window, "popstate").
+                            subscribe(function(e){
+                                $(".modal").modal('hide');
+                                $(".modal-backdrop").remove();
+                                popStateSub.dispose();
+                            });
+
   turnEditingMode(false);
 
 	post = getCurrentPost();
@@ -197,10 +204,6 @@ Template.PostsShow.rendered = function() {
     }
     if(Meteor.userId() && Meteor.userId() == post.user._id)
         observeViewPosition(orb);
-
-
-
-    window.o = orb;
   }
 
 
