@@ -1,4 +1,3 @@
 Template.About.rendered = function() {
-  $("body").css("overflow", "scroll");
-}
-
+    $("body").css("overflow", "scroll");
+};

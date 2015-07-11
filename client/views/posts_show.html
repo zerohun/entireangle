@@ -1,98 +1,95 @@
 <template name="PostsShow">
-  <div id="container" class="loading-bg" style="width:100%; height:100%">
-  </div>
-  <div id="info">
-    <div id="button-container" class="btn-group" role="group">
-      {{#unless isEmbedded}}
-      <button id="home-button" class="btn btn-warning btn-xs">Explore</button>
-      <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#shareModal">Share</button>
-      <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#infoModal">Info</button>
-      {{/unless}}
-      <button id="vr-mode-button" class="btn btn-success btn-xs">VR mode</button>
-      {{#unless isEmbedded}}
-      {{#if isMyPost}}
-        <button id="remove-button" class="btn btn-danger btn-xs">Delete</button>
-      {{/if}}
-      <button id="position-save-button" class="btn btn-success btn-xs" style="display:none">Save Position</button>
-      {{/unless}}
+    <div id="container" class="loading-bg" style="width:100%; height:100%">
     </div>
-  </div>
-
-  {{#unless isEmbedded}}
-  <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4>Share</h4>
-          <hr>
-          <div class="btn-group" role="group">
-            {{> shareit}}
-          </div>
-          <br>
-          <br>
-          <br>
-          <h4>Embed</h4>
-          <hr>
-          <input id="embed-url-string" type="text" value="{{embedUrl}}">
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form id="edit-post">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title view-box" id="myModalLabel">{{title}}</h4>
-            <input type="text" class="edit-field" name="title" value="{{title}}">
-          </div>
-          <div class="modal-body">
-            <p class="timestamp">
-              {{createdAt}}
-            </p>
-            <p class="view-box">
-              <pre>{{desc}}</pre>
-            </p>
-            <textarea class="edit-field" name="desc">{{desc}}</textarea>
-            <br>
-
-            {{#if isMyPost}}
-            <button type="submit" class="btn btn-xs btn edit-field">
-              Done
-            </button>
-            <button id="edit-button" class="btn btn-warning btn-xs view-box">
-              Edit
-            </button>
+    <div id="info">
+        <div id="button-container" class="btn-group" role="group">
+            {{#unless isEmbedded}}
+            <button id="home-button" class="btn btn-warning btn-xs">Explore</button>
+            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#shareModal">Share</button>
+            <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#infoModal">Info</button>
+            {{/unless}}
+            <button id="vr-mode-button" class="btn btn-success btn-xs">VR mode</button>
+            {{#unless isEmbedded}} {{#if isMyPost}}
+            <button id="remove-button" class="btn btn-danger btn-xs">Delete</button>
             {{/if}}
-          </div>
-        </form>
-        <div class="modal-footer">
+            <button id="position-save-button" class="btn btn-success btn-xs" style="display:none">Save Position</button>
+            {{/unless}}
         </div>
-      </div>
     </div>
-  </div>
-  {{/unless}}
 
-  <div class="modal fade" id="NoneVRModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Your web browser is not supporting VR mode</h4>
+    {{#unless isEmbedded}}
+    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4>Share</h4>
+                    <hr>
+                    <div class="btn-group" role="group">
+                        {{> shareit}}
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h4>Embed</h4>
+                    <hr>
+                    <input id="embed-url-string" type="text" value="{{embedUrl}}">
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <h4>HMD(ex Oculus Rift) with Windows or Mac osx</h4>
-          <p class="lead">
-            You need to visit this website with <a href="https://nightly.mozilla.org">Firefox Nightly</a> or <a href="https://code.google.com/p/chromium">Chromium</a>
-          </p>
-          <h4>For Android user.(EX: Google cardboard)</h4>
-          <p class="lead">
-            You need to use a web browers that support WebL(ex: Chrome)
-          </p>
-        </div>
-      </div>
     </div>
-  </div>
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="edit-post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title view-box" id="myModalLabel">{{title}}</h4>
+                        <input type="text" class="edit-field" name="title" value="{{title}}">
+                    </div>
+                    <div class="modal-body">
+                        <p class="timestamp">
+                            {{createdAt}}
+                        </p>
+                        <p class="view-box">
+                            <pre>{{desc}}</pre>
+                        </p>
+                        <textarea class="edit-field" name="desc">{{desc}}</textarea>
+                        <br> {{#if isMyPost}}
+                        <button type="submit" class="btn btn-xs btn edit-field">
+                            Done
+                        </button>
+                        <button id="edit-button" class="btn btn-warning btn-xs view-box">
+                            Edit
+                        </button>
+                        {{/if}}
+                    </div>
+                </form>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/unless}}
+
+    <div class="modal fade" id="NoneVRModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Your web browser is not supporting VR mode</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>HMD(ex Oculus Rift) with Windows or Mac osx</h4>
+                    <p class="lead">
+                        You need to visit this website with <a href="https://nightly.mozilla.org">Firefox Nightly</a> or <a href="https://code.google.com/p/chromium">Chromium</a>
+                    </p>
+                    <h4>For Android user.(EX: Google cardboard)</h4>
+                    <p class="lead">
+                        You need to use a web browers that support WebL(ex: Chrome)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

@@ -1,4 +1,4 @@
-#loading-box{
+#loading-box {
     display: none;
     position: fixed;
     top: 50%;
@@ -11,19 +11,22 @@
     text-align: center;
     opacity: 0.4;
 }
-#loading-box div{
+
+#loading-box div {
     padding: 20px;
     width: 100%;
     margin: 0 auto;
     font-size: 20px;
 }
-#button-toggle-group{
+
+#button-toggle-group {
     margin-top: 5px;
     margin-bottom: 30px;
     margin-left: 100px;
     margin-right: auto;
     text-align: center;
 }
-#hidden-video{
+
+#hidden-video {
     display: none;
 }

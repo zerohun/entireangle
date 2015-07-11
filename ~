@@ -1,22 +1,22 @@
 var createCamera = function(far) {
-    return new THREE.PerspectiveCamera(70, 1, 0.0001, far);
-};
+    return camera = new THREE.PerspectiveCamera(70, 1, 0.0001, far);
+}
 
 var getRenderer = function() {
     return new THREE.WebGLRenderer({
         antialias: true,
         devicePixelRatio: window.devicePixelRatio
     });
-};
+}
 
 
 var createOrb = function(builder, material, container) {
     return builder.create(material, container);
-};
+}
 
 var setOrb = function(builder, orb) {
     return builder.set(orb);
-};
+}
 
 
 var createNormalControlOrbBuilder = function() {
@@ -37,7 +37,7 @@ var createNormalControlOrbBuilder = function() {
                 container: container,
                 renderer: renderer,
                 camera: camera
-            });
+            })
         },
         set: function(orb) {
             var camera = orb.getCamera();
@@ -45,8 +45,8 @@ var createNormalControlOrbBuilder = function() {
             var controls = new THREE.OrbitControls(camera, orb.getElement());
             orb.setControls(controls);
         }
-    };
-};
+    }
+}
 
 var createMobileControlOrbBuilder = function() {
     return {
@@ -64,7 +64,7 @@ var createMobileControlOrbBuilder = function() {
                 container: container,
                 renderer: renderer,
                 camera: camera
-            });
+            })
         },
         set: function(orb) {
             var camera = orb.getCamera();
@@ -73,8 +73,8 @@ var createMobileControlOrbBuilder = function() {
             var controls = new THREE.DeviceOrientationControls(camera, true);
             orb.setControls(controls);
         }
-    };
-};
+    }
+}
 
 var createCardboardControlOrbBuilder = function() {
     var getSetFullScreenFunc = function(container) {
@@ -100,8 +100,8 @@ var createCardboardControlOrbBuilder = function() {
                     document.webkitExitFullscreen();
                 }
             }
-        };
-    };
+        }
+    }
     return {
         far: 500,
         create: function(material, container) {
@@ -120,7 +120,7 @@ var createCardboardControlOrbBuilder = function() {
                 camera: camera,
                 effect: effect,
                 setFullScreen: getSetFullScreenFunc(container)
-            });
+            })
         },
         set: function(orb) {
             var camera = orb.getCamera();
@@ -132,14 +132,14 @@ var createCardboardControlOrbBuilder = function() {
             orb.setEffect(effect);
             orb.setFullScreen = getSetFullScreenFunc(orb.container);
         }
-    };
-};
+    }
+}
 var createHMDControlOrbBuilder = function() {
     var getSetFullScreen = function(orb) {
         return function(trueOrFalse) {
             orb.renderable.setFullScreen(trueOrFalse);
-        };
-    };
+        }
+    }
     return {
         far: 1000,
         create: function(material, container) {
@@ -161,7 +161,7 @@ var createHMDControlOrbBuilder = function() {
                 renderer: renderer,
                 camera: camera,
                 effect: effect
-            });
+            })
 
             orb.setFullScreen = getSetFullScreen(orb);
             return orb;
@@ -181,8 +181,8 @@ var createHMDControlOrbBuilder = function() {
             orb.setEffect(effect);
             orb.setFullScreen = getSetFullScreen(orb);
         }
-    };
-};
+    }
+}
 
 
 window.OrbBuilders = {
@@ -192,4 +192,4 @@ window.OrbBuilders = {
     MobileControlOrbBuilder: createMobileControlOrbBuilder(),
     CardboardControlOrbBuilder: createCardboardControlOrbBuilder(),
     HMDControlOrbBuilder: createHMDControlOrbBuilder()
-};
+}

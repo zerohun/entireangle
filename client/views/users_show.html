@@ -1,0 +1,16 @@
+<template name="UsersShow">
+    <div id="user-profile-info">
+        <div id="user-image">
+        </div>
+        <div id="user-name">
+            {{username}}
+        </div>
+    </div>
+    <div id="image-list">
+        <div class="container-fluid">
+            <div class="row center-block">
+                {{#each posts}} {{> post}} {{/each}}
+            </div>
+        </div>
+    </div>
+</template>

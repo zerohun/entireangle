@@ -1,34 +1,30 @@
 <template name="Posts">
-<div id="button-toggle-group" class="btn-group" data-toggle="buttons-radio">
-    <button id="image-list" type="button" class="btn btn-info list-tabs active" aria-pressed="true">Image</button>
-    <button id="video-list" type="button" class="btn btn-info list-tabs">Video</button>
-</div>
-<br>
-<div class="container-fluid">
-  <div class="row center-block">
-    {{#each posts}}
-      {{> post}}
-    {{/each}}
+    <div id="button-toggle-group" class="btn-group" data-toggle="buttons-radio">
+        <button id="image-list" type="button" class="btn btn-info list-tabs active" aria-pressed="true">Image</button>
+        <button id="video-list" type="button" class="btn btn-info list-tabs">Video</button>
+    </div>
+    <br>
+    <div class="container-fluid">
+        <div class="row center-block">
+            {{#each posts}} {{> post}} {{/each}}
 
-  </div>
-</div>
-<div id="list-fetching-bar" style="  text-align: center;display: block;height: 50px;font-size: 20px;background-color: lightblue;padding-top: 10px;;color: darkblue;">
-      Fetching next images...
-</div>
+        </div>
+    </div>
+    <div id="list-fetching-bar" style="  text-align: center;display: block;height: 50px;font-size: 20px;background-color: lightblue;padding-top: 10px;;color: darkblue;">
+        Fetching next images...
+    </div>
 </template>
 
 <template name="post">
-  <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 center-block text-center post-item">
-    <a href="{{pathFor route='posts.show' data=this}}">
-      <div class="loading-bg">
-			<img class="img-circle" src="{{thumbUrl imageId isVideo}}">
-      </div>
-      <h4>{{title}}</h4>
-      {{#if isVideo}}
-      <span class="label label-success">video</span>
-      {{/if}}
-      <em>By {{user.username}}</em>
-    </a>
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 center-block text-center post-item">
+        <a href="{{pathFor route='posts.show' data=this}}">
+            <div class="loading-bg">
+                <img class="img-circle" src="{{thumbUrl imageId isVideo}}">
+            </div>
+            <h4>{{title}}</h4> {{#if isVideo}}
+            <span class="label label-success">video</span> {{/if}}
+            <em>By {{user.username}}</em>
+        </a>
 
-  </div>
+    </div>
 </template>

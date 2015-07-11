@@ -1,15 +1,17 @@
 <template name="PostsNew">
-<form role="form" id="" class="center-block text-center new-post" style="max-width: 300px;">
-  <div class="form-group">
-    <input type="text" name="title" placeholder="Enter title" class="form-control"/>
-  </div>
-  <div class="form-group">
-    <input id="oldschool-file-field" type="file" name="image" class="form-control"/>
-  </div>
-  <div class="form-group">
-    <input type="text" name="desc" placeholder="Describe about the picture or video" class="form-control"/>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>&nbsp;<a href="/images/">
-    <button type="button" class="btn btn-primary">Cancel</button></a>
-</form>
+    <form role="form" id="post-form" class="center-block text-center new-post" style="max-width: 300px;">
+        <div class="form-group">
+            <input type="text" name="title" placeholder="Enter title" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input id="oldschool-file-field" type="file" name="image" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="text" name="desc" placeholder="Describe about the picture or video" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>&nbsp;
+        <a href="/images/">
+            <button type="button" class="btn btn-primary">Cancel</button>
+        </a>
+    </form>
 </template>
