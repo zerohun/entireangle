@@ -41,3 +41,7 @@ Template.layout.helpers({
         return Meteor.user() !== null;
     }
 });
+
+Template.layout.rendered = function(){
+    $('body').css({overflow: "scroll"});
+};

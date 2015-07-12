@@ -148,6 +148,8 @@ Template.PostsShow.events({
 
 Template.PostsShow.rendered = function() {
 
+    $('body').css({overflow: "hidden"});
+
     $("#loading-box").show();
     var popStateSub = Rx.Observable.fromEvent(window, "popstate").
     subscribe(function(e) {
