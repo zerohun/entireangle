@@ -10,9 +10,7 @@
 
         </div>
     </div>
-    <div id="list-fetching-bar" style="  text-align: center;display: block;height: 50px;font-size: 20px;background-color: lightblue;padding-top: 10px;;color: darkblue;">
-        Fetching next images...
-    </div>
+
 </template>
 
 <template name="post">
@@ -23,8 +21,8 @@
             </div>
             <h4>{{title}}</h4> {{#if isVideo}}
             <span class="label label-success">video</span> {{/if}}
-            <em>By {{user.username}}</em>
-        </a>
 
+        </a>
+        <a class="user-link" href="{{pathFor route='users.show' data=user}}"> <em>By {{user.username}}</em></a>
     </div>
 </template>
