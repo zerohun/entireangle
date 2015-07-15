@@ -8,5 +8,5 @@ Template.UsersShow.helpers({
 });
 
 Template.UsersShow.rendered = function(){
-    enablePostEndlessScroll("UserPostsLimit");
+    enableEndlessScroll("UserPostsLimit", Post);
 };

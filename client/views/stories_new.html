@@ -1,0 +1,65 @@
+<template name="StoriesNew">
+    <form role="form" id="story-form" class="center-block text-center new-story">
+        <div class="form-group">
+            <input type="text" name="title" placeholder="Enter title" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="text" name="desc" placeholder="Describe about the picture or video" class="form-control" />
+        </div>
+        <button id="add-post-to-story" class="btn btn-success">Add Posts</button>
+        <div id="story-post-list">
+            {{#each posts}} {{> selectedPost}} {{/each}}
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>&nbsp;
+        <a href="/images/">
+            <button type="button" class="btn btn-primary">Cancel</button>
+        </a>
+    </form>
+
+    <div class="modal fade" id="post-list-to-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h5>Select posts to add your story</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="post-list-to-add">
+                        {{#each userPosts}} {{> postSelect}} {{/each}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-posts-list">Add</button>
+                    <button id="add-post-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template name="selectedPost">
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6 center-block text-center post-item">
+        <a href="{{pathFor route='posts.show' data=this}}">
+            <div class="loading-bg">
+                <img src="{{thumbUrl imageId isVideo}}">
+            </div>
+            <h4>{{title}}</h4> {{#if isVideo}}
+            <span class="label label-success">video</span> {{/if}}
+
+        </a>
+        <a class="user-link" href="{{pathFor route='users.show' data=user}}"> <em>By {{user.username}}</em></a>
+    </div>
+</template>
+
+<template name="postSelect">
+    <label class="checkbox">
+        <div class="loading-bg">
+            <input id="{{_id}}" class="post-check" type="checkbox">
+            <img class="img-circle" src="{{thumbUrl imageId isVideo}}">
+            <h4>{{title}}</h4> {{#if isVideo}}
+            <span class="label label-success">video</span> {{/if}}
+
+        </div>
+    </label>
+</template>

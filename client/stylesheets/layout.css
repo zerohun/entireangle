@@ -30,3 +30,29 @@
 #hidden-video {
     display: none;
 }
+
+#story-post-list{
+    overflow-y: scroll;
+    min-height: 400px;
+    width: 100%;
+    background-color: lightgray;
+}
+#story-post-list img{
+    width: 100%
+}
+
+#list-fetching-bar{
+    display: none;
+    text-align: center;
+    height: 50px;
+    font-size: 20px;
+    background-color: lightblue;
+    padding-top: 10px;
+    color: darkblue;
+}
+
+.form-group{
+    max-width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+}

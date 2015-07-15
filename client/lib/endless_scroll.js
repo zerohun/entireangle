@@ -1,8 +1,9 @@
-window.enablePostEndlessScroll =  function(limitSessionKey){
+window.enableEndlessScroll =  function(limitSessionKey, pCollection){
+    $("#list-fetching-bar").show();
 
     Tracker.autorun(function(computation) {
         var limit = Session.get(limitSessionKey); 
-        if (Post.find().count() < limit)
+        if (pCollection.find().count() < limit)
             $("#list-fetching-bar").fadeOut(2000);
         else
             $("#list-fetching-bar").show();
@@ -22,7 +23,14 @@ window.enablePostEndlessScroll =  function(limitSessionKey){
 
     var scrollEventSub = scrollEventSrc.subscribe(function(e) {
         var limit = Session.get(limitSessionKey); 
-        if (Post.find().count() >= limit)
+        if (pCollection.find().count() >= limit)
             Session.set(limitSessionKey, limit + 10);
     });
+
+    var pushstateSub = Rx.Observable.fromEvent(window, 'popstate').
+                        subscribe(function(){
+                            scrollEventSub.dispose();
+                            pushstateSub.dispose();
+                            $("#list-fetching-bar").hide();
+                        })
 };

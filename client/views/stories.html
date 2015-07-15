@@ -1,0 +1,17 @@
+<template name="Stories">
+    <div class="container-fluid">
+        <div class="row center-block">
+            {{#each stories}} {{> story}} {{/each}}
+
+        </div>
+    </div>
+</template>
+
+<template name="story">
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 center-block text-center post-item">
+        <a href="{{pathFor route='stories.show' data=this}}">
+            <h4>{{title}}</h4>
+        </a>
+        <a class="user-link" href="{{pathFor route='users.show' data=user}}"> <em>By {{user.username}}</em></a>
+    </div>
+</template>

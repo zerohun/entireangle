@@ -41,6 +41,6 @@ Template.Posts.rendered = function() {
     $("body").css("overflow", "scroll");
     $("#loading-box").hide();
 
-    enablePostEndlessScroll("PostsLimit");
+    enableEndlessScroll("PostsLimit", Post);
 
 };
