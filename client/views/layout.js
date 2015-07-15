@@ -45,3 +45,9 @@ Template.layout.helpers({
 Template.layout.rendered = function(){
     $('body').css({overflow: "scroll"});
 };
+
+Template._loginButtonsAdditionalLoggedInDropdownActions.events({
+    'click #login-buttons-edit-profile': function(event) {
+        Router.go('mypage');
+    }
+});
