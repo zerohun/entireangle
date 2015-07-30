@@ -1,4 +1,5 @@
 window.Orb = function(reqiredParams, options) {
+    self = this;
     var scene, element, mesh;
     var clock = new THREE.Clock();
 
@@ -47,18 +48,24 @@ window.Orb = function(reqiredParams, options) {
 
     function init() {
 
-        scene = new THREE.Scene();
-        scene.add(camera);
+        self.scene = new THREE.Scene();
+        self.scene.add(camera);
 
-        var geometry = new THREE.SphereGeometry(400, 60, 40);
+        geometry = new THREE.SphereGeometry(400, 60, 40);
         geometry.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
         geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, 0));
 
-        mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
+        self.mesh = new THREE.Mesh(geometry, material);
+        self.scene.add(self.mesh);
 
         var element = renderer.domElement;
         container.appendChild(element);
+    }
+
+    function refreshScene(){
+        self.scene = new THREE.Scene();
+        self.scene.add(camera);
+        self.scene.add(self.mesh);
     }
 
     function getSize(container) {
@@ -90,7 +97,7 @@ window.Orb = function(reqiredParams, options) {
         //		camera.updateProjectionMatrix();
         controls.update(dt);
         //				camera.position.copy( camera.target ).negate();
-        renderable.render(scene, camera);
+        renderable.render(self.scene, camera);
     }
 
 };

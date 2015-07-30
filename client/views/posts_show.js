@@ -196,6 +196,7 @@ Template.PostsShow.rendered = function() {
             orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
         }
         orb.render();
+        window.o = orb;
         if (post.viewPosition) {
             orb.controls.object.position.x = post.viewPosition.x;
             orb.controls.object.position.y = post.viewPosition.y;
@@ -203,6 +204,63 @@ Template.PostsShow.rendered = function() {
         }
         if (Meteor.userId() && Meteor.userId() == post.user._id)
             observeViewPosition(orb);
+
+        if (vrDeviceInfo.type === "MOBILE"){
+            var prevTouchCoords;
+            var touchCoords = THREE.Vector2();
+            var raycaster = new THREE.Raycaster();
+
+            Rx.Observable.fromEvent(container, "touchstart").
+                flatMap(function(startEvent){
+                    return Rx.Observable.fromEvent(container, "touchmove").
+                        takeUntil(Rx.Observable.fromEvent(container, "touchend"));
+                }).
+                takeUntil(Rx.Observable.fromEvent(window, "popstate")).
+            subscribe(function(e){
+                try{
+                var touchCoords = new THREE.Vector2();
+                touchCoords.x =  (e.touches[0].clientX / $(container).width()) * 2 - 1;
+                touchCoords.y = -(e.touches[0].clientY / $(container).height()) * 2 + 1;
+                //console.log(touchCoords);
+                if(prevTouchCoords){
+
+                    var dy = touchCoords.y - prevTouchCoords.y;
+                    if(dy > 0.3){
+                        alert('title:' + post.title);
+                    }
+                    console.log(dy);
+
+                    raycaster.setFromCamera( touchCoords, orb.getCamera() );
+                    var intersects = raycaster.intersectObject( orb.mesh );
+                    var point = intersects[0].point;
+                    var horizontalPoint = new THREE.Vector3(point.x, 0, point.z);
+
+                    raycaster.setFromCamera( prevTouchCoords, orb.getCamera() );
+                    intersects = raycaster.intersectObject( orb.mesh );
+                    var prevPoint = intersects[0].point;
+                    var prevHorizontalPoint = new THREE.Vector3(prevPoint.x, 0, prevPoint.z);
+
+                    var angle =  -Math.acos( horizontalPoint.dot(prevHorizontalPoint) / horizontalPoint.length() / prevHorizontalPoint.length() ); 
+                    var axis = horizontalPoint.cross(prevHorizontalPoint).normalize();
+                    if(angle !== 0 && (axis.x !== 0 || axis.y !== 0 || axis.z !== 0 )){
+                        var rotQuat = new THREE.Quaternion();
+                        rotQuat.setFromAxisAngle(axis, angle);
+                        console.log(axis, angle);
+                        orb.mesh.quaternion.multiply(rotQuat);
+                    }
+                }
+                prevTouchCoords = touchCoords;
+                } catch(ex){
+                    //alert(ex.message);
+                }
+                
+            });
+            Rx.Observable.fromEvent(container, "touchend").
+                takeUntil(Rx.Observable.fromEvent(window, "popstate")).
+                subscribe(function(){
+                    prevTouchCoords = null;
+                });
+        }
     }
 
 
