@@ -1,0 +1,97 @@
+template(name='PostsShow')
+  #container.loading-bg(style='width:100%; height:100%')
+  #info
+    #button-container.btn-group(role='group')
+      unless isEmbedded
+        button#home-button.btn.btn-warning.btn-xs Explore
+        button.btn.btn-primary.btn-xs(data-toggle='modal', data-target='#shareModal') Share
+        button.btn.btn-info.btn-xs(data-toggle='modal', data-target='#infoModal') Info
+
+      button#vr-mode-button.btn.btn-success.btn-xs VR mode
+      unless isEmbedded
+        if isMyPost                                               
+          button#remove-button.btn.btn-danger.btn-xs Delete
+
+        button#position-save-button.btn.btn-success.btn-xs(style='display:none') Save Position
+  unless isEmbedded
+    #shareModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-body
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h4 Share
+            hr
+            .btn-group(role='group')
+              +shareit
+            br
+            br
+            br
+            h4 Embed
+            hr
+            input#embed-url-string(type='text', value='{{embedUrl}}')
+    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          form#edit-post
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+              h4#myModalLabel.modal-title.view-box {{title}}
+              input.edit-field(type='text', name='title', value='{{title}}')
+            .modal-body
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+              h4 Share
+              hr
+              .btn-group(role='group')
+                +shareit
+              br
+              br
+              br
+              h4 Embed
+              hr
+              input#embed-url-string(type='text', value='{{embedUrl}}')
+    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          form#edit-post
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+              h4#myModalLabel.modal-title.view-box {{title}}
+              input.edit-field(type='text', name='title', value='{{title}}')
+            .modal-body
+              p.timestamp
+                | {{createdAt}}
+              p.view-box
+                pre
+                  | \n{{desc}}                    
+              textarea.edit-field(name='desc') {{desc}}
+              br
+              if isMyPost
+                button.btn.btn-xs.btn.edit-field(type='submit')
+                  | Done
+                button#edit-button.btn.btn-warning.btn-xs.view-box
+                  | Edit
+
+          .modal-footer
+
+  #NoneVRModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4#myModalLabel.modal-title Your web browser is not supporting VR mode
+        .modal-body
+          h4 HMD(ex Oculus Rift) with Windows or Mac osx
+          p.lead
+            | You need to visit this website with 
+            a(href='https://nightly.mozilla.org') Firefox Nightly
+            |  or 
+            a(href='https://code.google.com/p/chromium') Chromium
+          h4 For Android user.(EX: Google cardboard)
+          p.lead
+            | You need to use a web browers that support WebL(ex: Chrome)
+

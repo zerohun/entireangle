@@ -42,7 +42,11 @@
 }
 
 .post-item {
+    padding: 20px;
     margin-bottom: 20px;
+}
+.post-item img{
+  width: 100%;
 }
 
 .loading-bg {

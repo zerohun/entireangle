@@ -39,11 +39,40 @@ Meta.set({
 Template.layout.helpers({
     "isLoggedIn": function() {
         return Meteor.user() !== null;
-    }
+    },
+    "menuItems": [
+      {
+        title: "gallery",
+        url: "/posts"
+      },
+      {
+        title: "intro",
+        url: "/"
+      },
+      {
+        title: "try it",
+        url: "/posts/new"
+      },
+      {
+        title: "about us",
+        url: "/about"
+      }
+    ]
+
 });
 
 Template.layout.rendered = function(){
     $('body').css({overflow: "scroll"});
+    var tabNode = FView.byId('tab').node;
+
+    var Position = famous.components.Position;
+    var position = new Position(tabNode);
+    position.set(0, 0, 0, { duration: 2000, curve: 'inOutQuart' });
+
+    $('body').css({overflow: "scroll"});
+    var fview = FView.byId('header-footer');
+    fview.node.setHeightMode('scroll');
+
 };
 
 Template._loginButtonsAdditionalLoggedInDropdownActions.events({

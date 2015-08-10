@@ -1,0 +1,23 @@
+template(name="layout")
+  +Scene
+    +HeaderFooterLayout id="header-footer"
+      +Node id="tab" position = "[ 0, -300 ]"
+        +Node position = "[ 0, 5 ]"
+          +DOMElement
+            img(src="/images/logo.png", width='250')
+        +TabMenuLayout position="[ 300, 0 ]"
+          +famousEach menuItems
+            +Node
+              +DOMElement
+                a.tab(href=url)
+                  h3
+                    | #{title}
+          +Node              
+            +DOMElement
+              +loginButtons 
+
+      +Node id="content"
+        +DOMElement
+          +yield
+
+template(name="_loginButtonsAdditionalLoggedInDropdownActions")

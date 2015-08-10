@@ -24,5 +24,6 @@ npm-container
 jquery
 sbe:rxjs
 joshowens:shareit
+mquandalle:jade
 gadicohen:famous
 gadicohen:famous-views

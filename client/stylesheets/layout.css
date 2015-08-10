@@ -1,3 +1,13 @@
+body {
+  background-color: black;
+  color: white;
+
+}
+a:link, a:visited, a:hover, a:active{
+  color: white;
+  text-decoration: none;
+}
+
 #loading-box {
     display: none;
     position: fixed;
