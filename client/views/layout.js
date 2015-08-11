@@ -47,7 +47,7 @@ Template.layout.helpers({
       },
       {
         title: "intro",
-        url: "/"
+        url: "/intro"
       },
       {
         title: "try it",
