@@ -12,12 +12,27 @@ template(name="layout")
                 a.tab(href=url)
                   h3
                     | #{title}
-          +Node              
+          +Node
             +DOMElement
-              +loginButtons 
+              if isLoggedIn 
+                a.tab(href="/mypage")
+                  h3
+                    | #{username}
+              else
+                button#login-btn.tab.btn.btn-default
+                  span Login
+
 
       +Node id="content"
         +DOMElement
           +yield
+
+    +ModalWindow id="login-form"        
+      +DOMElement
+        +login
+
+    //+Node id="register-form"  position = "[ 0, 500, 200 ]"            
+      //+DOMElement
+        //+register
 
 template(name="_loginButtonsAdditionalLoggedInDropdownActions")

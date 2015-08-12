@@ -1,0 +1,13 @@
+input[type='email'],input[type='password']{
+}
+#login-window{
+  background-color:black; 
+  padding: 20px;
+  padding-top: 0px;
+  border-style:solid;
+  border-width:1px;
+  border-color: white;
+}
+.error-message{
+  color: red;
+}

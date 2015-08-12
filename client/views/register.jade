@@ -1,0 +1,10 @@
+template(name='register') 
+  form#register-form(action='action')
+    div
+      input#account-email.email-field(type='email')
+      #account-email-msg 
+        | {{emailMsg}}
+      input#account-password(type='password')
+      #account-password-msg 
+        | {{passwordMsg}}
+      input#create-account(type='submit', value='Create an Account')

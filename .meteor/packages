@@ -7,7 +7,6 @@
 meteor-platform
 yasinuslu:blaze-meta
 twbs:bootstrap
-ian:accounts-ui-bootstrap-3
 accounts-password
 grigio:babel
 cfs:graphicsmagick
@@ -27,3 +26,5 @@ joshowens:shareit
 mquandalle:jade
 gadicohen:famous
 gadicohen:famous-views
+accounts-base
+logandk:validator

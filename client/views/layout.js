@@ -1,27 +1,27 @@
-Accounts.ui.config({
-    requestPermissions: {},
-    extraSignupFields: [{
-        fieldName: 'username',
-        fieldLabel: 'username',
-        inputType: 'text',
-        visible: true,
-        saveToProfile: true
-    }, {
-        fieldName: 'terms',
-        fieldLabel: 'I accept the <a href="/private_policy">terms and conditions</a>',
-        inputType: 'checkbox',
-        visible: true,
-        saveToProfile: false,
-        validate: function(value, errorFunction) {
-            if (value) {
-                return true;
-            } else {
-                errorFunction('You must accept the terms and conditions.');
-                return false;
-            }
-        }
-    }]
-});
+//Accounts.ui.config({
+    //requestPermissions: {},
+    //extraSignupFields: [{
+        //fieldName: 'username',
+        //fieldLabel: 'username',
+        //inputType: 'text',
+        //visible: true,
+        //saveToProfile: true
+    //}, {
+        //fieldName: 'terms',
+        //fieldLabel: 'I accept the <a href="/private_policy">terms and conditions</a>',
+        //inputType: 'checkbox',
+        //visible: true,
+        //saveToProfile: false,
+        //validate: function(value, errorFunction) {
+            //if (value) {
+                //return true;
+            //} else {
+                //errorFunction('You must accept the terms and conditions.');
+                //return false;
+            //}
+        //}
+    //}]
+//});
 
 Meta.config({
     options: {
@@ -37,28 +37,16 @@ Meta.set({
 });
 
 Template.layout.helpers({
-    "isLoggedIn": function() {
-        return Meteor.user() !== null;
-    },
     "menuItems": [
       {
         title: "gallery",
         url: "/posts"
       },
       {
-        title: "intro",
-        url: "/intro"
-      },
-      {
         title: "try it",
         url: "/posts/new"
-      },
-      {
-        title: "about us",
-        url: "/about"
       }
     ]
-
 });
 
 Template.layout.rendered = function(){
@@ -67,16 +55,18 @@ Template.layout.rendered = function(){
 
     var Position = famous.components.Position;
     var position = new Position(tabNode);
-    position.set(0, 0, 0, { duration: 2000, curve: 'inOutQuart' });
+    position.set(0, 0, 0, { duration: 500, curve: 'inOutQuart' });
 
     $('body').css({overflow: "scroll"});
     var fview = FView.byId('header-footer');
-    fview.node.setHeightMode('scroll');
 
+    if(!Meteor.user())
+      registerLoginBtnCallback();
 };
 
 Template._loginButtonsAdditionalLoggedInDropdownActions.events({
     'click #login-buttons-edit-profile': function(event) {
         Router.go('mypage');
     }
+
 });

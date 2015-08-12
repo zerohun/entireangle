@@ -1,9 +1,3 @@
-Template.Mypage.helpers({
-    username: function(){
-        return Meteor.user().username;
-    }
-});
-
 Template.Mypage.events({
     "submit #user-form": function(event){
         var userObj = {
@@ -22,6 +16,15 @@ Template.Mypage.events({
     },
     "click #mypage-cancel-button": function(){
         Router.go("home");
-    }
+    },
+    "click #logout": function(){
+      Meteor.logout(function(err){
+        if(err) alert(err.message);
+        else {
+          Router.go("home"); 
+          registerLoginBtnCallback();
+        }
+      });
+    } 
 
 });
