@@ -9,7 +9,8 @@ Template.login.helpers({
 
 Template.login.events({
   'click #register-button': () =>{
-    Router.go('register');
+    FView.byId("login-form").node.hide(); 
+    FView.byId("register-form").node.show(); 
   },
   'click #close-login-button': () =>{
     FView.byId("login-form").node.hide(); 

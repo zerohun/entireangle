@@ -2,10 +2,6 @@ const trimInput = (val) =>{
   return val.replace(/^\s*|\s*$/g, "");
 }
 
-const isValidPassword = (val) =>{
-    return val.length >= 6; 
-};
-
 window.validateEmailFieldonKeyDown = (cssSelector, msgKey) =>{
   Rx.Observable.fromEvent($(cssSelector), "keydown").
     subscribe(e => {
@@ -26,14 +22,27 @@ window.validateEmail = (cssSelector, msgKey) =>{
   }
 }
 
-window.validatePassword = (cssSelector, msgKey) =>{
+window.validateLength = (cssSelector, lengthLimit, msgKey) =>{
+  //if(callee.arguments.length < 3){
+    //throw new Error("insurfficent params");
+  //}
   const val = $(cssSelector).val();
-  if(isValidPassword(val)){
+  let errMsg;
+  if(lengthLimit == 1){
+    errMsg = `Shouldn't be empty`;
+  }
+  else if(lengthLimit > 1){
+    errMsg = `Too short(should be at least ${lengthLimit} characters)`;
+  }
+  else{
+      throw new Error("lengthLimit shold be larger then 1");
+  }
+  if(val.length >= lengthLimit){
     Session.set(msgKey, "");
     return true;
   }
   else{
-    Session.set(msgKey, "Too short(should be atleast 6 characters)");
+    Session.set(msgKey, errMsg);
     return false;
   }
 }

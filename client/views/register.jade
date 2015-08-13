@@ -1,10 +1,39 @@
 template(name='register') 
-  form#register-form(action='action')
-    div
-      input#account-email.email-field(type='email')
-      #account-email-msg 
-        | {{emailMsg}}
-      input#account-password(type='password')
-      #account-password-msg 
-        | {{passwordMsg}}
-      input#create-account(type='submit', value='Create an Account')
+  #register-window.account-window.center-block.text-center
+    if isLoggedIn
+        <h3>Successfully signed up and logged in</h3>
+    else
+      h3 Register 
+      hr
+      form#register-form.center-block.text-center(action='action')
+        .form-group.center-block.text-center
+          input#register-email.email-field.form-control.text-center(type='email', placeholder="email")
+          if emailMsg
+            .error-message 
+              ul
+                li
+                  | {{emailMsg}}
+        .form-group.center-block.text-center
+          input#register-username.email-field.form-control.text-center(type='username', placeholder="username")
+          if usernameMsg
+            .error-message 
+              ul
+                li
+                  | {{usernameMsg}}
+
+        br
+        .form-group.center-block.text-center
+          input#register-password.form-control.text-center(type='password', placeholder="password")
+          if passwordMsg
+            .error-message 
+              ul
+                li
+                  | {{passwordMsg}}
+
+        if registerMsg
+          #register-msg.error-message 
+            ul
+              li
+                | {{registerMsg}}
+        input#register-button.btn.btn-warning.btn-large(type='submit', value='Sign up')
+        button#close-register-button.btn.btn-default.btn-large Cancel 
