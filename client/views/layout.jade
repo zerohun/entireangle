@@ -12,14 +12,16 @@ template(name="layout")
                 a.tab(href=url)
                   h3
                     | #{title}
-          +Node
-            +DOMElement
+        +AccountBox
+          +DOMElement
+            #account-box
               if isLoggedIn 
                 a.tab(href="/mypage")
-                  h3
+                  i(class="icon-user icon-white")
+                  span(id=username)
                     | #{username}
               else
-                button#login-btn.tab.btn.btn-default
+                button#login-btn
                   span Login
 
 

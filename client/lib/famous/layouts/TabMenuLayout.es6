@@ -9,7 +9,7 @@ class TabMenuLayout extends Node {
     child.setSizeMode('default', 'render').
       setProportionalSize(0.15, null).
       setAlign(0.15 * i, null).
-      setMountPoint(0.0, 0.5);
+      setMountPoint(0.0, 0.0);
 
     super.addChild(child);
   }

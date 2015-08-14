@@ -69,3 +69,26 @@ a:link, a:visited, a:hover, a:active{
 .form-loading{
   display: none;
 }
+#account-box{
+  background-color: #111;
+  color: black;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+}
+#account-box #login-btn{
+  background-color: #111;
+  color: darkgray;
+  border-color: darkgray;
+  border-style: solid;
+  font-size: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#account-box #username{
+  font-size: 20px;
+  color: darkgray;
+}
