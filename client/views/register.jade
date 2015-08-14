@@ -22,13 +22,17 @@ template(name='register')
                   | {{usernameMsg}}
 
         br
-        .form-group.center-block.text-center
-          input#register-password.form-control.text-center(type='password', placeholder="password")
-          if passwordMsg
-            .error-message 
-              ul
-                li
-                  | {{passwordMsg}}
+        +password_input
+        if passwordMsg
+          .error-message
+            ul
+              li
+                | {{passwordMsg}}
+        if passwordMatchMsg
+          .error-message
+            ul
+              li
+                | {{passwordMatchMsg}}
 
         if registerMsg
           #register-msg.error-message 

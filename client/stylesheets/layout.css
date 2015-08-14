@@ -66,3 +66,6 @@ a:link, a:visited, a:hover, a:active{
     margin-right: auto;
     margin-left: auto;
 }
+.form-loading{
+  display: none;
+}

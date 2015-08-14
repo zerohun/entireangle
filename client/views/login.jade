@@ -5,6 +5,9 @@ template(name="login")
     else
       h3 Login
       hr
+      if loginTopMessage
+        h6 loginTopMessage
+        hr
       form#login-form.center-block.text-center(action='action')
         .form-group.center-block.text-center
           input#login-email.email-field.form-control.text-center(type='email', placeholder="email")

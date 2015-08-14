@@ -37,7 +37,7 @@ window.validateLength = (cssSelector, lengthLimit, msgKey) =>{
   else{
       throw new Error("lengthLimit shold be larger then 1");
   }
-  if(val.length >= lengthLimit){
+  if(val && val.length >= lengthLimit){
     Session.set(msgKey, "");
     return true;
   }
@@ -45,5 +45,17 @@ window.validateLength = (cssSelector, lengthLimit, msgKey) =>{
     Session.set(msgKey, errMsg);
     return false;
   }
+}
+
+window.validatePasswordMatched = (retypeEle, msgKey) =>{
+    const passwordEle = retypeEle.parent().parent().find(".password-input");
+    if(retypeEle.val() === passwordEle.val()){
+      Session.set(msgKey, "");
+      return true;
+    }
+    else{
+      Session.set(msgKey, "Password is not matching");
+      return false;
+    }
 }
 

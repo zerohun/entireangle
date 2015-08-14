@@ -4,6 +4,9 @@ Template.login.helpers({
   //},
   loginMsg: ()=> {
     return Session.get("login-msg");
+  },
+  loginTopMessage: ()=> {
+    return Session.get('login-top-message');
   }
 });
 
@@ -11,6 +14,10 @@ Template.login.events({
   'click #register-button': () =>{
     FView.byId("login-form").node.hide(); 
     FView.byId("register-form").node.show(); 
+  },
+  'click #reset-password-button': () =>{
+    FView.byId("login-form").node.hide(); 
+    FView.byId("forgot-password").node.show(); 
   },
   'click #close-login-button': () =>{
     FView.byId("login-form").node.hide(); 
@@ -34,6 +41,7 @@ Template.login.events({
             // login attempt has failed. 
           }
           else{
+            Session.set('login-top-message', '');
             setTimeout(function(){
               Session.set("login-msg", "");
               FView.byId("login-form").node.hide(); 

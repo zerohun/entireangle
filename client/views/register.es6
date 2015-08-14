@@ -20,6 +20,9 @@ Template.register.helpers({
   },
   registerMsg: ()=> {
     return Session.get("register-msg");
+  },
+  passwordMatchMsg: ()=> {
+    return Session.get("register-password-match-msg");
   }
 });
 Template.register.events({
@@ -30,20 +33,26 @@ Template.register.events({
   'submit #register-form' : function(e, t) {
     let canCreateUser = true;
     canCreateUser &= validateEmail('#register-email', 'register-email-msg');
-    canCreateUser &= validateLength('#register-password', 6, 'register-password-msg');
+    canCreateUser &= validateLength('#register-window .password-input', 6, 'register-password-msg');
     canCreateUser &= validateLength('#register-username', 1, 'register-username-msg');
+    canCreateUser &= validatePasswordMatched($('#register-window .password-reinput'), 'register-password-match-msg');
 
     if(canCreateUser){
         var email = t.find('#register-email').value, 
-            password = t.find('#register-password').value,
+            password = t.find('#register-window .password-input').value,
             username = t.find('#register-username').value;
 
         // Trim and validate the input
 
-      Accounts.createUser({email: email, password : password, username: username}, function(err){
-          if (err) {
+      $("#register-window input, #register-window button").prop("disabled",true);
+      $("#register-window .form-loading").show();
+      try{
+        Accounts.createUser({email: email, password : password, username: username}, function(err){
+        $("#register-window input, #register-window button").prop("disabled",false);
+        $("#register-window .form-loading").hide();
+        if (err) {
             Session.set("register-msg", err.message);
-          } else {
+        } else {
             Session.set("register-msg", "");
             Meteor.loginWithPassword(email, password, (err) =>{
               if(err){
@@ -59,6 +68,12 @@ Template.register.events({
           }
 
         });
+        $("#register-window input, #register-window button").prop("disabled",false);
+        $("#register-window .form-loading").hide();
+      }
+      catch(e){
+        
+      }
     }
 
     return false;
