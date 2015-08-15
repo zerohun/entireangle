@@ -73,7 +73,7 @@ a:link, a:visited, a:hover, a:active{
   background-color: #111;
   color: black;
   width: 100%;
-  padding: 15px;
+  padding: 10%;
   text-align: center;
 }
 #account-box #login-btn{
@@ -81,14 +81,43 @@ a:link, a:visited, a:hover, a:active{
   color: darkgray;
   border-color: darkgray;
   border-style: solid;
-  font-size: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-right: 10%;
+  padding-left: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+
+@media screen and (min-device-width: 0px){
+  #account-box #login-btn{
+    font-size:10px;
+  }
+  .tab span{
+    font-size: 15px;
+
+  }
+  img#logo{
+    width: 125px;
+  }
+}
+@media screen and (min-device-width: 550px){
+  #account-box #login-btn{
+    font-size:20px;
+  }
+  .tab span{
+    font-size: 30px;
+
+  }
+  img#logo{
+    width: 250px;
+  }
 }
 
 #account-box #username{
   font-size: 20px;
   color: darkgray;
 }
+
+.tab {
+}
+

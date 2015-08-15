@@ -4,13 +4,13 @@ template(name="layout")
       +Node id="tab" position = "[ 0, -300 ]"
         +Node position = "[ 0, 5 ]"
           +DOMElement
-            img(src="/images/logo.png", width='250')
-        +TabMenuLayout position="[ 300, 0 ]"
+            img(id="logo" src="/images/logo.png")
+        +TabMenuLayout id="tabMenu"
           +famousEach menuItems
             +Node
               +DOMElement
                 a.tab(href=url)
-                  h3
+                  span
                     | #{title}
         +AccountBox
           +DOMElement

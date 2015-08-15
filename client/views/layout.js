@@ -60,6 +60,8 @@ Template.layout.rendered = function(){
     $('body').css({overflow: "scroll"});
     var fview = FView.byId('header-footer');
 
+    FView.byId("tabMenu").node.reflow();
+
     if(!Meteor.user())
       registerLoginBtnCallback();
 };
