@@ -121,3 +121,7 @@ a:link, a:visited, a:hover, a:active{
 .tab {
 }
 
+#slide-up-menu{
+  background-color: white;
+  opacity: 0.8
+}

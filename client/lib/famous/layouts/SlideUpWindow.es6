@@ -3,6 +3,7 @@ const SlideWindow = famous.customLayouts.SlideWindow;
 class SlideUpWindow extends SlideWindow {
   constructor(){
     super();
+    this.hide();
     const downPosition = this.downPosition();
     this.setPosition(downPosition[0], downPosition[1], downPosition[2]);
     this.slideStatus = SlideWindow.DOWN;
