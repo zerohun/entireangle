@@ -12,15 +12,15 @@ Template.login.helpers({
 
 Template.login.events({
   'click #register-button': () =>{
-    FView.byId("login-form").node.hide(); 
-    FView.byId("register-form").node.show(); 
+    FView.byId("login-form").node.slideUp(); 
+    FView.byId("register-form").node.slideDown(); 
   },
   'click #reset-password-button': () =>{
-    FView.byId("login-form").node.hide(); 
-    FView.byId("forgot-password").node.show(); 
+    FView.byId("login-form").node.slideUp(); 
+    FView.byId("forgot-password").node.slideDown(); 
   },
   'click #close-login-button': () =>{
-    FView.byId("login-form").node.hide(); 
+    FView.byId("login-form").node.slideUp(); 
   },
 
   'submit #login-form' : (e, t) =>{
@@ -44,7 +44,7 @@ Template.login.events({
             Session.set('login-top-message', '');
             setTimeout(function(){
               Session.set("login-msg", "");
-              FView.byId("login-form").node.hide(); 
+              FView.byId("login-form").node.slideUp(); 
             }, 1000);
               // The user has been logged in.
           }

@@ -15,7 +15,7 @@ window.registerLoginBtnCallback = function(){
   waitForDom('#login-btn', function(){
     Rx.Observable.fromEvent($("#login-btn"), 'click').
       subscribe(function(){
-        FView.byId("login-form").node.show();
+        FView.byId("login-form").node.slideDown();
       });
   });
 

@@ -27,7 +27,7 @@ Template.register.helpers({
 });
 Template.register.events({
   'click #close-register-button': function(){
-    FView.byId("register-form").node.hide(); 
+    FView.byId("register-form").node.slideUp(); 
     return false;
   },
   'submit #register-form' : function(e, t) {
@@ -45,11 +45,11 @@ Template.register.events({
         // Trim and validate the input
 
       $("#register-window input, #register-window button").prop("disabled",true);
-      $("#register-window .form-loading").show();
+      $("#register-window .form-loading").slideDown();
       try{
         Accounts.createUser({email: email, password : password, username: username}, function(err){
         $("#register-window input, #register-window button").prop("disabled",false);
-        $("#register-window .form-loading").hide();
+        $("#register-window .form-loading").slideUp();
         if (err) {
             Session.set("register-msg", err.message);
         } else {
@@ -61,7 +61,7 @@ Template.register.events({
               else{
                 resetMsgSessions();
                 setTimeout(()=>{
-                  FView.byId("register-form").node.hide(); 
+                  FView.byId("register-form").node.slideUp(); 
                 }, 1000);
               }
             });
@@ -69,7 +69,7 @@ Template.register.events({
 
         });
         $("#register-window input, #register-window button").prop("disabled",false);
-        $("#register-window .form-loading").hide();
+        $("#register-window .form-loading").slideUp();
       }
       catch(e){
         

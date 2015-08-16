@@ -29,17 +29,21 @@ template(name="layout")
         +DOMElement
           +yield
 
-    +ModalWindow id="login-form"        
+    +SlideDownWindow id="login-form"        
       +DOMElement
         +login
-    +ModalWindow id="register-form"            
+    +SlideDownWindow id="register-form"            
       +DOMElement
         +register
-    +ModalWindow id="forgot-password"            
+    +SlideDownWindow id="forgot-password"            
       +DOMElement
         +forgotpassword
-    +ModalWindow id="reset-form"            
+    +SlideDownWindow id="reset-form"            
       +DOMElement
         +resetpassword
+
+    +SlideUpWindow id="slide-up-menu"
+      +DOMElement
+        +slideUpMenu
 
 template(name="_loginButtonsAdditionalLoggedInDropdownActions")

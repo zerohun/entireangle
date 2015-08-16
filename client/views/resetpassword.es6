@@ -16,7 +16,7 @@ Template.resetpassword.helpers({
 
 Template.resetpassword.events({
   'click #close-reset-button': function(){
-    FView.byId("reset-form").node.hide(); 
+    FView.byId("reset-form").node.slideUp(); 
     return false;
   },
   'submit #reset-form' : function(e, t) {
@@ -37,7 +37,7 @@ Template.resetpassword.events({
             resetPasswordInfo.done();
             Session.set("reseted-password", true);
             setTimeout(()=>{
-              FView.byId("reset-form").node.hide();
+              FView.byId("reset-form").node.slideUp();
             }, 1000);
           }
         });
@@ -51,6 +51,6 @@ Template.resetpassword.events({
 });
 Template.resetpassword.rendered = ()=>{
   if(window.resetPasswordInfo){
-    FView.byId("reset-form").node.show();
+    FView.byId("reset-form").node.slideDown();
   }
 }
