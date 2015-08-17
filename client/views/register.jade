@@ -34,10 +34,25 @@ template(name='register')
               li
                 | {{passwordMatchMsg}}
 
+        label.checkbox
+          input#private-policy-checkbox(type="checkbox")
+          | I accept the 
+          button.btn.btn-default
+            a#term-button(href="/private_policy" target="_blank") terms and conditions 
+        #register-private-policy-msg.error-message 
+          if privatePolicyMsg
+            ul
+              li
+                | {{privatePolicyMsg}}
+        br
+        br
+
         if registerMsg
           #register-msg.error-message 
             ul
               li
                 | {{registerMsg}}
+
+
         input#register-button.btn.btn-warning.btn-large(type='submit', value='Sign up')
         button#close-register-button.btn.btn-default.btn-large Cancel 

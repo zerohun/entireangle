@@ -3,6 +3,7 @@ function resetMsgSessions() {
   Session.set("register-password-msg", "");
   Session.set("register-username-msg", "");
   Session.set("register-msg", "");
+  Session.set("register-private-policy-msg", "");
 }
 function resetInputs() {
   $("#register-window input[type=text]").val("");
@@ -23,6 +24,9 @@ Template.register.helpers({
   },
   passwordMatchMsg: ()=> {
     return Session.get("register-password-match-msg");
+  },
+  privatePolicyMsg: ()=>{
+    return Session.get("register-private-policy-msg");
   }
 });
 Template.register.events({
@@ -36,6 +40,7 @@ Template.register.events({
     canCreateUser &= validateLength('#register-window .password-input', 6, 'register-password-msg');
     canCreateUser &= validateLength('#register-username', 1, 'register-username-msg');
     canCreateUser &= validatePasswordMatched($('#register-window .password-reinput'), 'register-password-match-msg');
+    canCreateUser &= validateCheckbox($('#private-policy-checkbox'), 'register-private-policy-msg');
 
     if(canCreateUser){
         var email = t.find('#register-email').value, 

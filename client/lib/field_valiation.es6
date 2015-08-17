@@ -59,3 +59,13 @@ window.validatePasswordMatched = (retypeEle, msgKey) =>{
     }
 }
 
+window.validateCheckbox = (cssSecetor, msgKey) =>{
+  if($(cssSecetor).prop("checked")){
+    return true;
+  }
+  else{
+    Session.set(msgKey, "You must check to register");
+    return false;
+  }
+}
+
