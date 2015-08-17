@@ -133,3 +133,9 @@ a:link, a:visited, a:hover, a:active{
 #term-button{
   color:black;
 }
+.modal{
+  color:black;
+}
+.modal-backdrop{
+  z-index: -1;
+}

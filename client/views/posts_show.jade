@@ -40,28 +40,6 @@ template(name='PostsShow')
               h4#myModalLabel.modal-title.view-box {{title}}
               input.edit-field(type='text', name='title', value='{{title}}')
             .modal-body
-              button.close(type='button', data-dismiss='modal', aria-label='Close')
-                span(aria-hidden='true') ×
-              h4 Share
-              hr
-              .btn-group(role='group')
-                +shareit
-              br
-              br
-              br
-              h4 Embed
-              hr
-              input#embed-url-string(type='text', value='{{embedUrl}}')
-    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-      .modal-dialog
-        .modal-content
-          form#edit-post
-            .modal-header
-              button.close(type='button', data-dismiss='modal', aria-label='Close')
-                span(aria-hidden='true') ×
-              h4#myModalLabel.modal-title.view-box {{title}}
-              input.edit-field(type='text', name='title', value='{{title}}')
-            .modal-body
               p.timestamp
                 | {{createdAt}}
               p.view-box
