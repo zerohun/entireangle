@@ -229,8 +229,8 @@ Template.PostsShow.rendered = function() {
                 if(prevTouchCoords){
                     var dy = touchCoords.y - prevTouchCoords.y;
                     if(dy > 0.3){
-                        swipeUpSub.dispose();
-                        alert('title:' + post.title);
+                        //swipeUpSub.dispose();
+                        //alert('title:' + post.title);
                     }
                     console.log(dy);
 

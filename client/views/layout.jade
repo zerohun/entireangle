@@ -4,7 +4,8 @@ template(name="layout")
       +Node id="tab" position = "[ 0, -300 ]"
         +Node position = "[ 0, 5 ]"
           +DOMElement
-            img(id="logo" src="/images/logo.png")
+            a(href="/")
+              img(id="logo" src="/images/logo.png")
         +TabMenuLayout id="tabMenu"
           +famousEach menuItems
             +Node
@@ -28,6 +29,10 @@ template(name="layout")
       +Node id="content"
         +DOMElement
           +yield
+          #list-fetching-bar Fetching next images...
+          #loading-box
+            div Loading...
+      
 
     +SlideDownWindow id="login-form"        
       +DOMElement
@@ -45,5 +50,7 @@ template(name="layout")
     +SlideUpWindow id="slide-up-menu"
       +DOMElement
         +slideUpMenu
+
+
 
 template(name="_loginButtonsAdditionalLoggedInDropdownActions")

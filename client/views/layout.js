@@ -43,7 +43,7 @@ Template.layout.helpers({
         url: "/posts"
       },
       {
-        title: "try it",
+        title: "upload",
         url: "/posts/new"
       }
     ]

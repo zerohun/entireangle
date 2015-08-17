@@ -32,10 +32,15 @@ class HeaderFooterLayout extends Node {
     this.reflow();
   }
   reflow(){
+    const headerSize = HeaderFooterLayout.HEADER_SIZE();
+    if(this.header){
+        this.header.setAbsoluteSize(null, headerSize);
+    }
     if(this.content){
+      this.content.setPosition(0, HeaderFooterLayout.HEADER_SIZE());
       if(this.heightMode === HeaderFooterLayout.HEIGHT_MODES.FILL){
         this.content.setSizeMode('default', 'absolute').
-          setAbsoluteSize(null, $(window).height() - HeaderFooterLayout.HEADER_SIZE());
+          setAbsoluteSize(null, $(window).height() - headerSize);
       }
       else if(this.heightMode === HeaderFooterLayout.HEIGHT_MODES.SCROLL){
         this.content.setSizeMode('default', 'render');
@@ -47,10 +52,10 @@ class HeaderFooterLayout extends Node {
 HeaderFooterLayout.HEADER_SIZE = ()=>{
   const windowWidth = $(window).width();
   if(windowWidth > 550){
-    return 72;
+    return 58;
   }
   else{
-    return 58;
+    return 44;
   }
 };
 HeaderFooterLayout.HEIGHT_MODES = {};

@@ -1,12 +1,17 @@
 template(name='PostsNew')
-  form#post-form.center-block.text-center.new-post(role='form', style='max-width: 300px;')
-    .form-group
-      input.form-control(type='text', name='title', placeholder='Enter title')
-    .form-group
-      input#oldschool-file-field.form-control(type='file', name='image')
-    .form-group
-      input.form-control(type='text', name='desc', placeholder='Describe about the picture or video')
-    button.btn.btn-default(type='submit') Submit
-    a(href='/images/')
-      button.btn.btn-primary(type='button') Cancel
+  .center-block.text-center
+    h3 Upload new image
+    hr
+    br
+    br
+    form#post-form.center-block.text-center.new-post(role='form', style='max-width: 300px;')
+      .form-group
+        input.form-control(type='text', name='title', placeholder='Enter title')
+      .form-group
+        input#oldschool-file-field.form-control(type='file', name='image')
+      .form-group
+        input.form-control(type='text', name='desc', placeholder='Describe about the picture or video')
+      button.btn.btn-default(type='submit') Submit
+      a(href='/')
+        button.btn.btn-primary(type='button') Cancel
 

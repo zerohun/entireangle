@@ -56,7 +56,7 @@ a:link, a:visited, a:hover, a:active{
     text-align: center;
     height: 50px;
     font-size: 20px;
-    background-color: lightblue;
+    background-color: lightgray;
     padding-top: 10px;
     color: darkblue;
 }
@@ -86,8 +86,8 @@ a:link, a:visited, a:hover, a:active{
   border-style: solid;
   padding-right: 10%;
   padding-left: 10%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 
