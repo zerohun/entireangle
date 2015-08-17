@@ -73,7 +73,10 @@ a:link, a:visited, a:hover, a:active{
   background-color: #111;
   color: black;
   width: 100%;
-  padding: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-align: center;
 }
 #account-box #login-btn{
@@ -83,8 +86,8 @@ a:link, a:visited, a:hover, a:active{
   border-style: solid;
   padding-right: 10%;
   padding-left: 10%;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 

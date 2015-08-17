@@ -148,6 +148,9 @@ Template.PostsShow.events({
 
 Template.PostsShow.rendered = function() {
 
+    var fview = FView.byId('header-footer');
+    fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.FILL);
+
     $('body').css({overflow: "hidden"});
 
     $("#loading-box").show();
@@ -210,22 +213,23 @@ Template.PostsShow.rendered = function() {
             var touchCoords = THREE.Vector2();
             var raycaster = new THREE.Raycaster();
 
-            Rx.Observable.fromEvent(container, "touchstart").
+            var swipeUpSub = Rx.Observable.fromEvent(container, "touchstart").
                 flatMap(function(startEvent){
                     return Rx.Observable.fromEvent(container, "touchmove").
                         takeUntil(Rx.Observable.fromEvent(container, "touchend"));
                 }).
-                takeUntil(Rx.Observable.fromEvent(window, "popstate")).
-            subscribe(function(e){
+                takeUntil(Rx.Observable.fromEvent(window, "popstate"));
+            
+            swipeUpSub.subscribe(function(e){
                 try{
                 var touchCoords = new THREE.Vector2();
                 touchCoords.x =  (e.touches[0].clientX / $(container).width()) * 2 - 1;
                 touchCoords.y = -(e.touches[0].clientY / $(container).height()) * 2 + 1;
                 //console.log(touchCoords);
                 if(prevTouchCoords){
-
                     var dy = touchCoords.y - prevTouchCoords.y;
                     if(dy > 0.3){
+                        swipeUpSub.dispose();
                         alert('title:' + post.title);
                     }
                     console.log(dy);
