@@ -200,7 +200,7 @@ Template.PostsShow.rendered = function() {
         }
         orb.render();
         window.o = orb;
-        if (post.viewPosition) {
+        if ( post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
             orb.controls.object.position.x = post.viewPosition.x;
             orb.controls.object.position.y = post.viewPosition.y;
             orb.controls.object.position.z = post.viewPosition.z;
