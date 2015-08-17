@@ -15,7 +15,8 @@ template(name='post')
     a(href="{{pathFor route='posts.show' data=this}}")
       .loading-bg
         img.img-circle(src='{{thumbUrl imageId isVideo}}')
-      h4 title
+      h4 
+        | {{title}}
         if isVideo
           span.label.label-success video
       em By {{user.username}}
