@@ -127,6 +127,7 @@ a:link, a:visited, a:hover, a:active{
 
 #slide-up-menu{
   background-color: white;
+  color:black;
   opacity: 0.8
 }
 
@@ -138,4 +139,7 @@ a:link, a:visited, a:hover, a:active{
 }
 .modal-backdrop{
   z-index: -1;
+}
+#slideUpMenu{
+  background-color: white;
 }
