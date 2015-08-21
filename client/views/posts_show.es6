@@ -30,7 +30,7 @@ function getSwipingDirection(eventPair){
   else{
     result = SwipingDirection.NONE;
   }
-  console.log(result);
+  //console.log(result);
   return result;
 }
 
@@ -174,6 +174,7 @@ Template.PostsShow.events({
 });
 
 Template.PostsShow.rendered = function() {
+    $('body').css("overflow", 'hidden');
     leavingPageSrc = Rx.Observable.merge(
                           Rx.Observable.fromEvent(window, "popstate"),
                           Rx.Observable.fromEvent($('a'), "click"));
@@ -217,8 +218,8 @@ Template.PostsShow.rendered = function() {
             map: THREE.ImageUtils.loadTexture(imageFilePath, null, function() {
                 $("#loading-box").hide();
             }, function(error) {
-                console.log('error while loading texture - ');
-                console.log(error);
+                //console.log('error while loading texture - ');
+                //console.log(error);
             })
         });
 
@@ -246,17 +247,13 @@ Template.PostsShow.rendered = function() {
             var prevTouchCoords;
             var touchCoords = THREE.Vector2();
             var raycaster = new THREE.Raycaster();
-
-            $("#slide-up-menu").show();
             var slideUpWindow = FView.byId("slide-up-menu").node;
-            slideUpWindow.setMountPoint(0.5, 0);
-            slideUpWindow.show();
+            Session.set('slideUpVisible', true);
+            console.log('show');
             $(window).scrollTop(0);
             const popStateSub = leavingPageSrc.
               subscribe(() =>{
-                slideUpWindow.slideDown();
-                slideUpWindow.hide();
-                console.log('hide');
+                Session.set('slideUpVisible', false);
                 popStateSub.dispose();
               });
 
@@ -287,6 +284,7 @@ Template.PostsShow.rendered = function() {
 
 
             const slideUpMenu = document.getElementById("slide-up-menu");
+            const slideUpMenuHandle = document.getElementById("slide-up-handle");
             const body = document.getElementsByTagName("body")[0];
 
             horizontalSwipeObs = Rx.Observable.fromEvent(container, "touchstart").
@@ -305,7 +303,7 @@ Template.PostsShow.rendered = function() {
               });
 
 
-            verticalSwipeObs = Rx.Observable.fromEvent(slideUpMenu, "touchstart").
+            verticalSwipeObs = Rx.Observable.fromEvent(slideUpMenuHandle, "touchstart").
               flatMap(startEvent =>{
                   return Rx.Observable.fromEvent(body, "touchmove").
                     map(moveEvent =>{

@@ -3,9 +3,8 @@ const Node = famous.core.Node;
 class WindowManager extends Node {
   addChild(node){
     super.addChild(node);
-    if(node.isHidden){
-      node.hide();
-    }
+    //if(node.isHidden){
+    //}
   }
 }
 

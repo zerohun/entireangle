@@ -3,9 +3,7 @@ const Node = famous.core.Node;
 class SlideWindow extends Node {
   constructor(){
     super();
-    const centerPoint = SlideWindow.getCenterPoint();
-    this.width = Math.max(300, centerPoint.x/2);
-    this.height = Math.max(300, centerPoint.y);
+    this.calculateSize();
     this.setSizeMode('absolute', 'absolute').
       setAbsoluteSize(this.width, this.height).
       //setPosition(this.width,  -2 * this.height).
@@ -15,6 +13,11 @@ class SlideWindow extends Node {
       subscribe(()=>{
         this.resize();
       });
+  }
+  calculateSize(){
+    const centerPoint = SlideWindow.getCenterPoint();
+    this.width = Math.max(300, centerPoint.x/2);
+    this.height = Math.max(300, centerPoint.y);
   }
   slideTo(coords){
     //const centerPoint = getCenterPoint();

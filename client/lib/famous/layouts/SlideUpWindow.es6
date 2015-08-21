@@ -3,11 +3,15 @@ const SlideWindow = famous.customLayouts.SlideWindow;
 class SlideUpWindow extends SlideWindow {
   constructor(){
     super();
-    this.hide();
     const downPosition = this.downPosition();
     this.setPosition(downPosition[0], downPosition[1], downPosition[2]);
     this.slideStatus = SlideWindow.DOWN;
-    this.isHidden = true;
+    this.setMountPoint(0.5, 0.0);
+  }
+  calculateSize(){
+    const centerPoint = SlideWindow.getCenterPoint();
+    this.width = Math.max(300, centerPoint.x/2);
+    this.height = Math.max(300, centerPoint.y * 2 - SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE - 10);
   }
   upPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 

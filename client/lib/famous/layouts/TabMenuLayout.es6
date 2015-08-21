@@ -1,12 +1,9 @@
 const Node = famous.core.Node;
 
 function resize(target){
-    if($(window).width() < 420){
+    if($(window).width() < 550){
       target.setPosition(150,10);
     }
-    else if($(window).width() < 550){
-      target.setPosition(250,10);
-    } 
     else{
       target.setPosition(300,10);
     }

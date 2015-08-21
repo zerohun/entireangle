@@ -64,6 +64,19 @@ Template.layout.rendered = function(){
 
     if(!Meteor.user())
       registerLoginBtnCallback();
+
+    var slideUpWindow = FView.byId("slide-up-menu").node;
+    Session.set('slideUpVisible', false);
+
+    Tracker.autorun(function () {
+      if(Session.get('slideUpVisible') === true){
+        slideUpWindow.show();
+      }
+      else{
+        slideUpWindow.slideDown();
+        slideUpWindow.hide();
+      }
+    });
 };
 
 Template._loginButtonsAdditionalLoggedInDropdownActions.events({
