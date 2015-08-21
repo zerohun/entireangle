@@ -18,7 +18,7 @@ class HeaderFooterLayout extends Node {
     if(this.header){
       this.content = child;
       child.setSizeMode('default', 'render').
-        setPosition(0, HeaderFooterLayout.HEADER_SIZE());
+        setPosition(0, HeaderFooterLayout.HEADER_SIZE(), 100);
     }
     else{
       this.header = child; 
@@ -37,7 +37,7 @@ class HeaderFooterLayout extends Node {
         this.header.setAbsoluteSize(null, headerSize);
     }
     if(this.content){
-      this.content.setPosition(0, HeaderFooterLayout.HEADER_SIZE());
+      this.content.setPosition(0, HeaderFooterLayout.HEADER_SIZE(), 100);
       if(this.heightMode === HeaderFooterLayout.HEIGHT_MODES.FILL){
         this.content.setSizeMode('default', 'absolute').
           setAbsoluteSize(null, $(window).height() - headerSize);

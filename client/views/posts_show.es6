@@ -6,12 +6,14 @@ var container;
 var isInVRMode = false;
 var post = null;
 var originalPosition = new THREE.Vector3();
+let leavingPageSrc; 
 
 var SwipingDirection = {}
 SwipingDirection.LEFT = Symbol("LEFT");
 SwipingDirection.RIGHT = Symbol("RIGHT");
 SwipingDirection.UP = Symbol("UP");
 SwipingDirection.DOWN = Symbol("DOWN");
+SwipingDirection.NONE = Symbol("NONE");
 
 function getSwipingDirection(eventPair){
   const dx = eventPair[1].touches[0].clientX - eventPair[0].touches[0].clientX;
@@ -22,9 +24,13 @@ function getSwipingDirection(eventPair){
   if(Math.abs(dx) > Math.abs(dy)){
     result = (dx>0)? SwipingDirection.RIGHT:SwipingDirection.LEFT;
   }
-  else{
+  else if(Math.abs(dx) < Math.abs(dy)){
     result = (dy>0)? SwipingDirection.DOWN:SwipingDirection.UP;
   }
+  else{
+    result = SwipingDirection.NONE;
+  }
+  console.log(result);
   return result;
 }
 
@@ -33,7 +39,7 @@ function observeViewPosition(orb) {
 
     var positionCheckSrc = Rx.Observable.
     interval(100).
-    takeUntil(Rx.Observable.fromEvent(window, "popstate"));
+    takeUntil(leavingPageSrc);
 
     var positionCheckSub = positionCheckSrc.subscribe(function() {
         var currentPosition = orb.controls.object.position;
@@ -168,14 +174,16 @@ Template.PostsShow.events({
 });
 
 Template.PostsShow.rendered = function() {
-
+    leavingPageSrc = Rx.Observable.merge(
+                          Rx.Observable.fromEvent(window, "popstate"),
+                          Rx.Observable.fromEvent($('a'), "click"));
     var fview = FView.byId('header-footer');
     fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.FILL);
 
-    $('body').css({overflow: "hidden"});
+
 
     $("#loading-box").show();
-    var popStateSub = Rx.Observable.fromEvent(window, "popstate").
+    var popStateSub = leavingPageSrc.
     subscribe(function(e) {
         $(".modal").modal('hide');
         $(".modal-backdrop").remove();
@@ -199,7 +207,7 @@ Template.PostsShow.rendered = function() {
     });
 
     function renderPhotoShpere(imageFilePath) {
-       var SLIDE_UP_HANDLE_SIZE = 100;
+       var SLIDE_UP_HANDLE_SIZE = famous.customLayouts.SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE;
 
         vrDeviceInfo = getVRDeviceInfo();
 
@@ -220,6 +228,7 @@ Template.PostsShow.rendered = function() {
             orb = OrbBuilders.createOrb(OrbBuilders.MobileControlOrbBuilder, material, container);
         } else {
             orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
+            $("#info").show();
         }
         orb.render();
         window.o = orb;
@@ -232,18 +241,34 @@ Template.PostsShow.rendered = function() {
             observeViewPosition(orb);
 
         if (vrDeviceInfo.type === "MOBILE"){
+
+
             var prevTouchCoords;
             var touchCoords = THREE.Vector2();
             var raycaster = new THREE.Raycaster();
 
+            $("#slide-up-menu").show();
             var slideUpWindow = FView.byId("slide-up-menu").node;
-            slideUpWindow.show();
             slideUpWindow.setMountPoint(0.5, 0);
+            slideUpWindow.show();
+            $(window).scrollTop(0);
+            const popStateSub = leavingPageSrc.
+              subscribe(() =>{
+                slideUpWindow.slideDown();
+                slideUpWindow.hide();
+                console.log('hide');
+                popStateSub.dispose();
+              });
+
             var slideUpPosition = slideUpWindow.upPosition();
+            Rx.Observable.fromEvent(window, 'resize').
+              subscribe(() =>{
+                slideUpPosition = slideUpWindow.upPosition();
+              });
 
             const windowHeight = $(window).height();
 
-            let swipeObs, verticalSwipeObs, horizontalSwipeObs, verticalUpSwipeObs, verticalDownSwipeObs;
+            let verticalSwipeObs, horizontalSwipeObs, verticalUpSwipeObs, verticalDownSwipeObs;
             let verticalObserverFunc, verticalUpCompleteFunc, verticalDownCompleteFunc, 
                 horizontalObserverFunc, horizontalCompleteFunc;
             let verticalSubs, horizontalSubs;
@@ -261,38 +286,44 @@ Template.PostsShow.rendered = function() {
             };
 
 
+            const slideUpMenu = document.getElementById("slide-up-menu");
             const body = document.getElementsByTagName("body")[0];
-            swipeObs = Rx.Observable.fromEvent(body, "touchstart").
-                  flatMap(startEvent =>{
-                      return Rx.Observable.fromEvent(body, "touchmove").
-                        map(moveEvent =>{
-                          return [startEvent,moveEvent];
-                        });
-                  }).
-                  takeUntil(Rx.Observable.fromEvent(body, "touchend"));
 
-            horizontalSwipeObs = swipeObs.filter(eventPair =>{
+            horizontalSwipeObs = Rx.Observable.fromEvent(container, "touchstart").
+              flatMap(startEvent =>{
+                  return Rx.Observable.fromEvent(body, "touchmove").
+                    map(moveEvent =>{
+                      return [startEvent,moveEvent];
+                    });
+              }).
+              takeUntil(Rx.Observable.fromEvent(body, "touchend")).
+              filter(eventPair =>{
                 const swipeDirection = getSwipingDirection(eventPair);
 
                 return (swipeDirection === SwipingDirection.LEFT ||
                         swipeDirection === SwipingDirection.RIGHT);
               });
 
-            verticalSwipeObs = swipeObs.filter(eventPair =>{
+
+            verticalSwipeObs = Rx.Observable.fromEvent(slideUpMenu, "touchstart").
+              flatMap(startEvent =>{
+                  return Rx.Observable.fromEvent(body, "touchmove").
+                    map(moveEvent =>{
+                      return [startEvent,moveEvent];
+                    });
+              }).
+              takeUntil(Rx.Observable.fromEvent(body, "touchend")).
+              filter(eventPair =>{
                 const swipeDirection = getSwipingDirection(eventPair);
                 return (swipeDirection === SwipingDirection.UP || 
                         swipeDirection === SwipingDirection.DOWN);
-
               }).takeUntil(horizontalSwipeObs);
 
             verticalUpSwipeObs = verticalSwipeObs.filter(eventPair =>{
-
-              return (getSwipingDirection(eventPair) === SwipingDirection.UP && 
-                      eventPair[0].touches[0].clientY > windowHeight - SLIDE_UP_HANDLE_SIZE);
+              return getSwipingDirection(eventPair) === SwipingDirection.UP;
             });
             verticalDownSwipeObs = verticalSwipeObs.filter(eventPair =>{
-              return (getSwipingDirection(eventPair) === SwipingDirection.DOWN && 
-                      eventPair[0].touches[0].clientY < SLIDE_UP_HANDLE_SIZE);
+              return getSwipingDirection(eventPair) === SwipingDirection.DOWN;
             });
 
             verticalObserverFunc = eventPair=>{
@@ -303,14 +334,14 @@ Template.PostsShow.rendered = function() {
 
             verticalUpCompleteFunc = ()=>{
               verticalSubs.dispose();
-              if(slideUpWindow.getPosition()[1] < windowHeight - SLIDE_UP_HANDLE_SIZE)
+              if(slideUpWindow.getPosition()[1] < slideUpWindow.downPosition()[1])
                 verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);
               else
                 verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
             }
             verticalDownCompleteFunc = ()=>{
               verticalSubs.dispose();
-              if(slideUpWindow.getPosition()[1] > windowHeight / 2)
+              if(slideUpWindow.getPosition()[1] > slideUpWindow.upPosition()[1])
                 verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
               else
                 verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);

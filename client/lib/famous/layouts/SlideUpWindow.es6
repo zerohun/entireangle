@@ -7,6 +7,7 @@ class SlideUpWindow extends SlideWindow {
     const downPosition = this.downPosition();
     this.setPosition(downPosition[0], downPosition[1], downPosition[2]);
     this.slideStatus = SlideWindow.DOWN;
+    this.isHidden = true;
   }
   upPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 
@@ -14,9 +15,12 @@ class SlideUpWindow extends SlideWindow {
   }
   downPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 
-    return [centerPoint.x,  2 * centerPoint.y - 100, 999];
+    console.log(2 * centerPoint.y - SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE);
+    return [centerPoint.x,  2 * centerPoint.y - SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE, 999];
   }
 }
+SlideUpWindow.constants = {};
+SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE = 60;
 
 if(!famous.customLayouts){
   famous.customLayouts = {};
