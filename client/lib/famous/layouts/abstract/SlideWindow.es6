@@ -3,12 +3,7 @@ const Node = famous.core.Node;
 class SlideWindow extends Node {
   constructor(){
     super();
-    this.calculateSize();
-    this.setSizeMode('absolute', 'absolute').
-      setAbsoluteSize(this.width, this.height).
-      //setPosition(this.width,  -2 * this.height).
-      setMountPoint(0.5, 0.5);
-
+    this.onSizeChangeFuncs = [];
     Rx.Observable.fromEvent($(window), "resize").
       subscribe(()=>{
         this.resize();
@@ -38,6 +33,19 @@ class SlideWindow extends Node {
       this.slideUp();
     else if(this.slideStatus === SlideWindow.DOWN)
       this.slideDown();
+
+    this.calculateSize()
+    this.setSizeMode('absolute', 'absolute').
+      setAbsoluteSize(this.width, this.height);
+      //setPosition(this.width,  -2 * this.height).
+    if(this.onSizeChangeFuncs.length){
+      this.onSizeChangeFuncs.forEach(func =>{
+        func({width: this.width, height:this.height});
+      });
+    }
+  }
+  onSizeChange(func){
+    this.onSizeChangeFuncs.push(func);
   }
 }
 SlideWindow.UP = Symbol("UP");
