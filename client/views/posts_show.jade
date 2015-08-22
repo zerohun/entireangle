@@ -14,22 +14,7 @@ template(name='PostsShow')
 
         button#position-save-button.btn.btn-success.btn-xs(style='display:none') Save Position
   unless isEmbedded
-    #shareModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-      .modal-dialog
-        .modal-content
-          .modal-body
-            button.close(type='button', data-dismiss='modal', aria-label='Close')
-              span(aria-hidden='true') ×
-            h4 Share
-            hr
-            .btn-group(role='group')
-              +shareit
-            br
-            br
-            br
-            h4 Embed
-            hr
-            input#embed-url-string(type='text', value='{{embedUrl}}')
+
     #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
       .modal-dialog
         .modal-content

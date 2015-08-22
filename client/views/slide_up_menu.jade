@@ -4,9 +4,9 @@ template(name="slideUpMenu")
       <span>Swipe Up!</span>
       hr
     #scrollable
-      button(class="btn default") share
-      button(class="btn default") edit
-      button(class="btn default") remove
+      button.btn.btn-primary.btn-xs(data-toggle='modal', data-target='#shareModal') Share
+      button(class="btn default") Edit
+      button(class="btn default") Remove
       button(class="btn default") VR mode
 
       
@@ -23,3 +23,20 @@ template(name="slideUpMenu")
       div comment3 wow where is that?
       div comment3 wow where is that?
       div comment3 wow where is that?
+
+  #shareModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-body
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.text-center Share
+          hr
+          .btn-group(role='group').text-center.block-center
+            +shareit
+          br
+          br
+          br
+          h4.text-center Embed
+          hr
+          input#embed-url-string(type='text', value='{{embedUrl}}')

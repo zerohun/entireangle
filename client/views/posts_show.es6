@@ -177,7 +177,7 @@ Template.PostsShow.rendered = function() {
     $('body').css("overflow", 'hidden');
     leavingPageSrc = Rx.Observable.merge(
                           Rx.Observable.fromEvent(window, "popstate"),
-                          Rx.Observable.fromEvent($('a'), "click"));
+                          Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a)"), "click"));
     var fview = FView.byId('header-footer');
     fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.FILL);
 
@@ -258,7 +258,7 @@ Template.PostsShow.rendered = function() {
               });
 
             var slideUpPosition = slideUpWindow.upPosition();
-            Rx.Observable.fromEvent(window, 'resize').
+            const resizeSub = Rx.Observable.fromEvent(window, 'resize').
               subscribe(() =>{
                 slideUpPosition = slideUpWindow.upPosition();
               });
@@ -380,10 +380,17 @@ Template.PostsShow.rendered = function() {
             horizontalCompleteFunc = () =>{
               prevTouchCoords = null;
               horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
-            }
+            };
+
+
 
             verticalSubs = verticalUpSwipeObs.subscribe(verticalObserverFunc, $.noop, verticalUpCompleteFunc);
             horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
+            leavingPageSrc.subscribe(()=>{
+              verticalSubs.dispose();
+              horizontalSubs.dispose();
+              resizeSub.dispose();
+            });
         }
     }
 
