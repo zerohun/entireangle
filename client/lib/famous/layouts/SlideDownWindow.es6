@@ -12,11 +12,11 @@ class SlideDownWindow extends SlideWindow {
   }
   upPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 
-    return [centerPoint.x,  -4 * centerPoint.y, 999];
+    return [centerPoint.x,  -4 * centerPoint.y, 1000];
   }
   downPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 
-    return [centerPoint.x, centerPoint.y, 999];
+    return [centerPoint.x, centerPoint.y, 1000];
   }
 }
 

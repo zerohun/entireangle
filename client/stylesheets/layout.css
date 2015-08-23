@@ -158,3 +158,8 @@ a:link, a:visited, a:hover, a:active{
 #info{
   display:none;
 }
+
+.title-field{
+  font-size: 20px;
+  margin-top: 10px;
+}

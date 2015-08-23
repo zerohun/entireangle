@@ -1,3 +1,13 @@
+function turnEditingMode(onOfOff) {
+  if (onOfOff) {
+      $(".view-box").hide();
+      $(".edit-field").show();
+  } else {
+      $(".view-box").show();
+      $(".edit-field").hide();
+  }
+}
+
 Template.slideUpMenu.helpers({
   "embedUrl": function() {
     var hrefList = location.href.split('/');
@@ -6,7 +16,31 @@ Template.slideUpMenu.helpers({
   },
   "post": function(){
     return Router.current().data();
+  },
+  "isMyPost": function(){
+      try {
+          return Router.current().data().user._id == Meteor.userId();
+      } catch (e) {
+          return false;
+      }
   }
+});
+Template.slideUpMenu.events({
+  "click #slide-up-edit": ()=>{
+    turnEditingMode(true);
+  },  
+  "click #slide-up-cancel": ()=>{
+    turnEditingMode(false);
+    return false;
+  },
+  "submit #slide-up-edit-post": ()=>{
+    post = Router.current().data(); 
+    post.title = event.target.title.value;
+    post.desc = event.target.desc.value;
+    Meteor.call("updatePost", post);
+    turnEditingMode(false);
+    return false;
+  }  
 });
 
 Template.slideUpMenu.rendered = ()=>{

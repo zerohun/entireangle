@@ -16,6 +16,7 @@ window.registerLoginBtnCallback = function(){
     Rx.Observable.fromEvent($("#login-btn"), 'click').
       subscribe(function(){
         FView.byId("login-form").node.slideDown();
+        FView.byId("slide-up-menu").node.slideDown();
       });
   });
 
