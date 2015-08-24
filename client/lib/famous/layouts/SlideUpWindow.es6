@@ -29,7 +29,7 @@ class SlideUpWindow extends SlideWindow {
 
 }
 SlideUpWindow.constants = {};
-SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE = 60;
+SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE = 50;
 
 if(!famous.customLayouts){
   famous.customLayouts = {};

@@ -7,10 +7,10 @@ template(name="slideUpMenu")
       #scrollable
         button.btn.btn-primary.btn-xs(data-toggle='modal', data-target='#shareModal') Share
         if isMyPost
-          button#slide-up-edit.btn.btn-success.btn-xs(class="btn default") Edit
-        button(class="btn default") Remove
-        button(class="btn default") VR mode
-        
+          button#slide-up-edit.btn.btn-warning.btn-xs Edit
+          button#slide-up-remove.btn.btn-danger.btn-xs.page-change Remove
+        button#slide-up-vr-mode.btn.btn-success.btn-xs VR Mode
+
         form#slide-up-edit-post
           div 
             | {{post.user.username}}
@@ -29,16 +29,6 @@ template(name="slideUpMenu")
               | Save
             button#slide-up-cancel.btn.btn-xs.btn-danger.edit-field
               | Cancel
-
-        input(type="text" placeholder="type coment") 
-        div comment1 hey this is really nice picture!
-        div comment2 nah I don't like it.
-        div comment3 wow where is that?
-        div comment3 wow where is that?
-        div comment3 wow where is that?
-        div comment3 wow where is that?
-        div comment3 wow where is that?
-        div comment3 wow where is that?
 
     #shareModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
       .modal-dialog

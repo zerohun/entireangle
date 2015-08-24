@@ -15,7 +15,12 @@ Template.slideUpMenu.helpers({
     return "<iframe width='560' height='315' src='" + address + "' frameborder='0' allowfullscreen></iframe>";
   },
   "post": function(){
-    return Router.current().data();
+    try {
+      return Router.current().data();
+    }
+    catch(e){
+      return false;
+    }
   },
   "isMyPost": function(){
       try {
@@ -34,13 +39,23 @@ Template.slideUpMenu.events({
     return false;
   },
   "submit #slide-up-edit-post": ()=>{
-    post = Router.current().data(); 
+    const post = Router.current().data(); 
     post.title = event.target.title.value;
     post.desc = event.target.desc.value;
     Meteor.call("updatePost", post);
     turnEditingMode(false);
     return false;
-  }  
+    
+  },
+  "click #slide-up-remove": ()=>{
+    const post = Router.current().data(); 
+    Router.go('Posts');
+    Meteor.call("removePost", post._id);
+    return false;
+  },
+  "click #slide-up-vr-mode": ()=>{
+    Template.PostsShow.toggleVRMode();
+  }
 });
 
 Template.slideUpMenu.rendered = ()=>{

@@ -135,7 +135,6 @@ a:link, a:visited, a:hover, a:active{
   z-index: -1;
 }
 #slide-up-menu{
-  background-color: white;
   color:black;
   opacity: 0.8;
   /*display:none;*/
@@ -150,9 +149,12 @@ a:link, a:visited, a:hover, a:active{
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
+  background-color:white;
+  padding-top: 20px;
 }
 #slide-up-menu #slide-up-handle{
-  font-size: 30px;
+  font-size: 20px;
+  background-color:#EEE;
 }
 
 #info{

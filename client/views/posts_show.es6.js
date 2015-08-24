@@ -54,7 +54,7 @@ function observeViewPosition(orb) {
 }
 
 function turnEditingMode(onOfOff) {
-    if (onOfOff) {
+  if (onOfOff) {
         $(".view-box").hide();
         $(".edit-field").show();
     } else {
@@ -177,7 +177,8 @@ Template.PostsShow.rendered = function() {
     $('body').css("overflow", 'hidden');
     leavingPageSrc = Rx.Observable.merge(
                           Rx.Observable.fromEvent(window, "popstate"),
-                          Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a)"), "click"));
+                          Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a)"), "click"),
+                          Rx.Observable.fromEvent($("button.page-change"), "click"));
     var fview = FView.byId('header-footer');
     fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.FILL);
 
@@ -243,7 +244,6 @@ Template.PostsShow.rendered = function() {
 
         if (vrDeviceInfo.type === "MOBILE"){
 
-
             var prevTouchCoords;
             var touchCoords = THREE.Vector2();
             var raycaster = new THREE.Raycaster();
@@ -273,12 +273,14 @@ Template.PostsShow.rendered = function() {
             const finishSwipeDown = (slideWindow, nextObs, nextObserver, nextComplete) =>{
                 slideWindow.slideDown();
                 //slideWindow.setMountPoint(0.5, 0.5);
+                $("#slide-up-handle").text("Swipe up");
                 return nextObs.subscribe(nextObserver, $.noop, nextComplete);
             };
 
             const finishSwipeUp = (slideWindow, nextObs, nextObserver, nextComplete) =>{
                 slideWindow.slideUp();
                 //slideWindow.setMountPoint(0.5, 0.5);
+                $("#slide-up-handle").text("Swipe down");
                 return nextObs.subscribe(nextObserver, $.noop, nextComplete);
             };
 
@@ -301,7 +303,6 @@ Template.PostsShow.rendered = function() {
                 return (swipeDirection === SwipingDirection.LEFT ||
                         swipeDirection === SwipingDirection.RIGHT);
               });
-
 
             verticalSwipeObs = Rx.Observable.fromEvent(slideUpMenuHandle, "touchstart").
               flatMap(startEvent =>{
@@ -382,19 +383,16 @@ Template.PostsShow.rendered = function() {
               horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
             };
 
-
-
             verticalSubs = verticalUpSwipeObs.subscribe(verticalObserverFunc, $.noop, verticalUpCompleteFunc);
             horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
             leavingPageSrc.subscribe(()=>{
               verticalSubs.dispose();
               horizontalSubs.dispose();
               resizeSub.dispose();
+              $("#slide-up-handle").text("Swipe up");
             });
         }
     }
-
-
 
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -406,3 +404,7 @@ Template.PostsShow.rendered = function() {
     }(document, 'script', 'facebook-jssdk'));
 
 };
+
+Template.PostsShow.toggleVRMode = ()=>{
+    toggleVRMode();
+}

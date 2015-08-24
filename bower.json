@@ -13,7 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "vr-devices": "/home/zerohoon/Projects/VRDevices/"
+    "vr-devices": "git@github.com:zerohun/VRDevices.git"
   }
 }
 
