@@ -1,5 +1,21 @@
 const Node = famous.core.Node;
 
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+function preventDefault(e) {
+  e = e || window.event;
+  if (e.preventDefault)
+      e.preventDefault();
+  e.returnValue = false;  
+}
+
+function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+        preventDefault(e);
+        return false;
+    }
+}
+
 class LoadingBox extends Node {
   constructor(){
     super();
@@ -29,6 +45,13 @@ class LoadingBox extends Node {
               if(newOpacity === 0.0){ 
                 super.hide();
                 console.log('hide');
+                if (window.removeEventListener)
+                  window.removeEventListener('DOMMouseScroll', preventDefault, false);
+                window.onmousewheel = document.onmousewheel = null; 
+                window.onwheel = null; 
+                window.ontouchmove = null;  
+                document.onkeydown = null;  
+
               }
             }
         }
@@ -44,6 +67,14 @@ class LoadingBox extends Node {
     this.setPosition(0, $(window).scrollTop(), 9999);
   }
   show(){
+    
+    if (window.addEventListener) // older FF
+      window.addEventListener('DOMMouseScroll', preventDefault, false);
+    window.onwheel = preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    window.ontouchmove  = preventDefault; // mobile
+    document.onkeydown  = preventDefaultForScrollKeys;
+    
     super.show();
     this.opacityTo(0.8);
   }
