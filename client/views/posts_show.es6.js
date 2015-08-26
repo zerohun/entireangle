@@ -182,14 +182,11 @@ Template.PostsShow.rendered = function() {
     var fview = FView.byId('header-footer');
     fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.FILL);
 
-
-
-    $("#loading-box").show();
-    var popStateSub = leavingPageSrc.
+    const closeModalSub = leavingPageSrc.
     subscribe(function(e) {
         $(".modal").modal('hide');
         $(".modal-backdrop").remove();
-        popStateSub.dispose();
+        closeModalSub.dispose();
     });
 
     turnEditingMode(false);
@@ -217,7 +214,7 @@ Template.PostsShow.rendered = function() {
 
         var material = new THREE.MeshBasicMaterial({
             map: THREE.ImageUtils.loadTexture(imageFilePath, null, function() {
-                $("#loading-box").hide();
+              FView.byId("loading-box").node.hide();
             }, function(error) {
                 //console.log('error while loading texture - ');
                 //console.log(error);
@@ -251,11 +248,6 @@ Template.PostsShow.rendered = function() {
             Session.set('slideUpVisible', true);
             console.log('show');
             $(window).scrollTop(0);
-            const popStateSub = leavingPageSrc.
-              subscribe(() =>{
-                Session.set('slideUpVisible', false);
-                popStateSub.dispose();
-              });
 
             var slideUpPosition = slideUpWindow.upPosition();
             const resizeSub = Rx.Observable.fromEvent(window, 'resize').
@@ -385,12 +377,19 @@ Template.PostsShow.rendered = function() {
 
             verticalSubs = verticalUpSwipeObs.subscribe(verticalObserverFunc, $.noop, verticalUpCompleteFunc);
             horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
-            leavingPageSrc.subscribe(()=>{
+            const leavingPageSub = leavingPageSrc.subscribe(()=>{
               verticalSubs.dispose();
               horizontalSubs.dispose();
               resizeSub.dispose();
+              Session.set('slideUpVisible', false);
               $("#slide-up-handle").text("Swipe up");
+              leavingPageSub.dispose();
             });
+            const popStateSub = Rx.Observable.fromEvent(window, "popstate").
+                                  subscribe(()=>{
+                                    popStateSub.dispose();
+                                    FView.byId("loading-box").node.show();
+                                  });
         }
     }
 

@@ -14,7 +14,7 @@ template(name='post')
   .col-lg-3.col-md-4.col-sm-5.col-xs-12.center-block.text-center.post-item
     a(href="{{pathFor route='posts.show' data=this}}")
       .loading-bg
-        img.img-circle(src='{{thumbUrl imageId isVideo}}')
+        img.lazy.img-circle(src='{{thumbUrl imageId isVideo}}' data-src="/images/loading.gif")
       h4 
         | {{title}}
         if isVideo

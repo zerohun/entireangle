@@ -41,9 +41,8 @@ Template.Posts.rendered = function() {
     $("body").css("overflow", "scroll");
     var fview = FView.byId('header-footer');
     fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.SCROLL);
-    $("#loading-box").hide();
-
     enableEndlessScroll("PostsLimit", Post);
+    FView.byId("loading-box").node.hide();
 };
 
 Template.Posts.destroyed = function(){

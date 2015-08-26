@@ -27,3 +27,7 @@ Template.PostsNew.events({
         return false;
     }
 });
+
+Template.PostsNew.rendered = function(){
+  FView.byId("loading-box").node.hide();
+};

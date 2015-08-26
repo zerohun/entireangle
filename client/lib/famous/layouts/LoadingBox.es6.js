@@ -1,0 +1,64 @@
+const Node = famous.core.Node;
+
+class LoadingBox extends Node {
+  constructor(){
+    super();
+    this.setSizeMode('absolute', 'absolute');
+    this.setPosition(0,0,9999);
+    this.resize();
+    this.relocate();
+    const self = this;
+    Rx.Observable.fromEvent(window, "resize").
+      subscribe(()=>{
+        self.resize();
+      });
+      
+    Rx.Observable.fromEvent(window, "scroll").
+      subscribe(()=>{
+        self.relocate();
+      });
+    this.opacityTransitionable = new famous.transitions.Transitionable(0.8);
+    this.transitionableId = this.addComponent({
+        onUpdate: function(time) {
+            // Every frame, query transitionable state and set node opacity accordingly
+            const newOpacity = self.opacityTransitionable.get();
+            console.log(newOpacity);
+            self.setOpacity(newOpacity);
+            if (self.opacityTransitionable.isActive()) self.requestUpdate(self.transitionableId);
+            else{
+              if(newOpacity === 0.0){ 
+                super.hide();
+                console.log('hide');
+              }
+            }
+        }
+    });
+    this.requestUpdate(this.transitionableId);
+  }
+  resize(){
+    const windowWidth = $(window).width();
+    const windowHeight = $(window).height();
+    this.setAbsoluteSize(windowWidth, windowHeight);
+  }
+  relocate(){
+    this.setPosition(0, $(window).scrollTop(), 9999);
+  }
+  show(){
+    super.show();
+    this.opacityTo(0.8);
+  }
+  hide(){
+    this.opacityTo(0.0);
+  }
+  opacityTo(val){
+    this.opacityTransitionable.set(val, { duration: 500 });
+    this.requestUpdate(this.transitionableId);
+  }
+}
+
+if(!famous.customLayouts){
+  famous.customLayouts = {};
+}
+
+famous.customLayouts.LoadingBox = LoadingBox;
+FView.wrap('LoadingBox', famous.customLayouts.LoadingBox);

@@ -52,7 +52,7 @@ Template.layout.helpers({
 Template.layout.rendered = function(){
     $('body').css({overflow: "scroll"});
     var tabNode = FView.byId('tab').node;
-
+    $("#loading-box").css({width: $(window).width(), height: $(window).height()});
     var Position = famous.components.Position;
     var position = new Position(tabNode);
     position.set(0, 0, 0, { duration: 500, curve: 'inOutQuart' });
@@ -64,6 +64,7 @@ Template.layout.rendered = function(){
 
     if(!Meteor.user())
       registerLoginBtnCallback();
+      
 
     var slideUpWindow = FView.byId("slide-up-menu").node;
     Session.set('slideUpVisible', false);
@@ -77,6 +78,7 @@ Template.layout.rendered = function(){
         slideUpWindow.hide();
       }
     });
+    $("img.lazy").unveil();
 };
 
 Template._loginButtonsAdditionalLoggedInDropdownActions.events({

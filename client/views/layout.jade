@@ -30,8 +30,6 @@ template(name="layout")
         +DOMElement
           +yield
           #list-fetching-bar Fetching next images...
-          #loading-box
-            div Loading...
       
     +SlideDownWindow id="login-form"        
       +DOMElement
@@ -49,5 +47,11 @@ template(name="layout")
     +SlideUpWindow id="slide-up-menu"
       +DOMElement
         +slideUpMenu
+    
+    +LoadingBox id="loading-box"
+      +DOMElement
+        #loading-box
+          div Loading...
+      
 
 template(name="_loginButtonsAdditionalLoggedInDropdownActions")
