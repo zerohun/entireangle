@@ -5,7 +5,7 @@ template(name="slideUpMenu")
       hr
     if post
       #scrollable
-        button.btn.btn-primary.btn-xs(data-toggle='modal', data-target='#shareModal') Share
+        button#slide-up-share.btn.btn-primary.btn-xs Share
         if isMyPost
           button#slide-up-edit.btn.btn-warning.btn-xs Edit
           button#slide-up-remove.btn.btn-danger.btn-xs.page-change Remove
