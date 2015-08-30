@@ -1,5 +1,5 @@
 Template.Posts.helpers({
-    posts: function() {
+        posts: function() {
         return Router.current().data().posts;
     }
 });
@@ -35,7 +35,6 @@ Template.post.helpers({
         }
     }
 });
-
 
 Template.Posts.rendered = function() {
     $("body").css("overflow", "scroll");
