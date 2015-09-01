@@ -5,4 +5,5 @@ Template.home.helpers({
 });
 Template.home.rendered = ()=>{
   FView.byId("loading-box").node.hide();
+  $("body").css("overflow", "scroll");
 }
