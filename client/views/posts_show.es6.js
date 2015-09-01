@@ -166,15 +166,29 @@ Template.PostsShow.events({
         return false;
     },
     "click #position-save-button": function() {
+        FView.byId("loading-box").node.show();
         post = getCurrentPost();
         Meteor.call("updatePostViewPosition", post, orb.controls.object.position);
+        
+        var dataUrl = $("#container").find("canvas")[0].toDataURL("image/jpeg")
+        var imageId = Router.current().data().imageId
+        var size = {}
+        size.width = $("#container").find("canvas").width()
+        size.height = $("#container").find("canvas").height()
+        Meteor.call("updateImageThumbnail", imageId, size, dataUrl, function(err){
+          if(err)
+            alert(err)
+          FView.byId("loading-box").node.hide();
+        })
         $("#position-save-button").hide();
         observeViewPosition(orb);
+        
     }
 });
 
 Template.PostsShow.rendered = function() {
     $('body').css("overflow", 'hidden');
+    FView.byId("loading-box").node.show();
     leavingPageSrc = Rx.Observable.merge(
                           Rx.Observable.fromEvent(window, "popstate"),
                           Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a)"), "click"),

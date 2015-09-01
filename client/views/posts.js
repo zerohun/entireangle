@@ -27,11 +27,10 @@ Template.post.helpers({
                 store: 'video_thumbs'
             });
         } else {
-            return Image.findOne({
+            var image = Image.findOne({
                 _id: imageId
-            }).url({
-                store: 'thumbs'
             });
+            return image.url({store: 'thumbs'}) + "&uploadAt=" + image._getInfo('thumbs').updatedAt.getTime();
         }
     }
 });

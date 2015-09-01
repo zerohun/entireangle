@@ -157,6 +157,8 @@ Template.VideoPostsShow.events({
 Template.VideoPostsShow.rendered = function() {
 
     $("#loading-box").show();
+    var fview = FView.byId('header-footer');
+    fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.FILL);
     var popStateSub = Rx.Observable.fromEvent(window, "popstate").
     subscribe(function(e) {
         $(".modal").modal('hide');
@@ -191,8 +193,8 @@ Template.VideoPostsShow.rendered = function() {
         video.src = videoFilePath;
         video.id = "orb-player";
         video.onloadeddata = function() {
-            $("#loading-box").hide();
             video.play();
+            FView.byId("loading-box").node.hide();
         };
         console.log('play video');
 

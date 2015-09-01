@@ -5,7 +5,8 @@ var createCamera = function(far) {
 var getRenderer = function() {
     return new THREE.WebGLRenderer({
         antialias: true,
-        devicePixelRatio: window.devicePixelRatio
+        devicePixelRatio: window.devicePixelRatio,
+        preserveDrawingBuffer: true
     });
 };
 
