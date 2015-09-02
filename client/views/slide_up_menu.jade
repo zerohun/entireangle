@@ -7,7 +7,7 @@ template(name="slideUpMenu")
       #scrollable
         button#slide-up-share.btn.btn-primary.btn-xs Share
         if isMyPost
-          button#slide-up-edit.btn.btn-warning.btn-xs Edit
+          buttotn#slide-up-edit.btn.btn-warning.btn-xs Edit
           button#slide-up-remove.btn.btn-danger.btn-xs.page-change Remove
         button#slide-up-vr-mode.btn.btn-success.btn-xs VR Mode
 
@@ -30,7 +30,7 @@ template(name="slideUpMenu")
             button#slide-up-cancel.btn.btn-xs.btn-danger.edit-field
               | Cancel
 
-    #shareModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    #shareModalSlideUp.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
       .modal-dialog
         .modal-content
           .modal-body

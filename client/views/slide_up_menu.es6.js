@@ -32,7 +32,7 @@ Template.slideUpMenu.helpers({
 });
 Template.slideUpMenu.events({
   "click #slide-up-share": ()=>{
-    $("#shareModal").modal();
+    $("#shareModalSlideUp").modal();
   },
   "click #slide-up-edit": ()=>{
     turnEditingMode(true);
