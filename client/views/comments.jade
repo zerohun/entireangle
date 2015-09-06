@@ -1,0 +1,28 @@
+template(name="comments")
+  #comments
+    form#comment-form
+      input.width-fill(type="text" name="commentText" placeholder="Write comment")
+    hr
+    br
+    each comments
+      .comment.row(data-id="{{_id}}")
+        .comment-content  
+          .col-md-2.col-lg-2
+            | {{user.username}}
+          .col-md-8.col-lg-8
+            | {{commentText}}
+          .col-md-2.col-lg-2
+            if isMyComment this
+              button.btn.btn-xs.edit-comment-button edit
+              button.btn.btn-danger.btn-xs.remove-comment-button remove
+        .col-md-12.col-lg-12
+          .row.comment-edit-form-wrapper
+            .col-md-10.col-lg-10
+              form.comment-edit-form
+                input.width-fill(type="text" name="commentText" value="{{commentText}}")
+            .col-md-2.col-lg-2
+              button.btn.btn-xs.cancel-comment-button cancel
+      hr
+    if showMoreCommentButton
+      button.btn.btn-xs#comment-more-button
+        | More comments

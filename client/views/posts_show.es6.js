@@ -15,38 +15,6 @@ SwipingDirection.UP = Symbol("UP");
 SwipingDirection.DOWN = Symbol("DOWN");
 SwipingDirection.NONE = Symbol("NONE");
 
-function findUpAndDown(target, cssSelector){
-  var $selected = $(target).find(cssSelector);
-  if($selected.length > 0){
-    return $selected;
-  }
-  else{
-    return findUpAndDown(target.parentNode, cssSelector);
-  }
-}
-
-function getCommentId(target){
-  if(target.dataset.id)
-    return target.dataset.id;
-  else
-    return getCommentId(target.parentNode);
-}
-
-function startCommentEditing(target){
-  findUpAndDown(target, '.comment-content').hide();
-  findUpAndDown(target, '.comment-edit-form-wrapper').show();
-  
-}
-function stopCommentEditing(target){
-  findUpAndDown(target, '.comment-content').show();
-  findUpAndDown(target, '.comment-edit-form-wrapper').hide();
-}
-
-function resetCommentFields(){
-  $(".comment-content").show();
-  $(".comment-edit-form-wrapper").hide();
-}
-
 function getSwipingDirection(eventPair){
   const dx = eventPair[1].touches[0].clientX - eventPair[0].touches[0].clientX;
   const dy = eventPair[1].touches[0].clientY - eventPair[0].touches[0].clientY;
@@ -165,22 +133,6 @@ Template.PostsShow.helpers({
         var hrefList = location.href.split('/');
         var address = location.protocol + "//" + hrefList[1] + hrefList[2] + "/ep/" + Router.current().params._id;
         return "<iframe width='560' height='315' src='" + address + "' frameborder='0' allowfullscreen></iframe>";
-    },
-    "comments": function(){
-      return Comment.find({}, {
-        limit: Session.get("commentsLimit"),
-        sort:{
-          createdAt: -1
-        }
-      });
-    },
-    "showMoreCommentButton": function(){
-      var commentsCount = Comment.find({}).count();
-      return commentsCount > 0 && commentsCount > Session.get("commentsLimit");
-    },
-    "isMyComment": function(comment){
-      return Meteor.user()._id === comment.user._id;
-      
     }
 });
 
@@ -218,79 +170,25 @@ Template.PostsShow.events({
         post = getCurrentPost();
         Meteor.call("updatePostViewPosition", post, orb.controls.object.position);
         
-        var dataUrl = $("#container").find("canvas")[0].toDataURL("image/jpeg")
-        var imageId = Router.current().data().imageId
-        var size = {}
-        size.width = $("#container").find("canvas").width()
-        size.height = $("#container").find("canvas").height()
+        var dataUrl = $("#container").find("canvas")[0].toDataURL("image/jpeg");
+        var imageId = Router.current().data().imageId;
+        var size = {};
+        size.width = $("#container").find("canvas").width();
+        size.height = $("#container").find("canvas").height();
         Meteor.call("updateImageThumbnail", imageId, size, dataUrl, function(err){
           if(err)
-            alert(err)
+            alert(err);
           FView.byId("loading-box").node.hide();
-        })
+        });
         $("#position-save-button").hide();
         observeViewPosition(orb);
         
-    },
-    "click #comment-more-button": function(){
-      var commentsLimit = Session.get("commentsLimit");
-      commentsLimit = commentsLimit + 10;
-      Session.set("commentsLimit", commentsLimit);
-      if(commentsLimit >= Comment.find({}).count()){
-        $("#comment-more-button").hide();
-      }
-    },
-    "submit #comment-form": function(event){
-      var commentText = event.target.commentText.value;
-      if(commentText.replace(/ /g, '').length > 0){
-        var commentObj = {
-          commentText: event.target.commentText.value,
-          postId: getCurrentPost()._id,
-          user: Meteor.user()
-        };
-        Meteor.call("addComment", commentObj, function(error){
-          if(error){
-            console.warn(error);
-          }
-          else{
-            event.target.commentText.value = "";
-          }
-        });
-      }
-      event.target.commentText.value = "";
-      return false;
-    },
-    "click .remove-comment-button": function(event){
-      window.t = event;
-      resetCommentFields();
-      var commentId = getCommentId(event.target);
-      Meteor.call("removeComment", commentId);
-    },
-    "click .edit-comment-button": function(event){
-      resetCommentFields();
-      startCommentEditing(event.target);
-    },
-    "click .cancel-comment-button": function(event){
-      stopCommentEditing(event.target);
-    },
-    "submit .comment-edit-form": function(event){
-      var commentId = getCommentId(event.target);
-      console.log(commentId);
-      var commentObj = {
-        _id: commentId,
-        commentText: event.target.commentText.value
-      };
-      stopCommentEditing(event.target);
-      Meteor.call("updateComment", commentObj);
-      
-      return false;
     }
 });
 
 Template.PostsShow.rendered = function() {
     $('body').css("overflow", 'hidden');
     FView.byId("loading-box").node.show();
-    Session.set("commentsLimit", 10);
     
     leavingPageSrc = Rx.Observable.merge(
                           Rx.Observable.fromEvent(window, "popstate"),
