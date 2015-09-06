@@ -46,7 +46,7 @@ Template.comments.helpers({
     return commentsCount > 0 && commentsCount > Session.get("commentsLimit");
   },
   "isMyComment": function(comment){
-    return Meteor.user()._id === comment.user._id;
+    return Meteor.user() && Meteor.user()._id === comment.user._id;
   }
 });
 
@@ -88,6 +88,7 @@ Template.comments.events({
   "click .edit-comment-button": function(event){
     resetCommentFields();
     startCommentEditing(event.target);
+    return false;
   },
   "click .cancel-comment-button": function(event){
     stopCommentEditing(event.target);
