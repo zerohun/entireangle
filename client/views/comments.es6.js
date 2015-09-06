@@ -92,6 +92,10 @@ Template.comments.events({
   "click .cancel-comment-button": function(event){
     stopCommentEditing(event.target);
   },
+  "click .please-login": function(){
+    FView.byId("login-form").node.slideDown();
+    FView.byId("slide-up-menu").node.slideDown();
+  },
   "submit .comment-edit-form": function(event){
     var commentId = getCommentId(event.target);
     console.log(commentId);

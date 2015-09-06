@@ -1,7 +1,11 @@
 template(name="comments")
   #comments
     form#comment-form
-      input.width-fill(type="text" name="commentText" placeholder="Write comment")
+      if isLoggedIn
+        input.width-fill(type="text" name="commentText" placeholder="Write comment")
+      else
+        button.width-fill.please-login Plase login to write comment 
+      
     hr
     br
     each comments
