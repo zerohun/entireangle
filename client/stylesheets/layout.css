@@ -163,3 +163,15 @@ a:link, a:visited, a:hover, a:active{
   font-size: 20px;
   margin-top: 10px;
 }
+
+.comment .user{
+  font-weight: bold;
+}
+
+.comment-edit-form-wrapper{
+  display: none;
+}
+
+.width-fill{
+  width: 100%;
+}
