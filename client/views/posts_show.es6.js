@@ -6,7 +6,7 @@ var isInVRMode = false;
 var post = null;
 var originalPosition = new THREE.Vector3();
 let leavingPageSrc; 
-let isPreviewRendered = false;
+let isPreviewRendered;
 let previewOrb, photoOrb;
 
 var SwipingDirection = {};
@@ -19,7 +19,7 @@ SwipingDirection.NONE = Symbol("NONE");
 
 function onClickSavePreviewButton(){
   FView.byId("loading-box").node.show();
-  saveCanvasSnapshotToImageStore($("#share-preview canvas"), "snsThumbs", 
+  saveCanvasSnapshotToImageStore($(".share-preview canvas"), "snsThumbs", 
   ()=> {
     FView.byId("loading-box").node.hide();
     $(".sns-buttons").show();
@@ -49,7 +49,7 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
     var SLIDE_UP_HANDLE_SIZE = famous.customLayouts.SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE;
 
     vrDeviceInfo = getVRDeviceInfo();
-
+    
     container = $(cssSelector)[0];
 
     var material = new THREE.MeshBasicMaterial({
@@ -414,11 +414,12 @@ Template.PostsShow.events({
 Template.PostsShow.rendered = function() {
     $('body').css("overflow", 'hidden');
     FView.byId("loading-box").node.show();
+    let isPreviewRendered = false;
     
     $("#shareModal").on("shown.bs.modal",function() {
       photoOrb.setState("stop");
-      let previewHeight = $("#share-preview").width() * 0.525;
-      $("#share-preview").height(previewHeight);
+      let previewHeight = $(".share-preview").width() * 0.525;
+      $(".share-preview").height(previewHeight);
       if(!isPreviewRendered){
         var image = Image.findOne({
             _id: post.imageId
@@ -426,7 +427,7 @@ Template.PostsShow.rendered = function() {
         var imageFilePath = image.url({
             store: 'images'
         });
-        previewOrb = renderPhotoSphere("#share-preview", imageFilePath);
+        previewOrb = renderPhotoSphere(".share-preview", imageFilePath);
         
         previewOrb.afterRender(()=>{
           previewOrb.controls.object.position.x = photoOrb.controls.object.position.x;
