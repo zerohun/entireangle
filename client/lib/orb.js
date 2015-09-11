@@ -37,6 +37,7 @@ window.Orb = function(reqiredParams, options) {
     this.controls = controls;
 
     this.render = function() {
+        this.state = "running";
         init();
         animate();
 
@@ -45,6 +46,18 @@ window.Orb = function(reqiredParams, options) {
     this.registerWindowResizeListener = function() {
         window.addEventListener('resize', onWindowResize, false);
     };
+    
+    this.setState = function(state){
+      self.state = state;
+      if(self.state === "running"){
+        init();
+        animate();
+      }
+    }
+    this.afterRenderCallbacks = [];
+    this.afterRender = function(callbackFunc){
+      this.afterRenderCallbacks.push(callbackFunc);
+    }
 
     function init() {
 
@@ -86,9 +99,11 @@ window.Orb = function(reqiredParams, options) {
 
 
     function animate() {
+      if(self.state === "running"){
         requestAnimationFrame(animate);
         //    var dt = clock.getDelta();
         update();
+      }
     }
 
     function update(dt) {
@@ -98,6 +113,11 @@ window.Orb = function(reqiredParams, options) {
         controls.update(dt);
         //				camera.position.copy( camera.target ).negate();
         renderable.render(self.scene, camera);
+        
+        if(self.afterRenderCallbacks.length > 0){
+          self.afterRenderCallbacks[0](self);
+          self.afterRenderCallbacks.pop();
+        }
     }
 
 };

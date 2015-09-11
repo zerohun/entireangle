@@ -4,7 +4,7 @@ template(name='PostsShow')
     #button-container.btn-group(role='group')
       unless isEmbedded
         button#home-button.btn.btn-warning.btn-xs Explore
-        button.btn.btn-primary.btn-xs(data-toggle='modal', data-target='#shareModal') Share
+        button.btn.btn-primary.btn-xs.shareModalOpenBtn Share
         button.btn.btn-info.btn-xs(data-toggle='modal', data-target='#infoModal') Info
 
       button#vr-mode-button.btn.btn-success.btn-xs VR mode
@@ -19,12 +19,16 @@ template(name='PostsShow')
       .modal-dialog
         .modal-content
           .modal-body
-            button.close(type='button', data-dismiss='modal', aria-label='Close')
+            button#share-modal-close-btn.close(type='button', aria-label='Close')
               span(aria-hidden='true') ×
-            h4.text-center Share
-            hr
-            .btn-group(role='group').text-center.block-center
-              +shareit
+            h3 Share
+            h5 Share preview
+            #share-buttons-layout.block-center.text-center
+              #share-preview
+              button.btn.btn-default#save-preview-button Share this view
+              hr
+              .btn-group(role='group').text-center.block-center.sns-buttons
+                +shareit
             br
             br
             br
