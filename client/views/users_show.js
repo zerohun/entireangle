@@ -3,10 +3,13 @@ Template.UsersShow.helpers({
         return Router.current().data().username;
     },
     posts: function(){
-        return Post.find({});
+        return Post.find({}, {sort:{
+          createdAt: -1
+        }});
     }
 });
 
 Template.UsersShow.rendered = function(){
     enableEndlessScroll("UserPostsLimit", Post);
+    FView.byId("loading-box").node.hide();
 };

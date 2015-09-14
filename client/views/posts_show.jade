@@ -51,6 +51,10 @@ template(name='PostsShow')
               p.view-box
                 pre
                   | \n{{desc}}                    
+
+              input.edit-field(type="checkbox" name="isPublished" checked="{{isPublished}}")
+              label.edit-field(for="isPublished") Publish on list
+              br
               textarea.edit-field(name='desc') {{desc}}
               br
               if isMyPost
