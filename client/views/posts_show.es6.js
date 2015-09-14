@@ -19,25 +19,58 @@ SwipingDirection.NONE = Symbol("NONE");
 
 function onClickSavePreviewButton(){
   FView.byId("loading-box").node.show();
-  saveCanvasSnapshotToImageStore($(".share-preview canvas"), "snsThumbs", 
-  ()=> {
-    FView.byId("loading-box").node.hide();
-    $(".sns-buttons").show();
-    $("#save-preview-button").hide();
-    observeViewPosition(previewOrb, ()=>{
-      $(".sns-buttons").hide();
-      $("#save-preview-button").show();
-    })
+  //$(".share-preview").hide();
+  const $canvas = $(".share-preview");
+  const canvasOriginalSize = {
+    width: $canvas.width(),
+    height: $canvas.height()
+  };
+  $canvas.width(1200);
+  $canvas.height(630);
+  const position = {
+    x: previewOrb.controls.object.position.x,
+    y: previewOrb.controls.object.position.y,
+    z: previewOrb.controls.object.position.z
+  };
+  let url = Router.current().data().url;
+  if(url.search(/\?x=/)){
+    url = url.replace(/\?x=.+/, "");
+  }
+  url = url + "?" + $.param(position);
+  Session.set("posts-show-url", url);
+  previewOrb.onWindowResize();
+  previewOrb.reRender();
+  previewOrb.afterRender(()=>{
+    setTimeout(function() {
+      saveCanvasSnapshotToImageStore(".share-preview canvas", "snsThumbs", 
+      {centerCrop: false},
+      ()=> {
+        FView.byId("loading-box").node.hide();
+        $(".sns-buttons").show();
+        $("#save-preview-button").hide();
+    
+        $canvas.width(canvasOriginalSize.width);
+        $canvas.height(canvasOriginalSize.height);
+    
+        observeViewPosition(previewOrb, ()=>{
+          $(".sns-buttons").hide();
+          $("#save-preview-button").show();
+        })
+      });
+    }, 500);
   });
+        
+    
 }
 
-function saveCanvasSnapshotToImageStore(cssSelector, storeName, callbackFunc){
+function saveCanvasSnapshotToImageStore(cssSelector, storeName, options, callbackFunc){
   var dataUrl = $(cssSelector)[0].toDataURL("image/jpeg");
   var imageId = Router.current().data().imageId;
   var size = {};
   size.width = $(cssSelector).width();
   size.height = $(cssSelector).height();
-  Meteor.call("saveToImageStore", storeName, imageId, size, dataUrl, function(err){
+  console.log(size);
+  Meteor.call("saveToImageStore", storeName, imageId, size, dataUrl, options, function(err){
     if(err)
       console.error(err);
     callbackFunc();
@@ -70,11 +103,19 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
         $("#info").show();
     }
     orb.render();
-    if ( post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
+    
+    const params = Router.current().params.query;
+    if(params.x && params.y && params.z){
+      orb.controls.object.position.x = Number.parseFloat(params.x);
+      orb.controls.object.position.y = Number.parseFloat(params.y);
+      orb.controls.object.position.z = Number.parseFloat(params.z);
+    }
+    else if ( post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
         orb.controls.object.position.x = post.viewPosition.x;
         orb.controls.object.position.y = post.viewPosition.y;
         orb.controls.object.position.z = post.viewPosition.z;
     }
+    
     if (Meteor.userId() && Meteor.userId() == post.user._id)
         observeViewPosition(orb, ()=>{
           $("#position-save-button").show();
@@ -399,6 +440,7 @@ Template.PostsShow.events({
         Meteor.call("updatePostViewPosition", post, photoOrb.controls.object.position);
         
         saveCanvasSnapshotToImageStore($("#container canvas"), "thumbs", 
+        {centerCrop: true},
         ()=> {
           FView.byId("loading-box").node.hide();
         });
@@ -415,36 +457,35 @@ Template.PostsShow.rendered = function() {
     $('body').css("overflow", 'hidden');
     FView.byId("loading-box").node.show();
     let isPreviewRendered = false;
+    Session.set("posts-show-url", location.href);
     
     $("#shareModal").on("shown.bs.modal",function() {
       photoOrb.setState("stop");
       let previewHeight = $(".share-preview").width() * 0.525;
       $(".share-preview").height(previewHeight);
+      var image = Image.findOne({
+          _id: post.imageId
+      });
+      var imageFilePath = image.url({
+          store: 'images'
+      });
+        
       if(!isPreviewRendered){
-        var image = Image.findOne({
-            _id: post.imageId
-        });
-        var imageFilePath = image.url({
-            store: 'images'
-        });
         previewOrb = renderPhotoSphere(".share-preview", imageFilePath);
-        
-        previewOrb.afterRender(()=>{
-          previewOrb.controls.object.position.x = photoOrb.controls.object.position.x;
-          previewOrb.controls.object.position.y = photoOrb.controls.object.position.y;
-          previewOrb.controls.object.position.z = photoOrb.controls.object.position.z;
-          onClickSavePreviewButton();
-          
-        });
-        
-        window.pre = previewOrb;
-        window.pho = photoOrb;
-      
         isPreviewRendered = true;
       }
       else{
         previewOrb.setState("running");
       }
+        
+      previewOrb.afterRender(()=>{
+        previewOrb.controls.object.position.x = photoOrb.controls.object.position.x;
+        previewOrb.controls.object.position.y = photoOrb.controls.object.position.y;
+        previewOrb.controls.object.position.z = photoOrb.controls.object.position.z;
+        onClickSavePreviewButton();
+      });
+        window.pre = previewOrb;
+        window.pho = photoOrb;
     });
     
     $("#shareModal").on("hidden.bs.modal",function() {

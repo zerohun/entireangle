@@ -38,7 +38,7 @@ class LoadingBox extends Node {
         onUpdate: function(time) {
             // Every frame, query transitionable state and set node opacity accordingly
             const newOpacity = self.opacityTransitionable.get();
-            console.log(newOpacity);
+            //console.log(newOpacity);
             self.setOpacity(newOpacity);
             if (self.opacityTransitionable.isActive()) self.requestUpdate(self.transitionableId);
             else{

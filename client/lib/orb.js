@@ -53,11 +53,11 @@ window.Orb = function(reqiredParams, options) {
         init();
         animate();
       }
-    }
+    };
     this.afterRenderCallbacks = [];
     this.afterRender = function(callbackFunc){
       this.afterRenderCallbacks.push(callbackFunc);
-    }
+    };
 
     function init() {
 
@@ -96,6 +96,7 @@ window.Orb = function(reqiredParams, options) {
         camera.updateProjectionMatrix();
         renderable.setSize(containersize.width, containersize.height);
     }
+    this.onWindowResize = onWindowResize;
 
 
     function animate() {
@@ -116,8 +117,10 @@ window.Orb = function(reqiredParams, options) {
         
         if(self.afterRenderCallbacks.length > 0){
           self.afterRenderCallbacks[0](self);
-          self.afterRenderCallbacks.pop();
+          self.afterRenderCallbacks.shift();
         }
     }
-
+    this.reRender = function(){
+      renderable.render(this.scene, camera);
+    }
 };

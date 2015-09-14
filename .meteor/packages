@@ -22,10 +22,10 @@ meteorhacks:npm
 npm-container
 jquery
 sbe:rxjs
-joshowens:shareit
 mquandalle:jade
 gadicohen:famous
 gadicohen:famous-views
 accounts-base
 logandk:validator
 luisalmeida:unveil
+joshowens:shareit

@@ -175,3 +175,6 @@ a:link, a:visited, a:hover, a:active{
 .width-fill{
   width: 100%;
 }
+a.shareit-google-colors{
+  background-color: red;
+}
