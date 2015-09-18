@@ -22,7 +22,17 @@ Template.login.events({
   'click #close-login-button': () =>{
     FView.byId("login-form").node.slideUp(); 
   },
-
+  'click .login-with-facebook': ()=>{
+    Meteor.loginWithFacebook({
+      requestPermissions: ['email', 'user_about_me']
+    }, function (err) {
+    if (err){
+      alert(err.reason);
+    }
+    else
+      FView.byId("login-form").node.slideUp(); 
+    });
+  },
   'submit #login-form' : (e, t) =>{
     if(validateEmail('#login-email', 'login-email-msg')){ 
       // retrieve the input field values

@@ -1,5 +1,5 @@
 Template.registerHelper("isLoggedIn", function(){
-  return Meteor.user() !== null;
+  return Meteor.user() && Meteor.user().isActivated != false;
 });
 Template.registerHelper("username", function(){
   let username = Object.try(Meteor.user(), "username");

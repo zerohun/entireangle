@@ -1,3 +1,10 @@
+Template.Mypage.helpers({
+  "user": function(){
+    return Meteor.user();
+  }
+  
+});
+
 Template.Mypage.events({
     "submit #user-form": function(event){
         var userObj = {
@@ -28,3 +35,7 @@ Template.Mypage.events({
     } 
 
 });
+
+Template.Mypage.rendered = function(){
+  FView.byId("loading-box").node.hide();
+}

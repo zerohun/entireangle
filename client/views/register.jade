@@ -6,6 +6,8 @@ template(name='register')
       h3 Register 
       hr
       form#register-form.center-block.text-center(action='action')
+        #facebook-image.form-group
+        br
         .form-group.center-block.text-center
           input#register-email.email-field.form-control.text-center(type='email', placeholder="email")
           if emailMsg
@@ -22,17 +24,18 @@ template(name='register')
                   | {{usernameMsg}}
 
         br
-        +password_input
-        if passwordMsg
-          .error-message
-            ul
-              li
-                | {{passwordMsg}}
-        if passwordMatchMsg
-          .error-message
-            ul
-              li
-                | {{passwordMatchMsg}}
+        .password-fields
+          +password_input
+          if passwordMsg
+            .error-message
+              ul
+                li
+                  | {{passwordMsg}}
+          if passwordMatchMsg
+            .error-message
+              ul
+                li
+                  | {{passwordMatchMsg}}
 
         label.checkbox
           input#private-policy-checkbox(type="checkbox")
@@ -56,3 +59,9 @@ template(name='register')
 
         input#register-button.btn.btn-warning.btn-large(type='submit', value='Sign up')
         button#close-register-button.btn.btn-default.btn-large Cancel 
+        br
+        
+      br
+      br
+      button.btn.btn-primary.login-with-facebook 
+       | Sign up with Facebook

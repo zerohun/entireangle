@@ -1,0 +1,10 @@
+template(name="profileImage")
+  .profile-image
+    if uploadedProfileImage
+      img(src="{{uploadedProfileImage}}")
+    else
+      if snsProfileImageUrl
+        img(src="{{snsProfileImageUrl}}")
+      else
+        span(style="color: {{textColor}}") 
+          | {{firstLetterOfUsername}}

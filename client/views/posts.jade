@@ -19,5 +19,7 @@ template(name='post')
         | {{title}}
         if isVideo
           span.label.label-success video
-      em By {{user.username}}
+      em
+        +profileImage user
+        | {{user.username}}
 

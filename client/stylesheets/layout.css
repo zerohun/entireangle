@@ -178,3 +178,12 @@ a:link, a:visited, a:hover, a:active{
 a.shareit-google-colors{
   background-color: red;
 }
+
+.profile-image{
+  display:inline-block;
+  width: 50px; 
+  height: 50px; 
+  font-size:30px; 
+  text-align:center; 
+  background-color: black;
+}
