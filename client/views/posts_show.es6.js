@@ -430,7 +430,10 @@ Template.PostsShow.events({
         post = getCurrentPost();
         post.title = event.target.title.value;
         post.desc = event.target.desc.value;
-        Meteor.call("updatePost", post);
+        post.isPublished = event.target.isPublished.checked;
+        Meteor.call("updatePost", post, ()=>{
+          Meteor.subscribe('posts', 1, {_id: post._id});
+        });
         turnEditingMode(false);
         return false;
     },

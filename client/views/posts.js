@@ -1,6 +1,6 @@
 Template.Posts.helpers({
         posts: function() {
-        return Router.current().data().posts;
+          return Router.current().data().posts;
     }
 });
 
@@ -36,7 +36,6 @@ Template.post.helpers({
 });
 
 Template.Posts.rendered = function() {
-    $("body").css("overflow", "scroll");
     var fview = FView.byId('header-footer');
     fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.SCROLL);
     enableEndlessScroll("PostsLimit", Post);

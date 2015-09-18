@@ -20,6 +20,6 @@ template(name='post')
         if isVideo
           span.label.label-success video
       em
-        +profileImage user
-        | {{user.username}}
-
+        a(href="/users/{{user._id}}")
+          +profileImage user
+          | {{user.username}}

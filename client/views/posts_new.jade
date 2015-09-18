@@ -11,6 +11,9 @@ template(name='PostsNew')
         input#oldschool-file-field.form-control(type='file', name='image')
       .form-group
         input.form-control(type='text', name='desc', placeholder='Describe about the picture or video')
+      .form-group
+        input.form-control(type="checkbox" name="isPublished")
+        label(for="isPublished") Publish on the list
       button.btn.btn-default(type='submit') Submit
       a(href='/')
         button.btn.btn-primary(type='button') Cancel
