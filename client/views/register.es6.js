@@ -124,4 +124,8 @@ Template.register.events({
 Template.register.rendered = () =>{
   validateEmailFieldonKeyDown("#register-email", 'register-email-msg');
   resetMsgSessions();
+  console.log("rendered");
+  Meteor.subscribe("currentUser", ()=>{
+    window.continueFacebookSignupProcess();
+  });
 };

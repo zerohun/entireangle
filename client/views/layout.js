@@ -65,15 +65,6 @@ Template.layout.rendered = function(){
     if(!Meteor.user())
       registerLoginBtnCallback();
       
-    if(Meteor.subscribe("currentUser").ready()){
-      var user = Meteor.user();
-      if(!user.isActivated && user.services.facebook){
-        $("#register-email").val(user.email);
-        $("register-username").val(user.username);
-        FView.byId("register-form").node.slideDown();
-      }
-    }
-      
     var slideUpWindow = FView.byId("slide-up-menu").node;
     Session.set('slideUpVisible', false);
 

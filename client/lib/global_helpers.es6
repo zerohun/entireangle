@@ -1,6 +1,8 @@
-Template.registerHelper("isLoggedIn", function(){
+window.isLoggedIn = ()=>{
   return Meteor.user() && Meteor.user().isActivated != false;
-});
+}
+
+Template.registerHelper("isLoggedIn", window.isLoggedIn);
 Template.registerHelper("username", function(){
   let username = Object.try(Meteor.user(), "username");
   if(username.length > 6){
