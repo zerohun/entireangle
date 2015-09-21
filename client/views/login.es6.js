@@ -24,7 +24,7 @@ Template.login.events({
   },
   'click .login-with-facebook': ()=>{
     Meteor.loginWithFacebook({
-      requestPermissions: ['email', 'user_about_me']
+      requestPermissions: ['email']
     }, function (err) {
     if (err){
       alert(err.reason);

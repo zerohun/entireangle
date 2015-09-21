@@ -49,9 +49,10 @@ Template.register.events({
   },
   'submit #register-form' : function(e, t) {
     let canCreateUser = true;
+    let snsImageUrl;
     canCreateUser &= validateEmail('#register-email', 'register-email-msg');
     canCreateUser &= validateLength('#register-username', 1, 'register-username-msg');
-    if(!isFacebookuser){
+    if(!isFacebookuser()){
       canCreateUser &= validateLength('#register-window .password-input', 6, 'register-password-msg');
       canCreateUser &= validatePasswordMatched($('#register-window .password-reinput'), 'register-password-match-msg');
     }
@@ -61,7 +62,8 @@ Template.register.events({
         var email = t.find('#register-email').value, 
             password = t.find('#register-window .password-input').value,
             username = t.find('#register-username').value;
-            snsImageUrl = e.target.snsImageUrl.value;
+            
+            if(!isFacebookuser()) snsImageUrl = e.target.snsImageUrl.value;
 
         // Trim and validate the input
 
@@ -70,7 +72,7 @@ Template.register.events({
       if(isFacebookuser()){
           Meteor.call("updateUserWithActivation", {username: username, snsImageUrl: snsImageUrl}, function(err){
             if(err)
-              console.error(err);
+              Session.set("register-msg", err.message);
             else
               finishRegisterWindow();
           });
