@@ -63,7 +63,7 @@ Template.register.events({
             password = t.find('#register-window .password-input').value,
             username = t.find('#register-username').value;
             
-            if(!isFacebookuser()) snsImageUrl = e.target.snsImageUrl.value;
+            if(isFacebookuser()) snsImageUrl = e.target.snsImageUrl.value;
 
         // Trim and validate the input
 
