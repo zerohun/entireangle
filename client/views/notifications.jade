@@ -1,0 +1,14 @@
+template(name="notifications")
+  #notifications
+    each notifications
+      .notification
+
+template(name="commentNotification")
+  .comment-notification
+    a(href="/posts/{{post._id}}")
+      | {{actioner.username}} commented on {{post.user.username}}'s photo
+ 
+template(name="likeNotification")
+  .like-notification
+    a(href="/posts/{{post._id}}")
+      | {{actioner.username}} liked {{post.user.username}}'s photo
