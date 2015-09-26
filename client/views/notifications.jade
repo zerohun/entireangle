@@ -8,9 +8,17 @@ template(name="notifications")
 template(name="commentNotification")
   .comment-notification
     a(href="/posts/{{post._id}}")
+      with post.user
+        +profileImage  
       | {{actioner.username}} commented on {{post.user.username}}'s photo
+      | - 
+      span
+        | {{livestamp createdAt}}
  
 template(name="likeNotification")
   .like-notification
     a(href="/posts/{{post._id}}")
       | {{actioner.username}} liked {{post.user.username}}'s photo
+      | - 
+      span
+        | {{livestamp createdAt}}
