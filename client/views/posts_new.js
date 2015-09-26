@@ -15,7 +15,7 @@ Template.PostsNew.events({
                 title: event.target.title.value,
                 desc: event.target.desc.value,
                 imageId: fileObj._id,
-                isPublished: target.isPublished.value
+                isPublished: event.target.isPublished.value
             };
 
             Meteor.call("addPost", postObj, fileObj.isVideo(), function(error, postId) {

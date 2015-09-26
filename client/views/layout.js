@@ -78,6 +78,10 @@ Template.layout.rendered = function(){
       }
     });
     $("img.lazy").unveil();
+
+    if(Meteor.user()){
+      Meteor.subscribe("notifications", 10);
+    }
 };
 
 Template._loginButtonsAdditionalLoggedInDropdownActions.events({
