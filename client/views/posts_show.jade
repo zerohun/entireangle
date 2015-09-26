@@ -7,6 +7,11 @@ template(name='PostsShow')
         button.btn.btn-primary.btn-xs.shareModalOpenBtn Share
         button.btn.btn-info.btn-xs(data-toggle='modal', data-target='#infoModal') Info
 
+      if didILikeIt
+        button.btn.btn-warn.btn-xs.unlike-button Unlike 
+      else
+        button.btn.btn-primary.btn-xs.like-button Like 
+
       button#vr-mode-button.btn.btn-success.btn-xs VR mode
       unless isEmbedded
         if isMyPost                                               

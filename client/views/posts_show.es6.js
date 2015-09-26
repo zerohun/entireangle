@@ -394,11 +394,20 @@ Template.PostsShow.helpers({
         var hrefList = location.href.split('/');
         var address = location.protocol + "//" + hrefList[1] + hrefList[2] + "/ep/" + Router.current().params._id;
         return "<iframe width='560' height='315' src='" + address + "' frameborder='0' allowfullscreen></iframe>";
+    },
+    "didILkeIt": function(){
+      return Like.findOne({});
     }
 });
 
 
 Template.PostsShow.events({
+    "click .like-button": function(){
+      Meteor.call("like",  Router.current().data()._id);
+    },
+    "click .unlike-button": function(){
+      Meteor.call("unlike", Router.current().data()._id);
+    },
     "click .shareModalOpenBtn": function(){
       $("#shareModal").modal();
     },
