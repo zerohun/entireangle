@@ -2,6 +2,8 @@ template(name="notifications")
   #notifications
     each notifications
       .notification
+        if $eq notiType "comment"
+          +commentNotification
 
 template(name="commentNotification")
   .comment-notification
