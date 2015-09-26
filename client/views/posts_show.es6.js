@@ -395,7 +395,7 @@ Template.PostsShow.helpers({
         var address = location.protocol + "//" + hrefList[1] + hrefList[2] + "/ep/" + Router.current().params._id;
         return "<iframe width='560' height='315' src='" + address + "' frameborder='0' allowfullscreen></iframe>";
     },
-    "didILkeIt": function(){
+    "didILikeIt": function(){
       return Like.findOne({});
     }
 });
