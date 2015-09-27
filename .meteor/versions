@@ -66,6 +66,7 @@ localstorage@1.0.3
 logandk:validator@3.34.0
 logging@1.0.7
 luisalmeida:unveil@0.0.1
+matb33:collection-hooks@0.8.0
 meteor@1.1.6
 meteor-platform@1.2.2
 meteorhacks:async@1.0.0

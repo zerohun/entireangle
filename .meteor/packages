@@ -33,3 +33,4 @@ service-configuration
 raix:handlebar-helpers
 copleykj:livestamp
 grigio:babel
+matb33:collection-hooks
