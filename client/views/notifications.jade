@@ -4,13 +4,15 @@ template(name="notifications")
       .notification
         if $eq notiType "comment"
           +commentNotification
+        if $eq notiType "like"
+          +likeNotification
 
 template(name="commentNotification")
   .comment-notification
     a(href="/posts/{{post._id}}")
       with post.user
         +profileImage  
-      | {{actioner.username}} commented on {{post.user.username}}'s photo
+      | {{actioner.username}} commented on {{receiverName post.user}} photo
       | - 
       span
         | {{livestamp createdAt}}
@@ -18,7 +20,9 @@ template(name="commentNotification")
 template(name="likeNotification")
   .like-notification
     a(href="/posts/{{post._id}}")
-      | {{actioner.username}} liked {{post.user.username}}'s photo
+      with post.user
+        +profileImage  
+      | {{actioner.username}} liked {{receiverName post.user}} photo
       | - 
       span
         | {{livestamp createdAt}}
