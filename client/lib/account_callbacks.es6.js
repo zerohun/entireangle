@@ -5,4 +5,6 @@ Accounts.onLogin(()=>{
   Meteor.subscribe("currentUser", function(){
     window.continueFacebookSignupProcess();
   });
+
+  Meteor.subscribe("notifications", 10);
 });

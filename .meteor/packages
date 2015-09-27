@@ -8,7 +8,6 @@ meteor-platform
 yasinuslu:blaze-meta
 twbs:bootstrap
 accounts-password
-grigio:babel
 cfs:graphicsmagick
 mquandalle:bower
 chrismbeckett:toastr
@@ -31,3 +30,7 @@ luisalmeida:unveil
 joshowens:shareit
 accounts-facebook
 service-configuration
+raix:handlebar-helpers
+copleykj:livestamp
+grigio:babel
+matb33:collection-hooks

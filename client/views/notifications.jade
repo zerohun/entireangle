@@ -1,0 +1,28 @@
+template(name="notifications")
+  #notifications
+    each notifications
+      .notification
+        if $eq notiType "comment"
+          +commentNotification
+        if $eq notiType "like"
+          +likeNotification
+
+template(name="commentNotification")
+  .comment-notification
+    a(href="/posts/{{post._id}}")
+      with post.user
+        +profileImage  
+      | {{actioner.username}} commented on {{receiverName post.user}} photo
+      | - 
+      span
+        | {{livestamp createdAt}}
+ 
+template(name="likeNotification")
+  .like-notification
+    a(href="/posts/{{post._id}}")
+      with post.user
+        +profileImage  
+      | {{actioner.username}} liked {{receiverName post.user}} photo
+      | - 
+      span
+        | {{livestamp createdAt}}
