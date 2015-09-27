@@ -4,17 +4,39 @@ template(name='PostsNew')
     hr
     br
     br
-    form#post-form.center-block.text-center.new-post(role='form', style='max-width: 300px;')
+    form#upload-files
       .form-group
-        input.form-control(type='text', name='title', placeholder='Enter title')
-      .form-group
-        input#oldschool-file-field.form-control(type='file', name='image')
-      .form-group
-        input.form-control(type='text', name='desc', placeholder='Describe about the picture or video')
-      .form-group
-        input.form-control(type="checkbox" name="isPublished")
-        label(for="isPublished") Publish on the list
-      button.btn.btn-default(type='submit') Submit
-      a(href='/')
-        button.btn.btn-primary(type='button') Cancel
+        label(for="files-select")
+          |  Select files to upload(MAX: 10 files)
+        input(type="file" name="files-select" multiple)
+    #in-progress-file-list
+      each imagesInProgress
+        +imageInProgress
 
+template(name='imageInProgress')
+  .image-in-progress
+    if isUploaded
+      span
+        img(src=thumbnailUrl)
+    else
+      span
+        uploading image
+
+    span 
+      | {{filename}}
+    span
+      unless isUploaded
+        +FS.UploadProgressBar bootstrap=true class='progress-bar-success progress-bar-striped active' showPercent=true
+
+
+    +autoForm id="post-new-form" type="insert" collection="Post"
+      .form-group
+        +afQuickField name="title"
+      .form-group
+        +afQuickField name="desc"
+      .form-group
+        +afQuickField name="isPublished"
+        +afQuickField name="imageId" value=_id
+
+      button(type="submit").btn.btn-primary Submit
+      button.btn.btn-danger.delete-image-in-progress Delete 
