@@ -7,17 +7,19 @@ function hideSlideDownNode(fNode){
     fNode.slideDown();
 }
 
-
-if (Meteor.isClient) {
-    Session.set("PostsLimit", 10);
-    Session.set("UserPostsLimit", 10);
-    Session.set("StoriesLimit", 10);
-    Session.set("isVideo", false);
-    Session.set('posts-show-url', "");
+function getTemplate(templateName){
+  return isMobile.any? templateName + ".mobile": templateName;
 }
 
+
+Session.set("PostsLimit", 10);
+Session.set("UserPostsLimit", 10);
+Session.set("StoriesLimit", 10);
+Session.set("isVideo", false);
+Session.set('posts-show-url', "");
+
 Router.configure({
-    layoutTemplate: 'layout'
+    layoutTemplate: getTemplate("layout") 
 });
 Router.onBeforeAction(function() {
     $("body").css("overflow", "scroll");
