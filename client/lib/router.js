@@ -95,7 +95,7 @@ Router.route('/posts/new', {
 });
 
 Router.route('/posts/:_id', {
-    name: "posts.show",
+    name: "PostsShowMobile",
     subscriptions: function() {
         // return one handle, a function, or an array
         var subscriptionList;
@@ -160,7 +160,7 @@ Router.route('/posts/:_id', {
                   this.render("VideoPostsShow");
                 }
                 else{
-                  this.render("PostsShow");
+                  this.render(getTemplate("PostsShow"));
                 }
             }
         } else {

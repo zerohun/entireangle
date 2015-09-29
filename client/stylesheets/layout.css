@@ -110,9 +110,6 @@ a:link, a:visited, a:hover, a:active{
     font-size: 30px;
 
   }
-  img#logo{
-    width: 250px;
-  }
 }
 
 #account-box #username{
@@ -218,3 +215,6 @@ a.shareit-google-colors{
   padding: 0px;
 }
 
+#logo{
+  width: 100%;
+}

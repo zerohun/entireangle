@@ -510,7 +510,6 @@ Template.PostsShow.rendered = function() {
                           Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a)"), "click"),
                           Rx.Observable.fromEvent($("button.page-change"), "click"));
     var fview = FView.byId('header-footer');
-    fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.FILL);
 
     const closeModalSub = leavingPageSrc.
     subscribe(function(e) {
@@ -549,3 +548,89 @@ Template.PostsShow.rendered = function() {
 Template.PostsShow.toggleVRMode = ()=>{
     toggleVRMode();
 };
+
+Template.PostsShowMobile.rendered = function() {
+    console.log
+    $('body').css("overflow", 'hidden');
+    $("#container").css({"top" :$("#top-mobile-nav-bar").height()+"px"})
+    $(window).resize(function(){
+      console.log($("#top-mobile-nav-bar").height());
+      $("#container").css({"top" :$("#top-mobile-nav-bar").height()+"px"})
+    });
+    FView.byId("loading-box").node.show();
+    let isPreviewRendered = false;
+    Session.set("posts-show-url", location.href);
+    
+    $("#shareModal").on("shown.bs.modal",function() {
+      photoOrb.setState("stop");
+      let previewHeight = $(".share-preview").width() * 0.525;
+      $(".share-preview").height(previewHeight);
+      var image = Image.findOne({
+          _id: post.imageId
+      });
+      var imageFilePath = image.url({
+          store: 'images'
+      });
+        
+      if(!isPreviewRendered){
+        previewOrb = renderPhotoSphere(".share-preview", imageFilePath);
+        isPreviewRendered = true;
+      }
+      else{
+        previewOrb.setState("running");
+      }
+        
+      previewOrb.afterRender(()=>{
+        previewOrb.controls.object.position.x = photoOrb.controls.object.position.x;
+        previewOrb.controls.object.position.y = photoOrb.controls.object.position.y;
+        previewOrb.controls.object.position.z = photoOrb.controls.object.position.z;
+        onClickSavePreviewButton();
+      });
+        window.pre = previewOrb;
+        window.pho = photoOrb;
+    });
+    
+    $("#shareModal").on("hidden.bs.modal",function() {
+      previewOrb.setState("stop");
+      photoOrb.setState("running");
+    });
+    
+    leavingPageSrc = Rx.Observable.merge(
+                          Rx.Observable.fromEvent(window, "popstate"),
+                          Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a)"), "click"),
+                          Rx.Observable.fromEvent($("button.page-change"), "click"));
+
+    const closeModalSub = leavingPageSrc.
+    subscribe(function(e) {
+        $(".modal").modal('hide');
+        $(".modal-backdrop").remove();
+        closeModalSub.dispose();
+    });
+
+    turnEditingMode(false);
+
+    post = getCurrentPost();
+    Tracker.autorun(function(computation) {
+        var image = Image.findOne({
+            _id: post.imageId
+        });
+        var imageFilePath = image.url({
+            store: 'images'
+        });
+        if (imageFilePath) {
+            computation.stop();
+            photoOrb = renderPhotoSphere("#container", imageFilePath);
+        }
+    });
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1018333888196733&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+};
+
