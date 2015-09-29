@@ -1,0 +1,53 @@
+template(name="headerMobile")
+  #top-mobile-nav-bar
+    .row
+      .col.s5.col-force-padding-zero
+        a.waves-effect.waves-light
+          img#logo(src="/images/logo.jpg")
+      if isLoggedIn
+        .col.s1.offset-s2.col-force-padding-zero.col-force-padding-top
+          a.waves-effect.waves-light
+            i.material-icons.small.white-text add
+        .col.s1.col-force-padding-zero.col-force-padding-top
+          a.waves-effect.waves-light
+            i.material-icons.small.white-text search 
+        .col.s1.col-force-padding-zero.col-force-padding-top
+          a.waves-effect.waves-light
+            i.material-icons.small.white-text textsms 
+        .col.s1.col-force-padding-zero.col-force-padding-top
+          a.waves-effect.waves-light.account-button
+            i.material-icons.small.white-text perm_identity 
+        .col.s1.col-force-padding-zero.col-force-padding-top
+          a.waves-effect.waves-light.dropdown-button(href='#' data-activates='dropdown1')
+            i.material-icons.small.white-text more_vert 
+          ul#dropdown1.dropdown-content
+            li
+              a(href='#!') one
+            li
+              a(href='#!') two
+            li.divider
+            li
+              a(href='#!') three
+
+      else
+        .col.s1.offset-s1.col-force-padding-zero.col-force-padding-top
+          a.waves-effect.waves-light
+            i.material-icons.small.white-text search 
+        .col.s1.offset-s1.col-force-padding-zero.col-force-padding-top
+          a.waves-effect.waves-light
+            i.material-icons.small.white-text textsms 
+        .col.s1.offset-s1.col-force-padding-zero.col-force-padding-top
+          a.waves-effect.waves-light.account-button
+            i.material-icons.small.white-text perm_identity 
+        .col.s1.col-force-padding-zero.col-force-padding-top
+          a.waves-effect.waves-light.dropdown-button(href='#' data-activates='dropdown1')
+            i.material-icons.small.white-text more_vert 
+          ul#dropdown1.dropdown-content
+            li
+              a(href='#!') one
+            li
+              a(href='#!') two
+            li.divider
+            li
+              a(href='#!') three
+

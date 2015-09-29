@@ -8,9 +8,8 @@ function hideSlideDownNode(fNode){
 }
 
 function getTemplate(templateName){
-  return isMobile.any? templateName + ".mobile": templateName;
+  return isMobile.any? templateName + "Mobile": templateName;
 }
-
 
 Session.set("PostsLimit", 10);
 Session.set("UserPostsLimit", 10);
@@ -43,7 +42,7 @@ Router.route('/about', {
 });
 Router.route('/posts', {
     name: "Posts",
-    template: "Posts",
+    template: getTemplate("Posts"),
     subscriptions: function() {
         $("#list-fetching-bar").fadeOut(1000);
         var limit = Session.get("PostsLimit");

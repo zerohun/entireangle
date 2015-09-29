@@ -1,0 +1,22 @@
+template(name="PostsMobile")
+  .row
+    each posts
+        +postMobile
+
+template(name='postMobile')
+  .col.s4
+    .thumbnail-box
+      a(href="{{pathFor route='posts.show' data=this}}")
+       .loading-bg
+         img.circle.responsive-img(src='{{thumbUrl imageId isVideo}}' data-src="/images/loading.gif")
+       .post-info
+         table
+           tr
+             th(rowspan='2')
+               .right
+                 +profileImage user
+             td
+               | {{title}}
+           tr
+             td
+               | {{user.username}}

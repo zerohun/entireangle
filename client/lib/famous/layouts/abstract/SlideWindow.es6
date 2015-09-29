@@ -44,7 +44,7 @@ class SlideWindow extends Node {
       });
     }
   }
-  onSizeChange(func){
+  onWindowSizeChange(func){
     this.onSizeChangeFuncs.push(func);
   }
 }

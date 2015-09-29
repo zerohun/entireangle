@@ -1,24 +1,24 @@
-Template.Posts.helpers({
+var templatePostsHelpers = {
         posts: function() {
           return Router.current().data().posts;
     }
-});
+}
 
-Template.Posts.events({
-    "click #image-list": function() {
-        Session.set('isVideo', false);
-        Session.set('PostsLimit', 10);
-    },
-    "click #video-list": function() {
-        Session.set('isVideo', true);
-        Session.set('PostsLimit', 10);
-    },
-    "click .user-link": function(){
-        Session.set('UserPostsLimit', 10);
-    }
-});
+var templatePostsEvents = {
+  "click #image-list": function() {
+      Session.set('isVideo', false);
+      Session.set('PostsLimit', 10);
+  },
+  "click #video-list": function() {
+      Session.set('isVideo', true);
+      Session.set('PostsLimit', 10);
+  },
+  "click .user-link": function(){
+      Session.set('UserPostsLimit', 10);
+  }
+};
 
-Template.post.helpers({
+var templatePostHelper = {
     thumbUrl: function(imageId, isVideo) {
         if (isVideo) {
             return Video.findOne({
@@ -33,14 +33,26 @@ Template.post.helpers({
             return image.url({store: 'thumbs'}) + "&uploadAt=" + image._getInfo('thumbs').updatedAt.getTime();
         }
     }
-});
+};
 
-Template.Posts.rendered = function() {
+
+templatePostsRendered = function() {
     var fview = FView.byId('header-footer');
-    fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.SCROLL);
+    //fview.node.setHeightMode(famous.customLayouts.HeaderFooterLayout.HEIGHT_MODES.SCROLL);
     enableEndlessScroll("PostsLimit", Post);
     FView.byId("loading-box").node.hide();
 };
 
-Template.Posts.destroyed = function(){
-};
+
+
+Template.Posts.helpers(templatePostsHelpers);
+Template.Posts.events(templatePostsEvents);
+Template.Posts.rendered = templatePostsRendered; 
+
+Template.PostsMobile.helpers(templatePostsHelpers);
+Template.PostsMobile.events(templatePostsEvents);
+Template.PostsMobile.rendered = templatePostsRendered;
+
+Template.post.helpers(templatePostHelper);
+Template.postMobile.helpers(templatePostHelper);
+
