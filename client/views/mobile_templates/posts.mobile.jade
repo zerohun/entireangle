@@ -6,7 +6,7 @@ template(name="PostsMobile")
 template(name='postMobile')
   .col.s4
     .thumbnail-box
-      a(href="{{pathFor route='posts.show' data=this}}")
+      a(href="/posts/{{_id}}")
        .loading-bg
          img.circle.responsive-img(src='{{thumbUrl imageId isVideo}}' data-src="/images/loading.gif")
        .post-info
@@ -16,7 +16,10 @@ template(name='postMobile')
                .right
                  +profileImage user
              td
-               | {{title}}
+               if title
+                 | {{title}}
+               else
+                 | untitled
            tr
              td
                | {{user.username}}

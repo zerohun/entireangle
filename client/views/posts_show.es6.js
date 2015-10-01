@@ -516,6 +516,7 @@ Template.PostsShow.rendered = function() {
         $(".modal").modal('hide');
         $(".modal-backdrop").remove();
         closeModalSub.dispose();
+        clearInterval(resizeInterval);
     });
 
     turnEditingMode(false);
@@ -550,50 +551,26 @@ Template.PostsShow.toggleVRMode = ()=>{
 };
 
 Template.PostsShowMobile.rendered = function() {
-    console.log
+
+    $('.modal-trigger').leanModal({
+      ready: function(){
+        $(".lean-overlay").prependTo("#container");
+      }
+    });
     $('body').css("overflow", 'hidden');
     $("#container").css({"top" :$("#top-mobile-nav-bar").height()+"px"})
-    $(window).resize(function(){
-      console.log($("#top-mobile-nav-bar").height());
-      $("#container").css({"top" :$("#top-mobile-nav-bar").height()+"px"})
-    });
+
+    var oldNavbarHeight = $("#top-mobile-nav-bar").height();
+    var resizeInterval = setInterval(function(){
+      var newNavbarHeight = $("#top-mobile-nav-bar").height();
+      if(newNavbarHeight !== oldNavbarHeight){
+        oldNavbarHeight = newNavbarHeight;
+        $("#container").css({"top": newNavbarHeight+"px"})
+      }
+    },100);
+
     FView.byId("loading-box").node.show();
-    let isPreviewRendered = false;
     Session.set("posts-show-url", location.href);
-    
-    $("#shareModal").on("shown.bs.modal",function() {
-      photoOrb.setState("stop");
-      let previewHeight = $(".share-preview").width() * 0.525;
-      $(".share-preview").height(previewHeight);
-      var image = Image.findOne({
-          _id: post.imageId
-      });
-      var imageFilePath = image.url({
-          store: 'images'
-      });
-        
-      if(!isPreviewRendered){
-        previewOrb = renderPhotoSphere(".share-preview", imageFilePath);
-        isPreviewRendered = true;
-      }
-      else{
-        previewOrb.setState("running");
-      }
-        
-      previewOrb.afterRender(()=>{
-        previewOrb.controls.object.position.x = photoOrb.controls.object.position.x;
-        previewOrb.controls.object.position.y = photoOrb.controls.object.position.y;
-        previewOrb.controls.object.position.z = photoOrb.controls.object.position.z;
-        onClickSavePreviewButton();
-      });
-        window.pre = previewOrb;
-        window.pho = photoOrb;
-    });
-    
-    $("#shareModal").on("hidden.bs.modal",function() {
-      previewOrb.setState("stop");
-      photoOrb.setState("running");
-    });
     
     leavingPageSrc = Rx.Observable.merge(
                           Rx.Observable.fromEvent(window, "popstate"),
@@ -601,11 +578,11 @@ Template.PostsShowMobile.rendered = function() {
                           Rx.Observable.fromEvent($("button.page-change"), "click"));
 
     const closeModalSub = leavingPageSrc.
-    subscribe(function(e) {
-        $(".modal").modal('hide');
-        $(".modal-backdrop").remove();
-        closeModalSub.dispose();
-    });
+      subscribe(function(e) {
+          $(".modal").modal('hide');
+          $(".modal-backdrop").remove();
+          closeModalSub.dispose();
+      });
 
     turnEditingMode(false);
 

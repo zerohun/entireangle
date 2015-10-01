@@ -26,8 +26,7 @@ template(name='imageInProgress')
       | {{filename}}
     span
       unless isUploaded
-        +FS.UploadProgressBar bootstrap=true class='progress-bar-success progress-bar-striped active' showPercent=true
-
+        +FS.UploadProgressBar class='progress-bar-success progress-bar-striped active' showPercent=true
 
     +autoForm id="post-new-form" type="insert" collection="Post"
       .form-group
@@ -38,5 +37,5 @@ template(name='imageInProgress')
         +afQuickField name="isPublished"
         +afQuickField name="imageId" value=_id
 
-      button(type="submit").btn.btn-primary Submit
-      button.btn.btn-danger.delete-image-in-progress Delete 
+      button(type="submit") Submit
+      button.delete-image-in-progress Delete 

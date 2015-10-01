@@ -1,2 +1,27 @@
 template(name='PostsShowMobile')
   #container.loading-bg(style='width:100%; height:100%')
+  #menu-bar
+    table
+      tr
+        td.menu-button
+          a.waves-effect.waves-light.share-button.modal-trigger(href="#share-modal")
+            i.mdi-social-share.white-text
+
+        td.menu-button
+          a.waves-effect.waves-light
+            i.mdi-action-star-rate.white-text
+        td.menu-button
+          a.waves-effect.waves-light
+            i.mdi-content-create.white-text
+        td.menu-button
+          a.waves-effect.waves-light
+            i.mdi-action-delete.white-text
+        td.more-button
+          a.waves-effect.waves-light
+            i.mdi-navigation-more-vert.white-text
+
+  #share-modal.modal.bottom-sheet
+    .modal-content
+      h4 Sharing action
+      +shareit
+

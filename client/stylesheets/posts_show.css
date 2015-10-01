@@ -54,3 +54,57 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+
+
+#menu-bar{
+  position:absolute;
+  z-index: 999;
+  bottom: 0px;
+  width: 100%;
+  font-size: 3.1em;
+}
+
+#menu-bar td{
+  padding: 0px;
+}  
+#menu-bar .menu-button{
+  width: 22%;
+  text-align: center;
+}
+
+#menu-bar .more-button{
+  width: 12%;
+  border-width: 1px;
+  border-color: grey;
+  text-align: center;
+}
+
+#share-modal{
+  z-index: 99999;
+}
+
+#share-modal .sns-icon-box{
+  width: 15%;
+}
+.sns-icon-box a{
+  padding-top: 30%;
+  padding-bottom: 30%;
+}
+
+.sns-icon-box i{
+  width: 30px;
+  text-align:center;
+}
+
+
+#share-modal .sns-title-box{
+  width: 85%;
+  color: black;
+  padding-left: 20px;
+  font-size: 20px;
+}
+.sns-title-box a{
+  color: black;
+  width: 70%;
+}
