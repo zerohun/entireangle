@@ -194,6 +194,9 @@ a.shareit-google-colors{
 .white-text{
   color: white;
 }
+.black-text{
+  color: black;
+}
 
 .thumbnail-box{
   margin-bottom: 5px;
@@ -217,4 +220,44 @@ a.shareit-google-colors{
 
 #logo{
   width: 100%;
+}
+
+.btn-tiny{
+  height: 24px;
+  line-height: 18px;
+  padding: 0 0.5rem;
+  font-size: 0.8em!important;
+}
+
+
+.no-side-padding{
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+}
+
+.close-modal-button{
+  position: fixed;
+  left: 5%;
+  color: black;
+  top: 5%;
+}
+
+.close-modal-button i{
+  color: black;
+}
+
+.clear-both{
+  clear:both;
+}
+
+.width-fill{
+  width: 100%;
+}
+
+.right-text{
+  text-align: right;
+}
+
+.left-text{
+  text-align: left;
 }

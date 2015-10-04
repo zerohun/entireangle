@@ -6,6 +6,7 @@ var isInVRMode = false;
 var post = null;
 var originalPosition = new THREE.Vector3();
 let leavingPageSrc; 
+let resizeInterval;
 let isPreviewRendered;
 let previewOrb, photoOrb;
 
@@ -59,8 +60,6 @@ function onClickSavePreviewButton(){
       });
     }, 500);
   });
-        
-    
 }
 
 function saveCanvasSnapshotToImageStore(cssSelector, storeName, options, callbackFunc){
@@ -157,7 +156,6 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
             $("#slide-up-handle").text("Swipe down");
             return nextObs.subscribe(nextObserver, $.noop, nextComplete);
         };
-
 
         const slideUpMenu = document.getElementById("slide-up-menu");
         const slideUpMenuHandle = document.getElementById("slide-up-handle");
@@ -259,7 +257,7 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
 
         verticalSubs = verticalUpSwipeObs.subscribe(verticalObserverFunc, $.noop, verticalUpCompleteFunc);
         horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
-        const leavingPageSub = leavingPageSrc.subscribe(()=>{
+        const leavingPageSub = leavingPageSrc.subscribe((e)=>{
           verticalSubs.dispose();
           horizontalSubs.dispose();
           resizeSub.dispose();
@@ -352,7 +350,7 @@ function getDefaultControls(camera, element) {
     return controls;
 }
 
-function disableVRMode() {
+function disableVRMode(orb) {
     if (vrDeviceInfo.type === "MOBILE")
         OrbBuilders.setOrb(OrbBuilders.MobileControlOrbBuilder, orb);
 
@@ -360,7 +358,7 @@ function disableVRMode() {
     isInVRMode = false;
 }
 
-function enableVRMode() {
+function enableVRMode(orb) {
     if (vrDeviceInfo.type === "MOBILE")
         OrbBuilders.setOrb(OrbBuilders.CardboardControlOrbBuilder, orb);
 
@@ -368,18 +366,23 @@ function enableVRMode() {
     isInVRMode = true;
 }
 
-function toggleVRMode() {
+function toggleVRMode(orb) {
     if (vrDeviceInfo.type != "NONE") {
         if (isInVRMode) {
-            disableVRMode();
+            disableVRMode(orb);
         } else {
-            enableVRMode();
+            enableVRMode(orb);
         }
-    } else
-        $('#NoneVRModal').modal('show');
+    } //else
+        //$('#NoneVRModal').modal('show');
 }
 
-Template.PostsShow.helpers({
+
+
+const postsShowHelpers = {
+    "isInVRMode": function(){
+      return isInVRMode;
+    },
     "isMyPost": function() {
         try {
             return getCurrentPost().user._id == Meteor.userId();
@@ -397,73 +400,88 @@ Template.PostsShow.helpers({
     },
     "didILikeIt": function(){
       return Like.findOne({});
+    },
+    "numberOfComments": function(){
+      return Comment.find({postId: Router.current().data()._id}).count();
     }
-});
+};
 
+Template.PostsShow.helpers(postsShowHelpers);
+Template.PostsShowMobile.helpers(postsShowHelpers);
 
-Template.PostsShow.events({
-    "click .like-button": function(){
-      Meteor.call("like",  Router.current().data()._id);
-    },
-    "click .unlike-button": function(){
-      Meteor.call("unlike", Router.current().data()._id);
-    },
-    "click .shareModalOpenBtn": function(){
-      $("#shareModal").modal();
-    },
-    "click #share-modal-close-btn":  function(){
-      $("#shareModal").modal('hide');
-      previewOrb.setState("stop");
-      photoOrb.setState("running");
-    },
-    "click #vr-mode-button": function() {
-        toggleVRMode();
-    },
-    "click #home-button": function() {
-        Router.go("home");
-    },
-    "click #container": function() {
-        if (isInVRMode) toggleVRMode();
-    },
-    "click #remove-button": function() {
-        var post = getCurrentPost();
-        Router.go('Posts');
-        Meteor.call("removePost", post._id);
-        return false;
-    },
-    "click #edit-button": function() {
-        turnEditingMode(true);
-        return false;
-    },
-    "submit #edit-post": function() {
-        post = getCurrentPost();
-        post.title = event.target.title.value;
-        post.desc = event.target.desc.value;
-        post.isPublished = event.target.isPublished.checked;
-        Meteor.call("updatePost", post, ()=>{
-          Meteor.subscribe('posts', 1, {_id: post._id});
-        });
-        turnEditingMode(false);
-        return false;
-    },
-    "click #position-save-button": function() {
-        FView.byId("loading-box").node.show();
-        post = getCurrentPost();
-        Meteor.call("updatePostViewPosition", post, photoOrb.controls.object.position);
-        
-        saveCanvasSnapshotToImageStore($("#container canvas"), "thumbs", 
-        {centerCrop: true},
-        ()=> {
-          FView.byId("loading-box").node.hide();
-        });
-        $("#position-save-button").hide();
-        observeViewPosition(photoOrb, ()=>{
-          $("#position-save-button").show();
-        });
-        
-    },
-    "click #save-preview-button": onClickSavePreviewButton
-});
+const postsShowEvents = {
+  "click .close-modal-button": function(e){
+    $("#menu-bar").show();
+    $(e.target).parents(".modal").first().closeModal();
+  },
+  "click .like-button": function(){
+    Meteor.call("like",  Router.current().data()._id);
+  },
+  "click .unlike-button": function(){
+    Meteor.call("unlike", Router.current().data()._id);
+  },
+  "click .shareModalOpenBtn": function(){
+    //$("#shareModal").modal();
+  },
+  "click #share-modal-close-btn":  function(){
+    //$("#shareModal").modal('hide');
+    previewOrb.setState("stop");
+    photoOrb.setState("running");
+  },
+  "click #vr-mode-button": function() {
+      toggleVRMode(photoOrb);
+  },
+  "click #home-button": function() {
+      Router.go("home");
+  },
+  "click #container": function() {
+      if (isInVRMode) toggleVRMode(photoOrb);
+  },
+  "click #remove-button": function() {
+      var post = getCurrentPost();
+      Router.go('Posts');
+      Meteor.call("removePost", post._id);
+      return false;
+  },
+  "click #edit-button": function() {
+      turnEditingMode(true);
+      return false;
+  },
+  "click #edit-cancel-button": function() {
+      turnEditingMode(false);
+      return false;
+  },
+  "submit #edit-post": function() {
+      post = getCurrentPost();
+      post.title = event.target.title.value;
+      post.desc = event.target.desc.value;
+      post.isPublished = event.target.isPublished.checked;
+      Meteor.call("updatePost", post, ()=>{
+        Meteor.subscribe('posts', 1, {_id: post._id});
+      });
+      turnEditingMode(false);
+      return false;
+  },
+  "click #position-save-button": function() {
+      FView.byId("loading-box").node.show();
+      post = getCurrentPost();
+      Meteor.call("updatePostViewPosition", post, photoOrb.controls.object.position);
+      
+      saveCanvasSnapshotToImageStore($("#container canvas"), "thumbs", 
+      {centerCrop: true},
+      ()=> {
+        FView.byId("loading-box").node.hide();
+      });
+      $("#position-save-button").hide();
+      observeViewPosition(photoOrb, ()=>{
+        $("#position-save-button").show();
+      });
+      
+  },
+  "click #save-preview-button": onClickSavePreviewButton
+};
+Template.PostsShow.events(postsShowEvents);
+Template.PostsShowMobile.events(postsShowEvents);
 
 Template.PostsShow.rendered = function() {
     $('body').css("overflow", 'hidden');
@@ -471,39 +489,39 @@ Template.PostsShow.rendered = function() {
     let isPreviewRendered = false;
     Session.set("posts-show-url", location.href);
     
-    $("#shareModal").on("shown.bs.modal",function() {
-      photoOrb.setState("stop");
-      let previewHeight = $(".share-preview").width() * 0.525;
-      $(".share-preview").height(previewHeight);
-      var image = Image.findOne({
-          _id: post.imageId
-      });
-      var imageFilePath = image.url({
-          store: 'images'
-      });
+    //$("#shareModal").on("shown.bs.modal",function() {
+      //photoOrb.setState("stop");
+      //let previewHeight = $(".share-preview").width() * 0.525;
+      //$(".share-preview").height(previewHeight);
+      //var image = Image.findOne({
+          //_id: post.imageId
+      //});
+      //var imageFilePath = image.url({
+          //store: 'images'
+      //});
         
-      if(!isPreviewRendered){
-        previewOrb = renderPhotoSphere(".share-preview", imageFilePath);
-        isPreviewRendered = true;
-      }
-      else{
-        previewOrb.setState("running");
-      }
+      //if(!isPreviewRendered){
+        //previewOrb = renderPhotoSphere(".share-preview", imageFilePath);
+        //isPreviewRendered = true;
+      //}
+      //else{
+        //previewOrb.setState("running");
+      //}
         
-      previewOrb.afterRender(()=>{
-        previewOrb.controls.object.position.x = photoOrb.controls.object.position.x;
-        previewOrb.controls.object.position.y = photoOrb.controls.object.position.y;
-        previewOrb.controls.object.position.z = photoOrb.controls.object.position.z;
-        onClickSavePreviewButton();
-      });
-        window.pre = previewOrb;
-        window.pho = photoOrb;
-    });
+      //previewOrb.afterRender(()=>{
+        //previewOrb.controls.object.position.x = photoOrb.controls.object.position.x;
+        //previewOrb.controls.object.position.y = photoOrb.controls.object.position.y;
+        //previewOrb.controls.object.position.z = photoOrb.controls.object.position.z;
+        //onClickSavePreviewButton();
+      //});
+        //window.pre = previewOrb;
+        //window.pho = photoOrb;
+    //});
     
-    $("#shareModal").on("hidden.bs.modal",function() {
-      previewOrb.setState("stop");
-      photoOrb.setState("running");
-    });
+    //$("#shareModal").on("hidden.bs.modal",function() {
+      //previewOrb.setState("stop");
+      //photoOrb.setState("running");
+    //});
     
     leavingPageSrc = Rx.Observable.merge(
                           Rx.Observable.fromEvent(window, "popstate"),
@@ -511,11 +529,11 @@ Template.PostsShow.rendered = function() {
                           Rx.Observable.fromEvent($("button.page-change"), "click"));
     var fview = FView.byId('header-footer');
 
-    const closeModalSub = leavingPageSrc.
+    const leavingPageSub = leavingPageSrc.
     subscribe(function(e) {
-        $(".modal").modal('hide');
-        $(".modal-backdrop").remove();
-        closeModalSub.dispose();
+        //$(".modal").modal('hide');
+        //$(".modal-backdrop").remove();
+        //closeModalSub.dispose();
         clearInterval(resizeInterval);
     });
 
@@ -532,6 +550,7 @@ Template.PostsShow.rendered = function() {
         if (imageFilePath) {
             computation.stop();
             photoOrb = renderPhotoSphere("#container", imageFilePath);
+
         }
     });
 
@@ -552,17 +571,31 @@ Template.PostsShow.toggleVRMode = ()=>{
 
 Template.PostsShowMobile.rendered = function() {
 
+    $('.dropdown-button').dropdown();
+
     $('.modal-trigger').leanModal({
+      opacity: .5,
       ready: function(){
         $(".lean-overlay").prependTo("#container");
+        $("#menu-bar").hide();
+      },
+      complete: function(){
+        $("#menu-bar").show();
       }
     });
     $('body').css("overflow", 'hidden');
     $("#container").css({"top" :$("#top-mobile-nav-bar").height()+"px"})
 
     var oldNavbarHeight = $("#top-mobile-nav-bar").height();
-    var resizeInterval = setInterval(function(){
-      var newNavbarHeight = $("#top-mobile-nav-bar").height();
+    resizeInterval = setInterval(function(){
+      var newNavbarHeight;
+      if(isInVRMode){
+        newNavbarHeight = 0;
+      }
+      else{
+        newNavbarHeight = $("#top-mobile-nav-bar").height();
+      }
+
       if(newNavbarHeight !== oldNavbarHeight){
         oldNavbarHeight = newNavbarHeight;
         $("#container").css({"top": newNavbarHeight+"px"})
@@ -574,15 +607,15 @@ Template.PostsShowMobile.rendered = function() {
     
     leavingPageSrc = Rx.Observable.merge(
                           Rx.Observable.fromEvent(window, "popstate"),
-                          Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a)"), "click"),
+                          Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)"), "click"),
                           Rx.Observable.fromEvent($("button.page-change"), "click"));
 
-    const closeModalSub = leavingPageSrc.
-      subscribe(function(e) {
-          $(".modal").modal('hide');
-          $(".modal-backdrop").remove();
-          closeModalSub.dispose();
-      });
+    //const closeModalSub = leavingPageSrc.
+      //subscribe(function(e) {
+          //$(".modal").modal('hide');
+          //$(".modal-backdrop").remove();
+          //closeModalSub.dispose();
+      //});
 
     turnEditingMode(false);
 
@@ -597,6 +630,7 @@ Template.PostsShowMobile.rendered = function() {
         if (imageFilePath) {
             computation.stop();
             photoOrb = renderPhotoSphere("#container", imageFilePath);
+            window.pho = photoOrb;
         }
     });
 

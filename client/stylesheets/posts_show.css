@@ -108,3 +108,73 @@
   color: black;
   width: 70%;
 }
+
+.yellow-text{
+  color: yellow;
+}
+
+#more-dropdown .li{
+  font-size: 2em;
+}
+
+.modal{
+  opacity: 0.8!important;
+}
+
+.no-comment-text{
+  color: grey;
+}
+
+.centered-text{
+  text-align: center!important;
+}
+
+#content-modal{
+  width: 100%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.small-padding-btn{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.comment-text{
+  margin-top: 5%!important;
+}
+
+#content-modal{
+  max-height: 90%;
+}
+
+.edit-title{
+  font-size: 2rem!important;
+  text-align: center;
+}
+
+.edit-desc{
+  text-align: center;
+  min-height: 100px;
+}
+
+#edit-button{
+  position: fixed;
+  left: 5%;
+  top: 15%;
+}
+
+.comment-count-number{
+  padding: 2% 13%;
+  font-size: 1rem;
+  border-radius: 45%;
+  position: fixed;
+  bottom: 12%;
+  right: 9%;
+
+}
+
+.more-menu-items{
+  font-size: 1.5rem;
+  text-align: center;
+}

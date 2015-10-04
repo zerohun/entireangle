@@ -27,7 +27,7 @@ window.Orb = function(reqiredParams, options) {
         this.renderable = renderable;
     };
     this.removeEffect = function() {
-        this.renderable = renderer;
+        this.renderable = this.renderer;
     };
     this.setEffect(effect);
 
@@ -111,9 +111,9 @@ window.Orb = function(reqiredParams, options) {
         //        console.log(controls);
         onWindowResize();
         //		camera.updateProjectionMatrix();
-        controls.update(dt);
+        self.controls.update(dt);
         //				camera.position.copy( camera.target ).negate();
-        renderable.render(self.scene, camera);
+        self.renderable.render(self.scene, camera);
         
         if(self.afterRenderCallbacks.length > 0){
           self.afterRenderCallbacks[0](self);
@@ -121,6 +121,6 @@ window.Orb = function(reqiredParams, options) {
         }
     }
     this.reRender = function(){
-      renderable.render(this.scene, camera);
+      self.renderable.render(this.scene, camera);
     }
 };

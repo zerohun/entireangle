@@ -2,23 +2,23 @@ template(name="headerMobile")
   #top-mobile-nav-bar.black
     .row
       .col.s4.col-force-padding-zero
-        a.waves-effect.waves-light
+        a.waves-effect.waves-light(href="/")
           img#logo(src="/images/logo.jpg")
       if isLoggedIn
         .col.s1.offset-s3.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light(href="/posts/new")
+          a.waves-effect.waves-light.inpage-buttons(href="/posts/new")
             i.material-icons.small.white-text add
         .col.s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light
+          a.waves-effect.waves-light.inpage-buttons
             i.material-icons.small.white-text search 
         .col.s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light
+          a.waves-effect.waves-light.inpage-buttons
             i.material-icons.small.white-text textsms 
         .col.s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.account-button
+          a.waves-effect.waves-light.account-button.inpage-buttons
             i.material-icons.small.white-text perm_identity 
         .col.s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.dropdown-button(href='#' data-activates='dropdown1')
+          a.waves-effect.waves-light.dropdown-button.inpage-buttons(href='#' data-activates='dropdown1')
             i.material-icons.small.white-text more_vert 
           ul#dropdown1.dropdown-content
             li
@@ -31,16 +31,16 @@ template(name="headerMobile")
 
       else
         .col.s1.offset-s2.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light
+          a.waves-effect.waves-light.inpage-buttons
             i.material-icons.small.white-text search 
         .col.s1.offset-s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light
+          a.waves-effect.waves-light.inpage-buttons
             i.material-icons.small.white-text textsms 
         .col.s1.offset-s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.account-button
+          a.waves-effect.waves-light.account-button.inpage-buttons
             i.material-icons.small.white-text perm_identity 
         .col.s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.dropdown-button(href='#' data-activates='dropdown1')
+          a.waves-effect.waves-light.dropdown-button.inpage-buttons(href='#' data-activates='dropdown1')
             i.material-icons.small.white-text more_vert 
           ul#dropdown1.dropdown-content
             li

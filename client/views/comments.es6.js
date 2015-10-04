@@ -33,6 +33,9 @@ function resetCommentFields(){
 
 
 Template.comments.helpers({
+  "hasAnyComments": function(){
+    return Comment.find({}).count() > 0;
+  },
   "comments": function(){
     return Comment.find({}, {
       limit: Session.get("commentsLimit"),
@@ -60,6 +63,7 @@ Template.comments.events({
     }
   },
   "submit #comment-form": function(event){
+    console.log('submit');
     var commentText = event.target.commentText.value;
     if(commentText.replace(/ /g, '').length > 0){
       var commentObj = {

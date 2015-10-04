@@ -4,24 +4,81 @@ template(name='PostsShowMobile')
     table
       tr
         td.menu-button
-          a.waves-effect.waves-light.share-button.modal-trigger(href="#share-modal")
+          a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#share-modal")
             i.mdi-social-share.white-text
 
         td.menu-button
-          a.waves-effect.waves-light
-            i.mdi-action-star-rate.white-text
+          if didILikeIt
+            a.waves-effect.waves-light.unlike-button.inpage-buttons
+              i.mdi-action-star-rate.yellow-text
+          else
+            a.waves-effect.waves-light.like-button.inpage-buttons
+              i.mdi-action-star-rate.white-text
+
         td.menu-button
-          a.waves-effect.waves-light
+          a.waves-effect.waves-light.inpage-buttons.modal-trigger(href="#content-modal")
             i.mdi-content-create.white-text
+            span.red.comment-count-number
+              | {{numberOfComments}}
+
         td.menu-button
-          a.waves-effect.waves-light
-            i.mdi-action-delete.white-text
+          a#vr-mode-button.waves-effect.waves-light.inpage-buttons
+            if isInVRMode
+              i.mdi-action-visibility.yellow-text
+            else
+              i.mdi-action-visibility.white-text
+
+
         td.more-button
-          a.waves-effect.waves-light
+          a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#more-modal")
             i.mdi-navigation-more-vert.white-text
 
+  #more-modal.modal.bottom-sheet
+    .modal-content
+      ul
+        li.more-menu-items
+          a#remove-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row
+              .col.s4.right-text
+                i.mdi-action-delete.black-text
+              .col.s8.left-text
+                | Delete
+            
   #share-modal.modal.bottom-sheet
     .modal-content
       h4 Sharing action
+      hr
       +shareit
 
+  #content-modal.modal
+    .modal-content.centered-text
+      button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
+        i.material-icons close 
+      if isMyPost
+        button#edit-button.btn.btn-floating.view-box.green.darken-3
+          | Edit
+      form#edit-post
+        h4#myModalLabel.modal-title.view-box {{title}}
+
+          br.clear-both
+        input.edit-field.edit-title(type='text', name='title', value='{{title}}')
+        p.timestamp
+          | {{createdAt}}
+        p.view-box
+          pre.centered-text.
+            {{desc}}
+        br
+        textarea.edit-field.edit-desc(name='desc') {{desc}}
+        .switch.edit-field
+          label
+            input(type="checkbox" name="isPublished" checked="{{isPublished}}")
+            span.lever
+            | Public
+        br
+        if isMyPost
+          button.btn.btn-tiny.edit-field.light-green.darken-4(type='submit')
+            | Done
+          button#edit-cancel-button.btn.btn-tiny.btn.edit-field.orange.darken-4(type='submit')
+            | Cancel
+              
+      +comments

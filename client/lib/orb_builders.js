@@ -129,8 +129,10 @@ var createCardboardControlOrbBuilder = function() {
             var controls = new THREE.DeviceOrientationControls(camera, true);
             orb.setControls(controls);
             var renderer = orb.renderer;
+            var clonedRenderer = jQuery.extend(true, {}, renderer);
             var effect = new THREE.StereoEffect(renderer);
             orb.setEffect(effect);
+            orb.renderer = clonedRenderer;
             orb.setFullScreen = getSetFullScreenFunc(orb.container);
         }
     };
