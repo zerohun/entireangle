@@ -377,9 +377,70 @@ function toggleVRMode(orb) {
         //$('#NoneVRModal').modal('show');
 }
 
+function getPostsInfo(){
+  let postIds;
+  if(location.search.search("isUploading=1") > -1)
+    postIds = location.search.match(/postIds=.+&/g)[0].replace("postIds=", "").replace("&","").split(','); 
+  else
+    postIds = Post.find({}).fetch().map((p) => p._id);
+  const postId = Router.current().data()._id;
+  const index = postIds.indexOf(postId);
 
+  if(postIds.length <= 1 || !postId || index === -1)
+    return null;
+  
+  return {
+    postIds: postIds,
+    postId: postId,
+    index: index
+  }
+}
+
+function getUrlOfPostIndex(postId, postIds){
+  let urlString =  `/posts/${postId}?postIds=${postIds.join(',')}`;
+  if(location.search.search("isUploading=1") > -1)
+      urlString = urlString.concat("&isUploading=1");
+  return urlString;
+}
+
+
+function savePosition(){
+  FView.byId("loading-box").node.show();
+  post = getCurrentPost();
+  Meteor.call("updatePostViewPosition", post, photoOrb.controls.object.position);
+  
+  saveCanvasSnapshotToImageStore($("#container canvas"), "thumbs", 
+  {centerCrop: true},
+  ()=> {
+    FView.byId("loading-box").node.hide();
+  });
+  $("#position-save-button").hide();
+  observeViewPosition(photoOrb, ()=>{
+    $("#position-save-button").show();
+  });
+}
 
 const postsShowHelpers = {
+    "nextPostUrl": function(){
+      const res = getPostsInfo();
+      if(!res) return null;
+      if(res.postIds[res.index + 1]){
+        return getUrlOfPostIndex(res.postIds[res.index+1], res.postIds);
+      }
+      else{
+        return null;
+      }
+    },
+    "prevPostUrl": function(){
+      const res = getPostsInfo();
+      if(!res) return null;
+      if(res.index > 0){
+        return getUrlOfPostIndex(res.postIds[res.index-1], res.postIds);
+      }
+      else{
+        return null;
+      }
+    },
     "isInVRMode": function(){
       return isInVRMode;
     },
@@ -410,8 +471,24 @@ Template.PostsShow.helpers(postsShowHelpers);
 Template.PostsShowMobile.helpers(postsShowHelpers);
 
 const postsShowEvents = {
+  "click #publish-post-button": function(e){
+    const post = Router.current().data();
+    post.isPublished = true;
+    Meteor.call("updatePost", post);
+    savePosition();
+    Materialize.toast('Successfully published', 1000, '', function(){
+      const res = getPostsInfo();
+      if(!res) return null;
+      if(res.postIds[res.index + 1]){
+        Router.go(getUrlOfPostIndex(res.postIds[res.index+1], res.postIds));
+      }
+      else{
+        Router.go("/posts");
+      }
+    })
+  },
   "click .close-modal-button": function(e){
-    $("#menu-bar").show();
+    $(".hide-on-modal").show();
     $(e.target).parents(".modal").first().closeModal();
   },
   "click .like-button": function(){
@@ -462,22 +539,7 @@ const postsShowEvents = {
       turnEditingMode(false);
       return false;
   },
-  "click #position-save-button": function() {
-      FView.byId("loading-box").node.show();
-      post = getCurrentPost();
-      Meteor.call("updatePostViewPosition", post, photoOrb.controls.object.position);
-      
-      saveCanvasSnapshotToImageStore($("#container canvas"), "thumbs", 
-      {centerCrop: true},
-      ()=> {
-        FView.byId("loading-box").node.hide();
-      });
-      $("#position-save-button").hide();
-      observeViewPosition(photoOrb, ()=>{
-        $("#position-save-button").show();
-      });
-      
-  },
+  "click #position-save-button": savePosition, 
   "click #save-preview-button": onClickSavePreviewButton
 };
 Template.PostsShow.events(postsShowEvents);
@@ -547,10 +609,13 @@ Template.PostsShow.rendered = function() {
         var imageFilePath = image.url({
             store: 'images'
         });
-        if (imageFilePath) {
+        if (image.isUploaded() && imageFilePath) {
             computation.stop();
+            $("#uploading-image").hide();
             photoOrb = renderPhotoSphere("#container", imageFilePath);
-
+        }
+        else{
+          $("#uploading-image").show();
         }
     });
 
@@ -577,10 +642,10 @@ Template.PostsShowMobile.rendered = function() {
       opacity: .5,
       ready: function(){
         $(".lean-overlay").prependTo("#container");
-        $("#menu-bar").hide();
+        $(".hide-on-modal").hide();
       },
       complete: function(){
-        $("#menu-bar").show();
+        $(".hide-on-modal").show();
       }
     });
     $('body').css("overflow", 'hidden');

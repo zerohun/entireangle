@@ -46,8 +46,7 @@ Template.PostsNew.events({
 Template.PostsNew.helpers({
   imagesInProgress: function(){
     return Image.find({isInProgress: true}); 
-  },
-
+  }
 });
 
 

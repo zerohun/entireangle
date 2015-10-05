@@ -178,3 +178,39 @@
   font-size: 1.5rem;
   text-align: center;
 }
+.next-prev-post{
+  z-index: 99999;
+  position: fixed;
+  top: 40%;
+  color: white;
+}
+
+.next-prev-post i{
+  font-size: 55px;
+  opacity: 0.3;
+}
+
+
+#nextPostButton{
+  right: 1%;
+}
+#prevPostButton{
+  left: 1%;
+}
+
+i{
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: grey;
+  text-shadow: 1px 1px black;
+}
+
+#publish-post-button{
+  position: fixed;
+  bottom: 10%;
+  right: 30%;
+  z-index: 99999;
+}
+
+#upload-btn-label{
+  font-size: 0.7rem;
+}

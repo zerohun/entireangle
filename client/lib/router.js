@@ -69,6 +69,10 @@ Router.route('/posts', {
         };
     }
 });
+Router.route('/upload', {
+  name:"upload",
+  template: getTemplate("upload")
+});
 Router.route('/posts/new', {
     name: "posts.new",
     action: function() {
@@ -99,7 +103,15 @@ Router.route('/posts/:_id', {
     subscriptions: function() {
         // return one handle, a function, or an array
         var subscriptionList;
-        if(postsSubscription){
+        if(this.params.query.isUploading && this.params.query.postIds){
+            subscriptionList = [
+              Meteor.subscribe("uploadingPosts", this.params.query.postIds.split(',')),
+              Meteor.subscribe('comments', {postId: {
+                $in: this.params.query.postIds.split(',')
+              }})
+            ];
+        }
+        else if(postsSubscription){
             var limit = Session.get("PostsLimit");
             //return Meteor.subscribe("posts", limit, {isVideo: Session.get('isVideo')});
             subscriptionList = [
