@@ -3,12 +3,22 @@ template(name="uploadMobile")
     form#upload-files.col.s12
       .row
         .input-field.col.s12
-          input#albumTitle(type="text" name="albumTitle" placeholder="Default Album")
+          +inputAutocomplete settings=autoCompleteSetting id="albumTitle" placeholder="Default Album"
           label.activates(for="albumTitle") Album
-          input#albumId(type="hidden" name="albumId" value="0")
+          input#albumIds(type="hidden" name="albumIds" value="{{albumIds}}")
+          .tags
+            each albumTitles
+              .chip
+                | {{this}}
+                i.material-icons close
+
       .row
         .file-field.input-field.col.s12
           .btn
             span#upload-btn-label Select files to upload(MAX: 10 files)
             input#file-upload(type="file" name="files-select" multiple)
 
+
+template(name="autoTemplate")
+  span.label.black-text
+    | {{title}}
