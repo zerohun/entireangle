@@ -66,11 +66,14 @@ Template.noMatch.helpers({
 Template.noMatch.events({
   "click #create-album": function(){
     const albums = Template.tagAutocomplete.albumsReact.get();
-    albums.push({
+    const newAlbumObj = {
       title: typedTextReact.get(),
-      _id: "new-"+ typedTextReact.get()
+    };
+    Meteor.call("addAlbum", newAlbumObj, function(error, albumId){
+      albums.push(Album.findOne(albumId));
+      Template.tagAutocomplete.albumsReact.set(albums);
+      $("#albumTitle").val('');
     });
-    Template.tagAutocomplete.albumsReact.set(albums);
-    $("#albumTitle").val('');
+    return false;
   }
 });

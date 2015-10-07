@@ -176,6 +176,9 @@ Router.route('/posts/:_id', {
                   this.render(getTemplate("PostsShow"));
                 }
             }
+            else{
+              this.render('Loading');
+            }
         } else {
             this.render('Loading');
         }

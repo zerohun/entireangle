@@ -433,6 +433,11 @@ function savePosition(){
 
 AutoForm.hooks({
   editPost:{
+    formToModifier: function(modifier){
+      const albumIds = Template.tagAutocomplete.albumsReact.get().map((album) => album._id);
+      modifier.$set.albumIds = albumIds; 
+      return modifier;
+    },
     onSuccess:function(){
       console.log('suc');
       turnEditingMode(false);
