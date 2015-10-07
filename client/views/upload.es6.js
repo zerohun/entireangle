@@ -4,23 +4,25 @@ function afterFileInsertCallback(error, fileObj){
 }
 
 const albumsReact = new ReactiveVar([]);
+const typedTextReact = new ReactiveVar("");
 
 Template.uploadMobile.helpers({
   albumIds: function(){
     return albumsReact.get().map((album) => album._id).join(',');
   },
-  albumTitles: function(){
-    return albumsReact.get().map((album) => album.title);
+  albums: function(){
+    return albumsReact.get();
   },
   autoCompleteSetting: function(){
     return {
-      position: "top",
+      position: "bottom",
       limit: 5,
       rules: [
         {
           collection: Album,
           field: "title",
-          template: Template.autoTemplate
+          template: Template.autoTemplate,
+          noMatchTemplate: Template.noMatch
         }
       ]
     };
@@ -28,8 +30,20 @@ Template.uploadMobile.helpers({
 });
 
 Template.uploadMobile.events({
-  "submit @upload-files": function(){
+  "submit #upload-files": function(event){
+    event.preventDefault();
     return false;
+  },
+  "click .tags .chip .close": function(event){
+    const albumId = $(event.target).data("id");
+    const albumIds = albumsReact.get().map((album) => album._id); 
+    const albums = albumsReact.get();
+    albums.splice(albumIds.indexOf(albumId),1);
+    albumsReact.set(albums);
+  },
+  "keyup #albumTitle": function(e){
+    typedTextReact.set($(e.target).val());
+    return true;
   },
   "autocompleteselect #albumTitle": function(event, template, doc){
     const albumIds =  albumsReact.get().map((album) => album._id);
@@ -50,7 +64,9 @@ Template.uploadMobile.events({
       const imageId = Image.insert(fsFile, afterFileInsertCallback)._id;
       imageIds.push(imageId);
     }
-    Meteor.call("addPosts", imageIds, $("#albumId").val(), $("#albumTitle").val(), function(error, postIds){
+
+    const albums = albumsReact.get();
+    Meteor.call("addPosts", imageIds, albums, function(error, postIds){
       Router.go(`/posts/${postIds[0]}?postIds=${postIds.join(',')}&isUploading=1`);
     });
   }
@@ -59,3 +75,27 @@ Template.uploadMobile.events({
 Template.uploadMobile.rendered = ()=>{
   FView.byId("loading-box").node.hide();
 };
+
+Template.noMatch.helpers({
+  typedText: function(){
+    return typedTextReact.get();
+  },
+  canCreateAlbum: function(){
+    const albums = albumsReact.get();
+    const typedText = typedTextReact.get();
+    const albumTitles = albums.map((album)=>album.title);
+    return albumTitles.indexOf(typedText) === -1
+  }
+});
+
+Template.noMatch.events({
+  "click #create-album": function(){
+    const albums = albumsReact.get();
+    albums.push({
+      title: typedTextReact.get(),
+      _id: "new-"+ typedTextReact.get()
+    });
+    albumsReact.set(albums);
+    $("#albumTitle").val('');
+  }
+});

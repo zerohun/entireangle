@@ -3,14 +3,14 @@ template(name="uploadMobile")
     form#upload-files.col.s12
       .row
         .input-field.col.s12
-          +inputAutocomplete settings=autoCompleteSetting id="albumTitle" placeholder="Default Album"
-          label.activates(for="albumTitle") Album
+          +inputAutocomplete settings=autoCompleteSetting id="albumTitle" 
+          label.activates(for="albumTitle") Tags 
           input#albumIds(type="hidden" name="albumIds" value="{{albumIds}}")
           .tags
-            each albumTitles
+            each albums
               .chip
-                | {{this}}
-                i.material-icons close
+                | {{title}}
+                i.material-icons.close(data-id=_id) close
 
       .row
         .file-field.input-field.col.s12
@@ -22,3 +22,11 @@ template(name="uploadMobile")
 template(name="autoTemplate")
   span.label.black-text
     | {{title}}
+
+template(name="noMatch")
+  if(canCreateAlbum)
+    span.label.black-text
+      | Couldn't find album '{{typedText}}'. Do you want to create it?
+      button#create-album.btn.btn-tiny.green
+        | Create
+      

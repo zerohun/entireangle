@@ -73,7 +73,7 @@ Router.route('/upload', {
   name:"upload",
   template: getTemplate("upload"),
   subscriptions: function(){
-    return Meteor.subscribe("albums", 100, {'user._id': Meteor.userId()});
+    return Meteor.subscribe("albums", 100, {});
   }
 });
 Router.route('/posts/new', {

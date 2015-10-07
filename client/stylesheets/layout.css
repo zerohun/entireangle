@@ -261,3 +261,7 @@ a.shareit-google-colors{
 .left-text{
   text-align: left;
 }
+
+.tags .chip{
+  margin: 3px;
+}
