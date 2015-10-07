@@ -692,7 +692,8 @@ Template.PostsShowMobile.rendered = function() {
         var imageFilePath = image.url({
             store: 'images'
         });
-        if (imageFilePath) {
+        if (image.isUploaded()) {
+          console.log('rendered');
             computation.stop();
             photoOrb = renderPhotoSphere("#container", imageFilePath);
             window.pho = photoOrb;
