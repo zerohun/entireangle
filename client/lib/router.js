@@ -1,6 +1,6 @@
 var postsSubscription = null;
 var storiesSubscription = null;
-
+Meteor.subscribe("albums", 100, {});
 
 function hideSlideDownNode(fNode){
     fNode.hide();
@@ -71,10 +71,8 @@ Router.route('/posts', {
 });
 Router.route('/upload', {
   name:"upload",
-  template: getTemplate("upload"),
-  subscriptions: function(){
-    return Meteor.subscribe("albums", 100, {});
-  }
+  template: getTemplate("upload")
+
 });
 Router.route('/posts/new', {
     name: "posts.new",

@@ -68,28 +68,38 @@ template(name='PostsShowMobile')
       if isMyPost
         button#edit-button.btn.btn-floating.view-box.green.darken-3
           | Edit
-      form#edit-post
-        h4#myModalLabel.modal-title.view-box {{title}}
 
-          br.clear-both
-        input.edit-field.edit-title(type='text', name='title', value='{{title}}')
+      .view-box
+        h4#myModalLabel.modal-title {{title}}
+        br.clear-both
         p.timestamp
           | {{createdAt}}
-        p.view-box
+        p
+          | tags
+          .tags
+            each albums
+              span.chip 
+                | {{title}}
+
+        p
           pre.centered-text.
             {{desc}}
-        br
-        textarea.edit-field.edit-desc(name='desc') {{desc}}
-        .switch.edit-field
-          label
-            input(type="checkbox" name="isPublished" checked="{{isPublished}}")
-            span.lever
-            | Public
-        br
-        if isMyPost
-          button.btn.btn-tiny.edit-field.light-green.darken-4(type='submit')
-            | Done
-          button#edit-cancel-button.btn.btn-tiny.btn.edit-field.orange.darken-4(type='submit')
-            | Cancel
-              
+      .edit-field
+        +autoForm id="editPost" type="update" collection="Post" doc=post
+          +afFieldInput name='title'
+          .tag-edit
+            +tagAutocomplete
+          br
+          +afFieldInput name='desc'
+          .switch
+            label
+              +afFieldInput name="isPublished" 
+              span.lever
+              | Public
+          br
+          if isMyPost
+            button.btn.btn-tiny.light-green.darken-4(type='submit')
+              | Done
+            button#edit-cancel-button.btn.btn-tiny.btn.orange.darken-4(type='submit')
+              | Cancel
       +comments

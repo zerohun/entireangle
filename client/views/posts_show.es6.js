@@ -18,6 +18,14 @@ SwipingDirection.DOWN = Symbol("DOWN");
 SwipingDirection.NONE = Symbol("NONE");
 
 
+function getAlbums(){
+    const post = Router.current().data();
+    if(!post.albumIds || post.albumIds.length === 0) return [];
+    return Album.find({_id: {
+      $in: Router.current().data().albumIds
+    }}).fetch();
+}
+
 function onClickSavePreviewButton(){
   FView.byId("loading-box").node.show();
   //$(".share-preview").hide();
@@ -313,6 +321,8 @@ function observeViewPosition(orb, callbackFunc) {
 }
 
 function turnEditingMode(onOfOff) {
+  console.log('turnEdit');
+  console.log(onOfOff? 'on':'off');
   if (onOfOff) {
         $(".view-box").hide();
         $(".edit-field").show();
@@ -420,7 +430,23 @@ function savePosition(){
   });
 }
 
+
+AutoForm.hooks({
+  editPost:{
+    onSuccess:function(){
+      console.log('suc');
+      turnEditingMode(false);
+    },
+    onError:function(fromType, result){
+      console.log(result);
+    },
+  }
+});
+
 const postsShowHelpers = {
+    "post": function(){
+      return Router.current().data();
+    },
     "nextPostUrl": function(){
       const res = getPostsInfo();
       if(!res) return null;
@@ -464,7 +490,8 @@ const postsShowHelpers = {
     },
     "numberOfComments": function(){
       return Comment.find({postId: Router.current().data()._id}).count();
-    }
+    },
+    "albums": getAlbums 
 };
 
 Template.PostsShow.helpers(postsShowHelpers);
@@ -529,15 +556,15 @@ const postsShowEvents = {
       return false;
   },
   "submit #edit-post": function() {
-      post = getCurrentPost();
-      post.title = event.target.title.value;
-      post.desc = event.target.desc.value;
-      post.isPublished = event.target.isPublished.checked;
-      Meteor.call("updatePost", post, ()=>{
-        Meteor.subscribe('posts', 1, {_id: post._id});
-      });
-      turnEditingMode(false);
-      return false;
+      //post = getCurrentPost();
+      //post.title = event.target.title.value;
+      //post.desc = event.target.desc.value;
+      //post.isPublished = event.target.isPublished.checked;
+      //Meteor.call("updatePost", post, ()=>{
+        //Meteor.subscribe('posts', 1, {_id: post._id});
+      //});
+      //turnEditingMode(false);
+      //return false;
   },
   "click #position-save-button": savePosition, 
   "click #save-preview-button": onClickSavePreviewButton
@@ -637,6 +664,9 @@ Template.PostsShow.toggleVRMode = ()=>{
 Template.PostsShowMobile.rendered = function() {
 
     $('.dropdown-button').dropdown();
+
+    const albums = getAlbums();
+    Template.tagAutocomplete.albumsReact.set(albums);
 
     $('.modal-trigger').leanModal({
       opacity: .5,
