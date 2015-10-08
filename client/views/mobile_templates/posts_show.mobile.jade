@@ -96,6 +96,7 @@ template(name='PostsShowMobile')
               +afFieldInput name="isPublished" 
               span.lever
               | Public
+          +afQuickField name="address" type="googleplace" opts=optsGoogleplace
           br
           if isMyPost
             button.btn.btn-tiny.light-green.darken-4(type='submit')

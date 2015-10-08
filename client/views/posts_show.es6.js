@@ -438,6 +438,11 @@ AutoForm.hooks({
       modifier.$set.albumIds = albumIds; 
       return modifier;
     },
+    formToDoc: function(doc){
+      console.log(doc);
+      window.d= doc;
+      return doc;
+    },
     onSuccess:function(){
       console.log('suc');
       turnEditingMode(false);
@@ -496,7 +501,16 @@ const postsShowHelpers = {
     "numberOfComments": function(){
       return Comment.find({postId: Router.current().data()._id}).count();
     },
-    "albums": getAlbums 
+    "albums": getAlbums, 
+    optsGoogleplace: function() {
+      return {
+        // type: 'googleUI',
+        // stopTimeoutOnKeyup: false,
+        // googleOptions: {
+        //   componentRestrictions: { country:'us' }
+        // }
+      }
+    }
 };
 
 Template.PostsShow.helpers(postsShowHelpers);
