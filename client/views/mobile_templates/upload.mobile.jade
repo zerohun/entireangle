@@ -1,5 +1,8 @@
 template(name="uploadMobile")
   .row
+    .row
+      .col.s12
+        +addressForm
     form#upload-files.col.s12
       .row
         .input-field.col.s12
@@ -9,16 +12,8 @@ template(name="uploadMobile")
           .btn
             span#upload-btn-label Select files to upload(MAX: 10 files)
             input#file-upload(type="file" name="files-select" multiple)
+            
 
-
-template(name="autoTemplate")
-  span.label.black-text
-    | {{title}}
-
-template(name="noMatch")
-  if(canCreateAlbum)
-    span.label.black-text
-      | Couldn't find album '{{typedText}}'. Do you want to create it?
-      button#create-album.btn.btn-tiny.green
-        | Create
-      
+template(name="addressForm")
+  +autoForm schema=formSchema id="address-form" type="method" meteormethod="none" 
+    +afQuickField name="address" type="googleplace" opts=optsGoogleplace

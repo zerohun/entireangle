@@ -1,7 +1,7 @@
 function afterFileInsertCallback(error, fileObj){
   if(error)
     alert(error.message);
-}
+};
 
 Template.uploadMobile.helpers({
   albums: function(){
@@ -22,8 +22,9 @@ Template.uploadMobile.events({
       const imageId = Image.insert(fsFile, afterFileInsertCallback)._id;
       imageIds.push(imageId);
     }
+    const address = AutoForm.getFormValues("address-form").insertDoc.address;
     const albums = Template.tagAutocomplete.albumsReact.get();
-    Meteor.call("addPosts", imageIds, albums, function(error, postIds){
+    Meteor.call("addPosts", imageIds, albums, address, function(error, postIds){
       Router.go(`/posts/${postIds[0]}?postIds=${postIds.join(',')}&isUploading=1`);
     });
   }
@@ -34,3 +35,16 @@ Template.uploadMobile.rendered = ()=>{
 };
 
 
+Template.addressForm.helpers({
+  optsGoogleplace: function() {
+    return {}
+  },
+  formSchema: function(){
+    return new SimpleSchema({
+      address: {
+        type: AddressSchema,
+        label: 'address'
+      }
+    });
+  }
+});
