@@ -9,8 +9,8 @@ template(name='PostsShowMobile')
       a.waves-effect.waves-light(href=prevPostUrl)
         i.material-icons &#xE408;
   if $eq isPublished false
-    #publish-post-button.btn.red
-      | Publish
+    .arrow_box
+      | Write about your picture and publish! 
   #menu-bar.hide-on-modal
     table
       tr
@@ -68,39 +68,55 @@ template(name='PostsShowMobile')
       if isMyPost
         button#edit-button.btn.btn-floating.view-box.green.darken-3
           | Edit
+        button#edit-cancel-button.btn.btn-floating.edit-field.orange.darken-4
+          | Cancel 
 
       .view-box
-        h4#myModalLabel.modal-title {{title}}
-        br.clear-both
-        p.timestamp
-          | {{createdAt}}
-        p
-          | tags
-          .tags
-            each albums
-              span.chip 
-                | {{title}}
+        if title
+          .row
+            .col.s12
+              h4#myModalLabel.modal-title {{title}}
+        if desc
+          .row
+            .col.s12
+              pre.centered-text.flow-text
+                |  {{desc}}
+              hr
+         if tags
+          .row
+            .col.s12
+              | tags
+              .tags
+                each albums
+                  span.chip 
+                    | {{title}}
+        .row
+          .col.s12
+            | {{createdAt.toLocaleString}}
+        if address
+          .row
+            .col.s12
+              {{address.fullAddress}}
 
-        p
-          pre.centered-text.
-            {{desc}}
+
       .edit-field
-        +autoForm id="editPost" type="update" collection="Post" doc=post
-          +afFieldInput name='title'
-          .tag-edit
-            +tagAutocomplete
-          br
-          +afFieldInput name='desc'
-          .switch
-            label
-              +afFieldInput name="isPublished" 
-              span.lever
-              | Public
-          +afQuickField name="address" type="googleplace" opts=optsGoogleplace
-          br
-          if isMyPost
-            button.btn.btn-tiny.light-green.darken-4(type='submit')
-              | Done
-            button#edit-cancel-button.btn.btn-tiny.btn.orange.darken-4(type='submit')
-              | Cancel
-      +comments
+        .row
+          +autoForm id="editPost" type="update" collection="Post" doc=post class="col s12"
+            .row
+              +afQuickField name='title' class="col s12"
+            .row
+              +afQuickField name='desc' type="textarea" class="col s12"
+            .row
+              +afFieldInput  name="isPublished" type="switch" class="col s12" trueLabel="Published" falseLabel="Private"
+            .row 
+              +afQuickField name="address" type="googleplace" opts=optsGoogleplace class="col s12 input-field"
+            .row
+              .tag-edit.input-field.col.s12
+                +tagAutocomplete
+            .row
+              .col.s12
+                if isMyPost
+                  button.btn.btn-tiny.light-green.darken-4(type='submit')
+                    | Save 
+      .view-box
+        +comments

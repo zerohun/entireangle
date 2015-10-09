@@ -55,3 +55,5 @@ materialize:materialize@=0.97.0
 mizzao:autocomplete
 reactive-var
 lukemadera:autoform-googleplace
+gildaspk:autoform-materialize
+poetic:materialize-scss

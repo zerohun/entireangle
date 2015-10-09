@@ -237,9 +237,23 @@ a.shareit-google-colors{
 
 .close-modal-button{
   position: fixed;
-  left: 5%;
+  left: 1%;
   color: black;
-  top: 5%;
+  top: 1%;
+}
+#edit-cancel-button{
+  position: fixed;
+  left: 1%;
+  color: white;
+  top: 50px;
+  font-size: 0.6rem;
+}
+#edit-button{
+  position: fixed;
+  left: 1%;
+  top: 50px;
+  color: white;
+  font-size: 0.6rem
 }
 
 .close-modal-button i{

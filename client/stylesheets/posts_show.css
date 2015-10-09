@@ -158,11 +158,7 @@
   min-height: 100px;
 }
 
-#edit-button{
-  position: fixed;
-  left: 5%;
-  top: 15%;
-}
+
 
 .comment-count-number{
   padding: 2% 13%;
@@ -204,13 +200,30 @@ i{
   text-shadow: 1px 1px black;
 }
 
-#publish-post-button{
+#upload-btn-label{
+  font-size: 0.7rem;
+}
+
+.arrow_box {
   position: fixed;
+  background: #ff1f1f;
+  padding: 5px;
   bottom: 10%;
   right: 30%;
   z-index: 99999;
 }
-
-#upload-btn-label{
-  font-size: 0.7rem;
+.arrow_box:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 31, 31, 0);
+  border-top-color: #ff1f1f;
+  border-width: 10px;
+  margin-left: -10px;
 }
+

@@ -10,6 +10,14 @@ Template.uploadMobile.helpers({
 });
 
 Template.uploadMobile.events({
+  "click .show-tags-field":function(e){
+    $(e.target).hide();
+    $('.tags-field').removeClass("hide");
+  },
+  "click .show-address-field":function(e){
+    $(e.target).hide();
+    $('.address-field').removeClass("hide");
+  },
   "submit #upload-files": function(event){
     event.preventDefault();
     return false;

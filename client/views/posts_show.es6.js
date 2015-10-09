@@ -109,6 +109,7 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
         orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
         $("#info").show();
     }
+    console.log('orb render');
     orb.render();
     
     const params = Router.current().params.query;

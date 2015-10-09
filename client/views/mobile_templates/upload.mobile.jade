@@ -1,19 +1,27 @@
 template(name="uploadMobile")
   .row
-    .row
-      .col.s12
-        +addressForm
     form#upload-files.col.s12
-      .row
-        .input-field.col.s12
-          +tagAutocomplete
       .row
         .file-field.input-field.col.s12
           .btn
-            span#upload-btn-label Select files to upload(MAX: 10 files)
+            span#upload-btn-label Select files to upload
             input#file-upload(type="file" name="files-select" multiple)
-            
 
+      .row
+        .col.s12.center-align
+          button.btn.btn-tiny.show-tags-field.light-green.darken-4 Add Tags
+      .row.tags-field.hide
+        .input-field.col.s12
+          +tagAutocomplete
+  .row
+    .col.s12.center-align
+      button.btn.btn-tiny.show-address-field.light-green.darken-4 Add address
+  .row.address-field.hide
+    .col.s12
+      .row
+        .input-field.col.s12
+          +addressForm
+            
 template(name="addressForm")
   +autoForm schema=formSchema id="address-form" type="method" meteormethod="none" 
     +afQuickField name="address" type="googleplace" opts=optsGoogleplace
