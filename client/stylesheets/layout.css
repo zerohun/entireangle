@@ -279,3 +279,6 @@ a.shareit-google-colors{
 .tags .chip{
   margin: 3px;
 }
+.file-field{
+  float: none!important;
+}

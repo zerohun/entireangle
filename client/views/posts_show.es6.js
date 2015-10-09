@@ -425,7 +425,7 @@ function savePosition(){
   ()=> {
     FView.byId("loading-box").node.hide();
   });
-  $("#position-save-button").hide();
+  //$("#position-save-button").hide();
   observeViewPosition(photoOrb, ()=>{
     $("#position-save-button").show();
   });
