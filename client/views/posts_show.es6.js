@@ -17,6 +17,20 @@ SwipingDirection.UP = Symbol("UP");
 SwipingDirection.DOWN = Symbol("DOWN");
 SwipingDirection.NONE = Symbol("NONE");
 
+function setArrowBoxPosition(){
+  const $editButton = $(".content-edit-button");
+  if($editButton.length > 0){
+    const editButtonPosition = $editButton.position();
+    const editBtnWidth = $editButton.width(); 
+    const editBtnHeight = $editButton.height(); 
+    const $arrowBox = $(".arrow_box");
+    $arrowBox.css({
+      bottom: `${$editButton.height() + 10}px`,
+      left: `${editButtonPosition.left - $arrowBox.width()/2 + editBtnWidth/2}px`
+    });
+  }
+}
+
 
 function getAlbums(){
     const post = Router.current().data();
@@ -455,6 +469,9 @@ AutoForm.hooks({
 });
 
 const postsShowHelpers = {
+    "isArrowVisible": function(){
+      return (location.search.search("isUploading=1") > -1) && !(Router.current().data().isPublished);
+    },
     "post": function(){
       return Router.current().data();
     },
@@ -537,6 +554,7 @@ const postsShowEvents = {
   "click .close-modal-button": function(e){
     $(".hide-on-modal").show();
     $(e.target).parents(".modal").first().closeModal();
+    $(".arrow_box").removeClass("hide");
   },
   "click .like-button": function(){
     Meteor.call("like",  Router.current().data()._id);
@@ -682,7 +700,10 @@ Template.PostsShow.toggleVRMode = ()=>{
 };
 
 Template.PostsShowMobile.rendered = function() {
-
+  
+  setArrowBoxPosition();
+  $(".arrow_box").removeClass('hide');
+  
     $('.dropdown-button').dropdown();
 
     const albums = getAlbums();
@@ -693,9 +714,11 @@ Template.PostsShowMobile.rendered = function() {
       ready: function(){
         $(".lean-overlay").prependTo("#container");
         $(".hide-on-modal").hide();
+        $(".arrow_box").addClass("hide");
       },
       complete: function(){
         $(".hide-on-modal").show();
+        $(".arrow_box").removeClass("hide");
       }
     });
     $('body').css("overflow", 'hidden');
@@ -715,6 +738,10 @@ Template.PostsShowMobile.rendered = function() {
         oldNavbarHeight = newNavbarHeight;
         $("#container").css({"top": newNavbarHeight+"px"})
       }
+
+      setArrowBoxPosition();
+
+
     },100);
 
     FView.byId("loading-box").node.show();

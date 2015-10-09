@@ -208,8 +208,6 @@ i{
   position: fixed;
   background: #ff1f1f;
   padding: 5px;
-  bottom: 10%;
-  right: 30%;
   z-index: 99999;
 }
 .arrow_box:after {

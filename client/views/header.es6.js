@@ -6,6 +6,9 @@ Template.headerMobile.events({
       FView.byId("login-form").node.slideDown();
   } 
 });
+Template.headerMobile.helpers({
+
+});
 
 Template.headerMobile.rendered = ()=>{
   $('.dropdown-button').dropdown();
