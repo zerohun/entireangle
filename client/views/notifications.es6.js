@@ -8,6 +8,14 @@ function getReceiverName(user){
 Template.notifications.helpers({
   notifications: () => Notification.find({}, {sort: {createdAt: -1}})
 });
+const commonEvents = {
+  "click .noti-btn": function(e){
+    $("#notification-modal").closeModal();
+  }
+};
+
+Template.commentNotification.events(commonEvents);
+Template.likeNotification.events(commonEvents);
 
 Template.commentNotification.helpers({
   receiverName: getReceiverName 

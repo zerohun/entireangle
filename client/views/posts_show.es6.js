@@ -711,8 +711,13 @@ Template.PostsShowMobile.rendered = function() {
 
     $('.modal-trigger').leanModal({
       opacity: .5,
+      dismissible: true,
       ready: function(){
-        $(".lean-overlay").prependTo("#container");
+        $(".lean-overlay").prependTo("#wrapping-container");
+        $(".lean-overlay").click(function(){
+          $(".modal-trigger").closeModal();
+          $(".lean-overlay").remove();
+        });
         $(".hide-on-modal").hide();
         $(".arrow_box").addClass("hide");
       },

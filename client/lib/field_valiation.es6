@@ -48,7 +48,7 @@ window.validateLength = (cssSelector, lengthLimit, msgKey) =>{
 }
 
 window.validatePasswordMatched = (retypeEle, msgKey) =>{
-    const passwordEle = retypeEle.parent().parent().find(".password-input");
+    const passwordEle = retypeEle.parent().parent().parent().find(".password-input");
     if(retypeEle.val() === passwordEle.val()){
       Session.set(msgKey, "");
       return true;

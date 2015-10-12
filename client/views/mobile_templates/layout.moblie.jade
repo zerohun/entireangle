@@ -3,9 +3,11 @@ template(name="layoutMobile")
     +Node
       +DOMElement
         link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-        +headerMobile
-        +yield
+        #wrapping-container
+          +headerMobile
+          +yield
 
+        #list-fetching-bar Fetching next images...
       +SlideDownWindow id="login-form"        
         +DOMElement
           +login
@@ -19,10 +21,6 @@ template(name="layoutMobile")
         +DOMElement
           +resetpassword
 
-      +SlideUpWindow id="slide-up-menu"
-        +DOMElement
-          +slideUpMenu
-      
       +LoadingBox id="loading-box"
         +DOMElement
           #loading-box

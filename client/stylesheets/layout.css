@@ -282,3 +282,21 @@ a.shareit-google-colors{
 .file-field{
   float: none!important;
 }
+#notification-modal a{
+  color: black;
+}
+
+.centered-text{
+  text-align: center;
+}
+
+.small-margin-bottom{
+  margin-bottom: 10px!important;
+}
+
+.zero-left-padding{
+  padding-left: 0px!important;
+}
+#toast-container .toast{
+  line-height: 20px!important;
+}

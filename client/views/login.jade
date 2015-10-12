@@ -1,37 +1,40 @@
 template(name="login")
-  #login-window.account-window.center-block.text-center
+  #login-window.account-window.center-block.centered-text
     if isLoggedIn
       <h3>Successfully logged in</h3>
     else
-      h3 Login
-      hr
       if loginTopMessage
         h6 loginTopMessage
         hr
-      form#login-form.center-block.text-center(action='action')
-        .form-group.center-block.text-center
-          input#login-email.email-field.form-control.text-center(type='email', placeholder="email")
-        .form-group.center-block.text-center
-          input#login-password.form-control.text-center(type='password', placeholder="password")
+      .row.centered-text
+        form#login-form.col.s12.centered-text(action='action')
+          .row
+            .input-field.col.s12
+              input#login-email.email-field.form-control.centered-text(type='email', name="email")
+              label(for="email") Email
+          .row
+            .input-field.col.s12
+              input#login-password.form-control.centered-text(type='password', name="password")
+              label(for="password") Password 
+          .row
+            .col.s12
+              if loginMsg
+                #login-msg.error-message 
+                  ul
+                    li
+                      | {{loginMsg}}
+          .row
+            .col.s12
+              input#login-button.btn.green(type='submit', value='Sign in')
+              button#close-login-button.btn.grey Close
 
-        if loginMsg
-          #login-msg.error-message 
-            ul
-              li
-                | {{loginMsg}}
-        input#login-button.btn.btn-warning.btn-large(type='submit', value='Sign in')
-        button#close-login-button.btn.btn-default.btn-large Close
-        br
-        br
-        br
-        button.btn.btn-primary.login-with-facebook 
+    .row
+      .col.s12
+        button.btn.btn-tiny.blue.login-with-facebook 
          | Login with Facebook
-        br
-        br
-        br
-        button#register-button.btn.btn-default Don't have account?
-        br
-        br
-        button#reset-password-button.btn.btn-default Forgot password?
-
-
+    .row
+      .col.s12
+        button#register-button.btn.btn-tiny.orange.darken-4 Don't have account?
+    .row
+      .col.s12
+        button#reset-password-button.btn.btn-tiny.orange.darken-4 Forgot password?

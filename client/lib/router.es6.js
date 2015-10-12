@@ -1,6 +1,8 @@
 var postsSubscription = null;
 var storiesSubscription = null;
 Meteor.subscribe("albums", 100, {});
+Meteor.subscribe("notifications", 10);
+Meteor.subscribe("users");
 
 function hideSlideDownNode(fNode){
     fNode.hide();
@@ -9,6 +11,26 @@ function hideSlideDownNode(fNode){
 
 function getTemplate(templateName){
   return isMobile.any? templateName + "Mobile": templateName;
+}
+
+function forceLogin(afterLoginCallback){
+  if(!Meteor.user()){
+    try{
+      Materialize.toast('You need to login to upload images', 1000);
+      FView.byId("login-form").node.slideDown();
+      Router.go("/");
+    }
+    catch(e){
+      setTimeout(function(){
+        FView.byId("loading-box").node.hide();              
+        FView.byId("login-form").node.slideDown();
+        Router.go("Posts");
+      }, 1000);
+    }
+  }
+  else{
+    afterLoginCallback();
+  }
 }
 
 Session.set("PostsLimit", 10);
@@ -71,8 +93,12 @@ Router.route('/posts', {
 });
 Router.route('/upload', {
   name:"upload",
-  template: getTemplate("upload")
-
+  template: getTemplate("upload"),
+  action: function(){
+    forceLogin(()=>{
+      this.render(getTemplate('upload'));
+    });
+  }
 });
 Router.route('/posts/new', {
     name: "posts.new",
@@ -112,7 +138,7 @@ Router.route('/posts/:_id', {
               }})
             ];
         }
-        else if(postsSubscription){
+        else if(postsSubscription && this.params.query.from_notification !== '1'){
             var limit = Session.get("PostsLimit");
             //return Meteor.subscribe("posts", limit, {isVideo: Session.get('isVideo')});
             subscriptionList = [
@@ -121,6 +147,7 @@ Router.route('/posts/:_id', {
             ];
         }
         else{
+            postsSubscription = null;
             subscriptionList = [
                 Meteor.subscribe("posts", 1, {_id: this.params._id}),
                 Meteor.subscribe('comments', {postId: this.params._id})
@@ -258,7 +285,8 @@ Router.route('/stories/:_id', {
 
 
 Router.route("/mypage", {
-    name: "mypage"
+  name: "mypage",
+  template: getTemplate('mypage')
 });
 Router.route("/intro", {
     name: "intro"

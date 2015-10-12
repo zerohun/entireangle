@@ -4,47 +4,22 @@ template(name="headerMobile")
       .col.s4.col-force-padding-zero
         a.waves-effect.waves-light(href="/")
           img#logo(src="/images/logo.jpg")
-      if isLoggedIn
-        .col.s1.offset-s3.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.inpage-buttons(href="/upload")
-            i.material-icons.small.white-text add
-        .col.s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.inpage-buttons
-            i.material-icons.small.white-text textsms 
-        .col.s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.account-button.inpage-buttons
+      .col.s1.offset-s4.col-force-padding-top
+        a.inpage-buttons(href="/upload")
+          i.material-icons.small.white-text add
+      .col.s1.col-force-padding-top
+        a.inpage-buttons.header-modal-trigger(href="#notification-modal")
+          i.material-icons.small.white-text textsms 
+      .col.s1.col-force-padding-top
+        if isLoggedIn
+          a.inpage-buttons(href="/mypage")
             i.material-icons.small.white-text perm_identity 
-            //.col.s1.col-force-padding-zero.col-force-padding-top
-              //a.waves-effect.waves-light.dropdown-button.inpage-buttons(href='#' data-activates='dropdown1')
-                //i.material-icons.small.white-text more_vert 
-          ul#dropdown1.dropdown-content
-            li
-              a(href='#!') one
-            li
-              a(href='#!') two
-            li.divider
-            li
-              a(href='#!') three
-
-      else
-        .col.s1.offset-s2.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.inpage-buttons
-            i.material-icons.small.white-text search 
-        .col.s1.offset-s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.inpage-buttons
-            i.material-icons.small.white-text textsms 
-        .col.s1.offset-s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.account-button.inpage-buttons
+        else
+          a.account-button.inpage-buttons
             i.material-icons.small.white-text perm_identity 
-        .col.s1.col-force-padding-zero.col-force-padding-top
-          a.waves-effect.waves-light.dropdown-button.inpage-buttons(href='#' data-activates='dropdown1')
-            i.material-icons.small.white-text more_vert 
-          ul#dropdown1.dropdown-content
-            li
-              a(href='#!') one
-            li
-              a(href='#!') two
-            li.divider
-            li
-              a(href='#!') three
 
+  #notification-modal.modal
+    .modal-content.centered-text
+      h6 Notificaions
+      br
+      +notifications

@@ -1,11 +1,10 @@
-Template.Mypage.helpers({
+const mypageHelpers = {
   "user": function(){
     return Meteor.user();
   }
-  
-});
+}
 
-Template.Mypage.events({
+const mypageEvents = {
     "submit #user-form": function(event){
         var userObj = {
             username: event.target.username.value 
@@ -33,9 +32,17 @@ Template.Mypage.events({
         }
       });
     } 
+};
 
-});
-
+Template.Mypage.helpers(mypageHelpers);
+Template.Mypage.events(mypageEvents);
 Template.Mypage.rendered = function(){
+  FView.byId("loading-box").node.hide();
+}
+
+Template.mypageMobile.helpers(mypageHelpers);
+Template.mypageMobile.events(mypageEvents);
+
+Template.mypageMobile.rendered = function(){
   FView.byId("loading-box").node.hide();
 }

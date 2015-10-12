@@ -5,7 +5,7 @@ class SlideDownWindow extends SlideWindow {
     super();
     this.slideStatus = SlideWindow.UP;
     this.resize();
-    this.setMountPoint(0.5, 0.5);
+    this.setMountPoint(0.5, 0.0);
     const upPosition = this.upPosition();
     this.setPosition(upPosition[0], upPosition[1], upPosition[2]);
 
@@ -16,7 +16,7 @@ class SlideDownWindow extends SlideWindow {
   }
   downPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 
-    return [centerPoint.x, centerPoint.y, 1000];
+    return [centerPoint.x, 20, 1000];
   }
 }
 

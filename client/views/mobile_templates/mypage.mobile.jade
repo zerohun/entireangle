@@ -1,0 +1,22 @@
+template(name='mypageMobile')
+  #mypage.center-block.text-center
+    h3 Mypage
+    hr
+    button#logout.btn.btn-danger Logout
+    br
+    br
+    br
+    +profileImage user
+    br
+    form#user-form.center-block.text-center(role='form', style='max-width: 300px;')
+      .form-group
+        label username
+        input.form-control(type='text', name='username', placeholder='Enter Username', value='{{username}}')
+      button.btn.btn-default(type='submit') Submit
+      button#mypage-cancel-button.btn.btn-primary(type='button') Cancel
+
+    br
+    br
+    h4 Notifications
+    +notifications
+

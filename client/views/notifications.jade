@@ -1,15 +1,16 @@
 template(name="notifications")
   #notifications
-    each notifications
-      .notification
-        if $eq notiType "comment"
-          +commentNotification
-        if $eq notiType "like"
-          +likeNotification
+    ul.collection
+      each notifications
+        li.collection-item.notification
+          if $eq notiType "comment"
+            +commentNotification
+          if $eq notiType "like"
+            +likeNotification
 
 template(name="commentNotification")
-  .comment-notification
-    a(href="/posts/{{post._id}}")
+  .comment-notification.post-notification
+    a.noti-btn.waves-effect.waves-light(href="/posts/{{post._id}}?from_notification=1")
       with post.user
         +profileImage  
       | {{actioner.username}} commented on {{receiverName post.user}} photo
@@ -18,8 +19,8 @@ template(name="commentNotification")
         | {{livestamp createdAt}}
  
 template(name="likeNotification")
-  .like-notification
-    a(href="/posts/{{post._id}}")
+  .like-notification.post-notification
+    a.noti-btn.waves-effect.waves-light(href="/posts/{{post._id}}?from_notification=1")
       with post.user
         +profileImage  
       | {{actioner.username}} liked {{receiverName post.user}} photo
