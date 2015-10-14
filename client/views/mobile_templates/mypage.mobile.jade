@@ -1,22 +1,78 @@
 template(name='mypageMobile')
-  #mypage.center-block.text-center
-    h3 Mypage
-    hr
-    button#logout.btn.btn-danger Logout
-    br
-    br
-    br
-    +profileImage user
-    br
-    form#user-form.center-block.text-center(role='form', style='max-width: 300px;')
-      .form-group
-        label username
-        input.form-control(type='text', name='username', placeholder='Enter Username', value='{{username}}')
-      button.btn.btn-default(type='submit') Submit
-      button#mypage-cancel-button.btn.btn-primary(type='button') Cancel
+  #modals
+    #edit-modal.modal.modal-opacity
+      .modal-dialog
+        .modal-content
+          .row
+            form#user-form.centered-text.col.s12(role='form', style='max-width: 300px;')
+              .row
+                .col.s12
+                  +profileImage user
+              .row
+                .col.s12.centered-text
+                  .file-field.input-field.centered-text.profile-image-field
+                    .btn.btn-tiny.orange.centered-text
+                      .span Upload profile image
+                      input.mypage-image-field(type='file')
 
-    br
-    br
-    h4 Notifications
-    +notifications
+              .row
+                .input-field.col.s12
+                  input(type='text', name='username', placeholder='Username' value='{{username}}')
+              .row
+                .input-field.col.s12
+                  textarea(name='desc', placeholder='Introduce yourself' value='{{desc}}')
+              .row
+                .col.s6.centered-text
+                  a.btn.red.width-fill.centered-text.col-force-padding-zero(type='submit') Save
+                .col.s6.centered-text
+                  a.modal-close.btn.width-fill.centered-text.col-force-padding-zero(type='button') Cancel
+  #mypage
+    .row
+      .col.s5
+        .row
+          .col.s12.mypage-profile-image
+            +profileImage user
+        .row
+          .col.s12.mypage-profile-image.centered-text
+            | {{user.username}}
 
+        .row
+          .col.s12
+            a.btn.btn-tiny.fill.small-line-height.modal-trigger(href="#edit-modal")
+              | Edit 
+      .col.s7
+        .row
+          .col.s12
+            a#logout.btn.red.fill
+              | Logout
+        .row
+          .col.s12
+            a.btn.fill.small-line-height(href="/users/{{user._id}}")
+              | View your profile
+        .row
+          .col.s12
+            a.btn.fill.small-line-height.reset-password-btn
+              | Change password 
+
+    .row.no-margin-bottom
+      .col.s12
+        ul.tabs.black-tabs
+          li.tab.col.s4.centered-text
+            a#notPublished.active Private 
+          li.tab.col.s4.centered-text
+            a#published Public 
+          li.tab.col.s4.centered-text
+            a#postsCountByTags Tags 
+    if isShowingTags
+      .row
+        .col.s12.tag-list
+          .collection
+            each tags
+              a.collection-item
+                | {{title}}({{postsCountByTagId _id}})
+
+    else
+      br
+      .row
+        each posts
+          +postMobile

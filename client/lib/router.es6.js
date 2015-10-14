@@ -38,6 +38,7 @@ Session.set("UserPostsLimit", 10);
 Session.set("StoriesLimit", 10);
 Session.set("isVideo", false);
 Session.set('posts-show-url', "");
+Session.set("myPagePostsQuery", {isPublished: false});
 
 Router.configure({
     layoutTemplate: getTemplate("layout") 
@@ -231,6 +232,7 @@ Router.route('/users/:_id', {
     data: function(){
         return Meteor.users.findOne({_id: this.params._id});
     },
+    template: getTemplate('UsersShow'),
     subscriptions: function() {
       /*
         if(!postsSubscription)
@@ -252,6 +254,7 @@ Router.route('/users/:_id', {
         ];
     }
 });
+
 
 Router.route('/stories', {
     name: 'stories',
@@ -286,8 +289,22 @@ Router.route('/stories/:_id', {
 
 Router.route("/mypage", {
   name: "mypage",
-  template: getTemplate('mypage')
+  template: getTemplate('mypage'),
+  subscriptions: function() {
+      postsSubscription = function(){ 
+        if(Meteor.user()){
+          console.log("posts Sub");
+          return Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), Session.get("myPagePostsQuery"));
+        }
+        else return null;
+      };
+      return[
+          Meteor.subscribe("users", this.params._id),
+          postsSubscription()
+      ];
+  }
 });
+
 Router.route("/intro", {
     name: "intro"
 });

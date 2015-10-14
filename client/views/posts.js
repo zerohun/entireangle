@@ -1,6 +1,6 @@
 var templatePostsHelpers = {
         posts: function() {
-          return Router.current().data().posts;
+          return Post.find({});
     }
 }
 

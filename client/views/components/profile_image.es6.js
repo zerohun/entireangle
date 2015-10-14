@@ -5,8 +5,8 @@ Template.profileImage.helpers({
   "snsProfileImageUrl": function(){
     return this.snsImageUrl;
   },
-  "uploadedProfileImage": function(){
-    return this.uploadedProfileImage;
+  "uploadedProfileImageUrl": function(){
+    return Image.findOne(Meteor.user().imageId).url({store: 'thumbs'}); 
   },
   "textColor": function(){
     const username = this.username;

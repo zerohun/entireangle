@@ -148,16 +148,16 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
         var prevTouchCoords;
         var touchCoords = THREE.Vector2();
         var raycaster = new THREE.Raycaster();
-        var slideUpWindow = FView.byId("slide-up-menu").node;
+        //var slideUpWindow = FView.byId("slide-up-menu").node;
         Session.set('slideUpVisible', true);
         console.log('show');
         $(window).scrollTop(0);
 
-        var slideUpPosition = slideUpWindow.upPosition();
-        const resizeSub = Rx.Observable.fromEvent(window, 'resize').
-          subscribe(() =>{
-            slideUpPosition = slideUpWindow.upPosition();
-          });
+        //var slideUpPosition = slideUpWindow.upPosition();
+        //const resizeSub = Rx.Observable.fromEvent(window, 'resize').
+          //subscribe(() =>{
+            //slideUpPosition = slideUpWindow.upPosition();
+          //});
 
         const windowHeight = $(window).height();
 
@@ -173,15 +173,15 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
             return nextObs.subscribe(nextObserver, $.noop, nextComplete);
         };
 
-        const finishSwipeUp = (slideWindow, nextObs, nextObserver, nextComplete) =>{
-            slideWindow.slideUp();
-            //slideWindow.setMountPoint(0.5, 0.5);
-            $("#slide-up-handle").text("Swipe down");
-            return nextObs.subscribe(nextObserver, $.noop, nextComplete);
-        };
+        //const finishSwipeUp = (slideWindow, nextObs, nextObserver, nextComplete) =>{
+            //slideWindow.slideUp();
+            ////slideWindow.setMountPoint(0.5, 0.5);
+            //$("#slide-up-handle").text("Swipe down");
+            //return nextObs.subscribe(nextObserver, $.noop, nextComplete);
+        //};
 
-        const slideUpMenu = document.getElementById("slide-up-menu");
-        const slideUpMenuHandle = document.getElementById("slide-up-handle");
+        //const slideUpMenu = document.getElementById("slide-up-menu");
+        //const slideUpMenuHandle = document.getElementById("slide-up-handle");
         const body = document.getElementsByTagName("body")[0];
 
         horizontalSwipeObs = Rx.Observable.fromEvent(container, "touchstart").
@@ -199,47 +199,47 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
                     swipeDirection === SwipingDirection.RIGHT);
           });
 
-        verticalSwipeObs = Rx.Observable.fromEvent(slideUpMenuHandle, "touchstart").
-          flatMap(startEvent =>{
-              return Rx.Observable.fromEvent(body, "touchmove").
-                map(moveEvent =>{
-                  return [startEvent,moveEvent];
-                });
-          }).
-          takeUntil(Rx.Observable.fromEvent(body, "touchend")).
-          filter(eventPair =>{
-            const swipeDirection = getSwipingDirection(eventPair);
-            return (swipeDirection === SwipingDirection.UP || 
-                    swipeDirection === SwipingDirection.DOWN);
-          }).takeUntil(horizontalSwipeObs);
+        //verticalSwipeObs = Rx.Observable.fromEvent(slideUpMenuHandle, "touchstart").
+          //flatMap(startEvent =>{
+              //return Rx.Observable.fromEvent(body, "touchmove").
+                //map(moveEvent =>{
+                  //return [startEvent,moveEvent];
+                //});
+          //}).
+          //takeUntil(Rx.Observable.fromEvent(body, "touchend")).
+          //filter(eventPair =>{
+            //const swipeDirection = getSwipingDirection(eventPair);
+            //return (swipeDirection === SwipingDirection.UP || 
+                    //swipeDirection === SwipingDirection.DOWN);
+          //}).takeUntil(horizontalSwipeObs);
 
-        verticalUpSwipeObs = verticalSwipeObs.filter(eventPair =>{
-          return getSwipingDirection(eventPair) === SwipingDirection.UP;
-        });
-        verticalDownSwipeObs = verticalSwipeObs.filter(eventPair =>{
-          return getSwipingDirection(eventPair) === SwipingDirection.DOWN;
-        });
+        //verticalUpSwipeObs = verticalSwipeObs.filter(eventPair =>{
+          //return getSwipingDirection(eventPair) === SwipingDirection.UP;
+        //});
+        //verticalDownSwipeObs = verticalSwipeObs.filter(eventPair =>{
+          //return getSwipingDirection(eventPair) === SwipingDirection.DOWN;
+        //});
 
-        verticalObserverFunc = eventPair=>{
-          slideUpPosition[1] = eventPair[1].touches[0].clientY;
-          //slideUpWindow.setMountPoint(0.5, 0.0);
-          slideUpWindow.setPosition(slideUpPosition[0], slideUpPosition[1], slideUpPosition[2]);
-        };
+        //verticalObserverFunc = eventPair=>{
+          //slideUpPosition[1] = eventPair[1].touches[0].clientY;
+          ////slideUpWindow.setMountPoint(0.5, 0.0);
+          //slideUpWindow.setPosition(slideUpPosition[0], slideUpPosition[1], slideUpPosition[2]);
+        //};
 
-        verticalUpCompleteFunc = ()=>{
-          verticalSubs.dispose();
-          if(slideUpWindow.getPosition()[1] < slideUpWindow.downPosition()[1])
-            verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);
-          else
-            verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
-        };
-        verticalDownCompleteFunc = ()=>{
-          verticalSubs.dispose();
-          if(slideUpWindow.getPosition()[1] > slideUpWindow.upPosition()[1])
-            verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
-          else
-            verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);
-        };
+        //verticalUpCompleteFunc = ()=>{
+          //verticalSubs.dispose();
+          //if(slideUpWindow.getPosition()[1] < slideUpWindow.downPosition()[1])
+            //verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);
+          //else
+            //verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
+        //};
+        //verticalDownCompleteFunc = ()=>{
+          //verticalSubs.dispose();
+          //if(slideUpWindow.getPosition()[1] > slideUpWindow.upPosition()[1])
+            //verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
+          //else
+            //verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);
+        //};
 
         horizontalObserverFunc = eventPair =>{
             try{
@@ -278,10 +278,10 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
           horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
         };
 
-        verticalSubs = verticalUpSwipeObs.subscribe(verticalObserverFunc, $.noop, verticalUpCompleteFunc);
+        //verticalSubs = verticalUpSwipeObs.subscribe(verticalObserverFunc, $.noop, verticalUpCompleteFunc);
         horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
         const leavingPageSub = leavingPageSrc.subscribe((e)=>{
-          verticalSubs.dispose();
+          //verticalSubs.dispose();
           horizontalSubs.dispose();
           resizeSub.dispose();
           Session.set('slideUpVisible', false);
@@ -715,7 +715,7 @@ Template.PostsShowMobile.rendered = function() {
       ready: function(){
         $(".lean-overlay").prependTo("#wrapping-container");
         $(".lean-overlay").click(function(){
-          $(".modal-trigger").closeModal();
+          $(".modal").closeModal();
           $(".lean-overlay").remove();
         });
         $(".hide-on-modal").hide();

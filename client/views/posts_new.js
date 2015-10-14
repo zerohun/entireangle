@@ -9,7 +9,6 @@ Template.PostsNew.events({
     $(event.target).parents("form").hide();
     for(var i=0; i < event.target.files.length; i++){
       var fsFile = createOwnedFile(event.target.files[i]);
-      fsFile.isInProgress = true;
       Image.insert(fsFile, afterFileInsertCallback);
     }
   },

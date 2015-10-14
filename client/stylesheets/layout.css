@@ -300,3 +300,43 @@ a.shareit-google-colors{
 #toast-container .toast{
   line-height: 20px!important;
 }
+
+.fill{
+  width: 100%;
+  height: 100%;
+}
+.mypage-profile-image .profile-image{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: black;
+}
+
+.small-line-height{
+  line-height: 23px;
+}
+
+
+.black-tabs{
+  background-color:#1A1919;
+}
+
+.tag-list .collection{
+  border-color: #554A4A;
+}
+.tag-list .collection-item{
+  background-color:#1A1919;
+  border-color: #554A4A;
+  color: #DAB4B4!important;
+}
+.profile-image-field{
+  display: inline-block;
+}
+/*.no-margin-bottom{*/
+  /*margin-bottom: 0px;*/
+/*}*/
+
+/*.top-mypage-menu .collection-item{*/
+  /*background-color: #282828;*/
+  /*color: white*/
+/*}*/
+

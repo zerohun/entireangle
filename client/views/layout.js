@@ -68,15 +68,15 @@ Template.layout.rendered = function(){
     var slideUpWindow = FView.byId("slide-up-menu").node;
     Session.set('slideUpVisible', false);
 
-    Tracker.autorun(function () {
-      if(Session.get('slideUpVisible') === true){
-        slideUpWindow.show();
-      }
-      else{
-        slideUpWindow.slideDown();
-        slideUpWindow.hide();
-      }
-    });
+    //Tracker.autorun(function () {
+      //if(Session.get('slideUpVisible') === true){
+        //slideUpWindow.show();
+      //}
+      //else{
+        //slideUpWindow.slideDown();
+        //slideUpWindow.hide();
+      //}
+    //});
     $("img.lazy").unveil();
 
     if(Meteor.user()){
