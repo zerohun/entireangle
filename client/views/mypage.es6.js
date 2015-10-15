@@ -2,6 +2,10 @@ const postsCountByTagsReact = new ReactiveVar([]);
 const isShowingTagsReact = new ReactiveVar(false);
 
 const mypageHelpers = {
+  "postsOptions": function(){
+    this.hideUserThumbnail = true;
+    return this;
+  },
   "user": function(){
     return Meteor.user();
   },

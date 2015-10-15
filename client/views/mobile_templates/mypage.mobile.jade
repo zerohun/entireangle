@@ -68,11 +68,12 @@ template(name='mypageMobile')
         .col.s12.tag-list
           .collection
             each tags
-              a.collection-item
+              a.collection-item(href="/mytags/{{_id}}")
                 | {{title}}({{postsCountByTagId _id}})
 
     else
       br
       .row
         each posts
-          +postMobile
+          with postsOptions
+            +postMobile 

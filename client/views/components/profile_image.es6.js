@@ -6,7 +6,12 @@ Template.profileImage.helpers({
     return this.snsImageUrl;
   },
   "uploadedProfileImageUrl": function(){
-    return Image.findOne(Meteor.user().imageId).url({store: 'thumbs'}); 
+    if(!Meteor.user()) return null;
+    const image = Image.findOne(Meteor.user().imageId);
+    if(image)
+      return image.url({store: 'thumbs'}); 
+    else
+      return null;
   },
   "textColor": function(){
     const username = this.username;

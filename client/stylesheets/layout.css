@@ -179,10 +179,8 @@ a.shareit-google-colors{
 .profile-image{
   display:inline-block;
   font-size:30px; 
-  padding: 5px;
   text-align:center; 
-  background-color: white;
-  border-radius: 25px;
+  background-color: black;
 }
 
 .col-force-padding-zero{

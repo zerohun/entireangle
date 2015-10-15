@@ -1,6 +1,10 @@
 template(name="PostsMobile")
   .row
     each posts
+      if postsOptions
+        with postsOptions
+          +postMobile 
+      else
         +postMobile
 
 template(name='postMobile')
@@ -12,14 +16,14 @@ template(name='postMobile')
        .post-info
          table
            tr
-             th(rowspan='2')
-               .right
-                 +profileImage user
-             td
-               if title
+             if $not hideUserThumbnail
+               th(rowspan='2')
+                 .right
+                   +profileImage user
+             if title
+               td
                  | {{title}}
-               else
-                 | untitled
-           tr
-             td
-               | {{user.username}}
+           if $not hideUserThumbnail
+             tr
+               td
+                 | {{user.username}}

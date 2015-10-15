@@ -340,9 +340,6 @@ Router.route("/mytags/:_id", {
     if(this.data()){
       this.render(getTemplate('tagsShow'));
     }
-    else{
-      this.render('loading');
-    }
   }
 });
 

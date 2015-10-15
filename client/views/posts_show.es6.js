@@ -1,7 +1,6 @@
 var container;
 var vrDeviceInfo;
 var vrButton;
-var container;
 var isInVRMode = false;
 var post = null;
 var originalPosition = new THREE.Vector3();
