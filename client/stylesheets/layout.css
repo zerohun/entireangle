@@ -347,3 +347,11 @@ a.shareit-google-colors{
   background-color:#1A1919;
   border-color: #554A4A;
 }
+
+.noti-count{
+  position: relative;
+  bottom: 24px;
+  left: 15px;
+  padding-left: 4px;
+  padding-right: 4px;
+}

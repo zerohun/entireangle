@@ -10,6 +10,9 @@ template(name="headerMobile")
       .col.s1.col-force-padding-top
         a.inpage-buttons.header-modal-trigger(href="#notification-modal")
           i.material-icons.small.white-text textsms 
+          if unreadNotificationCount
+            span.red.circle.noti-count
+              | {{unreadNotificationCount}}
       .col.s1.col-force-padding-top
         if isLoggedIn
           a.inpage-buttons(href="/mypage")
