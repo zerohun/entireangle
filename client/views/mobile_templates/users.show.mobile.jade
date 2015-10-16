@@ -1,2 +1,14 @@
 template(name="UsersShowMobile")
+  #user-info
+    .row
+      .col.s5
+        +profileImage user
+      .col.s7.username-with-padding.centered-text
+        h5
+          | {{user.username}}
+    .row
+      .col.s12
+        pre.centered-text
+          | {{user.desc}}
+
   +PostsMobile posts

@@ -355,3 +355,12 @@ a.shareit-google-colors{
   padding-left: 4px;
   padding-right: 4px;
 }
+
+#user-info{
+  padding-top: 20px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+#user-info, #user-info .profile-image{
+  background-color: #1C1C1C;
+}
