@@ -65,7 +65,7 @@ Router.route('/about', {
 });
 Router.route('/posts', {
     name: "Posts",
-    template: getTemplate("Posts"),
+    template: getTemplate("PostList"),
     subscriptions: function() {
         $("#list-fetching-bar").fadeOut(1000);
         var limit = Session.get("PostsLimit");
@@ -325,16 +325,20 @@ Router.route("/mytags/:_id", {
     }
   },
   subscriptions: function(){
-    return [
-      Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {
-        albumIds: {
-          $in: [this.params._id]
-        }
-      }),
-      Meteor.subscribe("albums", 100, {
-        _id: this.params._id
-      })
-    ];
+    postsSubscription = ()=>{ 
+      return [
+        Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {
+          albumIds: {
+            $in: [this.params._id]
+          }
+        }),
+        Meteor.subscribe("albums", 100, {
+          _id: this.params._id
+        })
+      ];
+    };
+    return postsSubscription();
+
   },
   action: function(){
     if(this.data()){
@@ -346,34 +350,68 @@ Router.route("/mytags/:_id", {
   }
 });
 
+Router.route("/locations/posts", {
+  name : "locations",
+  template: getTemplate('tagsShow'),
+  data: function(){
+    return {
+      title: this.params.query.country + this.params.query.city
+    };
+  },
+  subscriptions: function(){
+      postsSubscription = ()=>{ 
+        const query = {};
+        query['address.country'] = this.params.query.country;
+        if(this.params.query.city && this.params.query.city != "")
+          query['address.city'] = this.params.query.city;
+        return Meteor.subscribe("posts", Session.get('UserPostsLimit'), query);
+      };
+      return postsSubscription(); 
+  }
+});
+
 Router.route("/tags/:_id", {
   name: "tagsShow",
   template: getTemplate('tagsShow'),
   data: function(){
-    const result = {
-      title: Album.findOne(this.params._id).title
-    };
-    if(this.params.query.userId){
-      result.user = Meteor.users.find({_id: this.params.query.userId});
+    const album = Album.findOne(this.params._id);
+
+    if(album){
+      return  {
+        title: Album.findOne(this.params._id).title
+      };
     }
-    return result;
+    else{
+      return null;
+    }
   },
   subscriptions: function(){
-    const subsResult = [
-      Meteor.subscribe("posts", Session.get('UserPostsLimit'), {
-        albumIds: {
-          $in: [this.params._id]
-        }
-      }),
-      Meteor.subscribe("albums", 100, {
-        _id: this.params._id
-      })
-    ];
+    postsSubscription = ()=>{ 
+      const subsResult = [
+        Meteor.subscribe("posts", Session.get('UserPostsLimit'), {
+          albumIds: {
+            $in: [this.params._id]
+          }
+        }),
+        Meteor.subscribe("albums", 100, {
+          _id: this.params._id
+        })
+      ];
 
-    if(this.params.query.userId){
-      subsResult.push(Meteor.subsribe("user", this.params.query.userId));
+      if(this.params.query.userId){
+        subsResult.push(Meteor.subsribe("user", this.params.query.userId));
+      }
+      return subsResult;
+    };
+    return postsSubscription;
+  },
+  action: function(){
+    if(this.data()){
+      this.render(getTemplate('tagsShow'));
     }
-    return subsResult;
+    else{
+      this.render('loading');
+    }
   }
 });
 

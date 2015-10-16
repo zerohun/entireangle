@@ -1,3 +1,37 @@
+template(name="PostListMobile")
+  .row.no-margin-bottom
+    .col.s12
+      ul.tabs.black-tabs
+        li.tab.col.s4.centered-text
+          a#pictures-tab-btn.active Pictures 
+        li.tab.col.s4.centered-text
+          a#tags-tab-btn Tags 
+        li.tab.col.s4.centered-text
+          a#locations-tab-btn Locations 
+
+  if isTabVisible SYM_PICTURES
+    +PostsMobile
+
+  else
+    if isTabVisible SYM_TAGS
+      .row
+        .col.s12.tag-list
+          .collection
+            each tags
+              a.collection-item(href="/tags/{{_id}}")
+                | {{title}}({{postsCountByTagId _id}})
+    else 
+      if isTabVisible SYM_LOCATIONS
+        .collection
+          each locations
+            a.collection-item.centered-text(href="/locations/posts?country={{country}}&city={{city}}")
+              | {{country}}
+              | {{state}}
+              | {{city}}
+              br
+              | ({{count}})
+
+
 template(name="PostsMobile")
   .row
     each posts

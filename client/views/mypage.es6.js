@@ -94,7 +94,7 @@ Template.mypageMobile.events(mypageEvents);
 
 Template.mypageMobile.rendered = function(){
   FView.byId("loading-box").node.hide();
-  Meteor.call("getPostsCountByTags", function(err, postsCount){
+  Meteor.call("getMyPostsCountByTags", function(err, postsCount){
     postsCountByTagsReact.set(postsCount);
   });
 
