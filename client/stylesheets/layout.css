@@ -338,3 +338,12 @@ a.shareit-google-colors{
   /*color: white*/
 /*}*/
 
+
+.location-list .collection{
+  border-color: #554A4A;
+}
+
+.location-list .collection-item{
+  background-color:#1A1919;
+  border-color: #554A4A;
+}

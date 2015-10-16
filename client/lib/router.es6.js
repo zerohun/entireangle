@@ -354,8 +354,11 @@ Router.route("/locations/posts", {
   name : "locations",
   template: getTemplate('tagsShow'),
   data: function(){
+    let title = this.params.query.country;
+    if(this.params.query.city && this.params.query.city != "")
+      title = title.concat("-" + this.params.query.city)
     return {
-      title: this.params.query.country + this.params.query.city
+      title: title 
     };
   },
   subscriptions: function(){

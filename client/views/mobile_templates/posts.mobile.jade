@@ -11,7 +11,6 @@ template(name="PostListMobile")
 
   if isTabVisible SYM_PICTURES
     +PostsMobile
-
   else
     if isTabVisible SYM_TAGS
       .row
@@ -22,14 +21,15 @@ template(name="PostListMobile")
                 | {{title}}({{postsCountByTagId _id}})
     else 
       if isTabVisible SYM_LOCATIONS
-        .collection
-          each locations
-            a.collection-item.centered-text(href="/locations/posts?country={{country}}&city={{city}}")
-              | {{country}}
-              | {{state}}
-              | {{city}}
-              br
-              | ({{count}})
+        .location-list  
+          .collection
+            each locations
+              a.collection-item.centered-text(href="/locations/posts?country={{country}}&city={{city}}")
+                | {{country}}
+                | {{state}}
+                | {{city}}
+                br
+                | ({{count}})
 
 
 template(name="PostsMobile")
