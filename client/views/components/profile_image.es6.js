@@ -6,8 +6,8 @@ Template.profileImage.helpers({
     return this.snsImageUrl;
   },
   "uploadedProfileImageUrl": function(){
-    if(!Meteor.user()) return null;
-    const image = Image.findOne(Meteor.user().imageId);
+    if(this.user) return null;
+    const image = Image.findOne(this.user.imageId);
     if(image)
       return image.url({store: 'thumbs'}); 
     else

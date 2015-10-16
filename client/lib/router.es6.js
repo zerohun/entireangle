@@ -53,6 +53,7 @@ Router.onBeforeAction(function() {
 });
 Router.route('/', {
     name: "home",
+    template: getTemplate("home"),
     subscriptions: function() {
       postsSubscription = function(){
         Meteor.subscribe("posts", 30, {isFeatured:true});

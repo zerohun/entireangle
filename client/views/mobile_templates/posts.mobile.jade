@@ -55,9 +55,9 @@ template(name='postMobile')
                  .right
                    +profileImage user
              if title
-               td
+               td.text-outline
                  | {{title}}
            if $not hideUserThumbnail
              tr
-               td
+               td.text-outline
                  | {{user.username}}

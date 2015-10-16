@@ -292,6 +292,11 @@ a.shareit-google-colors{
   margin-bottom: 10px!important;
 }
 
+.text-outline{
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: grey;
+  text-shadow: 1px 1px black;
+}
 .zero-left-padding{
   padding-left: 0px!important;
 }
