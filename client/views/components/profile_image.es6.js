@@ -6,8 +6,8 @@ Template.profileImage.helpers({
     return this.snsImageUrl;
   },
   "uploadedProfileImageUrl": function(){
-    if(this.user) return null;
-    const image = Image.findOne(this.user.imageId);
+    if(!this.imageId) return null;
+    const image = Image.findOne(this.imageId);
     if(image)
       return image.url({store: 'thumbs'}); 
     else

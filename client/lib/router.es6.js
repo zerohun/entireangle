@@ -302,7 +302,7 @@ Router.route("/mypage", {
         else return null;
       };
       return[
-          Meteor.subscribe("users", this.params._id),
+          Meteor.subscribe("users"),
           postsSubscription()
       ];
   }

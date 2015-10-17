@@ -7,7 +7,8 @@ template(name='mypageMobile')
             form#user-form.centered-text.col.s12(role='form', style='max-width: 300px;')
               .row
                 .col.s12
-                  +profileImage user
+                  | {{myUserInfo.imageId}}
+                  +profileImage myUserInfo 
               .row
                 .col.s12.centered-text
                   .file-field.input-field.centered-text.profile-image-field
@@ -23,7 +24,7 @@ template(name='mypageMobile')
                   textarea(name='desc', placeholder='Introduce yourself' value='{{desc}}')
               .row
                 .col.s6.centered-text
-                  a.btn.red.width-fill.centered-text.col-force-padding-zero(type='submit') Save
+                  button.btn.red.width-fill.centered-text.col-force-padding-zero(type='submit') Save
                 .col.s6.centered-text
                   a.modal-close.btn.width-fill.centered-text.col-force-padding-zero(type='button') Cancel
   #mypage
@@ -31,10 +32,10 @@ template(name='mypageMobile')
       .col.s5
         .row
           .col.s12.mypage-profile-image
-            +profileImage user
+              +profileImage myUserInfo 
         .row
           .col.s12.mypage-profile-image.centered-text
-            | {{user.username}}
+            | {{myUserInfo.username}}
 
         .row
           .col.s12

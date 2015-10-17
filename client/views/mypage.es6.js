@@ -6,7 +6,7 @@ const mypageHelpers = {
     this.hideUserThumbnail = true;
     return this;
   },
-  "user": function(){
+  "myUserInfo": function(){
     return Meteor.user();
   },
   "posts": function(){
@@ -36,8 +36,11 @@ const mypageEvents = {
     },
     "change .mypage-image-field": function(event){
       const uploadingFile = event.target.files[0];
-      const imageId = Image.insert(createOwnedFile(uploadingFile))._id;
-      Meteor.call("updateUser", {imageId:imageId});
+      const imageId = Image.insert(createOwnedFile(uploadingFile), function(err, fileObj){
+        console.log('imageId:');
+        console.log(fileObj._id);
+        Meteor.call("updateUser", {imageId:fileObj._id});
+      });
     },
     "click .modal-close": function(event){
       $(".modal").closeModal();
@@ -65,6 +68,7 @@ const mypageEvents = {
             else{
                 toastr.success("Your user information is successfully changed");        
                 $(".modal").closeModal();
+                $(".lean-overlay").remove();
             }
         }); 
         return false;
