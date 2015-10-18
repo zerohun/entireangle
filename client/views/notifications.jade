@@ -1,12 +1,15 @@
 template(name="notifications")
   #notifications
     ul.collection
-      each notifications
-        li.collection-item.notification
-          if $eq notiType "comment"
-            +commentNotification
-          if $eq notiType "like"
-            +likeNotification
+      if notificaions
+        each notifications
+          li.collection-item.notification
+            if $eq notiType "comment"
+              +commentNotification
+            if $eq notiType "like"
+              +likeNotification
+      else
+        | There isn't any notifications yet.
 
 template(name="commentNotification")
   .comment-notification.post-notification

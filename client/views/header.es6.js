@@ -22,6 +22,7 @@ Template.headerMobile.rendered = ()=>{
   $('.header-modal-trigger').leanModal({
     ready: function(){
       console.log('header');
+      $("#notification-modal").css("margin-top", "10px");
       $(".lean-overlay").prependTo("#wrapping-container");
       const lastNotification = Notification.findOne({}, {
         $sort: {
