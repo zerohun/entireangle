@@ -19,7 +19,7 @@ window.Orb = function(reqiredParams, options) {
         return element;
     };
     this.setControls = function(newControls) {
-        controls = newControls;
+        this.controls = newControls;
     };
     this.setEffect = function(effect) {
         if (effect) renderable = effect;
@@ -61,6 +61,7 @@ window.Orb = function(reqiredParams, options) {
 
     function init() {
 
+      console.log('orb init');
         self.scene = new THREE.Scene();
         self.scene.add(camera);
 

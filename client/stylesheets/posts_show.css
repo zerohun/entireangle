@@ -112,7 +112,15 @@
 .yellow-text{
   color: yellow;
 }
-
+.black-text{
+  color: black;
+}
+.selected-mode{
+  background-color: lightblue;
+  border-radius: 20px;
+  padding: 20px;
+  font-weight: bold;
+}
 #more-dropdown .li{
   font-size: 2em;
 }
@@ -194,7 +202,7 @@
   left: 1%;
 }
 
-i{
+i.stroke{
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: grey;
   text-shadow: 1px 1px black;

@@ -72,6 +72,8 @@ var createMobileControlOrbBuilder = function() {
             camera.far = this.far;
             orb.removeEffect();
             var controls = new THREE.DeviceOrientationControls(camera, true);
+            controls.connect();
+            controls.update();
             orb.setControls(controls);
         }
     };

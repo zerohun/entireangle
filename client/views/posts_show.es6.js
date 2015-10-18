@@ -1,7 +1,8 @@
 var container;
 var vrDeviceInfo;
 var vrButton;
-var isInVRMode = false;
+var isInVRModeReact = new ReactiveVar(false);
+var isInDOModeReact = new ReactiveVar(false);
 var post = null;
 var originalPosition = new THREE.Vector3();
 let leavingPageSrc; 
@@ -116,8 +117,8 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
 
     if (vrDeviceInfo.type === "HMD") {
         orb = OrbBuilders.createOrb(OrbBuilders.HMDControlOrbBuilder, material, container);
-    } else if (vrDeviceInfo.type === "MOBILE") {
-        orb = OrbBuilders.createOrb(OrbBuilders.MobileControlOrbBuilder, material, container);
+    //} else if (vrDeviceInfo.type === "MOBILE") {
+        //orb = OrbBuilders.createOrb(OrbBuilders.MobileControlOrbBuilder, material, container);
     } else {
         orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
         $("#info").show();
@@ -379,7 +380,7 @@ function disableVRMode(orb) {
         OrbBuilders.setOrb(OrbBuilders.MobileControlOrbBuilder, orb);
 
     orb.setFullScreen(false);
-    isInVRMode = false;
+    isInVRModeReact.set(false);
 }
 
 function enableVRMode(orb) {
@@ -387,15 +388,39 @@ function enableVRMode(orb) {
         OrbBuilders.setOrb(OrbBuilders.CardboardControlOrbBuilder, orb);
 
     orb.setFullScreen(true);
-    isInVRMode = true;
+    isInDOModeReact.set(false);
+    isInVRModeReact.set(true);
+}
+
+function enableDOMode(orb) {
+  console.log('enable DO');
+  OrbBuilders.setOrb(OrbBuilders.MobileControlOrbBuilder, orb);
+  isInVRModeReact.set(false);
+  isInDOModeReact.set(true);
+
+}
+function disableDOMode(orb) {
+  console.log('disable DO');
+  OrbBuilders.setOrb(OrbBuilders.NormalControlOrbBuilder, orb);
+  isInDOModeReact.set(false);
 }
 
 function toggleVRMode(orb) {
     if (vrDeviceInfo.type != "NONE") {
-        if (isInVRMode) {
+        if (isInVRModeReact.get()) {
             disableVRMode(orb);
         } else {
             enableVRMode(orb);
+        }
+    } //else
+        //$('#NoneVRModal').modal('show');
+}
+function toggleDOMode(orb) {
+    if (vrDeviceInfo.type != "NONE") {
+        if (isInDOModeReact.get()) {
+          disableDOMode(orb);
+        } else {
+          enableDOMode(orb);
         }
     } //else
         //$('#NoneVRModal').modal('show');
@@ -468,6 +493,18 @@ AutoForm.hooks({
 });
 
 const postsShowHelpers = {
+    "modeVRSelectedClass": function(){
+      if(isInVRModeReact.get()){
+        return 'selected-mode';
+      }
+      return '';
+    },
+    "modeDOSelectedClass": function(){
+      if(isInDOModeReact.get()){
+        return 'selected-mode';
+      }
+      return '';
+    },
     "isArrowVisible": function(){
       return (location.search.search("isUploading=1") > -1) && !(Router.current().data().isPublished);
     },
@@ -495,7 +532,10 @@ const postsShowHelpers = {
       }
     },
     "isInVRMode": function(){
-      return isInVRMode;
+      return isInVRModeReact.get();
+    },
+    "isInDOMode": function(){
+      return isInDOModeReact.get();
     },
     "isMyPost": function() {
         try {
@@ -569,14 +609,20 @@ const postsShowEvents = {
     previewOrb.setState("stop");
     photoOrb.setState("running");
   },
+  "click #do-mode-button": function(){
+    toggleDOMode(photoOrb);
+    $(".modal").closeModal();
+
+  },
   "click #vr-mode-button": function() {
-      toggleVRMode(photoOrb);
+    toggleVRMode(photoOrb);
+    $(".modal").closeModal();
   },
   "click #home-button": function() {
       Router.go("home");
   },
   "click #container": function() {
-      if (isInVRMode) toggleVRMode(photoOrb);
+      if (isInVRModeReact.get()) toggleVRMode(photoOrb);
   },
   "click #remove-button": function() {
       var post = getCurrentPost();
@@ -731,7 +777,7 @@ Template.PostsShowMobile.rendered = function() {
     var oldNavbarHeight = $("#top-mobile-nav-bar").height();
     resizeInterval = setInterval(function(){
       var newNavbarHeight;
-      if(isInVRMode){
+      if(isInVRModeReact.get()){
         newNavbarHeight = 0;
       }
       else{

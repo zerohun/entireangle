@@ -33,17 +33,33 @@ template(name='PostsShowMobile')
               | {{numberOfComments}}
 
         td.menu-button
-          a#vr-mode-button.waves-effect.waves-light.inpage-buttons
-            if isInVRMode
-              i.mdi-action-visibility.yellow-text
-            else
-              i.mdi-action-visibility.white-text
+          a.waves-effect.waves-light.modal-trigger.inpage-buttons(href="#view-mode-modal")
+            //if isInVRMode
+              //i.mdi-action-visibility.yellow-text
+            //else
+            i.mdi-action-visibility.white-text
 
 
         td.more-button
           a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#more-modal")
             i.mdi-navigation-more-vert.white-text
-
+  #view-mode-modal.modal.bottom-sheet.modal-opacity
+    .modal-content
+      ul
+        li.more-menu-items
+          a#do-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row(class=modeDOSelectedClass)
+              .col.s4.right-text
+                  i.mdi-device-screen-rotation.black-text
+              .col.s8.left-text.black-text
+                | Device Orientation
+          a#vr-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row(class=modeVRSelectedClass)
+              .col.s4.right-text
+                  i.mdi-action-visibility.black-text
+              .col.s8.left-text.black-text
+                | VR Mode
+          
   #more-modal.modal.bottom-sheet.modal-opacity
     .modal-content
       ul
