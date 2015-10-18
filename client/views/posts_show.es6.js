@@ -17,6 +17,14 @@ SwipingDirection.UP = Symbol("UP");
 SwipingDirection.DOWN = Symbol("DOWN");
 SwipingDirection.NONE = Symbol("NONE");
 
+
+function closeModals(){
+    $(".modal").closeModal();
+    $(".lean-overlay").remove();
+    $(".hide-on-modal").show();
+    $(".arrow_box").removeClass("hide");
+}
+
 function setArrowBoxPosition(){
   const $editButton = $(".content-edit-button");
   if($editButton.length > 0){
@@ -39,6 +47,162 @@ function getAlbums(){
       $in: Router.current().data().albumIds
     }}).fetch();
 }
+
+
+function enableHorizontalSwipe(){
+  var prevTouchCoords;
+  var touchCoords = THREE.Vector2();
+  var raycaster = new THREE.Raycaster();
+  //var slideUpWindow = FView.byId("slide-up-menu").node;
+
+
+  //var slideUpPosition = slideUpWindow.upPosition();
+  //const resizeSub = Rx.Observable.fromEvent(window, 'resize').
+    //subscribe(() =>{
+      //slideUpPosition = slideUpWindow.upPosition();
+    //});
+
+  const windowHeight = $(window).height();
+
+  let verticalSwipeObs, horizontalSwipeObs, verticalUpSwipeObs, verticalDownSwipeObs;
+  let verticalObserverFunc, verticalUpCompleteFunc, verticalDownCompleteFunc, 
+      horizontalObserverFunc, horizontalCompleteFunc;
+  let verticalSubs, horizontalSubs;
+
+  const finishSwipeDown = (slideWindow, nextObs, nextObserver, nextComplete) =>{
+      slideWindow.slideDown();
+      //slideWindow.setMountPoint(0.5, 0.5);
+      $("#slide-up-handle").text("Swipe up");
+      return nextObs.subscribe(nextObserver, $.noop, nextComplete);
+  };
+
+  //const finishSwipeUp = (slideWindow, nextObs, nextObserver, nextComplete) =>{
+      //slideWindow.slideUp();
+      ////slideWindow.setMountPoint(0.5, 0.5);
+      //$("#slide-up-handle").text("Swipe down");
+      //return nextObs.subscribe(nextObserver, $.noop, nextComplete);
+  //};
+
+  //const slideUpMenu = document.getElementById("slide-up-menu");
+  //const slideUpMenuHandle = document.getElementById("slide-up-handle");
+  const body = document.getElementsByTagName("body")[0];
+
+  horizontalSwipeObs = Rx.Observable.fromEvent(container, "touchstart").
+    flatMap(startEvent =>{
+      console.log('1');
+        return Rx.Observable.fromEvent(container, "touchmove").
+          map(moveEvent =>{
+      console.log('2');
+            return [startEvent,moveEvent];
+          });
+    }).
+    takeUntil(Rx.Observable.fromEvent(container, "touchend")).
+    filter(eventPair =>{
+      const swipeDirection = getSwipingDirection(eventPair);
+
+      console.log('3');
+      return (swipeDirection === SwipingDirection.LEFT ||
+              swipeDirection === SwipingDirection.RIGHT);
+    });
+
+  //verticalSwipeObs = Rx.Observable.fromEvent(slideUpMenuHandle, "touchstart").
+    //flatMap(startEvent =>{
+        //return Rx.Observable.fromEvent(body, "touchmove").
+          //map(moveEvent =>{
+            //return [startEvent,moveEvent];
+          //});
+    //}).
+    //takeUntil(Rx.Observable.fromEvent(body, "touchend")).
+    //filter(eventPair =>{
+      //const swipeDirection = getSwipingDirection(eventPair);
+      //return (swipeDirection === SwipingDirection.UP || 
+              //swipeDirection === SwipingDirection.DOWN);
+    //}).takeUntil(horizontalSwipeObs);
+
+  //verticalUpSwipeObs = verticalSwipeObs.filter(eventPair =>{
+    //return getSwipingDirection(eventPair) === SwipingDirection.UP;
+  //});
+  //verticalDownSwipeObs = verticalSwipeObs.filter(eventPair =>{
+    //return getSwipingDirection(eventPair) === SwipingDirection.DOWN;
+  //});
+
+  //verticalObserverFunc = eventPair=>{
+    //slideUpPosition[1] = eventPair[1].touches[0].clientY;
+    ////slideUpWindow.setMountPoint(0.5, 0.0);
+    //slideUpWindow.setPosition(slideUpPosition[0], slideUpPosition[1], slideUpPosition[2]);
+  //};
+
+  //verticalUpCompleteFunc = ()=>{
+    //verticalSubs.dispose();
+    //if(slideUpWindow.getPosition()[1] < slideUpWindow.downPosition()[1])
+      //verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);
+    //else
+      //verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
+  //};
+  //verticalDownCompleteFunc = ()=>{
+    //verticalSubs.dispose();
+    //if(slideUpWindow.getPosition()[1] > slideUpWindow.upPosition()[1])
+      //verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
+    //else
+      //verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);
+  //};
+
+  horizontalObserverFunc = eventPair =>{
+      try{
+        console.log('hori');
+        var touchCoords = new THREE.Vector2();
+        touchCoords.x =  (eventPair[1].touches[0].clientX / $(container).width()) * 2 - 1;
+        touchCoords.y = -(eventPair[1].touches[0].clientY / $(container).height()) * 2 + 1;
+        if(prevTouchCoords){
+
+            raycaster.setFromCamera( touchCoords, orb.getCamera() );
+            var intersects = raycaster.intersectObject( orb.mesh );
+            var point = intersects[0].point;
+            var horizontalPoint = new THREE.Vector3(point.x, 0, point.z);
+
+            raycaster.setFromCamera( prevTouchCoords, orb.getCamera() );
+            intersects = raycaster.intersectObject( orb.mesh );
+            var prevPoint = intersects[0].point;
+            var prevHorizontalPoint = new THREE.Vector3(prevPoint.x, 0, prevPoint.z);
+
+            var angle =  -Math.acos( horizontalPoint.dot(prevHorizontalPoint) / horizontalPoint.length() / prevHorizontalPoint.length() ); 
+            var axis = horizontalPoint.cross(prevHorizontalPoint).normalize();
+            if(angle !== 0 && (axis.x !== 0 || axis.y !== 0 || axis.z !== 0 )){
+                var rotQuat = new THREE.Quaternion();
+                rotQuat.setFromAxisAngle(axis, angle);
+                //console.log(axis, angle);
+                orb.mesh.quaternion.multiply(rotQuat);
+            }
+        }
+        prevTouchCoords = touchCoords;
+      } catch(ex){
+          //alert(ex.message);
+      }
+  };
+
+  horizontalCompleteFunc = () =>{
+    prevTouchCoords = null;
+    horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
+  };
+
+  //verticalSubs = verticalUpSwipeObs.subscribe(verticalObserverFunc, $.noop, verticalUpCompleteFunc);
+  horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
+  const leavingPageSub = leavingPageSrc.subscribe((e)=>{
+    //verticalSubs.dispose();
+    horizontalSubs.dispose();
+    resizeSub.dispose();
+    Session.set('slideUpVisible', false);
+    $("#slide-up-handle").text("Swipe up");
+    leavingPageSub.dispose();
+  });
+  const popStateSub = Rx.Observable.fromEvent(window, "popstate").
+                        subscribe(()=>{
+                          popStateSub.dispose();
+                          FView.byId("loading-box").node.show();
+                        });
+
+}
+
 
 function onClickSavePreviewButton(){
   FView.byId("loading-box").node.show();
@@ -145,154 +309,8 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
 
     if (vrDeviceInfo.type === "MOBILE"){
 
-        var prevTouchCoords;
-        var touchCoords = THREE.Vector2();
-        var raycaster = new THREE.Raycaster();
-        //var slideUpWindow = FView.byId("slide-up-menu").node;
-        Session.set('slideUpVisible', true);
-        console.log('show');
         $(window).scrollTop(0);
 
-        //var slideUpPosition = slideUpWindow.upPosition();
-        //const resizeSub = Rx.Observable.fromEvent(window, 'resize').
-          //subscribe(() =>{
-            //slideUpPosition = slideUpWindow.upPosition();
-          //});
-
-        const windowHeight = $(window).height();
-
-        let verticalSwipeObs, horizontalSwipeObs, verticalUpSwipeObs, verticalDownSwipeObs;
-        let verticalObserverFunc, verticalUpCompleteFunc, verticalDownCompleteFunc, 
-            horizontalObserverFunc, horizontalCompleteFunc;
-        let verticalSubs, horizontalSubs;
-
-        const finishSwipeDown = (slideWindow, nextObs, nextObserver, nextComplete) =>{
-            slideWindow.slideDown();
-            //slideWindow.setMountPoint(0.5, 0.5);
-            $("#slide-up-handle").text("Swipe up");
-            return nextObs.subscribe(nextObserver, $.noop, nextComplete);
-        };
-
-        //const finishSwipeUp = (slideWindow, nextObs, nextObserver, nextComplete) =>{
-            //slideWindow.slideUp();
-            ////slideWindow.setMountPoint(0.5, 0.5);
-            //$("#slide-up-handle").text("Swipe down");
-            //return nextObs.subscribe(nextObserver, $.noop, nextComplete);
-        //};
-
-        //const slideUpMenu = document.getElementById("slide-up-menu");
-        //const slideUpMenuHandle = document.getElementById("slide-up-handle");
-        const body = document.getElementsByTagName("body")[0];
-
-        horizontalSwipeObs = Rx.Observable.fromEvent(container, "touchstart").
-          flatMap(startEvent =>{
-              return Rx.Observable.fromEvent(body, "touchmove").
-                map(moveEvent =>{
-                  return [startEvent,moveEvent];
-                });
-          }).
-          takeUntil(Rx.Observable.fromEvent(body, "touchend")).
-          filter(eventPair =>{
-            const swipeDirection = getSwipingDirection(eventPair);
-
-            return (swipeDirection === SwipingDirection.LEFT ||
-                    swipeDirection === SwipingDirection.RIGHT);
-          });
-
-        //verticalSwipeObs = Rx.Observable.fromEvent(slideUpMenuHandle, "touchstart").
-          //flatMap(startEvent =>{
-              //return Rx.Observable.fromEvent(body, "touchmove").
-                //map(moveEvent =>{
-                  //return [startEvent,moveEvent];
-                //});
-          //}).
-          //takeUntil(Rx.Observable.fromEvent(body, "touchend")).
-          //filter(eventPair =>{
-            //const swipeDirection = getSwipingDirection(eventPair);
-            //return (swipeDirection === SwipingDirection.UP || 
-                    //swipeDirection === SwipingDirection.DOWN);
-          //}).takeUntil(horizontalSwipeObs);
-
-        //verticalUpSwipeObs = verticalSwipeObs.filter(eventPair =>{
-          //return getSwipingDirection(eventPair) === SwipingDirection.UP;
-        //});
-        //verticalDownSwipeObs = verticalSwipeObs.filter(eventPair =>{
-          //return getSwipingDirection(eventPair) === SwipingDirection.DOWN;
-        //});
-
-        //verticalObserverFunc = eventPair=>{
-          //slideUpPosition[1] = eventPair[1].touches[0].clientY;
-          ////slideUpWindow.setMountPoint(0.5, 0.0);
-          //slideUpWindow.setPosition(slideUpPosition[0], slideUpPosition[1], slideUpPosition[2]);
-        //};
-
-        //verticalUpCompleteFunc = ()=>{
-          //verticalSubs.dispose();
-          //if(slideUpWindow.getPosition()[1] < slideUpWindow.downPosition()[1])
-            //verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);
-          //else
-            //verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
-        //};
-        //verticalDownCompleteFunc = ()=>{
-          //verticalSubs.dispose();
-          //if(slideUpWindow.getPosition()[1] > slideUpWindow.upPosition()[1])
-            //verticalSubs = finishSwipeDown(slideUpWindow, verticalUpSwipeObs, verticalObserverFunc, verticalUpCompleteFunc);
-          //else
-            //verticalSubs = finishSwipeUp(slideUpWindow, verticalDownSwipeObs, verticalObserverFunc, verticalDownCompleteFunc);
-        //};
-
-        horizontalObserverFunc = eventPair =>{
-            try{
-              var touchCoords = new THREE.Vector2();
-              touchCoords.x =  (eventPair[1].touches[0].clientX / $(container).width()) * 2 - 1;
-              touchCoords.y = -(eventPair[1].touches[0].clientY / $(container).height()) * 2 + 1;
-              if(prevTouchCoords){
-
-                  raycaster.setFromCamera( touchCoords, orb.getCamera() );
-                  var intersects = raycaster.intersectObject( orb.mesh );
-                  var point = intersects[0].point;
-                  var horizontalPoint = new THREE.Vector3(point.x, 0, point.z);
-
-                  raycaster.setFromCamera( prevTouchCoords, orb.getCamera() );
-                  intersects = raycaster.intersectObject( orb.mesh );
-                  var prevPoint = intersects[0].point;
-                  var prevHorizontalPoint = new THREE.Vector3(prevPoint.x, 0, prevPoint.z);
-
-                  var angle =  -Math.acos( horizontalPoint.dot(prevHorizontalPoint) / horizontalPoint.length() / prevHorizontalPoint.length() ); 
-                  var axis = horizontalPoint.cross(prevHorizontalPoint).normalize();
-                  if(angle !== 0 && (axis.x !== 0 || axis.y !== 0 || axis.z !== 0 )){
-                      var rotQuat = new THREE.Quaternion();
-                      rotQuat.setFromAxisAngle(axis, angle);
-                      //console.log(axis, angle);
-                      orb.mesh.quaternion.multiply(rotQuat);
-                  }
-              }
-              prevTouchCoords = touchCoords;
-            } catch(ex){
-                //alert(ex.message);
-            }
-        };
-
-        horizontalCompleteFunc = () =>{
-          prevTouchCoords = null;
-          horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
-        };
-
-        //verticalSubs = verticalUpSwipeObs.subscribe(verticalObserverFunc, $.noop, verticalUpCompleteFunc);
-        horizontalSubs = horizontalSwipeObs.subscribe(horizontalObserverFunc, $.noop, horizontalCompleteFunc);
-        const leavingPageSub = leavingPageSrc.subscribe((e)=>{
-          //verticalSubs.dispose();
-          horizontalSubs.dispose();
-          resizeSub.dispose();
-          Session.set('slideUpVisible', false);
-          $("#slide-up-handle").text("Swipe up");
-          leavingPageSub.dispose();
-        });
-        const popStateSub = Rx.Observable.fromEvent(window, "popstate").
-                              subscribe(()=>{
-                                popStateSub.dispose();
-                                FView.byId("loading-box").node.show();
-                              });
     }
     return orb;
 }
@@ -397,7 +415,7 @@ function enableDOMode(orb) {
   OrbBuilders.setOrb(OrbBuilders.MobileControlOrbBuilder, orb);
   isInVRModeReact.set(false);
   isInDOModeReact.set(true);
-
+  //enableHorizontalSwipe();
 }
 function disableDOMode(orb) {
   console.log('disable DO');
@@ -611,12 +629,12 @@ const postsShowEvents = {
   },
   "click #do-mode-button": function(){
     toggleDOMode(photoOrb);
-    $(".modal").closeModal();
-
+    closeModals();
   },
   "click #vr-mode-button": function() {
     toggleVRMode(photoOrb);
     $(".modal").closeModal();
+    $(".lean-overlay").remove();
   },
   "click #home-button": function() {
       Router.go("home");
@@ -759,12 +777,10 @@ Template.PostsShowMobile.rendered = function() {
       dismissible: true,
       ready: function(){
         $(".lean-overlay").prependTo("#wrapping-container");
-        $(".lean-overlay").click(function(){
-          $(".modal").closeModal();
-          $(".lean-overlay").remove();
-        });
+        $(".lean-overlay").click(closeModals);
         $(".hide-on-modal").hide();
         $(".arrow_box").addClass("hide");
+        $("#content-modal").css("margin-top", "10px");
       },
       complete: function(){
         $(".hide-on-modal").show();
