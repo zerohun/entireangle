@@ -17,12 +17,15 @@ const templatePostListHelpers = {
             filter((c)=> c._id.albumId === tagId)[0].
             count;
   },
-  "tags": function(){
-    const tagIds = postsCountByTagsReact.get().map((c)=> c._id.albumId);
+  tags: function(){
+    const tagCounts = postsCountByTagsReact.get();
     return Album.find({
       _id:{
-        $in:tagIds
+        $in: tagCounts.map((t)=>t._id.albumId)
       }
+    }).fetch().map((t, i) => {
+      t.count = tagCounts.filter((tc) => tc._id.albumId === t._id)[0].count;
+      return t;
     });
   },
   "locations": function(){
@@ -55,6 +58,7 @@ const templatePostListEvents = {
 
 var templatePostsHelpers = {
   posts: function() {
+    if(this.posts) return this.posts;
     return Post.find({}, {
       sort:{
         createdAt: -1
@@ -86,7 +90,7 @@ var templatePostHelper = {
                 store: 'video_thumbs'
             });
         } else {
-            var image = Image.findOne({
+            var image = Models.Image.findOne({
                 _id: imageId
             });
             return image.url({store: 'thumbs'}) + "&uploadAt=" + image._getInfo('thumbs').updatedAt.getTime();
@@ -104,6 +108,7 @@ templatePostListRendered = function() {
     enableEndlessScroll("PostsLimit", Post);
     FView.byId("loading-box").node.hide();
     Meteor.call("getPostsCountByTags", function(err, result){
+      window.r = result;
       postsCountByTagsReact.set(result);
     });
     Meteor.call("getPostsCountByLocations", 

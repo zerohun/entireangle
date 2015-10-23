@@ -1,14 +1,26 @@
 template(name="UsersShowMobile")
-  #user-info
-    .row
-      .col.s5
-        +profileImage user
-      .col.s7.username-with-padding.centered-text
-        h5
-          | {{user.username}}
-    .row
-      .col.s12
-        pre.centered-text
-          | {{user.desc}}
+  .row.grey.darken-4
+    .col.s12.no-side-padding.grey.darken-4
+      .row.grey.darken-4.no-bottom-margin
+        .col.s2.no-side-padding
+          +profileImage user
+        #profile-tab.col.s10.no-side-padding.grey.darken-4
+          ul.tabs.grey.darken-4
+            li.tab.col.s2
+              a.all All
+            li.tab.col.s2 
+              a.tags Tags
+            li.tab.col.s4 
+              a.places Places
+            li.tab.col.s4
+              a.favorites Favorite
 
-  +PostsMobile posts
+
+  if isTabVisible SYM_ALL 
+    +PostsMobile
+  if isTabVisible SYM_TAGS
+    +tagsMobile tags=tags 
+  if isTabVisible SYM_LOCATIONS
+    +placesMobile locations=places
+  if isTabVisible SYM_FAVORITES
+    +PostsMobile posts=favoritePosts 

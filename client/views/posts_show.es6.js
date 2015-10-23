@@ -731,7 +731,7 @@ Template.PostsShow.rendered = function() {
 
     post = getCurrentPost();
     Tracker.autorun(function(computation) {
-        var image = Image.findOne({
+        var image = Models.Image.findOne({
             _id: post.imageId
         });
         var imageFilePath = image.url({
@@ -829,7 +829,7 @@ Template.PostsShowMobile.rendered = function() {
 
     post = getCurrentPost();
     Tracker.autorun(function(computation) {
-        var image = Image.findOne({
+        var image = Models.Image.findOne({
             _id: post.imageId
         });
         var imageFilePath = image.url({

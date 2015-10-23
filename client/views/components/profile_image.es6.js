@@ -7,7 +7,7 @@ Template.profileImage.helpers({
   },
   "uploadedProfileImageUrl": function(){
     if(!this.imageId) return null;
-    const image = Image.findOne(this.imageId);
+    const image = Models.Image.findOne(this.imageId);
     if(image)
       return image.url({store: 'thumbs'}); 
     else

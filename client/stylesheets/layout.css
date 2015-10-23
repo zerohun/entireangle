@@ -227,6 +227,9 @@ a.shareit-google-colors{
   font-size: 0.8em!important;
 }
 
+.no-left-padding{
+  padding-left: 0px!important;
+}
 
 .no-side-padding{
   padding-left: 0px!important;
@@ -368,4 +371,16 @@ a.shareit-google-colors{
 }
 #user-info, #user-info .profile-image{
   background-color: #1C1C1C;
+}
+
+#profile-tab{
+  font-size: 12px;
+}
+
+#profile-tab li{
+  margin-top: 3%;
+}
+
+.no-bottom-margin{
+  margin-bottom: 0px;
 }

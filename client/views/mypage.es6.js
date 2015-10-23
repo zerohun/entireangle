@@ -13,11 +13,14 @@ const mypageHelpers = {
     return Post.find();
   },
   "tags": function(){
-    const tagIds = postsCountByTagsReact.get().map((c)=> c._id.albumId);
+    const tagCounts = postsCountByTagsReact.get();
     return Album.find({
       _id:{
-        $in:tagIds
+        $in: tagCounts.map((t)=>t._id.albumId)
       }
+    }).fetch().map((t, i) => {
+      t.count = tagCounts.filter((tc) => tc._id.albumId === t._id)[0].count;
+      return t;
     });
   },
   "postsCountByTagId": function(tagId){

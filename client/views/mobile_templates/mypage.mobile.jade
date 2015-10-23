@@ -65,13 +65,7 @@ template(name='mypageMobile')
           li.tab.col.s4.centered-text
             a#postsCountByTags Tags 
     if isShowingTags
-      .row
-        .col.s12.tag-list
-          .collection
-            each tags
-              a.collection-item(href="/mytags/{{_id}}")
-                | {{title}}({{postsCountByTagId _id}})
-
+      +tagsMobile tags=tags
     else
       br
       .row

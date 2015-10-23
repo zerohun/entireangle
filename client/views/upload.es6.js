@@ -27,7 +27,7 @@ Template.uploadMobile.events({
     const imageIds = [];
     for(var i=0; i < event.target.files.length; i++){
       var fsFile = createOwnedFile(event.target.files[i]);
-      const imageId = Image.insert(fsFile, afterFileInsertCallback)._id;
+      const imageId = Models.Image.insert(fsFile, afterFileInsertCallback)._id;
       imageIds.push(imageId);
     }
     const address = AutoForm.getFormValues("address-form").insertDoc.address;

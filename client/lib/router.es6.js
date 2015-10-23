@@ -175,7 +175,7 @@ Router.route('/posts/:_id', {
                 });
                 post.summary += "(but this is video)";
             } else {
-                imageUrl = Image.findOne({
+                imageUrl = Models.Image.findOne({
                     _id: post.imageId
                 }).url({
                     store: 'snsThumbs'
@@ -250,6 +250,7 @@ Router.route('/users/:_id', {
         return[
             Meteor.subscribe("users", this.params._id),
             Meteor.subscribe("stories", Session.get('UserStoriesLimit'), {"user._id": this.params._id}),
+            Meteor.subscribe("userlikes", this.params._id),
             postsSubscription()
         ];
     }
@@ -379,10 +380,10 @@ Router.route("/tags/:_id", {
   template: getTemplate('tagsShow'),
   data: function(){
     const album = Album.findOne(this.params._id);
-
     if(album){
       return  {
-        title: Album.findOne(this.params._id).title
+        title: Album.findOne(this.params._id).title,
+        user: Meteor.users.findOne()
       };
     }
     else{
