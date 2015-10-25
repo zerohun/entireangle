@@ -3,11 +3,11 @@ template(name='PostsShowMobile')
   if nextPostUrl
     #nextPostButton.next-prev-post.hide-on-modal
       a.waves-effect.waves-light(href=nextPostUrl)
-        i.material-icons &#xE409;
+        i.stroke.material-icons &#xE409;
   if prevPostUrl
     #prevPostButton.next-prev-post.hide-on-modal
       a.waves-effect.waves-light(href=prevPostUrl)
-        i.material-icons &#xE408;
+        i.stroke.material-icons &#xE408;
   if isArrowVisible 
     .arrow_box.hide
       | Write about your picture and publish! 
@@ -16,19 +16,19 @@ template(name='PostsShowMobile')
       tr
         td.menu-button
           a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#share-modal")
-            i.mdi-social-share.white-text
+            i.stroke.mdi-social-share.white-text
 
         td.menu-button
           if didILikeIt
             a.waves-effect.waves-light.unlike-button.inpage-buttons
-              i.mdi-action-star-rate.yellow-text
+              i.stroke.mdi-action-star-rate.yellow-text
           else
             a.waves-effect.waves-light.like-button.inpage-buttons
-              i.mdi-action-star-rate.white-text
+              i.stroke.mdi-action-star-rate.white-text
 
         td.menu-button
           a.waves-effect.waves-light.inpage-buttons.modal-trigger.content-edit-button(href="#content-modal")
-            i.mdi-content-create.white-text
+            i.stroke.mdi-content-create.white-text
             span.red.comment-count-number
               | {{numberOfComments}}
 
@@ -37,12 +37,12 @@ template(name='PostsShowMobile')
             //if isInVRMode
               //i.mdi-action-visibility.yellow-text
             //else
-            i.mdi-action-visibility.white-text
+            i.stroke.mdi-action-visibility.white-text
 
 
         td.more-button
           a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#more-modal")
-            i.mdi-navigation-more-vert.white-text
+            i.stroke.mdi-navigation-more-vert.white-text
   #view-mode-modal.modal.bottom-sheet.modal-opacity
     .modal-content
       ul
