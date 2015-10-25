@@ -1,7 +1,7 @@
 template(name="profileImage")
-  .profile-image.fill
+  .profile-image.fill.circle
     if uploadedProfileImageUrl
-      img.width-fill.circle(src="{{uploadedProfileImageUrl}}", width="100")
+      img.fill.circle(src="{{uploadedProfileImageUrl}}" width="300" height="300")
     else
       if snsProfileImageUrl
         img.circle(src="{{snsProfileImageUrl}}")

@@ -825,7 +825,10 @@ Template.PostsShowMobile.rendered = function() {
           //closeModalSub.dispose();
       //});
 
-    turnEditingMode(false);
+    if(location.search.search("isUploading") > -1)
+      turnEditingMode(true);
+    else 
+      turnEditingMode(false);
 
     post = getCurrentPost();
     Tracker.autorun(function(computation) {

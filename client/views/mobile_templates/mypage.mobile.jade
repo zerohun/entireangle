@@ -6,8 +6,7 @@ template(name='mypageMobile')
           .row
             form#user-form.centered-text.col.s12(role='form', style='max-width: 300px;')
               .row
-                .col.s12
-                  | {{myUserInfo.imageId}}
+                .col.s12.mypage-profile-padding
                   +profileImage myUserInfo 
               .row
                 .col.s12.centered-text

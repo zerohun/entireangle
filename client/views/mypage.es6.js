@@ -10,7 +10,7 @@ const mypageHelpers = {
     return Meteor.user();
   },
   "posts": function(){
-    return Post.find();
+    return Post.find(Session.get("myPagePostsQuery"));
   },
   "tags": function(){
     const tagCounts = postsCountByTagsReact.get();
@@ -39,7 +39,7 @@ const mypageEvents = {
     },
     "change .mypage-image-field": function(event){
       const uploadingFile = event.target.files[0];
-      const imageId = Image.insert(createOwnedFile(uploadingFile), function(err, fileObj){
+      const imageId = Models.Image.insert(createOwnedFile(uploadingFile), function(err, fileObj){
         console.log('imageId:');
         console.log(fileObj._id);
         Meteor.call("updateUser", {imageId:fileObj._id});

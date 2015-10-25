@@ -296,8 +296,7 @@ Router.route("/mypage", {
         if(Meteor.user()){
           console.log("posts Sub");
           return [
-            Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), Session.get("myPagePostsQuery")),
-
+            Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {}),
           ];
         }
         else return null;
@@ -356,14 +355,16 @@ Router.route("/locations/posts", {
   name : "locations",
   template: getTemplate('tagsShow'),
   data: function(){
-    let title = this.params.query.country;
+    const result = {};
+    result.title = this.params.query.country;
     if(this.params.query.city && this.params.query.city != "")
-      title = title.concat("-" + this.params.query.city)
-    return {
-      title: title 
-    };
+      result.title = result.title.concat("-" + this.params.query.city)
+    const userId = this.params.query.userId;
+    if(userId) result.user = Meteor.users.findOne(userId);
+    return result;
   },
   subscriptions: function(){
+      const subscriptions = [];
       postsSubscription = ()=>{ 
         const query = {};
         query['address.country'] = this.params.query.country;
@@ -371,7 +372,12 @@ Router.route("/locations/posts", {
           query['address.city'] = this.params.query.city;
         return Meteor.subscribe("posts", Session.get('UserPostsLimit'), query);
       };
-      return postsSubscription(); 
+      subscriptions.push(postsSubscription());
+      const userId = this.params.query.userId;
+      if(userId){
+        subscriptions.push(Meteor.subscribe("user", userId));
+      }
+      return subscriptions; 
   }
 });
 

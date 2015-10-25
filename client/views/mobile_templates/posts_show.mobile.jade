@@ -86,66 +86,69 @@ template(name='PostsShowMobile')
 
   #content-modal.modal.modal-opacity
     .modal-content.centered-text
-      button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
-        i.material-icons close 
-      if isMyPost
-        button#edit-button.btn.btn-floating.view-box.green.darken-3
-          | Edit
-        button#edit-cancel-button.btn.btn-floating.edit-field.orange.darken-4
-          | Cancel 
+      .row
+        .col.s12
+          button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
+            i.material-icons close 
+          if isMyPost
+            button#edit-button.btn.btn-floating.view-box.green.darken-3
+              | Edit
+            button#edit-cancel-button.btn.btn-floating.edit-field.orange.darken-4
+              | Cancel 
 
-      .user-info
-        .row
-          .col.s5
-            +profileImage user
-          .col.s7 
-            | {{user.username}}
-      .view-box
-        if title
-          .row
-            .col.s12
-              h4#myModalLabel.modal-title {{title}}
-        if desc
-          .row
-            .col.s12
-              pre.centered-text.flow-text
-                |  {{desc}}
-              hr
-         if tags
-          .row
-            .col.s12
-              | tags
-              .tags
-                each albums
-                  span.chip 
-                    | {{title}}
+      if title
         .row
           .col.s12
-            | {{createdAt.toLocaleString}}
-        if address
-          .row
-            .col.s12
-              | {{address.fullAddress}}
-
-
-      .edit-field
+            h4#myModalLabel.modal-title {{title}}
+      if desc
         .row
-          +autoForm id="editPost" type="update" collection="Post" doc=post class="col s12"
+          .col.s12
+            pre.centered-text.flow-text
+              |  {{desc}}
+            hr
+            if tags
+             .row
+               .col.s12
+                 | tags
+                 .tags
+                   each albums
+                     span.chip 
+                       | {{title}}
+      .row
+        .col.s12
+          | {{createdAt.toLocaleString}}
+      if address
+        .row
+          .col.s12
+            | {{address.fullAddress}}
+      .row
+        .view-box.col.s4.offset-s4.profile-padding
+          +profileImage user
+          br
+          | {{user.username}}
+
+
+      .row
+        .col.s12
+          .edit-field
             .row
-              +afQuickField name='title' class="col s12"
-            .row
-              +afQuickField name='desc' type="textarea" class="col s12"
-            .row
-              +afFieldInput  name="isPublished" type="switch" class="col s12" trueLabel="Published" falseLabel="Private"
-            .row 
-              +afQuickField name="address" type="googleplace" opts=optsGoogleplace class="col s12 input-field"
-            .row
-              .tag-edit.input-field.col.s12
-                +tagAutocomplete
-            .row
-              .col.s12
-                if isMyPost
-                  button.btn.btn-tiny.light-green.darken-4(type='submit')
-                    | Save 
-      .view-box
-        +comments
+              +autoForm id="editPost" type="update" collection="Post" doc=post class="col s12"
+                .row
+                  +afQuickField name='title' class="col s12"
+                .row
+                  +afQuickField name='desc' type="textarea" class="col s12"
+                .row
+                  +afFieldInput  name="isPublished" type="switch" class="col s12" trueLabel="Published" falseLabel="Private"
+                .row 
+                  +afQuickField name="address" type="googleplace" opts=optsGoogleplace class="col s12 input-field"
+                .row
+                  .tag-edit.input-field.col.s12
+                    +tagAutocomplete
+                .row
+                  .col.s12
+                    if isMyPost
+                      button.btn.btn-tiny.light-green.darken-4(type='submit')
+                        | Save 
+      .row.grey.lighten-4
+        .view-box.col.s12
+          +comments

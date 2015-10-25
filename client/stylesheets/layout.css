@@ -384,3 +384,26 @@ a.shareit-google-colors{
 .no-bottom-margin{
   margin-bottom: 0px;
 }
+
+.profile-image-padding{
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.userpage-profile .profile-image{
+  margin-top: 5px;
+}
+.profile-padding{
+  padding-left: 7%!important;
+  padding-right: 7%!important;
+}
+
+
+.mypage-profile-padding{
+  padding-left: 35%!important;
+  padding-right: 35%!important;
+}
+
+.tags-showheader-row{
+  padding-top: 10px;  
+}

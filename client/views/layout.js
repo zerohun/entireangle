@@ -48,7 +48,6 @@ Template.layout.helpers({
       }
     ]
 });
-
 Template.layout.rendered = function(){
     $('body').css({overflow: "scroll"});
     var tabNode = FView.byId('tab').node;

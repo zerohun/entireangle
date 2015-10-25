@@ -1,10 +1,11 @@
 template(name="placesMobile")
-  .location-list  
-    .collection
-      each locations
-        a.collection-item.centered-text(href="/locations/posts?country={{country}}&city={{city}}")
-          | {{country}}
-          | {{state}}
-          | {{city}}
-          br
-          | ({{count}})
+  .row
+    .col.s12.location-list  
+      .collection
+        each locations
+          a.collection-item.centered-text(href="/locations/posts?country={{country}}&city={{city}}{{userId}}")
+            | {{country}}
+            | {{state}}
+            | {{city}}
+            br
+            | ({{count}})

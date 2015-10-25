@@ -2,7 +2,7 @@ template(name="UsersShowMobile")
   .row.grey.darken-4
     .col.s12.no-side-padding.grey.darken-4
       .row.grey.darken-4.no-bottom-margin
-        .col.s2.no-side-padding
+        .col.s2.no-side-padding.userpage-profile
           +profileImage user
         #profile-tab.col.s10.no-side-padding.grey.darken-4
           ul.tabs.grey.darken-4
@@ -23,4 +23,4 @@ template(name="UsersShowMobile")
   if isTabVisible SYM_LOCATIONS
     +placesMobile locations=places
   if isTabVisible SYM_FAVORITES
-    +PostsMobile posts=favoritePosts 
+    +PostsMobile posts=favoritePosts user=user

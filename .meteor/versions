@@ -87,6 +87,7 @@ logandk:validator@3.34.0
 logging@1.0.8
 luisalmeida:unveil@0.0.1
 lukemadera:autoform-googleplace@1.0.7
+manuelschoebel:wait-on-lib@0.3.0
 matb33:collection-hooks@0.8.1
 materialize:materialize@0.97.0
 meteor@1.1.9
