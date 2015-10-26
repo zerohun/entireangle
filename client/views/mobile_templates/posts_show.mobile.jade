@@ -97,11 +97,11 @@ template(name='PostsShowMobile')
               | Cancel 
 
       if title
-        .row
+        .row.view-box
           .col.s12
             h4#myModalLabel.modal-title {{title}}
       if desc
-        .row
+        .row.view-box
           .col.s12
             pre.centered-text.flow-text
               |  {{desc}}
@@ -114,14 +114,14 @@ template(name='PostsShowMobile')
                    each albums
                      span.chip 
                        | {{title}}
-      .row
+      .row.view-box
         .col.s12
           | {{createdAt.toLocaleString}}
       if address
-        .row
+        .row.view-box
           .col.s12
             | {{address.fullAddress}}
-      .row
+      .row.view-box
         .view-box.col.s4.offset-s4.profile-padding
           a(href="/users/{{user._id}}")
             +profileImage user

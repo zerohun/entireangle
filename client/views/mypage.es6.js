@@ -31,7 +31,7 @@ const mypageHelpers = {
   "isShowingTags": function(){
     return isShowingTagsReact.get();
   }
-}
+};
 
 const mypageEvents = {
     "click .reset-password-btn": function(event){
@@ -39,10 +39,10 @@ const mypageEvents = {
     },
     "change .mypage-image-field": function(event){
       const uploadingFile = event.target.files[0];
-      const imageId = Models.Image.insert(createOwnedFile(uploadingFile), function(err, fileObj){
+      const imageId = Models.ProfileImage.insert(createOwnedFile(uploadingFile), function(err, fileObj){
         console.log('imageId:');
         console.log(fileObj._id);
-        Meteor.call("updateUser", {imageId:fileObj._id});
+        Meteor.call("updateUser", {profileImageId:fileObj._id});
       });
     },
     "click .modal-close": function(event){
@@ -94,7 +94,7 @@ Template.Mypage.helpers(mypageHelpers);
 Template.Mypage.events(mypageEvents);
 Template.Mypage.rendered = function(){
   FView.byId("loading-box").node.hide();
-}
+};
 
 Template.mypageMobile.helpers(mypageHelpers);
 Template.mypageMobile.events(mypageEvents);
@@ -119,4 +119,4 @@ Template.mypageMobile.rendered = function(){
       $(".hide-on-modal").show();
     }
   });
-}
+};

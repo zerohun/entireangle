@@ -6,10 +6,10 @@ Template.profileImage.helpers({
     return this.snsImageUrl;
   },
   "uploadedProfileImageUrl": function(){
-    if(!this.imageId) return null;
-    const image = Models.Image.findOne(this.imageId);
+    if(!this.profileImageId) return null;
+    const image = Models.ProfileImage.findOne(this.profileImageId);
     if(image)
-      return image.url({store: 'thumbs'}); 
+      return image.url({store: 'profile_image_thumbnails'}); 
     else
       return null;
   },
