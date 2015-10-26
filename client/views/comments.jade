@@ -13,7 +13,8 @@ template(name="comments")
             .row
               .col.s3.no-side-padding
                 .commentProfileImage
-                  +profileImage user
+                  a(href="/users/{{user._id}}")
+                    +profileImage user
                 .commentUserName
                   | {{user.username}}
               .col.s7.comment-text

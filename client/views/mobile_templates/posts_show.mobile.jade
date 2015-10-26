@@ -123,9 +123,10 @@ template(name='PostsShowMobile')
             | {{address.fullAddress}}
       .row
         .view-box.col.s4.offset-s4.profile-padding
-          +profileImage user
-          br
-          | {{user.username}}
+          a(href="/users/{{user._id}}")
+            +profileImage user
+            br
+            | {{user.username}}
 
 
       .row
