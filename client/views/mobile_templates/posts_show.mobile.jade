@@ -138,8 +138,12 @@ template(name='PostsShowMobile')
                   +afQuickField name='title' class="col s12"
                 .row
                   +afQuickField name='desc' type="textarea" class="col s12"
-                .row
-                  +afFieldInput  name="isPublished" type="switch" class="col s12" trueLabel="Published" falseLabel="Private"
+                if isArrowVisible
+                  .row
+                    button.btn.red#red-publish-button(type="submit") Publish!
+                else
+                  .row
+                    +afFieldInput  name="isPublished" type="switch" class="col s12" trueLabel="Published" falseLabel="Private"
                 .row 
                   +afQuickField name="address" type="googleplace" opts=optsGoogleplace class="col s12 input-field"
                 .row

@@ -41,14 +41,20 @@ template(name='postMobile')
        .post-info
          table
            tr
-             if $not hideUserThumbnail
-               th(rowspan='2')
-                 .right
+             th(rowspan='2')
+               .right
+                 if $not hideUserThumbnail
                    +profileImage user
-             if title
-               td.text-outline.centered-text
+                 else
+                   | &nbsp;
+             td.text-outline
+               if title
                  | {{title}}
-           if $not hideUserThumbnail
-             tr
-               td.text-outline
+               else
+                 | &nbsp;
+           tr
+             td.text-outline
+               if $not hideUserThumbnail
                  | {{user.username}}
+               else
+                 | &nbsp;

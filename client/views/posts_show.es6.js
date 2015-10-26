@@ -17,7 +17,7 @@ SwipingDirection.UP = Symbol("UP");
 SwipingDirection.DOWN = Symbol("DOWN");
 SwipingDirection.NONE = Symbol("NONE");
 
-
+let clickedPublishButton = false;
 function closeModals(){
     $(".modal").closeModal();
     $(".lean-overlay").remove();
@@ -492,17 +492,20 @@ AutoForm.hooks({
   editPost:{
     formToModifier: function(modifier){
       const albumIds = Template.tagAutocomplete.albumsReact.get().map((album) => album._id);
-      modifier.$set.albumIds = albumIds; 
+      if(!modifier.$set)modifier.$set = {}
+      if(albumIds.length > 0)
+        modifier.$set.albumIds = albumIds; 
+      if(clickedPublishButton)
+        modifier.$set.isPublished = true; 
       return modifier;
-    },
-    formToDoc: function(doc){
-      console.log(doc);
-      window.d= doc;
-      return doc;
     },
     onSuccess:function(){
       console.log('suc');
       turnEditingMode(false);
+
+      if(!Router.current().data()){
+        Router.go("/mypage");
+      }
     },
     onError:function(fromType, result){
       console.log(result);
@@ -592,6 +595,9 @@ Template.PostsShow.helpers(postsShowHelpers);
 Template.PostsShowMobile.helpers(postsShowHelpers);
 
 const postsShowEvents = {
+  "click #red-publish-button": function(e){
+    clickedPublishButton = true;
+  },
   "click #publish-post-button": function(e){
     const post = Router.current().data();
     post.isPublished = true;
@@ -656,7 +662,7 @@ const postsShowEvents = {
       turnEditingMode(false);
       return false;
   },
-  "submit #edit-post": function() {
+  "submit #edit-post": function(event) {
       //post = getCurrentPost();
       //post.title = event.target.title.value;
       //post.desc = event.target.desc.value;
@@ -763,7 +769,7 @@ Template.PostsShow.toggleVRMode = ()=>{
 };
 
 Template.PostsShowMobile.rendered = function() {
-  
+  clickedPublishButton = false
   setArrowBoxPosition();
   $(".arrow_box").removeClass('hide');
   
