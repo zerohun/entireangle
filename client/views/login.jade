@@ -3,9 +3,15 @@ template(name="login")
     if isLoggedIn
       <h3>Successfully logged in</h3>
     else
+      
       if loginTopMessage
         h6 loginTopMessage
         hr
+
+      .row.small-margin-bottom
+        .col.s12.centered-text
+          h6 Login 
+
       .row.centered-text
         form#login-form.col.s12.centered-text(action='action')
           .row
@@ -28,13 +34,13 @@ template(name="login")
               input#login-button.btn.green(type='submit', value='Sign in')
               button#close-login-button.btn.grey Close
 
-    .row
-      .col.s12
-        button.btn.btn-tiny.blue.login-with-facebook 
-         | Login with Facebook
-    .row
-      .col.s12
-        button#register-button.btn.btn-tiny.orange.darken-4 Don't have account?
-    .row
-      .col.s12
-        button#reset-password-button.btn.btn-tiny.orange.darken-4 Forgot password?
+      .row
+        .col.s12
+          button.btn.btn-tiny.blue.login-with-facebook 
+           | Login with Facebook
+      .row
+        .col.s12
+          button#register-button.btn.btn-tiny.orange.darken-4 Don't have account?
+      .row
+        .col.s12
+          button#reset-password-button.btn.btn-tiny.orange.darken-4 Forgot password?
