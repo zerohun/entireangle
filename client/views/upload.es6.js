@@ -3,13 +3,13 @@ function afterFileInsertCallback(error, fileObj){
     alert(error.message);
 };
 
-Template.uploadMobile.helpers({
+const templateUploadHelpers = {
   albums: function(){
     return Template.tagAutocomplete.albumsReact.get();
   }
-});
+};
 
-Template.uploadMobile.events({
+const templateUploadEvents = {
   "click .show-tags-field":function(e){
     $(e.target).hide();
     $('.tags-field').removeClass("hide");
@@ -36,23 +36,19 @@ Template.uploadMobile.events({
       Router.go(`/posts/${postIds[0]}?postIds=${postIds.join(',')}&isUploading=1`);
     });
   }
-});
+};
 
-Template.uploadMobile.rendered = ()=>{
+const templateUploadRendered = function(){
   FView.byId("loading-box").node.hide();
 };
 
+Template.upload.helpers(templateUploadHelpers);
+Template.upload.events(templateUploadEvents);
+Template.upload.rendered = templateUploadRendered; 
 
-Template.addressForm.helpers({
-  optsGoogleplace: function() {
-    return {}
-  },
-  formSchema: function(){
-    return new SimpleSchema({
-      address: {
-        type: AddressSchema,
-        label: 'address'
-      }
-    });
-  }
-});
+Template.uploadMobile.helpers(templateUploadHelpers);
+Template.uploadMobile.events(templateUploadEvents);
+Template.uploadMobile.rendered = templateUploadRendered; 
+
+
+

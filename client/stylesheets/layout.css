@@ -183,6 +183,10 @@ a.shareit-google-colors{
 .col-force-padding-top{
   padding-top: 10px!important;
 }
+
+.col-force-padding-top-desktop{
+  padding-top: 20px!important;
+}
 .white-text{
   color: white;
 }
@@ -413,4 +417,21 @@ a.shareit-google-colors{
 
 .rotating {
     -webkit-animation: rotating 2s linear infinite;
+}
+.post-desk-font-size{
+  font-size: 25px;
+}
+
+.mobileFrame{
+  width: 360px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-left-color: #1A1A1A;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-right-color: #1A1A1A;
+  border-right-width: 1px;
+  border-right-style: solid;
+  padding-top: 20px;
 }

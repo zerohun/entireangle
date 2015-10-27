@@ -90,11 +90,11 @@ const mypageEvents = {
     } 
 };
 
-Template.Mypage.helpers(mypageHelpers);
-Template.Mypage.events(mypageEvents);
-Template.Mypage.rendered = function(){
-  FView.byId("loading-box").node.hide();
-};
+//Template.Mypage.helpers(mypageHelpers);
+//Template.Mypage.events(mypageEvents);
+//Template.Mypage.rendered = function(){
+  //FView.byId("loading-box").node.hide();
+//};
 
 Template.mypageMobile.helpers(mypageHelpers);
 Template.mypageMobile.events(mypageEvents);

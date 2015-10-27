@@ -11,3 +11,5 @@ const templateHomeRendered = ()=>{
 
 Template.homeMobile.helpers(templateHomeHelpers);
 Template.homeMobile.rendered = templateHomeRendered;
+Template.home.helpers(templateHomeHelpers);
+Template.home.rendered = templateHomeRendered;

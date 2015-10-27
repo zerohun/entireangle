@@ -1,57 +1,29 @@
 template(name="layout")
   +Scene
-    +HeaderFooterLayout id="header-footer"
-      +Node id="tab" position = "[ 0, -300 ]"
-        +Node position = "[ 0, 5 ]"
-          +DOMElement
-            a(href="/")
-              img(id="logo" src="/images/logo.jpg")
-        +TabMenuLayout id="tabMenu"
-          +famousEach menuItems
-            +Node
-              +DOMElement
-                a.tab(href=url)
-                  span
-                    | #{title}
-        +AccountBox
-          +DOMElement
-            #account-box
-              if isLoggedIn 
-                a.tab(href="/mypage")
-                  i(class="icon-user icon-white")
-                  span(id=username)
-                    | #{username}
-              else
-                button#login-btn
-                  span Login
-
-
-      +Node id="content"
-        +DOMElement
+    +Node
+      +DOMElement
+        #wrapping-container
+          +header
           +yield
-          #list-fetching-bar Fetching next images...
-      
-    +SlideDownWindow id="login-form"        
-      +DOMElement
-        +login
-    +SlideDownWindow id="register-form"            
-      +DOMElement
-        +register
-    +SlideDownWindow id="forgot-password"            
-      +DOMElement
-        +forgotpassword
-    +SlideDownWindow id="reset-form"            
-      +DOMElement
-        +resetpassword
 
-    +SlideUpWindow id="slide-up-menu"
-      +DOMElement
-        +slideUpMenu
-    
-    +LoadingBox id="loading-box"
-      +DOMElement
-        #loading-box
-          div Loading...
-      
+        #list-fetching-bar Fetching next images...
+      +SlideDownWindow id="login-form"        
+        +DOMElement
+          +login
+      +SlideDownWindow id="register-form"            
+        +DOMElement
+          +register
+      +SlideDownWindow id="forgot-password"            
+        +DOMElement
+          +forgotpassword
+      +SlideDownWindow id="reset-form"            
+        +DOMElement
+          +resetpassword
 
-template(name="_loginButtonsAdditionalLoggedInDropdownActions")
+      +LoadingBox id="loading-box"
+        +DOMElement
+          #loading-box
+            .loading-image
+              img.rotating(src="/images/new_small_logo.png" width="100")
+
+

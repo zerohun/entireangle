@@ -1,25 +1,44 @@
-template(name='Posts')
-  br
-  br
-  .center-block.text-center
-    #button-toggle-group.btn-group(data-toggle='buttons-radio')
-      button#image-list.btn.btn-info.list-tabs.active(type='button', aria-pressed='true') Image
-      button#video-list.btn.btn-info.list-tabs(type='button') Video
-  .container-fluid
-    .row.center-block
-      each posts 
+template(name="PostList")
+  .mobileFrame
+    +PostListMobile
+
+template(name="Posts")
+  .row
+    each posts
+      if postsOptions
+        with postsOptions
+          +post
+      else
         +post
 
 template(name='post')
-  .col-lg-3.col-md-4.col-sm-5.col-xs-12.center-block.text-center.post-item
-    a(href="{{pathFor route='posts.show' data=this}}")
-      .loading-bg
-        img.lazy.img-circle(src='{{thumbUrl imageId isVideo}}' data-src="/images/loading.gif")
-      h4 
-        | {{title}}
-        if isVideo
-          span.label.label-success video
-      em
-        a(href="/users/{{user._id}}")
-          +profileImage user
-          | {{user.username}}
+  .col.m3.l3.post-desk-font-size
+    .thumbnail-box.row
+      .col.m12.l12
+        a(href="/posts/{{_id}}").row
+         .loading-bg.col.m12.l12
+           img.circle.responsive-img(src='{{thumbUrl imageId isVideo}}' data-src="/images/loading.gif")
+         .post-info.col.m12.l12
+           .row
+             .col.m12.l12
+               if title
+                 | {{title}}
+               else
+                 | &nbsp;
+
+           table
+             tr
+               th(rowspan='2')
+                 .right
+                   if $not hideUserThumbnail
+                     +profileImage user
+                   else
+                     | &nbsp;
+               td.text-outline
+
+             tr
+               td.text-outline
+                 if $not hideUserThumbnail
+                   | {{user.username}}
+                 else
+                   | &nbsp;

@@ -1,9 +1,10 @@
-Template.headerMobile.events({
+const templateHeaderEvents = {
   "click .account-button": ()=>{
       FView.byId("login-form").node.slideDown();
   } 
-});
-Template.headerMobile.helpers({
+};
+
+const templateHeaderHelpers = {
   unreadNotificationCount: function(){
     let query = {};
     if(Cookie.get("lastNotificationCreatedAt"))
@@ -15,9 +16,9 @@ Template.headerMobile.helpers({
 
     return Notification.find(query).count();
   }
-});
+};
 
-Template.headerMobile.rendered = ()=>{
+const templateHeaderRendered = ()=>{
   $('.dropdown-button').dropdown();
   $('.header-modal-trigger').leanModal({
     ready: function(){
@@ -44,4 +45,11 @@ Template.headerMobile.rendered = ()=>{
       console.log('complete');
     }
   });
-}
+};
+Template.header.events(templateHeaderEvents);
+Template.header.helpers(templateHeaderHelpers);
+Template.header.rendered = templateHeaderRendered;
+
+Template.headerMobile.events(templateHeaderEvents);
+Template.headerMobile.helpers(templateHeaderHelpers);
+Template.headerMobile.rendered = templateHeaderRendered;
