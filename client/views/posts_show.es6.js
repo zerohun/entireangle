@@ -32,13 +32,21 @@ function setArrowBoxPosition(){
     const editBtnWidth = $editButton.width(); 
     const editBtnHeight = $editButton.height(); 
     const $arrowBox = $(".arrow_box");
-    $arrowBox.css({
-      bottom: `${$editButton.height() + 10}px`,
-      left: `${editButtonPosition.left - $arrowBox.width()/2 + editBtnWidth/2}px`
-    });
+    if(isMobile.phone){
+      $arrowBox.css({
+        bottom: `${$editButton.height() + 10}px`,
+        left: `${editButtonPosition.left - $arrowBox.width()/2 + editBtnWidth/2}px`
+      });
+    }
+    else{
+      $arrowBox.css({
+        top: `${$editButton.height() + $('#logo').height() - $(".arrow_box").height() - 20}px`,
+        left: `${editButtonPosition.left - $arrowBox.width()/2 + editBtnWidth/2}px`
+      });
+    }
+
   }
 }
-
 
 function getAlbums(){
     const post = Router.current().data();
@@ -545,36 +553,39 @@ const postsShowHelpers = {
       }
       return '';
     },
+    "isUploadingListVisible": function(){
+      return (location.search.search("isUploading=1") > -1);
+    },
     "isArrowVisible": function(){
       return (location.search.search("isUploading=1") > -1) && !(Router.current().data().isPublished);
     },
     "post": function(){
       return Router.current().data();
     },
+    "moreButtonVisible": function(){
+      return (location.search.search("isUploading=1") > -1) && Post.find().count() > 5;
+    },
     "forcusedPosts": function(){
-       const posts = Post.find({}, {
+      const postIds = Cookie.get("uploadingPostIds")
+      const posts = Post.find({}, {
         $sort:{
           createdAt: -1
          }
-       }).fetch();
-       const currentPostId = Router.current().data()._id;
-       const post = posts.filter((p)=> currentPostId === p._id)[0];
-       const currentIndex = posts.indexOf(post); 
-       let lastIndex = Math.min(posts.length, currentIndex + 4);
-       let startIndex = lastIndex - 6;
-       if(startIndex < 0){
-         startIndex = 0;
-         lastIndex = 5;
-
-       }
-       return posts.slice(startIndex, lastIndex);
+      }).fetch().sort((a,b) => postIds.indexOf(a._id) > postIds.indexOf(b._id));;
+      const currentPostId = Router.current().data()._id;
+      const post = posts.filter((p)=> currentPostId === p._id)[0];
+      const currentIndex = posts.indexOf(post); 
+      let lastIndex = Math.min(posts.length, currentIndex + 4);
+      let startIndex = lastIndex - 6;
+      if(startIndex < 0){
+        startIndex = 0;
+        lastIndex = 5;
+      }
+      return posts.slice(startIndex, lastIndex);
     },
     "posts": function(){
-      return Post.find({}, {
-        $sort:{
-          createdAt: -1
-        }
-      });
+      const postIds = Cookie.get("uploadingPostIds")
+      return Post.find().fetch().sort((a,b) => postIds.indexOf(a._id) > postIds.indexOf(b._id));
     },
     "nextPostUrl": function(){
       const res = getPostsInfo();
@@ -756,6 +767,7 @@ templatePostsShowRendered = function() {
     newNavbarHeight = $("#top-mobile-nav-bar").height();
     $("#container").css({"top" : newNavbarHeight+"px"})
     $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
+    setArrowBoxPosition();
 
     var oldNavbarHeight = $("#top-mobile-nav-bar").height();
     resizeInterval = setInterval(function(){
@@ -771,9 +783,10 @@ templatePostsShowRendered = function() {
         oldNavbarHeight = newNavbarHeight;
         $("#container").css({"top": newNavbarHeight+"px"})
         $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
+        setArrowBoxPosition();
       }
 
-      setArrowBoxPosition();
+
 
 
     },100);

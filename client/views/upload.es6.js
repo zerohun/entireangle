@@ -33,7 +33,7 @@ const templateUploadEvents = {
     const address = AutoForm.getFormValues("address-form").insertDoc.address;
     const albums = Template.tagAutocomplete.albumsReact.get();
     Meteor.call("addPosts", imageIds, albums, address, function(error, postIds){
-      Cookie.set("uploadingPostIds", postIds);
+      Cookie.set("uploadingPostIds", postIds.join(','));
       Router.go(`/posts/${postIds[0]}?isUploading=1`);
     });
   }

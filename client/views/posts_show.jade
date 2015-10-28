@@ -12,22 +12,25 @@ template(name='PostsShow')
     .arrow_box.hide
       | Write about your picture and publish! 
 
-  #uploading-list.hide-on-modal
-    ul
-      each forcusedPosts 
-        if $eq post._id _id
-          li.uploading-item.active
-            a(href="/posts/{{_id}}?isUploading=1")
-              img(src="{{thumbUrl imageId false}}")
-        else
-          li.uploading-item
-            a(href="/posts/{{_id}}?isUploading=1")
-              img(src="{{thumbUrl imageId false}}")
-      li.more-items.uploading-item
-        a.modal-trigger(href="#more-posts-modal")
-          img(src="/images/morebtn.png")
 
-    
+  if isUploadingListVisible
+    #uploading-list.hide-on-modal
+      ul
+        each forcusedPosts 
+          if $eq post._id _id
+            li.uploading-item.active
+              a(href="/posts/{{_id}}?isUploading=1")
+                img(src="{{thumbUrl imageId false}}")
+          else
+            li.uploading-item
+              a(href="/posts/{{_id}}?isUploading=1")
+                img(src="{{thumbUrl imageId false}}")
+        if moreButtonVisible 
+          li.more-items.uploading-item
+            a.modal-trigger(href="#more-posts-modal")
+              img(src="/images/morebtn.png")
+
+      
 
   #desktop-menu-bar.hide-on-modal
     .row
