@@ -49,6 +49,7 @@ Router.onBeforeAction(function() {
     if ($ele.count > 0)
         $ele.remove();
 
+    $(".lean-overlay").remove();
     this.next();
 });
 Router.route('/', {
@@ -131,13 +132,14 @@ Router.route('/posts/:_id', {
     subscriptions: function() {
         // return one handle, a function, or an array
         var subscriptionList;
-        if(this.params.query.isUploading && this.params.query.postIds){
-            subscriptionList = [
-              Meteor.subscribe("uploadingPosts", this.params.query.postIds.split(',')),
-              Meteor.subscribe('comments', {postId: {
-                $in: this.params.query.postIds.split(',')
-              }})
-            ];
+        if(this.params.query.isUploading){
+          const postIds = Cookie.get("uploadingPostIds").split(',');
+          subscriptionList = [
+            Meteor.subscribe("uploadingPosts", postIds),
+            Meteor.subscribe('comments', {postId: {
+              $in: postIds 
+            }})
+          ];
         }
         else if(postsSubscription && this.params.query.from_notification !== '1'){
             var limit = Session.get("PostsLimit");

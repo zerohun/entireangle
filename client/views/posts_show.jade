@@ -1,93 +1,158 @@
 template(name='PostsShow')
   #container(style='width:100%; height:100%')
-  #info
-    #button-container.btn-group(role='group')
-      unless isEmbedded
-        button.btn.btn-primary.btn-xs.shareModalOpenBtn Share
-        button.btn.btn-info.btn-xs(data-toggle='modal', data-target='#infoModal') Info
+  if nextPostUrl
+    #nextPostButton.next-prev-post.hide-on-modal
+      a.waves-effect.waves-light(href=nextPostUrl)
+        i.stroke.material-icons &#xE409;
+  if prevPostUrl
+    #prevPostButton.next-prev-post.hide-on-modal
+      a.waves-effect.waves-light(href=prevPostUrl)
+        i.stroke.material-icons &#xE408;
+  if isArrowVisible 
+    .arrow_box.hide
+      | Write about your picture and publish! 
 
-      if didILikeIt
-        button.btn.btn-warn.btn-xs.unlike-button Unlike 
-      else
-        button.btn.btn-primary.btn-xs.like-button Like 
+  #uploading-list.hide-on-modal
+    ul
+      each forcusedPosts 
+        if $eq post._id _id
+          li.uploading-item.active
+            a(href="/posts/{{_id}}?isUploading=1")
+              img(src="{{thumbUrl imageId false}}")
+        else
+          li.uploading-item
+            a(href="/posts/{{_id}}?isUploading=1")
+              img(src="{{thumbUrl imageId false}}")
+      li.more-items.uploading-item
+        a.modal-trigger(href="#more-posts-modal")
+          img(src="/images/morebtn.png")
 
-      button#vr-mode-button.btn.btn-success.btn-xs VR mode
-      unless isEmbedded
-        if isMyPost                                               
-          button#remove-button.btn.btn-danger.btn-xs Delete
+    
 
-        button#position-save-button.btn.btn-success.btn-xs(style='display:none') Save Position
-  unless isEmbedded
+  #desktop-menu-bar.hide-on-modal
+    .row
+      .col.l1.m1
+        a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#share-modal")
+          i.stroke.mdi-social-share.white-text
+      .col.l1.m1
+        if didILikeIt
+          a.waves-effect.waves-light.unlike-button.inpage-buttons
+            i.stroke.mdi-action-star-rate.yellow-text
+        else
+          a.waves-effect.waves-light.like-button.inpage-buttons
+            i.stroke.mdi-action-star-rate.white-text
+      .col.l1.m1
+        a.waves-effect.waves-light.inpage-buttons.modal-trigger.content-edit-button(href="#content-modal")
+          i.stroke.mdi-content-create.white-text
+          span.red.comment-count-number
+            | {{numberOfComments}}
+      .col.l1.m1
+        a#remove-button.waves-effect.waves-light.inpage-buttons.width-fill
+          i.stroke.mdi-action-delete.white-text
+      .col.l1.m1
+        a#position-save-button.waves-effect.waves-light.inpage-buttons.width-fill
+          i.stroke.mdi-editor-vertical-align-bottom.white-text
+            
+            
+  #share-modal.modal.modal-opacity
+    button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
+      i.material-icons close 
+    .modal-content
+      h4 Sharing action
+      hr
+      +shareit
 
-    #shareModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-      .modal-dialog
-        .modal-content
-          .modal-body
-            button#share-modal-close-btn.close(type='button', aria-label='Close')
-              span(aria-hidden='true') ×
-            h3 Share
-            h5 Share preview
-            #share-buttons-layout.block-center.text-center
-              .share-preview
-              button.btn.btn-default#save-preview-button Share this view
-              hr
-              .btn-group(role='group').text-center.block-center.sns-buttons
-                +shareit
-            br
-            br
-            br
-            h4.text-center Embed
+  #content-modal.modal.modal-opacity
+    .modal-content.centered-text
+      .row
+        .col.l12.m12
+          button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
+            i.material-icons close 
+          if isMyPost
+            button#edit-button.btn.btn-floating.view-box.green.darken-3
+              | Edit
+            button#edit-cancel-button.btn.btn-floating.edit-field.orange.darken-4
+              | Cancel 
+
+      if title
+        .row.view-box
+          .col.l12.m12
+            h4#myModalLabel.modal-title {{title}}
+      if desc
+        .row.view-box
+          .col.l12.m12
+            pre.centered-text.flow-text
+              |  {{desc}}
             hr
-            input#embed-url-string(type='text', value='{{embedUrl}}')
+            if tags
+             .row
+               .col.l12.m12
+                 | tags
+                 .tags
+                   each albums
+                     span.chip 
+                       | {{title}}
+      .row.view-box
+        .col.l12.m12
+          | {{createdAt.toLocaleString}}
+      if address
+        .row.view-box
+          .col.l12.m12
+            | {{address.fullAddress}}
+      .row.view-box
+        .view-box.col.l4.m4.offset-m4.offset-l4.profile-padding
+          a(href="/users/{{user._id}}")
+            +profileImage user
+            br
+            | {{user.username}}
 
-    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-      .modal-dialog
-        .modal-content
-          button#edit-button.btn
-            | edit
-          form#edit-post
-            .modal-header
-              button.close(type='button', data-dismiss='modal', aria-label='Close')
-                span(aria-hidden='true') ×
-              h4#myModalLabel.modal-title.view-box {{title}}
-              input.edit-field(type='text', name='title', value='{{title}}')
-            .modal-body
-              p.timestamp
-                | {{createdAt}}
-              p.view-box
-                pre
-                  | \n{{desc}}                    
 
-              input.edit-field(type="checkbox" name="isPublished" checked="{{isPublished}}")
-              label.edit-field(for="isPublished") Publish on list
-              br
-              textarea.edit-field(name='desc') {{desc}}
-              br
-              if isMyPost
-                button.btn.btn-xs.btn.edit-field(type='submit')
-                  | Done
-                button#edit-button.btn.btn-warning.btn-xs.view-box
-                  | Edit
-                  
-          .modal-body
-            +comments
-                  
-          .modal-footer
+      .row
+        .col.l12.m12
+          .edit-field
+            .row
+              +autoForm id="editPost" type="update" collection="Post" doc=post class="col l12 m12"
+                .row
+                  +afQuickField name='title' class="col l12 m12"
+                .row
+                  +afQuickField name='desc' type="textarea" class="col l12 m12"
+                if isArrowVisible
+                  .row
+                    button.btn.red#red-publish-button(type="submit") Publish!
+                else
+                  .row
+                    +afFieldInput  name="isPublished" type="switch" class="col l12 m12" trueLabel="Published" falseLabel="Private"
+                .row 
+                  +afQuickField name="address" type="googleplace" opts=optsGoogleplace class="col l12 m12 input-field"
+                .row
+                  .tag-edit.input-field.col.l12.m12
+                    +tagAutocomplete
+                .row
+                  .col.m12.l12
+                    if isMyPost
+                      button.btn.btn-tiny.light-green.darken-4(type='submit')
+                        | Save 
+      .row.grey.lighten-3
+        .view-box.col.l12.m12
+          br
+          +comments
 
-  #NoneVRModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') ×
-          h4#myModalLabel.modal-title Your web browser is not supporting VR mode
-        .modal-body
-          h4 HMD(ex Oculus Rift) with Windows or Mac osx
-          p.lead
-            | You need to visit this website with 
-            a(href='https://nightly.mozilla.org') Firefox Nightly
-            |  or 
-            a(href='https://code.google.com/p/chromium') Chromium
-          h4 For Android user.(EX: Google cardboard)
-          p.lead
-            | You need to use a web browers that support WebL(ex: Chrome)
+
+  #more-posts-modal.modal.modal-opacity
+    button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
+      i.material-icons close 
+    .modal-content
+      .row#all-posts-list
+        each posts
+          .col.l3.m3
+            if $eq post._id _id
+              .uploading-item.active
+                a(href="/posts/{{_id}}?isUploading=1")
+                  img(src="{{thumbUrl imageId false}}")
+            else
+              .uploading-item
+                a(href="/posts/{{_id}}?isUploading=1")
+                  img(src="{{thumbUrl imageId false}}")
+
+
+

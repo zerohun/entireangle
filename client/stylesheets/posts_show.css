@@ -65,6 +65,15 @@
   font-size: 3.1em;
 }
 
+#desktop-menu-bar{
+  position:absolute;
+  z-index: 999;
+  top: 60px;
+  left: 0px;
+  width: 100%;
+  font-size: 2em;
+}
+
 #menu-bar td{
   padding: 0px;
 }  
@@ -233,3 +242,38 @@ i.stroke{
   margin-left: -10px;
 }
 
+
+#uploading-list{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 999;
+  overflow: hidden;
+  width: 100%;
+}
+#uploading-list ul{
+  width: 2000px;
+}
+#uploading-list li{
+  display: inline-block;
+}
+.uploading-item{
+  padding: 10px;
+}
+.uploading-item.active{
+  border-color: red;
+  border-width: 1px;
+  border-style: solid;
+}
+
+#uploading-list img{
+  width: 70px;
+}
+
+#uploading-list .btn{
+  width: 70px;
+}
+
+#all-posts-list img{
+  width: 100%;
+}

@@ -447,7 +447,7 @@ function toggleDOMode(orb) {
 function getPostsInfo(){
   let postIds;
   if(location.search.search("isUploading=1") > -1)
-    postIds = location.search.match(/postIds=.+&/g)[0].replace("postIds=", "").replace("&","").split(','); 
+    postIds = Cookie.get("uploadingPostIds").split(','); 
   else
     postIds = Post.find({}).fetch().map((p) => p._id);
   const postId = Router.current().data()._id;
@@ -464,9 +464,9 @@ function getPostsInfo(){
 }
 
 function getUrlOfPostIndex(postId, postIds){
-  let urlString =  `/posts/${postId}?postIds=${postIds.join(',')}`;
+  let urlString =  `/posts/${postId}`;
   if(location.search.search("isUploading=1") > -1)
-      urlString = urlString.concat("&isUploading=1");
+      urlString = urlString.concat("?isUploading=1");
   return urlString;
 }
 
@@ -514,6 +514,25 @@ AutoForm.hooks({
 });
 
 const postsShowHelpers = {
+    thumbUrl: function(imageId, isVideo) {
+      let image
+      if (isVideo) {
+        image = Video.findOne({
+                    _id: imageId
+                  }).url({
+                      store: 'video_thumbs'
+                  });
+      } else {
+          image = Models.Image.findOne({
+              _id: imageId
+          });
+
+      }
+      if(image.isUploaded())
+        return image.url({store: 'thumbs'}); 
+      else
+        return "/images/loading.gif";
+    },
     "modeVRSelectedClass": function(){
       if(isInVRModeReact.get()){
         return 'selected-mode';
@@ -531,6 +550,31 @@ const postsShowHelpers = {
     },
     "post": function(){
       return Router.current().data();
+    },
+    "forcusedPosts": function(){
+       const posts = Post.find({}, {
+        $sort:{
+          createdAt: -1
+         }
+       }).fetch();
+       const currentPostId = Router.current().data()._id;
+       const post = posts.filter((p)=> currentPostId === p._id)[0];
+       const currentIndex = posts.indexOf(post); 
+       let lastIndex = Math.min(posts.length, currentIndex + 4);
+       let startIndex = lastIndex - 6;
+       if(startIndex < 0){
+         startIndex = 0;
+         lastIndex = 5;
+
+       }
+       return posts.slice(startIndex, lastIndex);
+    },
+    "posts": function(){
+      return Post.find({}, {
+        $sort:{
+          createdAt: -1
+        }
+      });
     },
     "nextPostUrl": function(){
       const res = getPostsInfo();
@@ -679,96 +723,11 @@ const postsShowEvents = {
 Template.PostsShow.events(postsShowEvents);
 Template.PostsShowMobile.events(postsShowEvents);
 
-Template.PostsShow.rendered = function() {
-    $('body').css("overflow", 'hidden');
-    FView.byId("loading-box").node.show();
-    let isPreviewRendered = false;
-    Session.set("posts-show-url", location.href);
-    
-    //$("#shareModal").on("shown.bs.modal",function() {
-      //photoOrb.setState("stop");
-      //let previewHeight = $(".share-preview").width() * 0.525;
-      //$(".share-preview").height(previewHeight);
-      //var image = Image.findOne({
-          //_id: post.imageId
-      //});
-      //var imageFilePath = image.url({
-          //store: 'images'
-      //});
-        
-      //if(!isPreviewRendered){
-        //previewOrb = renderPhotoSphere(".share-preview", imageFilePath);
-        //isPreviewRendered = true;
-      //}
-      //else{
-        //previewOrb.setState("running");
-      //}
-        
-      //previewOrb.afterRender(()=>{
-        //previewOrb.controls.object.position.x = photoOrb.controls.object.position.x;
-        //previewOrb.controls.object.position.y = photoOrb.controls.object.position.y;
-        //previewOrb.controls.object.position.z = photoOrb.controls.object.position.z;
-        //onClickSavePreviewButton();
-      //});
-        //window.pre = previewOrb;
-        //window.pho = photoOrb;
-    //});
-    
-    //$("#shareModal").on("hidden.bs.modal",function() {
-      //previewOrb.setState("stop");
-      //photoOrb.setState("running");
-    //});
-    
-    leavingPageSrc = Rx.Observable.merge(
-                          Rx.Observable.fromEvent(window, "popstate"),
-                          Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a)"), "click"),
-                          Rx.Observable.fromEvent($("button.page-change"), "click"));
-    var fview = FView.byId('header-footer');
-
-    const leavingPageSub = leavingPageSrc.
-    subscribe(function(e) {
-        //$(".modal").modal('hide');
-        //$(".modal-backdrop").remove();
-        //closeModalSub.dispose();
-        clearInterval(resizeInterval);
-    });
-
-    turnEditingMode(false);
-
-    post = getCurrentPost();
-    Tracker.autorun(function(computation) {
-        var image = Models.Image.findOne({
-            _id: post.imageId
-        });
-        var imageFilePath = image.url({
-            store: 'images'
-        });
-        if (image.isUploaded() && imageFilePath) {
-            computation.stop();
-            $("#uploading-image").hide();
-            photoOrb = renderPhotoSphere("#container", imageFilePath);
-        }
-        else{
-          $("#uploading-image").show();
-        }
-    });
-
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1018333888196733&version=v2.0";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-};
-
 Template.PostsShow.toggleVRMode = ()=>{
     toggleVRMode();
 };
 
-Template.PostsShowMobile.rendered = function() {
+templatePostsShowRendered = function() {
   clickedPublishButton = false
   setArrowBoxPosition();
   $(".arrow_box").removeClass('hide');
@@ -794,7 +753,9 @@ Template.PostsShowMobile.rendered = function() {
       }
     });
     $('body').css("overflow", 'hidden');
-    $("#container").css({"top" :$("#top-mobile-nav-bar").height()+"px"})
+    newNavbarHeight = $("#top-mobile-nav-bar").height();
+    $("#container").css({"top" : newNavbarHeight+"px"})
+    $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
 
     var oldNavbarHeight = $("#top-mobile-nav-bar").height();
     resizeInterval = setInterval(function(){
@@ -809,6 +770,7 @@ Template.PostsShowMobile.rendered = function() {
       if(newNavbarHeight !== oldNavbarHeight){
         oldNavbarHeight = newNavbarHeight;
         $("#container").css({"top": newNavbarHeight+"px"})
+        $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
       }
 
       setArrowBoxPosition();
@@ -861,5 +823,6 @@ Template.PostsShowMobile.rendered = function() {
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-};
-
+}
+Template.PostsShowMobile.rendered = templatePostsShowRendered;
+Template.PostsShow.rendered = templatePostsShowRendered;
