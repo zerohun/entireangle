@@ -1,7 +1,10 @@
 const templateHeaderEvents = {
   "click .account-button": ()=>{
       FView.byId("login-form").node.slideDown();
-  } 
+  }, 
+  "click .close-modal-button": function(e){
+    $(e.target).parents(".modal").first().closeModal();
+  },
 };
 
 const templateHeaderHelpers = {

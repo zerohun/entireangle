@@ -51,10 +51,14 @@ const mypageEvents = {
     "click #published": function(event){
       isShowingTagsReact.set(false);
       Session.set("myPagePostsQuery" , {isPublished: true});
+      Session.set("UserPostsLimit", 10);
+      Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {isPublished: true});
     },
     "click #notPublished": function(event){
       isShowingTagsReact.set(false);
       Session.set("myPagePostsQuery" , {isPublished: false});
+      Session.set("UserPostsLimit", 10);
+      Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {isPublished: false});
     },
     "click #postsCountByTags": function(event){
       isShowingTagsReact.set(true);
@@ -104,6 +108,8 @@ Template.mypageMobile.rendered = function(){
   Meteor.call("getMyPostsCountByTags", function(err, postsCount){
     postsCountByTagsReact.set(postsCount);
   });
+  Session.set("UserPostsLimit", 10);
+  enableEndlessScroll("UserPostsLimit", Post);
 
   $('.modal-trigger').leanModal({
     dismissible: true,

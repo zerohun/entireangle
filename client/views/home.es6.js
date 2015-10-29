@@ -1,6 +1,9 @@
 const templateHomeHelpers = {
   "featuredPosts": ()=>{
-    return Post.find({});
+    return Post.find({
+      isFeatured: true,
+      isPublished: true
+    }, {$limit: 30});
   }  
 };
 

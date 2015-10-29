@@ -298,7 +298,7 @@ Router.route("/mypage", {
         if(Meteor.user()){
           console.log("posts Sub");
           return [
-            Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {}),
+            Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {isPublished: false}),
           ];
         }
         else return null;

@@ -32,5 +32,8 @@ window.enableEndlessScroll =  function(limitSessionKey, pCollection){
                             scrollEventSub.dispose();
                             pushstateSub.dispose();
                             $("#list-fetching-bar").hide();
-                        })
+                        });
+
+    $(window).trigger("scroll");
 };
+

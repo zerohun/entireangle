@@ -59,7 +59,9 @@ const templatePostListEvents = {
 var templatePostsHelpers = {
   posts: function() {
     if(this.posts) return this.posts;
-    return Post.find({}, {
+    return Post.find({
+      isPublished: true
+    }, {
       sort:{
         createdAt: -1
       }
@@ -108,7 +110,6 @@ templatePostListRendered = function() {
     enableEndlessScroll("PostsLimit", Post);
     FView.byId("loading-box").node.hide();
     Meteor.call("getPostsCountByTags", function(err, result){
-      window.r = result;
       postsCountByTagsReact.set(result);
     });
     Meteor.call("getPostsCountByLocations", 

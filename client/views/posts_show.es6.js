@@ -567,6 +567,7 @@ const postsShowHelpers = {
     },
     "forcusedPosts": function(){
       const postIds = Cookie.get("uploadingPostIds")
+      if(!postIds) return null;
       const posts = Post.find({}, {
         $sort:{
           createdAt: -1
@@ -585,6 +586,7 @@ const postsShowHelpers = {
     },
     "posts": function(){
       const postIds = Cookie.get("uploadingPostIds")
+      if(!postIds) return null;
       return Post.find().fetch().sort((a,b) => postIds.indexOf(a._id) > postIds.indexOf(b._id));
     },
     "nextPostUrl": function(){
