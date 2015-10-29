@@ -37,7 +37,9 @@ Template.comments.helpers({
     return Comment.find({}).count() > 0;
   },
   "comments": function(){
-    return Comment.find({}, {
+    return Comment.find({
+      postId: Router.current().data()._id
+    }, {
       limit: Session.get("commentsLimit"),
       sort:{
         createdAt: -1

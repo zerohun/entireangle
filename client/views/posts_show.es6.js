@@ -457,7 +457,7 @@ function getPostsInfo(){
   if(location.search.search("isUploading=1") > -1)
     postIds = Cookie.get("uploadingPostIds").split(','); 
   else
-    postIds = Post.find({}).fetch().map((p) => p._id);
+    postIds = Post.find({}, {$sort: {createdAt: -1 }}).fetch().map((p) => p._id);
   const postId = Router.current().data()._id;
   const index = postIds.indexOf(postId);
 
@@ -568,7 +568,11 @@ const postsShowHelpers = {
     "forcusedPosts": function(){
       const postIds = Cookie.get("uploadingPostIds")
       if(!postIds) return null;
-      const posts = Post.find({}, {
+      const posts = Post.find({
+        _id: {
+          $in: postIds
+        }
+      }, {
         $sort:{
           createdAt: -1
          }
@@ -587,7 +591,11 @@ const postsShowHelpers = {
     "posts": function(){
       const postIds = Cookie.get("uploadingPostIds")
       if(!postIds) return null;
-      return Post.find().fetch().sort((a,b) => postIds.indexOf(a._id) > postIds.indexOf(b._id));
+      return Post.find({
+        _id: {
+          $in: postIds
+        }
+      }).fetch().sort((a,b) => postIds.indexOf(a._id) > postIds.indexOf(b._id));
     },
     "nextPostUrl": function(){
       const res = getPostsInfo();

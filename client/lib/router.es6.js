@@ -298,7 +298,7 @@ Router.route("/mypage", {
         if(Meteor.user()){
           console.log("posts Sub");
           return [
-            Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {isPublished: false}),
+            Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {isPublished: false})
           ];
         }
         else return null;
@@ -320,6 +320,7 @@ Router.route("/mytags/:_id", {
     if(album && user){
       return  {
         title: Album.findOne(this.params._id).title,
+        albumId: this.params._id,
         user: Meteor.user()
       };
     }
@@ -358,9 +359,16 @@ Router.route("/locations/posts", {
   template: getTemplate('tagsShow'),
   data: function(){
     const result = {};
+    if(this.params.query.country){
+      result.address = {};
+      result.address.country = this.params.query.country;
+      if(this.params.query.city)
+        result.address.city = this.params.query.city;
+    }
+
     result.title = this.params.query.country;
     if(this.params.query.city && this.params.query.city != "")
-      result.title = result.title.concat("-" + this.params.query.city)
+      result.title = result.title.concat("-" + this.params.query.city);
     const userId = this.params.query.userId;
     if(userId) result.user = Meteor.users.findOne(userId);
     return result;
@@ -391,7 +399,8 @@ Router.route("/tags/:_id", {
     if(album){
       return  {
         title: Album.findOne(this.params._id).title,
-        user: Meteor.users.findOne()
+        albumId: this.params._id,
+        user: Meteor.users.findOne({_id: this.params.query.userId})
       };
     }
     else{

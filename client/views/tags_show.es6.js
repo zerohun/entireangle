@@ -9,11 +9,34 @@ const tagsShowHelpers = {
      return null;
   },
   "posts": function(){
-    return Post.find({}, {sort:{createdAt: -1}});
+    const query = {};
+    const data = Router.current().data();
+    if(data.albumId){
+      query.albumIds = {
+        $in: [data.albumId]
+      };
+    }
+    if(data.user){
+      query['user._id'] = data.user._id;
+    }
+    if(data.address){
+      query['address.country'] = data.address.country;
+      if(data.address.city)
+        query['address.city'] = data.address.city;
+    }
+
+    return Post.find(query, {$sort:{createdAt: -1}});
   },
   "postsOptions": function(){
-    return {
-      hideUserThumbnail: true
+    if(Router.current().data().user){
+      return {
+        hideUserThumbnail: true
+      };
+    }
+    else{
+      return {
+        hideUserThumbnail: false
+      };
     }
   }
 };
