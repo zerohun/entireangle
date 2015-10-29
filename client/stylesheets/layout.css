@@ -435,3 +435,12 @@ a.shareit-google-colors{
   border-right-style: solid;
   padding-top: 20px;
 }
+
+.desktop-center{
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.zero-margin-bottom{
+  margin-bottom: 0px!important;
+}

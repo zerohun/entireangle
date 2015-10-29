@@ -1,6 +1,27 @@
 template(name="PostList")
-  .mobileFrame
-    +PostListMobile
+  .row.no-margin-bottom
+    .col.l12.width-fill
+      ul.tabs.black-tabs.desktop-center
+        li.tab.col.l4.m4.centered-text
+          a#pictures-tab-btn.active Pictures 
+        li.tab.col.l4.m4.centered-text
+          a#tags-tab-btn Tags 
+        li.tab.col.l4.m4.centered-text
+          a#locations-tab-btn Locations 
+
+  if isTabVisible SYM_PICTURES
+    +Posts
+  else
+    if isTabVisible SYM_TAGS
+      .row.desktop-center
+        .col.m12.l12.tag-list
+          .collection
+            each tags
+              a.collection-item.centered-text(href="/tags/{{_id}}")
+                | {{title}}({{postsCountByTagId _id}})
+    else 
+      if isTabVisible SYM_LOCATIONS
+        +places locations=locations
 
 template(name="Posts")
   .row
@@ -19,8 +40,8 @@ template(name='post')
          .loading-bg.col.m12.l12
            img.circle.responsive-img(src='{{thumbUrl imageId isVideo}}' data-src="/images/loading.gif")
          .post-info.col.m12.l12
-           .row
-             .col.m12.l12
+           .row.zero-margin-bottom
+             .col.m12.l12.centered-text
                if title
                  | {{title}}
                else

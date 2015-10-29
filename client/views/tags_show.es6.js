@@ -28,3 +28,7 @@ const tagsShowRendered = function(){
 Template.tagsShowMobile.helpers(tagsShowHelpers);
 Template.tagsShowMobile.events(tagsShowEvents);
 Template.tagsShowMobile.rendered = tagsShowRendered;
+
+Template.tagsShow.helpers(tagsShowHelpers);
+Template.tagsShow.events(tagsShowEvents);
+Template.tagsShow.rendered = tagsShowRendered;

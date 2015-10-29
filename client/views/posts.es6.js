@@ -134,3 +134,7 @@ Template.postMobile.helpers(templatePostHelper);
 Template.PostListMobile.events(templatePostListEvents);
 Template.PostListMobile.helpers(templatePostListHelpers);
 Template.PostListMobile.rendered = templatePostListRendered;
+
+Template.PostList.events(templatePostListEvents);
+Template.PostList.helpers(templatePostListHelpers);
+Template.PostList.rendered = templatePostListRendered;

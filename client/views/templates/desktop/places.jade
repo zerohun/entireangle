@@ -1,0 +1,10 @@
+template(name="places")
+  .row.desktop-center
+    each locations
+      .col.m12.l12.tag-list
+        a.btn.centered-text.fill(href="/locations/posts?country={{country}}&city={{city}}{{userId}}")
+          | {{country}}
+          | {{state}}
+          | {{city}}
+          br
+          | ({{count}})
