@@ -23,13 +23,16 @@ const TemplateUsersShowHelpers = {
       return Router.current().data().username;
   },
   posts: function(){
-      return Post.find({
+      const posts = Post.find({
         'user._id': Router.current().data()._id
       }, {
         $sort:{
           createdAt: -1
         }
       });
+      Session.set("postIds", posts.fetch().map((p) => p._id));
+      return posts;
+
   },
   tags: function(){
     const tagCounts = postsCountByTagsReact.get();

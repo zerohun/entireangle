@@ -3,7 +3,7 @@ window.enableEndlessScroll =  function(limitSessionKey, pCollection){
 
     Tracker.autorun(function(computation) {
         var limit = Session.get(limitSessionKey); 
-        if (pCollection.find().count() < limit)
+        if (pCollection.find(Session.get("postsQuery")).count() < limit)
             $("#list-fetching-bar").fadeOut(2000);
         else
             $("#list-fetching-bar").show();

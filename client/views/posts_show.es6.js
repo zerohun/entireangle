@@ -453,11 +453,8 @@ function toggleDOMode(orb) {
 }
 
 function getPostsInfo(){
-  let postIds;
-  if(location.search.search("isUploading=1") > -1)
-    postIds = Cookie.get("uploadingPostIds").split(','); 
-  else
-    postIds = Post.find({}, {$sort: {createdAt: -1 }}).fetch().map((p) => p._id);
+  const postIds = Session.get("postIds"); 
+  if(!postIds) return null;
   const postId = Router.current().data()._id;
   const index = postIds.indexOf(postId);
 
@@ -566,7 +563,7 @@ const postsShowHelpers = {
       return (location.search.search("isUploading=1") > -1) && Post.find().count() > 5;
     },
     "forcusedPosts": function(){
-      const postIds = Cookie.get("uploadingPostIds")
+      const postIds = Session.get("postIds"); 
       if(!postIds) return null;
       const posts = Post.find({
         _id: {
@@ -589,7 +586,7 @@ const postsShowHelpers = {
       return posts.slice(startIndex, lastIndex);
     },
     "posts": function(){
-      const postIds = Cookie.get("uploadingPostIds")
+      const postIds = Session.get("postIds"); 
       if(!postIds) return null;
       return Post.find({
         _id: {

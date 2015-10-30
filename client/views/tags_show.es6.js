@@ -24,8 +24,9 @@ const tagsShowHelpers = {
       if(data.address.city)
         query['address.city'] = data.address.city;
     }
-
-    return Post.find(query, {$sort:{createdAt: -1}});
+    const posts = Post.find(query, {$sort:{createdAt: -1}});
+    Session.set("postIds", posts.fetch().map((p) => p._id));
+    return posts;
   },
   "postsOptions": function(){
     if(Router.current().data().user){

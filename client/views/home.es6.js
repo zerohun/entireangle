@@ -1,9 +1,11 @@
 const templateHomeHelpers = {
   "featuredPosts": ()=>{
-    return Post.find({
-      isFeatured: true,
-      isPublished: true
-    }, {$limit: 30});
+    const posts = Post.find(
+        Session.get("postsQuery"),
+        {$limit: 30});
+
+    Session.set("postIds", posts.fetch().map((p) => p._id));
+    return posts;
   }  
 };
 

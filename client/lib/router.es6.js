@@ -39,6 +39,7 @@ Session.set("StoriesLimit", 10);
 Session.set("isVideo", false);
 Session.set('posts-show-url', "");
 Session.set("myPagePostsQuery", {isPublished: false});
+Session.set("postsQuery", {isPublished: false});
 
 Router.configure({
     layoutTemplate: getTemplate("layout") 
@@ -57,7 +58,11 @@ Router.route('/', {
     template: getTemplate("home"),
     subscriptions: function() {
       postsSubscription = function(){
-        Meteor.subscribe("posts", 30, {isFeatured:true});
+        Session.set("postsQuery", {
+          isPublished: true, 
+          isFeatured: true
+        });
+        Meteor.subscribe("posts", 30, Session.get("postsQuery"));
       }
       return postsSubscription();
     }
@@ -70,11 +75,12 @@ Router.route('/posts', {
     template: getTemplate("PostList"),
     subscriptions: function() {
         $("#list-fetching-bar").fadeOut(1000);
-        var limit = Session.get("PostsLimit");
-        postsSubscription = function(){ 
-          return Meteor.subscribe("posts", limit, {isVideo: Session.get("isVideo")});
-        }
-        return postsSubscription();
+        Session.set("postsQuery", {
+          isPublished:false
+        });
+        return Meteor.subscribe("posts", 
+            Session.get("PostsLimit"), 
+            Session.get("postsQuery"));
     },
     data: function() {
         var limit = Session.get("PostsLimit");
@@ -128,37 +134,20 @@ Router.route('/posts/new', {
 });
 
 Router.route('/posts/:_id', {
-    name: "PostsShowMobile",
+    name: "PostsShow",
     subscriptions: function() {
-        // return one handle, a function, or an array
-        var subscriptionList;
-        if(this.params.query.isUploading){
-          const postIds = Cookie.get("uploadingPostIds").split(',');
-          subscriptionList = [
-            Meteor.subscribe("uploadingPosts", postIds),
-            Meteor.subscribe('comments', {postId: {
-              $in: postIds 
-            }})
-          ];
-        }
-        else if(postsSubscription && this.params.query.from_notification !== '1'){
-            var limit = Session.get("PostsLimit");
-            //return Meteor.subscribe("posts", limit, {isVideo: Session.get('isVideo')});
-            subscriptionList = [
-              postsSubscription(),
-              Meteor.subscribe('comments', {postId: this.params._id})
-            ];
-        }
-        else{
-            postsSubscription = null;
-            subscriptionList = [
-                Meteor.subscribe("posts", 1, {_id: this.params._id}),
-                Meteor.subscribe('comments', {postId: this.params._id})
-            ];
-        }
-        if(Meteor.user()) subscriptionList.push(Meteor.subscribe("likes", this.params._id));
-        return subscriptionList;
-
+      // return one handle, a function, or an array
+      const result =  [
+        Meteor.subscribe('comments', {postId: this.params._id}),
+        Meteor.subscribe("likes", this.params._id)
+      ];
+      if(Session.get("postIds")){
+        result.push(Meteor.subscribe("postIdList", Session.get("postIds")));
+      }
+      else{
+        result.push(Meteor.subscribe("post", this.params._id));
+      }
+      return result;
     },
     data: function() {
         var post = Post.findOne({
@@ -236,25 +225,15 @@ Router.route('/users/:_id', {
     },
     template: getTemplate('UsersShow'),
     subscriptions: function() {
-      /*
-        if(!postsSubscription)
-            postsSubscription = Meteor.subscribe("posts", Session.get('UserPostsLimit'), {"user._id": this.params._id});
-
-        if(!storiesSubscription)
-            storiesSubscription = Meteor.subscribe("stories", Session.get('UserPostsLimit'), {"user._id": this.params._id});
-
-      */
-        var self = this;
-        postsSubscription = function(){ 
-          console.log("posts Sub");
-          return Meteor.subscribe("posts", Session.get('UserPostsLimit'), {"user._id": self.params._id});
-        };
-        return[
-            Meteor.subscribe("users", this.params._id),
-            Meteor.subscribe("stories", Session.get('UserStoriesLimit'), {"user._id": this.params._id}),
-            Meteor.subscribe("userlikes", this.params._id),
-            postsSubscription()
-        ];
+      Session.set("postsQuery", {
+        "user._id": this.params._id
+      });
+      return[
+          Meteor.subscribe("users", this.params._id),
+          Meteor.subscribe("stories", Session.get('UserStoriesLimit'), {"user._id": this.params._id}),
+          Meteor.subscribe("userlikes", this.params._id),
+          Meteor.subscribe("posts", Session.get('UserPostsLimit'), Session.get("postsQuery"))
+      ];
     }
 });
 
@@ -294,19 +273,11 @@ Router.route("/mypage", {
   name: "mypage",
   template: getTemplate('mypage'),
   subscriptions: function() {
-      postsSubscription = function(){ 
-        if(Meteor.user()){
-          console.log("posts Sub");
-          return [
-            Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {isPublished: false})
-          ];
-        }
-        else return null;
-      };
-      return[
-          Meteor.subscribe("users"),
-          postsSubscription()
-      ];
+
+    return [
+        Meteor.subscribe("users"),
+        Meteor.subscribe("myPosts", Session.get('PostsLimit'), Session.get("postsQuery"))
+    ];
   }
 });
 
@@ -329,20 +300,20 @@ Router.route("/mytags/:_id", {
     }
   },
   subscriptions: function(){
-    postsSubscription = ()=>{ 
-      return [
-        Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {
-          albumIds: {
-            $in: [this.params._id]
-          }
-        }),
-        Meteor.subscribe("albums", 100, {
-          _id: this.params._id
-        })
-      ];
-    };
-    return postsSubscription();
-
+    Session.set('UserPostsLimt', 10);
+    Session.set('postsQuery', {
+      albumIds: {
+        $in: [this.params._id]
+      }
+    });
+    return [
+      Meteor.subscribe("myPosts", 
+          Session.get('UserPostsLimit'), 
+          Session.get('postsQuery')),
+      Meteor.subscribe("albums", 100, {
+        _id: this.params._id
+      })
+    ];
   },
   action: function(){
     if(this.data()){
@@ -374,15 +345,16 @@ Router.route("/locations/posts", {
     return result;
   },
   subscriptions: function(){
-      const subscriptions = [];
-      postsSubscription = ()=>{ 
-        const query = {};
-        query['address.country'] = this.params.query.country;
-        if(this.params.query.city && this.params.query.city != "")
-          query['address.city'] = this.params.query.city;
-        return Meteor.subscribe("posts", Session.get('UserPostsLimit'), query);
-      };
-      subscriptions.push(postsSubscription());
+
+      const query = {};
+      query['address.country'] = this.params.query.country;
+      if(this.params.query.city && this.params.query.city != "")
+        query['address.city'] = this.params.query.city;
+
+      Session.set("postsQuery", query);
+      const subscriptions = [
+        Meteor.subscribe("posts", Session.get('UserPostsLimit'), Session.get("postsQuery"))
+      ];
       const userId = this.params.query.userId;
       if(userId){
         subscriptions.push(Meteor.subscribe("user", userId));

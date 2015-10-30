@@ -10,7 +10,9 @@ const mypageHelpers = {
     return Meteor.user();
   },
   "posts": function(){
-    return Post.find(Session.get("myPagePostsQuery"));
+    const posts = Post.find(Session.get("postsQuery"));
+    Session.set("postIds", posts.fetch().map((p) => p._id));
+    return posts;
   },
   "tags": function(){
     const tagCounts = postsCountByTagsReact.get();
@@ -50,15 +52,13 @@ const mypageEvents = {
     },
     "click #published": function(event){
       isShowingTagsReact.set(false);
-      Session.set("myPagePostsQuery" , {isPublished: true});
-      Session.set("UserPostsLimit", 10);
-      Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {isPublished: true});
+      Session.set("postsQuery" , {isPublished: true});
+      Session.set("PostsLimit", 10);
     },
     "click #notPublished": function(event){
       isShowingTagsReact.set(false);
-      Session.set("myPagePostsQuery" , {isPublished: false});
-      Session.set("UserPostsLimit", 10);
-      Meteor.subscribe("myPosts", Session.get('UserPostsLimit'), {isPublished: false});
+      Session.set("postsQuery" , {isPublished: false});
+      Session.set("PostsLimit", 10);
     },
     "click #postsCountByTags": function(event){
       isShowingTagsReact.set(true);
@@ -104,12 +104,17 @@ Template.mypageMobile.helpers(mypageHelpers);
 Template.mypageMobile.events(mypageEvents);
 
 Template.mypageMobile.rendered = function(){
+  Session.set('PostsLimit', 10);
+  Session.set("postsQuery", {
+    isPublished: false
+  });
+
   FView.byId("loading-box").node.hide();
   Meteor.call("getMyPostsCountByTags", function(err, postsCount){
     postsCountByTagsReact.set(postsCount);
   });
-  Session.set("UserPostsLimit", 10);
-  enableEndlessScroll("UserPostsLimit", Post);
+
+  enableEndlessScroll("PostsLimit", Post);
 
   $('.modal-trigger').leanModal({
     dismissible: true,
