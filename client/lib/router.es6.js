@@ -39,7 +39,7 @@ Session.set("StoriesLimit", 10);
 Session.set("isVideo", false);
 Session.set('posts-show-url', "");
 Session.set("myPagePostsQuery", {isPublished: false});
-Session.set("postsQuery", {isPublished: false});
+Session.set("postsQuery", {isPublished: true});
 
 Router.configure({
     layoutTemplate: getTemplate("layout") 
@@ -76,7 +76,7 @@ Router.route('/posts', {
     subscriptions: function() {
         $("#list-fetching-bar").fadeOut(1000);
         Session.set("postsQuery", {
-          isPublished:false
+          isPublished: true
         });
         return Meteor.subscribe("posts", 
             Session.get("PostsLimit"), 

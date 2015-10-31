@@ -58,7 +58,10 @@ const templatePostListEvents = {
 
 var templatePostsHelpers = {
   posts: function() {
-    if(this.posts) return this.posts;
+    if(this.posts) {
+      Session.set("postIds", this.posts.fetch().map((p) => p._id));
+      return this.posts;
+    }
     const posts = Post.find(Session.get("postsQuery"), {
       sort:{
         createdAt: -1
