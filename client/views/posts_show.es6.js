@@ -294,26 +294,32 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
     } else {
         orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
         $("#info").show();
+        const params = Router.current().params.query;
+        if(params.x && params.y && params.z){
+          orb.controls.object.position.x = Number.parseFloat(params.x);
+          orb.controls.object.position.y = Number.parseFloat(params.y);
+          orb.controls.object.position.z = Number.parseFloat(params.z);
+        }
+        else if ( post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
+            orb.controls.object.position.x = post.viewPosition.x;
+            orb.controls.object.position.y = post.viewPosition.y;
+            orb.controls.object.position.z = post.viewPosition.z;
+        }
+        else{
+            orb.controls.object.position.x = 5;
+            orb.controls.object.position.y = 700;
+            orb.controls.object.position.z = 0;
+        }
+        
+        if (Meteor.userId() && Meteor.userId() == post.user._id)
+            observeViewPosition(orb, ()=>{
+              $("#position-save-button").show();
+            });
+
     }
     console.log('orb render');
     orb.render();
     
-    const params = Router.current().params.query;
-    if(params.x && params.y && params.z){
-      orb.controls.object.position.x = Number.parseFloat(params.x);
-      orb.controls.object.position.y = Number.parseFloat(params.y);
-      orb.controls.object.position.z = Number.parseFloat(params.z);
-    }
-    else if ( post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
-        orb.controls.object.position.x = post.viewPosition.x;
-        orb.controls.object.position.y = post.viewPosition.y;
-        orb.controls.object.position.z = post.viewPosition.z;
-    }
-    
-    if (Meteor.userId() && Meteor.userId() == post.user._id)
-        observeViewPosition(orb, ()=>{
-          $("#position-save-button").show();
-        });
 
     if (vrDeviceInfo.type === "MOBILE"){
 
