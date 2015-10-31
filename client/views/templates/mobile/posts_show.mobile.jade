@@ -11,6 +11,13 @@ template(name='PostsShowMobile')
   if isArrowVisible 
     .arrow_box.hide
       | Write about your picture and publish! 
+
+  .zoom-buttons.mobile.hide-on-modal
+    a.zoom-in-btn(href="")
+      i.stroke.material-icons.white-text zoom_in
+    br
+    a.zoom-out-btn(href="")
+      i.stroke.material-icons.white-text zoom_out
   #menu-bar.hide-on-modal
     table
       tr

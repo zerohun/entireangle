@@ -73,6 +73,29 @@
   width: 100%;
   font-size: 2em;
 }
+.zoom-buttons{
+  position:absolute;
+  z-index: 999;
+
+}
+.zoom-buttons.mobile{
+  bottom: 15%;
+  left: 5px;
+  font-size: 1.5em;
+  opacity: 0.7;
+}
+.zoom-buttons.desktop{
+  top: 20%;
+  left: 20px;
+  font-size: 2em;
+}
+
+#zoom-buttons.desktop i{
+  font-size: 40px;
+}
+#zoom-buttons.mobile i{
+  font-size: 30px;
+}
 
 #menu-bar td{
   padding: 0px;

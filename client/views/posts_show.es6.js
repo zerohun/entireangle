@@ -306,9 +306,9 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
             orb.controls.object.position.z = post.viewPosition.z;
         }
         else{
-            orb.controls.object.position.x = 5;
-            orb.controls.object.position.y = 700;
-            orb.controls.object.position.z = 0;
+            orb.controls.object.position.x = -500;
+            orb.controls.object.position.y = 500;
+            orb.controls.object.position.z = -50;
         }
         
         if (Meteor.userId() && Meteor.userId() == post.user._id)
@@ -663,6 +663,12 @@ Template.PostsShow.helpers(postsShowHelpers);
 Template.PostsShowMobile.helpers(postsShowHelpers);
 
 const postsShowEvents = {
+  "click .zoom-in-btn": function(){
+    photoOrb.controls.dollyOut();
+  },
+  "click .zoom-out-btn": function(){
+    photoOrb.controls.dollyIn();
+  },
   "click #red-publish-button": function(e){
     clickedPublishButton = true;
   },

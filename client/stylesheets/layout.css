@@ -95,6 +95,7 @@ a:link, a:visited, a:hover, a:active{
   }
   img#logo{
     width: 100%;
+    max-width: 200px;
   }
 }
 @media screen and (min-device-width: 550px){
