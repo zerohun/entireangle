@@ -50,7 +50,7 @@ Router.onBeforeAction(function() {
     if ($ele.count > 0)
         $ele.remove();
 
-    $(".lean-overlay").remove();
+    //$(".lean-overlay").remove();
     this.next();
 });
 Router.route('/', {

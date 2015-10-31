@@ -66,13 +66,14 @@ template(name='PostsShow')
             
             
   #share-modal.modal.modal-opacity
-    button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
-      i.material-icons close 
     .modal-content.centered-text
-      h4.centered-text Sharing action
-      hr
-      .snsList
-        +shareit
+      button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
+        i.material-icons close 
+      .modal-content.centered-text
+        h4.centered-text Sharing action
+        hr
+        .snsList
+          +shareit
 
   #content-modal.modal.modal-opacity
     .modal-content.centered-text

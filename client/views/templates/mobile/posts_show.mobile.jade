@@ -22,7 +22,7 @@ template(name='PostsShowMobile')
     table
       tr
         td.menu-button
-          a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#share-modal")
+          a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#share-modal-mobile")
             i.stroke.mdi-social-share.white-text
 
         td.menu-button
@@ -34,13 +34,13 @@ template(name='PostsShowMobile')
               i.stroke.mdi-action-star-rate.white-text
 
         td.menu-button
-          a.waves-effect.waves-light.inpage-buttons.modal-trigger.content-edit-button(href="#content-modal")
+          a.waves-effect.waves-light.inpage-buttons.modal-trigger.content-edit-button(href="#content-modal-mobile")
             i.stroke.mdi-content-create.white-text
             span.red.comment-count-number
               | {{numberOfComments}}
 
         td.menu-button
-          a.waves-effect.waves-light.modal-trigger.inpage-buttons(href="#view-mode-modal")
+          a.waves-effect.waves-light.modal-trigger.inpage-buttons(href="#view-mode-modal-mobile")
             //if isInVRMode
               //i.mdi-action-visibility.yellow-text
             //else
@@ -49,9 +49,9 @@ template(name='PostsShowMobile')
 
         if isMyPost
           td.more-button
-            a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#more-modal")
+            a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#more-modal-mobile")
               i.stroke.mdi-navigation-more-vert.white-text
-  #view-mode-modal.modal.bottom-sheet.modal-opacity
+  #view-mode-modal-mobile.modal.bottom-sheet.modal-opacity
     .modal-content
       ul
         li.more-menu-items
@@ -68,7 +68,7 @@ template(name='PostsShowMobile')
               .col.s8.left-text.black-text
                 | VR Mode
           
-  #more-modal.modal.bottom-sheet.modal-opacity
+  #more-modal-mobile.modal.bottom-sheet.modal-opacity
     .modal-content
       ul
         li.more-menu-items
@@ -86,13 +86,13 @@ template(name='PostsShowMobile')
               .col.s8.left-text.black-text
                 | Save this position 
             
-  #share-modal.modal.bottom-sheet.modal-opacity
+  #share-modal-mobile.modal.bottom-sheet.modal-opacity
     .modal-content
       h4 Sharing action
       hr
       +shareit
 
-  #content-modal.modal.modal-opacity
+  #content-modal-mobile.modal.modal-opacity
     .modal-content.centered-text
       .row
         .col.s12

@@ -214,8 +214,7 @@ function enableHorizontalSwipe(){
 
 function onClickSavePreviewButton(){
   FView.byId("loading-box").node.show();
-  //$(".share-preview").hide();
-  const $canvas = $(".share-preview");
+  const $canvas = $("#container");
   const canvasOriginalSize = {
     width: $canvas.width(),
     height: $canvas.height()
@@ -223,9 +222,9 @@ function onClickSavePreviewButton(){
   $canvas.width(1200);
   $canvas.height(630);
   const position = {
-    x: previewOrb.controls.object.position.x,
-    y: previewOrb.controls.object.position.y,
-    z: previewOrb.controls.object.position.z
+    x: photoOrb.controls.object.position.x,
+    y: photoOrb.controls.object.position.y,
+    z: photoOrb.controls.object.position.z
   };
   let url = Router.current().data().url;
   if(url.search(/\?x=/)){
@@ -233,24 +232,16 @@ function onClickSavePreviewButton(){
   }
   url = url + "?" + $.param(position);
   Session.set("posts-show-url", url);
-  previewOrb.onWindowResize();
-  previewOrb.reRender();
-  previewOrb.afterRender(()=>{
+  photoOrb.onWindowResize();
+  photoOrb.reRender();
+  photoOrb.afterRender(()=>{
     setTimeout(function() {
-      saveCanvasSnapshotToImageStore(".share-preview canvas", "snsThumbs", 
+      saveCanvasSnapshotToImageStore("#container canvas", "snsThumbs", 
       {centerCrop: false},
       ()=> {
         FView.byId("loading-box").node.hide();
-        $(".sns-buttons").show();
-        $("#save-preview-button").hide();
-    
         $canvas.width(canvasOriginalSize.width);
         $canvas.height(canvasOriginalSize.height);
-    
-        observeViewPosition(previewOrb, ()=>{
-          $(".sns-buttons").hide();
-          $("#save-preview-button").show();
-        })
       });
     }, 500);
   });
@@ -663,6 +654,10 @@ Template.PostsShow.helpers(postsShowHelpers);
 Template.PostsShowMobile.helpers(postsShowHelpers);
 
 const postsShowEvents = {
+  "click .share-button": function(){
+    onClickSavePreviewButton();
+    return false;
+  },
   "click .zoom-in-btn": function(){
     photoOrb.controls.dollyOut();
   },
