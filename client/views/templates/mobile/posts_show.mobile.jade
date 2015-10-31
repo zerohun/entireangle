@@ -40,9 +40,10 @@ template(name='PostsShowMobile')
             i.stroke.mdi-action-visibility.white-text
 
 
-        td.more-button
-          a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#more-modal")
-            i.stroke.mdi-navigation-more-vert.white-text
+        if isMyPost
+          td.more-button
+            a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#more-modal")
+              i.stroke.mdi-navigation-more-vert.white-text
   #view-mode-modal.modal.bottom-sheet.modal-opacity
     .modal-content
       ul

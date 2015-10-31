@@ -49,21 +49,24 @@ template(name='PostsShow')
           i.stroke.mdi-content-create.white-text
           span.red.comment-count-number
             | {{numberOfComments}}
-      .col.l1.m1
-        a#remove-button.waves-effect.waves-light.inpage-buttons.width-fill
-          i.stroke.mdi-action-delete.white-text
-      .col.l1.m1
-        a#position-save-button.waves-effect.waves-light.inpage-buttons.width-fill
-          i.stroke.mdi-editor-vertical-align-bottom.white-text
+      if isMyPost
+        .col.l1.m1
+          a#remove-button.waves-effect.waves-light.inpage-buttons.width-fill
+            i.stroke.mdi-action-delete.white-text
+      if isMyPost
+        .col.l1.m1
+          a#position-save-button.waves-effect.waves-light.inpage-buttons.width-fill
+            i.stroke.mdi-editor-vertical-align-bottom.white-text
             
             
   #share-modal.modal.modal-opacity
     button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
       i.material-icons close 
-    .modal-content
-      h4 Sharing action
+    .modal-content.centered-text
+      h4.centered-text Sharing action
       hr
-      +shareit
+      .snsList
+        +shareit
 
   #content-modal.modal.modal-opacity
     .modal-content.centered-text

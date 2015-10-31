@@ -682,7 +682,10 @@ const postsShowEvents = {
     $(".arrow_box").removeClass("hide");
   },
   "click .like-button": function(){
-    Meteor.call("like",  Router.current().data()._id);
+    if(Meteor.user())
+      Meteor.call("like",  Router.current().data()._id);
+    else
+      FView.byId("login-form").node.slideDown();
   },
   "click .unlike-button": function(){
     Meteor.call("unlike", Router.current().data()._id);
