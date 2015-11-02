@@ -181,26 +181,14 @@ Router.route('/posts/:_id', {
                 _id: this.params._id
             }));
         }
-
         return post;
     },
-    action: function() {
-        if (this.ready()) {
-            if (this.data()) {
-                $('body').css({overflow: "hidden"});
-                if (this.data().isVideo){
-                  this.render("VideoPostsShow");
-                }
-                else{
-                  this.render(getTemplate("PostsShow"));
-                }
-            }
-            else{
-              this.render('Loading');
-            }
-        } else {
-            this.render('Loading');
-        }
+    action: function(){
+      if(this.data().imageId){
+        Session.set("showingImageFilePath", 
+            Models.Image.findOne(this.data().imageId).url());
+      }
+      this.render(getTemplate('PostsShow'));
     }
 });
 Router.route('/ep/:_id', {
