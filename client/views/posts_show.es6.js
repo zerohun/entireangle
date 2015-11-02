@@ -270,7 +270,7 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
     container = $(cssSelector)[0];
 
     var material = new THREE.MeshBasicMaterial({
-        map: THREE.ImageUtils.loadTexture(imageFilePath, null, function() {
+        map: THREE.loader.load(imageFilePath, function() {
           FView.byId("loading-box").node.hide();
         }, function(error) {
             //console.log('error while loading texture - ');
@@ -823,26 +823,40 @@ templatePostsShowRendered = function() {
           //closeModalSub.dispose();
       //});
 
+    photoOrb = renderPhotoSphere("#container", "/images/canvas_loading.png");
+    window.pho = photoOrb;
+
     if(location.search.search("isUploading") > -1)
       turnEditingMode(true);
     else 
       turnEditingMode(false);
 
-    post = getCurrentPost();
-    Tracker.autorun(function(computation) {
-        var image = Models.Image.findOne({
-            _id: post.imageId
+    Tracker.autorun(function(){
+      const imageFilePath = Session.get("showingImageFilePath");
+      if(imageFilePath){
+        photoOrb.mesh.material.map.dispose();
+        photoOrb.mesh.material.dispose();
+        photoOrb.mesh.material = new THREE.MeshBasicMaterial({
+          map: THREE.loader.load(imageFilePath, function() {
+            FView.byId("loading-box").node.hide();
+          }, function(error) {
+              //console.log('error while loading texture - ');
+              //console.log(error);
+          })
         });
-        var imageFilePath = image.url({
-            store: 'images'
-        });
-        if (image.isUploaded()) {
-          console.log('rendered');
-            computation.stop();
-            photoOrb = renderPhotoSphere("#container", imageFilePath);
-            window.pho = photoOrb;
-        }
+      }
     });
+
+    post = Router.current().data(); 
+    var image = Models.Image.findOne({
+        _id: post.imageId
+    });
+    if(image){
+      var imageFilePath = image.url({
+        store: 'images'
+      });
+
+    }
 
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -854,5 +868,13 @@ templatePostsShowRendered = function() {
     }(document, 'script', 'facebook-jssdk'));
 
 }
+
+const templatePostsShowDestroyed = function(){
+  photoOrb.dispose();
+};
+
 Template.PostsShowMobile.rendered = templatePostsShowRendered;
 Template.PostsShow.rendered = templatePostsShowRendered;
+
+Template.PostsShow.destroyed = templatePostsShowDestroyed;
+Template.PostsShowMobile.destroyed = templatePostsShowDestroyed;

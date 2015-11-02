@@ -59,6 +59,12 @@ window.Orb = function(reqiredParams, options) {
       this.afterRenderCallbacks.push(callbackFunc);
     };
 
+    this.dispose = function(){
+      this.mesh.material.map.dispose();
+      this.mesh.material.dispose();
+      this.mesh.dispose();
+      this.scene.dispose();
+    };
     function init() {
 
       console.log('orb init');
@@ -69,8 +75,11 @@ window.Orb = function(reqiredParams, options) {
         geometry.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
         geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, 0));
 
+        material.name = "material";
         self.mesh = new THREE.Mesh(geometry, material);
+        self.mesh.name = "mesh";
         self.scene.add(self.mesh);
+        self.scene.name = 'scene';
 
         var element = renderer.domElement;
         container.appendChild(element);

@@ -37486,3 +37486,4 @@ THREE.VRControls = function ( object, onError ) {
 };
 
 window.THREE = THREE;
+window.THREE.loader = new THREE.TextureLoader();  
