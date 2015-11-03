@@ -62,8 +62,6 @@ window.Orb = function(reqiredParams, options) {
     this.dispose = function(){
       this.mesh.material.map.dispose();
       this.mesh.material.dispose();
-      this.mesh.dispose();
-      this.scene.dispose();
     };
     function init() {
 

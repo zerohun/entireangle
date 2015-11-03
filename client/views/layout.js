@@ -12,6 +12,7 @@ Meta.set({
 });
 
 const templateLayoutRendered = function(){
+
     $('body').css({overflow: "scroll"});
 
     if(!Meteor.user())

@@ -184,7 +184,7 @@ Router.route('/posts/:_id', {
         return post;
     },
     action: function(){
-      if(this.data().imageId){
+      if(this.data() && this.data().imageId){
         Session.set("showingImageFilePath", 
             Models.Image.findOne(this.data().imageId).url());
       }

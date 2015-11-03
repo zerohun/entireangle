@@ -9,6 +9,7 @@ let leavingPageSrc;
 let resizeInterval;
 let isPreviewRendered;
 let previewOrb, photoOrb;
+const imageDep = new Tracker.Dependency;
 
 var SwipingDirection = {};
 SwipingDirection.LEFT = Symbol("LEFT");
@@ -231,7 +232,7 @@ function onClickSavePreviewButton(){
     url = url.replace(/\?x=.+/, "");
   }
   url = url + "?" + $.param(position);
-  Session.set("posts-show-url", url);
+
   photoOrb.onWindowResize();
   photoOrb.reRender();
   photoOrb.afterRender(()=>{
@@ -745,6 +746,9 @@ const postsShowEvents = {
       //turnEditingMode(false);
       //return false;
   },
+  "click a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)": function(){
+      FView.byId("loading-box").node.show();
+  },
   "click #position-save-button": savePosition, 
   "click #save-preview-button": onClickSavePreviewButton
 };
@@ -756,6 +760,8 @@ Template.PostsShow.toggleVRMode = ()=>{
 };
 
 templatePostsShowRendered = function() {
+
+
   clickedPublishButton = false
   setArrowBoxPosition();
   $(".arrow_box").removeClass('hide');
@@ -808,7 +814,6 @@ templatePostsShowRendered = function() {
 
     },100);
 
-    FView.byId("loading-box").node.show();
     Session.set("posts-show-url", location.href);
     
     leavingPageSrc = Rx.Observable.merge(
@@ -834,6 +839,7 @@ templatePostsShowRendered = function() {
     Tracker.autorun(function(){
       const imageFilePath = Session.get("showingImageFilePath");
       if(imageFilePath){
+
         photoOrb.mesh.material.map.dispose();
         photoOrb.mesh.material.dispose();
         photoOrb.mesh.material = new THREE.MeshBasicMaterial({

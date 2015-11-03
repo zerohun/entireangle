@@ -40,7 +40,8 @@ const templatePostListHelpers = {
         };
       }).
       filter((p) => (p.country && p.country !== ""));
-  }
+  },
+
 };
 
 const templatePostListEvents = {
@@ -74,6 +75,9 @@ var templatePostsHelpers = {
 };
 
 var templatePostsEvents = {
+  "click a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)": function(){
+      FView.byId("loading-box").node.show();
+  },
   "click #image-list": function() {
       Session.set('isVideo', false);
       Session.set('PostsLimit', 10);
