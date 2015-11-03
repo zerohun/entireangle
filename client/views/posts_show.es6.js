@@ -51,7 +51,7 @@ function setArrowBoxPosition(){
 
 function getAlbums(){
     const post = Router.current().data();
-    if(!post.albumIds || post.albumIds.length === 0) return [];
+    if(!post || !post.albumIds || post.albumIds.length === 0) return [];
     return Album.find({_id: {
       $in: Router.current().data().albumIds
     }}).fetch();
@@ -199,8 +199,7 @@ function enableHorizontalSwipe(){
   const leavingPageSub = leavingPageSrc.subscribe((e)=>{
     //verticalSubs.dispose();
     horizontalSubs.dispose();
-    resizeSub.dispose();
-    Session.set('slideUpVisible', false);
+
     $("#slide-up-handle").text("Swipe up");
     leavingPageSub.dispose();
   });
@@ -270,6 +269,7 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
     
     container = $(cssSelector)[0];
 
+    console.log("loading material");
     var material = new THREE.MeshBasicMaterial({
         map: THREE.loader.load(imageFilePath, function() {
           FView.byId("loading-box").node.hide();
@@ -842,12 +842,15 @@ templatePostsShowRendered = function() {
 
         photoOrb.mesh.material.map.dispose();
         photoOrb.mesh.material.dispose();
+        console.log("actual material : " + imageFilePath);
         photoOrb.mesh.material = new THREE.MeshBasicMaterial({
           map: THREE.loader.load(imageFilePath, function() {
             FView.byId("loading-box").node.hide();
-          }, function(error) {
-              //console.log('error while loading texture - ');
-              //console.log(error);
+          },
+          $.noop,
+          function(error) {
+              console.log('error while loading texture - ');
+              console.log(error);
           })
         });
       }
