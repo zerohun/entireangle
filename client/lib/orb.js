@@ -114,6 +114,7 @@ window.Orb = function(reqiredParams, options) {
         update();
       }
     }
+    this.animate = animate;
 
     function update(dt) {
         //        console.log(controls);

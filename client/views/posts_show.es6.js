@@ -273,9 +273,9 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
     var material = new THREE.MeshBasicMaterial({
         map: THREE.loader.load(imageFilePath, function() {
           FView.byId("loading-box").node.hide();
-        }, function(error) {
-            //console.log('error while loading texture - ');
-            //console.log(error);
+        }, $.noop,function(error) {
+            console.log('error while loading texture - ');
+            console.log(error);
         })
     });
 
@@ -287,12 +287,13 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
         orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
         $("#info").show();
         const params = Router.current().params.query;
+        const post = Router.current().data();
         if(params.x && params.y && params.z){
           orb.controls.object.position.x = Number.parseFloat(params.x);
           orb.controls.object.position.y = Number.parseFloat(params.y);
           orb.controls.object.position.z = Number.parseFloat(params.z);
         }
-        else if ( post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
+        else if ( post && post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
             orb.controls.object.position.x = post.viewPosition.x;
             orb.controls.object.position.y = post.viewPosition.y;
             orb.controls.object.position.z = post.viewPosition.z;
@@ -837,22 +838,25 @@ templatePostsShowRendered = function() {
       turnEditingMode(false);
 
     Tracker.autorun(function(){
-      const imageFilePath = Session.get("showingImageFilePath");
-      if(imageFilePath){
-
-        photoOrb.mesh.material.map.dispose();
-        photoOrb.mesh.material.dispose();
-        console.log("actual material : " + imageFilePath);
-        photoOrb.mesh.material = new THREE.MeshBasicMaterial({
-          map: THREE.loader.load(imageFilePath, function() {
-            FView.byId("loading-box").node.hide();
-          },
-          $.noop,
-          function(error) {
-              console.log('error while loading texture - ');
-              console.log(error);
-          })
-        });
+      const imageId = Session.get("showingImageId");
+      if(imageId){
+        const image = Models.Image.findOne(imageId);
+        if(image.isUploaded()){
+          const imageFilePath = image.url();
+          photoOrb.mesh.material.map.dispose();
+          photoOrb.mesh.material.dispose();
+          console.log("actual material : " + imageFilePath);
+          photoOrb.mesh.material = new THREE.MeshBasicMaterial({
+            map: THREE.loader.load(imageFilePath, function() {
+              FView.byId("loading-box").node.hide();
+            },
+            $.noop,
+            function(error) {
+                console.log('error while loading texture - ');
+                console.log(error);
+            })
+          });
+        }
       }
     });
 

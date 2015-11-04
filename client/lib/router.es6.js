@@ -57,14 +57,11 @@ Router.route('/', {
     name: "home",
     template: getTemplate("home"),
     subscriptions: function() {
-      postsSubscription = function(){
-        Session.set("postsQuery", {
-          isPublished: true, 
-          isFeatured: true
-        });
-        Meteor.subscribe("posts", 30, Session.get("postsQuery"));
-      }
-      return postsSubscription();
+      Session.set("postsQuery", {
+        isPublished: true, 
+        isFeatured: true
+      });
+      return Meteor.subscribe("posts", 30, Session.get("postsQuery"));
     }
 });
 Router.route('/about', {
@@ -76,7 +73,8 @@ Router.route('/posts', {
     subscriptions: function() {
         $("#list-fetching-bar").fadeOut(1000);
         Session.set("postsQuery", {
-          isPublished: true
+          isPublished: true,
+          isVideo: false
         });
         return Meteor.subscribe("posts", 
             Session.get("PostsLimit"), 
@@ -85,16 +83,13 @@ Router.route('/posts', {
     data: function() {
         var limit = Session.get("PostsLimit");
         return {
-            posts: Post.find({
-                  isPublished: {
-                    $ne: false
-                  } 
-                }, {
-                limit: limit,
-                sort: {
-                  createdAt: -1
-                }
-            }),
+            posts: Post.find(Session.get("postsQuery"), 
+               {
+                 limit: limit,
+                 sort: {
+                   createdAt: -1
+                 }
+               }),
             limit: limit
         };
     }
@@ -185,8 +180,8 @@ Router.route('/posts/:_id', {
     },
     action: function(){
       if(this.data() && this.data().imageId){
-        Session.set("showingImageFilePath", 
-            Models.Image.findOne(this.data().imageId).url());
+        Session.set("showingImageId", 
+            this.data().imageId);
       }
       this.render(getTemplate('PostsShow'));
     }
