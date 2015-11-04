@@ -635,7 +635,10 @@ const postsShowHelpers = {
         return "<iframe width='560' height='315' src='" + address + "' frameborder='0' allowfullscreen></iframe>";
     },
     "didILikeIt": function(){
-      return Like.findOne({});
+      return Like.findOne({
+        userId: Meteor.userId(),
+        postId: Router.current().data()._id
+      });
     },
     "numberOfComments": function(){
       return Comment.find({postId: Router.current().data()._id}).count();
