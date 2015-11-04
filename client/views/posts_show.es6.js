@@ -659,15 +659,20 @@ Template.PostsShow.helpers(postsShowHelpers);
 Template.PostsShowMobile.helpers(postsShowHelpers);
 
 const postsShowEvents = {
-  "click .share-button": function(){
+  "click .share-button": function(e){
     onClickSavePreviewButton();
+    e.preventDefault();
     return false;
   },
-  "click .zoom-in-btn": function(){
+  "click .zoom-in-btn": function(e){
     photoOrb.controls.dollyOut();
+    e.preventDefault();
+    return false;
   },
-  "click .zoom-out-btn": function(){
+  "click .zoom-out-btn": function(e){
     photoOrb.controls.dollyIn();
+    e.preventDefault();
+    return false;
   },
   "click #red-publish-button": function(e){
     clickedPublishButton = true;

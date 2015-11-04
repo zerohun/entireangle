@@ -23,6 +23,7 @@ const templateUploadEvents = {
     return false;
   },
   "change #upload-files #file-upload": function(event){
+    FView.byId("loading-box").node.show();
     $(event.target).parents("form").hide();
     const imageIds = [];
     for(var i=0; i < event.target.files.length; i++){
