@@ -36,8 +36,8 @@ template(name='postMobile')
   .col.s4
     .thumbnail-box
       a(href="/posts/{{_id}}")
-       .loading-bg
-         img.circle.responsive-img(src='{{thumbUrl imageId isVideo}}' data-src="/images/loading.gif")
+       div
+         img.post-image.circle.responsive-img(src="/images/loadingimage.jpg" data-src='{{thumbUrl imageId isVideo}}' data-image-src='{{thumbUrl imageId isVideo}}')
        .post-info
          table
            tr

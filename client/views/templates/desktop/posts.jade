@@ -37,8 +37,8 @@ template(name='post')
     .thumbnail-box.row
       .col.m12.l12
         a(href="/posts/{{_id}}").row
-         .loading-bg.col.m12.l12
-           img.circle.responsive-img(src='{{thumbUrl imageId isVideo}}' data-src="/images/loading.gif")
+         .col.m12.l12
+           img.post-image.circle.responsive-img(src="/images/loadingimage.jpg" data-src='{{thumbUrl imageId isVideo}}' data-image-src='{{thumbUrl imageId isVideo}}')
          .post-info.col.m12.l12
            .row.zero-margin-bottom
              .col.m12.l12.centered-text

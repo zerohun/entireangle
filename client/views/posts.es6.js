@@ -5,6 +5,27 @@ const currentTabReact = new ReactiveVar(SYM_PICTURES);
 const postsCountByTagsReact = new ReactiveVar([]);
 const postsCountByLocationsReact = new ReactiveVar([]);
 
+function unveilOrHide(){
+  const HEIGHT_LOADING_BUFFER_SIZE = 200;
+  $(".post-image").toArray().forEach((e) => {
+    const $e = $(e);
+    const $w = $(window);
+    if($e.offset().top > $w.scrollTop() - HEIGHT_LOADING_BUFFER_SIZE && 
+        $e.offset().top + $e.height()  <  $w.scrollTop() + $w.height() + HEIGHT_LOADING_BUFFER_SIZE){
+      $e.unveil();
+    }
+    else{
+      console.log("$e.top :" + $e.offset().top);
+      console.log("$w.top :" + $w.scrollTop() );
+      console.log("$e.bottom :" + $e.offset() + $e.height());
+      console.log("$w.bottom :" + $w.scrollTop() + $w.height());
+      $e.attr("src", "/images/loadingimage.jpg");
+      $e.data("src", $e.attr("image-src"));
+    }
+  });
+
+}
+
 const templatePostListHelpers = {
   SYM_PICTURES: SYM_PICTURES,
   SYM_TAGS: SYM_TAGS,
@@ -40,8 +61,7 @@ const templatePostListHelpers = {
         };
       }).
       filter((p) => (p.country && p.country !== ""));
-  },
-
+  }
 };
 
 const templatePostListEvents = {
@@ -93,24 +113,37 @@ var templatePostsEvents = {
 
 var templatePostHelper = {
     thumbUrl: function(imageId, isVideo) {
-        if (isVideo) {
-            return Video.findOne({
-                _id: imageId
-            }).url({
-                store: 'video_thumbs'
-            });
-        } else {
-            var image = Models.Image.findOne({
-                _id: imageId
-            });
-            return image.url({store: 'thumbs'}) + "&uploadAt=" + image._getInfo('thumbs').updatedAt.getTime();
-        }
+      if (isVideo) {
+          return Video.findOne({
+              _id: imageId
+          }).url({
+              store: 'video_thumbs'
+          });
+      } else {
+          var image = Models.Image.findOne({
+              _id: imageId
+          });
+          return image.url({store: 'thumbs'}) + "&uploadAt=" + image._getInfo('thumbs').updatedAt.getTime();
+      }
     }
 };
 
 
 templatePostsRendered = function() {
-    enableEndlessScroll("PostsLimit", Post);
+  Tracker.autorun(()=>{
+    if(Router.current().ready()){
+      FView.byId("loading-box").node.hide();
+    }
+  });
+
+  unveilOrHide();
+  const scrollObs = Rx.Observable.
+    fromEvent(window, "scroll").
+    throttle(100);
+  scrollObs.subscribe((e)=>{
+    $(".post-image").toArray().forEach(unveilOrHide);
+  });
+
 };
 
 
@@ -124,6 +157,7 @@ templatePostListRendered = function() {
           postsCountByLocationsReact.set(result);
         }
     );
+    enableEndlessScroll("PostsLimit", Post);
 };
 
 
