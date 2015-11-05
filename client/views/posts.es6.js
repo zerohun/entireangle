@@ -15,10 +15,10 @@ function unveilOrHide(){
       $e.unveil();
     }
     else{
-      console.log("$e.top :" + $e.offset().top);
-      console.log("$w.top :" + $w.scrollTop() );
-      console.log("$e.bottom :" + $e.offset() + $e.height());
-      console.log("$w.bottom :" + $w.scrollTop() + $w.height());
+      //console.log("$e.top :" + $e.offset().top);
+      //console.log("$w.top :" + $w.scrollTop() );
+      //console.log("$e.bottom :" + $e.offset() + $e.height());
+      //console.log("$w.bottom :" + $w.scrollTop() + $w.height());
       $e.attr("src", "/images/loadingimage.jpg");
       $e.data("src", $e.attr("image-src"));
     }
@@ -182,5 +182,5 @@ Template.PostList.events(templatePostListEvents);
 Template.PostList.helpers(templatePostListHelpers);
 Template.PostList.rendered = templatePostListRendered;
 
-TEmplate.Posts.onDestroyed(templatePostsDestroyed);
-TEmplate.PostsMobile.onDestroyed(templatePostsDestroyed);
+Template.Posts.onDestroyed(templatePostsDestroyed);
+Template.PostsMobile.onDestroyed(templatePostsDestroyed);
