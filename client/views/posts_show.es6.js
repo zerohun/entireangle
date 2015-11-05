@@ -814,17 +814,11 @@ templatePostsShowRendered = function() {
         newNavbarHeight = $("#top-mobile-nav-bar").height();
       }
 
-      if(newNavbarHeight !== oldNavbarHeight){
-        oldNavbarHeight = newNavbarHeight;
-        $("#container").css({"top": newNavbarHeight+"px"})
-        $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
-        setArrowBoxPosition();
-      }
-
-
-
-
-    },100);
+      oldNavbarHeight = newNavbarHeight;
+      $("#container").css({"top": newNavbarHeight+"px"})
+      $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
+      setArrowBoxPosition();
+    },500);
 
     Session.set("posts-show-url", location.href);
     
