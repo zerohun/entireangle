@@ -3,6 +3,8 @@ window.isLoggedIn = ()=>{
 }
 
 Template.registerHelper("isLoggedIn", window.isLoggedIn);
+Template.registerHelper("isMobile", function(){return isMobile.phone});
+Template.registerHelper("isDesktop", function(){return !isMobile.phone});
 Template.registerHelper("username", function(){
   let username = Object.try(Meteor.user(), "username");
   return username;

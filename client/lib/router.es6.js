@@ -45,7 +45,7 @@ Router.configure({
     layoutTemplate: getTemplate("layout") 
 });
 Router.onBeforeAction(function() {
-    $("body").css("overflow", "scroll");
+
     var $ele = $("#orb-player");
     if ($ele.count > 0)
         $ele.remove();

@@ -128,8 +128,9 @@ var templatePostHelper = {
     }
 };
 
-
+let scrollSubs;
 templatePostsRendered = function() {
+  $("body").css("overflow", "scroll");
   Tracker.autorun(()=>{
     if(Router.current().ready()){
       FView.byId("loading-box").node.hide();
@@ -141,12 +142,11 @@ templatePostsRendered = function() {
   const scrollObs = Rx.Observable.
     fromEvent(window, "scroll").
     throttle(100);
-  scrollObs.subscribe((e)=>{
-    $(".post-image").toArray().forEach(unveilOrHide);
-  });
-
+  scrollSubs = scrollObs.subscribe(unveilOrHide);
 };
-
+templatePostsDestroyed = function(){
+  scrollSubs.dispose();
+}
 
 templatePostListRendered = function() {
     FView.byId("loading-box").node.hide();
@@ -181,3 +181,6 @@ Template.PostListMobile.rendered = templatePostListRendered;
 Template.PostList.events(templatePostListEvents);
 Template.PostList.helpers(templatePostListHelpers);
 Template.PostList.rendered = templatePostListRendered;
+
+TEmplate.Posts.onDestroyed(templatePostsDestroyed);
+TEmplate.PostsMobile.onDestroyed(templatePostsDestroyed);
