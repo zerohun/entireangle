@@ -133,6 +133,7 @@ templatePostsRendered = function() {
   Tracker.autorun(()=>{
     if(Router.current().ready()){
       FView.byId("loading-box").node.hide();
+      setTimeout(unveilOrHide(),500);
     }
   });
 

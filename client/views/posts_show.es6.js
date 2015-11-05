@@ -24,6 +24,8 @@ function closeModals(){
     $(".lean-overlay").remove();
     $(".hide-on-modal").show();
     $(".arrow_box").removeClass("hide");
+
+    photoOrb.setState("running");
 }
 
 function setArrowBoxPosition(){
@@ -694,9 +696,7 @@ const postsShowEvents = {
     })
   },
   "click .close-modal-button": function(e){
-    $(".hide-on-modal").show();
-    $(e.target).parents(".modal").first().closeModal();
-    $(".arrow_box").removeClass("hide");
+    closeModals();
   },
   "click .like-button": function(){
     if(Meteor.user())
@@ -789,10 +789,13 @@ templatePostsShowRendered = function() {
         $(".hide-on-modal").hide();
         $(".arrow_box").addClass("hide");
         $("#content-modal").css("margin-top", "10px");
+        photoOrb.setState("stop")
       },
       complete: function(){
         $(".hide-on-modal").show();
         $(".arrow_box").removeClass("hide");
+        photoOrb.setState("running");
+        //photoOrb.reRender();
       }
     });
     $('body').css("overflow", 'hidden');
@@ -854,16 +857,18 @@ templatePostsShowRendered = function() {
           photoOrb.mesh.material.map.dispose();
           photoOrb.mesh.material.dispose();
           console.log("actual material : " + imageFilePath);
-          photoOrb.mesh.material = new THREE.MeshBasicMaterial({
-            map: THREE.loader.load(imageFilePath, function() {
-              FView.byId("loading-box").node.hide();
-            },
-            $.noop,
-            function(error) {
-                console.log('error while loading texture - ');
-                console.log(error);
+          photoOrb.setMaterial(
+            new THREE.MeshBasicMaterial({
+              map: THREE.loader.load(imageFilePath, function() {
+                FView.byId("loading-box").node.hide();
+              },
+              $.noop,
+              function(error) {
+                  console.log('error while loading texture - ');
+                  console.log(error);
+              })
             })
-          });
+          );
         }
       }
     });

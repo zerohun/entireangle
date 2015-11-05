@@ -50,7 +50,7 @@ window.Orb = function(reqiredParams, options) {
     this.setState = function(state){
       self.state = state;
       if(self.state === "running"){
-        init();
+        //init();
         animate();
       }
     };
@@ -62,6 +62,11 @@ window.Orb = function(reqiredParams, options) {
     this.dispose = function(){
       this.mesh.material.map.dispose();
       this.mesh.material.dispose();
+    };
+
+    this.setMaterial = function(material){
+      this.material = material; 
+      this.mesh.material = material;
     };
     function init() {
 
