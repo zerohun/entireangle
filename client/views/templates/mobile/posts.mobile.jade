@@ -49,12 +49,12 @@ template(name='postMobile')
                    | &nbsp;
              td.text-outline
                if title
-                 | {{title}}
+                 |{{ shortenText 7 title }}
                else
                  | &nbsp;
            tr
              td.text-outline
                if $not hideUserThumbnail
-                 | {{user.username}}
+                 | {{ shortenText 7 user.username }} 
                else
                  | &nbsp;

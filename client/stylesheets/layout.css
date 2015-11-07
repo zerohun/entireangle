@@ -63,25 +63,13 @@ a:link, a:visited, a:hover, a:active{
 .form-loading{
   display: none;
 }
-#account-box{
-  background-color: #111;
-  color: black;
-  width: 100%;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-#account-box #login-btn{
-  background-color: #111;
-  color: darkgray;
-  border-color: darkgray;
+.black-account-window .content{
+  background-color: black;
+  color: white;
+  border-color: white;
+  border-width: 1px;
   border-style: solid;
-  padding-right: 10%;
-  padding-left: 10%;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  text-align: center;
 }
 
 
@@ -236,7 +224,7 @@ a.shareit-google-colors{
   padding-right: 0px!important;
 }
 
-.close-modal-button{
+.close-content-modal-button{
   position: fixed;
   left: 1%;
   color: black;
@@ -451,4 +439,33 @@ a.shareit-google-colors{
   width: 200px!important;
   margin-left: auto;
   margin-right: auto;
+}
+
+.modal-window{
+  padding-top: 20px;
+}
+.modal-window .content{
+  overflow-y: scroll;
+  width: 90%;
+  height: 90%;
+  max-width: 600px;
+  margin-right:auto;
+  margin-left:auto;
+}
+#postContent .content{
+  background-color: white;
+  color: black;
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }

@@ -34,7 +34,7 @@ template(name='PostsShowMobile')
               i.stroke.mdi-action-star-rate.white-text
 
         td.menu-button
-          a.waves-effect.waves-light.inpage-buttons.modal-trigger.content-edit-button(href="#content-modal-mobile")
+          a.waves-effect.waves-light.inpage-buttons.content-edit-button
             i.stroke.mdi-content-create.white-text
             span.red.comment-count-number
               | {{numberOfComments}}
@@ -49,7 +49,7 @@ template(name='PostsShowMobile')
 
         if isMyPost
           td.more-button
-            a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#more-modal-mobile")
+            a.waves-effect.waves-light.modal-trigger.inpage-buttons(href="#more-modal-mobile")
               i.stroke.mdi-navigation-more-vert.white-text
   #view-mode-modal-mobile.modal.bottom-sheet.modal-opacity
     .modal-content
@@ -94,75 +94,4 @@ template(name='PostsShowMobile')
 
   #content-modal-mobile.mobile.modal.modal-opacity
     .modal-content.centered-text
-      .row
-        .col.s12
-          button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
-            i.material-icons close 
-          if isMyPost
-            button#edit-button.btn.btn-floating.view-box.green.darken-3
-              | Edit
-            button#edit-cancel-button.btn.btn-floating.edit-field.orange.darken-4
-              | Cancel 
 
-      if title
-        .row.view-box
-          .col.s12
-            h4#myModalLabel.modal-title {{title}}
-      if desc
-        .row.view-box
-          .col.s12
-            pre.centered-text.flow-text
-              |  {{desc}}
-            hr
-            if tags
-             .row
-               .col.s12
-                 | tags
-                 .tags
-                   each albums
-                     span.chip 
-                       | {{title}}
-      .row.view-box
-        .col.s12
-          | {{createdAt.toLocaleString}}
-      if address
-        .row.view-box
-          .col.s12
-            | {{address.fullAddress}}
-      .row.view-box
-        .view-box.col.s4.offset-s4.profile-padding
-          a(href="/users/{{user._id}}")
-            +profileImage user
-            br
-            | {{user.username}}
-
-
-      .row
-        .col.s12
-          .edit-field
-            .row
-              +autoForm id="editPost" type="update" collection="Post" doc=post class="col s12"
-                .row
-                  +afQuickField name='title' class="col s12"
-                .row
-                  +afQuickField name='desc' type="textarea" class="col s12"
-                if isArrowVisible
-                  .row
-                    button.btn.red#red-publish-button(type="submit") Publish!
-                else
-                  .row
-                    +afFieldInput  name="isPublished" type="switch" class="col s12" trueLabel="Published" falseLabel="Private"
-                .row 
-                  +afQuickField name="address" type="googleplace" opts=optsGoogleplace class="col s12 input-field"
-                .row
-                  .tag-edit.input-field.col.s12
-                    +tagAutocomplete
-                .row
-                  .col.s12
-                    if isMyPost
-                      button.btn.btn-tiny.light-green.darken-4(type='submit')
-                        | Save 
-      .row.grey.lighten-3
-        .view-box.col.s12
-          br
-          +comments

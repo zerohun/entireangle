@@ -10,7 +10,8 @@ Template.login.helpers({
   }
 });
 
-Template.login.events({
+Template.login.events(
+  Object.assign({
   'click #register-button': () =>{
     FView.byId("login-form").node.slideUp(); 
     FView.byId("register-form").node.slideDown(); 
@@ -62,7 +63,8 @@ Template.login.events({
       }
       return false; 
     }
-});
+  }, getModalCloseEventsObj('login-window', 'login-form'))
+);
 
 
 Template.login.rendered = () =>{

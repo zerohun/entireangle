@@ -3,6 +3,10 @@ window.isLoggedIn = ()=>{
 }
 
 Template.registerHelper("isLoggedIn", window.isLoggedIn);
+Template.registerHelper("shortenText", function(num,text){
+  return text.substr(0,num).concat('...'); 
+
+});
 Template.registerHelper("isMobile", function(){return isMobile.phone});
 Template.registerHelper("isDesktop", function(){return !isMobile.phone});
 Template.registerHelper("username", function(){

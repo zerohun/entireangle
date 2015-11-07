@@ -12,7 +12,7 @@ function unveilOrHide(){
     const $w = $(window);
     if($e.offset().top > $w.scrollTop() - HEIGHT_LOADING_BUFFER_SIZE && 
         $e.offset().top + $e.height()  <  $w.scrollTop() + $w.height() + HEIGHT_LOADING_BUFFER_SIZE){
-      $e.unveil();
+      $e.attr("src", $e.data("image-src"));
     }
     else{
       //console.log("$e.top :" + $e.offset().top);

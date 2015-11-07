@@ -19,6 +19,20 @@ window.registerLoginBtnCallback = function(){
         FView.byId("slide-up-menu").node.slideDown();
       });
   });
-
 }
-
+window.getModalCloseEventsObj = function(domId, windowId){
+  const result = {
+    "click .modal-window .content": function(e){
+      if(e.target.type === "submit")
+        return true;
+      else
+        return false;
+    }
+  };
+  result[`click \#${domId}`] = function(e){
+    if(e.target.type !== "submit"){
+      FView.byId(windowId).node.slideUp();
+    }
+  };
+  return result;
+};

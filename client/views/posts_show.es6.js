@@ -494,32 +494,11 @@ function savePosition(){
 }
 
 
-AutoForm.hooks({
-  editPost:{
-    formToModifier: function(modifier){
-      const albumIds = Template.tagAutocomplete.albumsReact.get().map((album) => album._id);
-      if(!modifier.$set)modifier.$set = {}
-      if(albumIds.length > 0)
-        modifier.$set.albumIds = albumIds; 
-      if(clickedPublishButton)
-        modifier.$set.isPublished = true; 
-      return modifier;
-    },
-    onSuccess:function(){
-      console.log('suc');
-      turnEditingMode(false);
-
-      if(!Router.current().data()){
-        Router.go("/mypage");
-      }
-    },
-    onError:function(fromType, result){
-      console.log(result);
-    },
-  }
-});
 
 const postsShowHelpers = {
+    "numberOfComments": function(){
+      return Comment.find({postId: Router.current().data()._id}).count();
+    },
     thumbUrl: function(imageId, isVideo) {
       let image
       if (isVideo) {
@@ -641,26 +620,18 @@ const postsShowHelpers = {
         userId: Meteor.userId(),
         postId: Router.current().data()._id
       });
-    },
-    "numberOfComments": function(){
-      return Comment.find({postId: Router.current().data()._id}).count();
-    },
-    "albums": getAlbums, 
-    optsGoogleplace: function() {
-      return {
-        // type: 'googleUI',
-        // stopTimeoutOnKeyup: false,
-        // googleOptions: {
-        //   componentRestrictions: { country:'us' }
-        // }
-      }
     }
+
 };
 
 Template.PostsShow.helpers(postsShowHelpers);
 Template.PostsShowMobile.helpers(postsShowHelpers);
 
 const postsShowEvents = {
+  "click .content-edit-button": function(){
+    $(".hide-on-modal").hide();
+    FView.byId("post-content").node.slideDown();
+  },
   "click .share-button": function(e){
     onClickSavePreviewButton();
     e.preventDefault();
@@ -736,14 +707,7 @@ const postsShowEvents = {
       Meteor.call("removePost", post._id);
       return false;
   },
-  "click #edit-button": function() {
-      turnEditingMode(true);
-      return false;
-  },
-  "click #edit-cancel-button": function() {
-      turnEditingMode(false);
-      return false;
-  },
+
   "submit #edit-post": function(event) {
       //post = getCurrentPost();
       //post.title = event.target.title.value;
@@ -770,12 +734,19 @@ Template.PostsShow.toggleVRMode = ()=>{
 
 templatePostsShowRendered = function() {
 
+  leavingPageSrc = Rx.Observable.merge(
+                        Rx.Observable.fromEvent(window, "popstate"),
+                        Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)"), "click"),
+                        Rx.Observable.fromEvent($("button.page-change"), "click"));
+  const leavingPageSub = leavingPageSrc.subscribe(()=>{
+    FView.byId("loading-box").node.show();
+    leavingPageSub.dispose();
+  });
 
   clickedPublishButton = false
   setArrowBoxPosition();
   $(".arrow_box").removeClass('hide');
-  
-    $('.dropdown-button').dropdown();
+  $('.dropdown-button').dropdown();
 
     const albums = getAlbums();
     Template.tagAutocomplete.albumsReact.set(albums);
@@ -788,7 +759,6 @@ templatePostsShowRendered = function() {
         $(".lean-overlay").click(closeModals);
         $(".hide-on-modal").hide();
         $(".arrow_box").addClass("hide");
-        $("#content-modal").css("margin-top", "10px");
         photoOrb.setState("stop")
       },
       complete: function(){
@@ -819,7 +789,6 @@ templatePostsShowRendered = function() {
       $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
       setArrowBoxPosition();
     },500);
-
     Session.set("posts-show-url", location.href);
     
     leavingPageSrc = Rx.Observable.merge(
@@ -891,6 +860,7 @@ templatePostsShowRendered = function() {
 
 const templatePostsShowDestroyed = function(){
   photoOrb.dispose();
+  delete photoOrb;
 };
 
 Template.PostsShowMobile.rendered = templatePostsShowRendered;

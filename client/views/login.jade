@@ -1,46 +1,46 @@
 template(name="login")
-  #login-window.account-window.center-block.centered-text
-    if isLoggedIn
-      <h3>Successfully logged in</h3>
-    else
-      
-      if loginTopMessage
-        h6 loginTopMessage
-        hr
+  #login-window.black-account-window.center-block.centered-text.modal-window
+    .content
+      if isLoggedIn
+        <h3>Successfully logged in</h3>
+      else
+        if loginTopMessage
+          h6 loginTopMessage
+          hr
 
-      .row.small-margin-bottom
-        .col.s12.centered-text
-          h6 Login 
+        .row.small-margin-bottom
+          .col.s12.centered-text
+            h6 Login 
 
-      .row.centered-text
-        form#login-form.col.s12.centered-text(action='action')
-          .row
-            .input-field.col.s12
-              input#login-email.email-field.form-control.centered-text(type='email', name="email")
-              label(for="email") Email
-          .row
-            .input-field.col.s12
-              input#login-password.form-control.centered-text(type='password', name="password")
-              label(for="password") Password 
-          .row
-            .col.s12
-              if loginMsg
-                #login-msg.error-message 
-                  ul
-                    li
-                      | {{loginMsg}}
-          .row
-            .col.s12
-              input#login-button.btn.btn-tiny.green(type='submit', value='Sign in')
-              button#close-login-button.btn.btn-tiny.grey Close
+        .row.centered-text
+          form#login-form.col.s12.centered-text(action='action')
+            .row
+              .input-field.col.s12
+                input#login-email.email-field.form-control.centered-text(type='email', name="email")
+                label(for="email") Email
+            .row
+              .input-field.col.s12
+                input#login-password.form-control.centered-text(type='password', name="password")
+                label(for="password") Password 
+            .row
+              .col.s12
+                if loginMsg
+                  #login-msg.error-message 
+                    ul
+                      li
+                        | {{loginMsg}}
+            .row
+              .col.s12
+                input.btn.btn-tiny.green(type='submit', value='Sign in')
+                button#close-login-button.btn.btn-tiny.grey Close
 
-      .row
-        .col.s12
-          button.btn.btn-tiny.blue.login-with-facebook 
-           | Login with Facebook
-      .row
-        .col.s12
-          button#register-button.btn.btn-tiny.orange.darken-4 Don't have account?
-      .row
-        .col.s12
-          button#reset-password-button.btn.btn-tiny.orange.darken-4 Forgot password?
+        .row
+          .col.s12
+            button.btn.btn-tiny.blue.login-with-facebook 
+             | Login with Facebook
+        .row
+          .col.s12
+            button#register-button.btn.btn-tiny.orange.darken-4 Don't have account?
+        .row
+          .col.s12
+            button#reset-password-button.btn.btn-tiny.orange.darken-4 Forgot password?

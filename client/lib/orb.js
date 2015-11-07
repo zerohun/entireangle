@@ -3,7 +3,7 @@ window.Orb = function(reqiredParams, options) {
     var scene, element, mesh;
     var clock = new THREE.Clock();
 
-    var material = reqiredParams.material;
+    this.material = reqiredParams.material;
     var controls = reqiredParams.controls;
     var container = reqiredParams.container;
     var camera = reqiredParams.camera;
@@ -62,6 +62,7 @@ window.Orb = function(reqiredParams, options) {
     this.dispose = function(){
       this.mesh.material.map.dispose();
       this.mesh.material.dispose();
+      this.setState("stop");
     };
 
     this.setMaterial = function(material){
@@ -78,8 +79,8 @@ window.Orb = function(reqiredParams, options) {
         geometry.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
         geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, 0));
 
-        material.name = "material";
-        self.mesh = new THREE.Mesh(geometry, material);
+        self.material.name = "material";
+        self.mesh = new THREE.Mesh(geometry, self.material);
         self.mesh.name = "mesh";
         self.scene.add(self.mesh);
         self.scene.name = 'scene';
@@ -114,7 +115,11 @@ window.Orb = function(reqiredParams, options) {
 
     function animate() {
       if(self.state === "running"){
-        requestAnimationFrame(animate);
+        const animationID = requestAnimationFrame(animate);
+
+        if(window.aniDebug){
+          console.log(animationID);
+        }
         //    var dt = clock.getDelta();
         update();
       }
@@ -134,6 +139,7 @@ window.Orb = function(reqiredParams, options) {
           self.afterRenderCallbacks.shift();
         }
     }
+    this.update = update;
     this.reRender = function(){
       self.renderable.render(this.scene, camera);
     }

@@ -42,7 +42,7 @@ Template.register.helpers({
   },
   isFacebookuser: isFacebookuser
 });
-Template.register.events({
+Template.register.events(Object.assign({
   'click #close-register-button': function(){
     FView.byId("register-form").node.slideUp(); 
     return false;
@@ -121,7 +121,7 @@ Template.register.events({
       }
     });
   }
-});
+}, getModalCloseEventsObj("register-window","register-form")));
 
 Template.register.rendered = () =>{
   validateEmailFieldonKeyDown("#register-email", 'register-email-msg');

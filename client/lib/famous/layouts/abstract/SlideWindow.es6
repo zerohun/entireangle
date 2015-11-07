@@ -11,8 +11,8 @@ class SlideWindow extends Node {
   }
   calculateSize(){
     const centerPoint = SlideWindow.getCenterPoint();
-    this.width = Math.max(300, centerPoint.x/2);
-    this.height = Math.max(300, centerPoint.y);
+    this.width = $(window).width();
+    this.height = $(window).height();
   }
   slideTo(coords){
     //const centerPoint = getCenterPoint();

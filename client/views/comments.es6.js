@@ -101,7 +101,7 @@ Template.comments.events({
   },
   "click .please-login": function(){
     FView.byId("login-form").node.slideDown();
-    FView.byId("slide-up-menu").node.slideDown();
+    FView.byId("post-content").node.slideUp();
   },
   "submit .comment-edit-form": function(event){
     var commentId = getCommentId(event.target);

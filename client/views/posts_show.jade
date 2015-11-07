@@ -51,7 +51,7 @@ template(name='PostsShow')
           a.waves-effect.waves-light.like-button.inpage-buttons
             i.stroke.mdi-action-star-rate.white-text
       .col.l1.m1
-        a.waves-effect.waves-light.inpage-buttons.modal-trigger.content-edit-button(href="#content-modal")
+        a.waves-effect.waves-light.inpage-buttons.content-edit-button
           i.stroke.mdi-content-create.white-text
           span.red.comment-count-number
             | {{numberOfComments}}
@@ -77,78 +77,7 @@ template(name='PostsShow')
 
   #content-modal.modal.modal-opacity
     .modal-content.centered-text
-      .row
-        .col.l12.m12
-          button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light
-            i.material-icons close 
-          if isMyPost
-            button#edit-button.btn.btn-floating.view-box.green.darken-3
-              | Edit
-            button#edit-cancel-button.btn.btn-floating.edit-field.orange.darken-4
-              | Cancel 
 
-      if title
-        .row.view-box
-          .col.l12.m12
-            h4#myModalLabel.modal-title {{title}}
-      if desc
-        .row.view-box
-          .col.l12.m12
-            pre.centered-text.flow-text
-              |  {{desc}}
-            hr
-            if tags
-             .row
-               .col.l12.m12
-                 | tags
-                 .tags
-                   each albums
-                     span.chip 
-                       | {{title}}
-      .row.view-box
-        .col.l12.m12
-          | {{createdAt.toLocaleString}}
-      if address
-        .row.view-box
-          .col.l12.m12
-            | {{address.fullAddress}}
-      .row.view-box
-        .view-box.col.l4.m4.offset-m4.offset-l4.profile-padding
-          a(href="/users/{{user._id}}")
-            +profileImage user
-            br
-            | {{user.username}}
-
-
-      .row
-        .col.l12.m12
-          .edit-field
-            .row
-              +autoForm id="editPost" type="update" collection="Post" doc=post class="col l12 m12"
-                .row
-                  +afQuickField name='title' class="col l12 m12"
-                .row
-                  +afQuickField name='desc' type="textarea" class="col l12 m12"
-                if isArrowVisible
-                  .row
-                    button.btn.red#red-publish-button(type="submit") Publish!
-                else
-                  .row
-                    +afFieldInput  name="isPublished" type="switch" class="col l12 m12" trueLabel="Published" falseLabel="Private"
-                .row 
-                  +afQuickField name="address" type="googleplace" opts=optsGoogleplace class="col l12 m12 input-field"
-                .row
-                  .tag-edit.input-field.col.l12.m12
-                    +tagAutocomplete
-                .row
-                  .col.m12.l12
-                    if isMyPost
-                      button.btn.btn-tiny.light-green.darken-4(type='submit')
-                        | Save 
-      .row.grey.lighten-3
-        .view-box.col.l12.m12
-          br
-          +comments
 
 
   #more-posts-modal.modal.modal-opacity

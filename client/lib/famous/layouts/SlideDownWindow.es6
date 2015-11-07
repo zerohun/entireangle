@@ -16,7 +16,15 @@ class SlideDownWindow extends SlideWindow {
   }
   downPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 
-    return [centerPoint.x, 20, 1000];
+    return [centerPoint.x, 0, 1000];
+  }
+  slideDown(){
+    $(".hide-on-modal").hide();
+    super.slideDown();
+  }
+  slideUp(){
+    $(".hide-on-modal").show();
+    super.slideUp();
   }
 }
 

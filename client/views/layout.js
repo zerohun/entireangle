@@ -12,12 +12,16 @@ Meta.set({
 });
 
 const templateLayoutRendered = function(){
+  
+    setInterval(function(){
+      $(".modal-window").css('height', $(window).height() + 'px');
+      $(".modal-window .content").css('height', ($(window).height() /10 * 9) + 'px');
+    }, 500);
 
-    $('body').css({overflow: "scroll"});
+    //$('body').css({overflow: "scroll"});
 
     if(!Meteor.user())
       registerLoginBtnCallback();
-    //$("img.lazy").unveil();
 
     if(Meteor.user()){
       Meteor.subscribe("notifications", 10);
@@ -25,6 +29,7 @@ const templateLayoutRendered = function(){
 };
 
 Template.layout.rendered = templateLayoutRendered;
+Template.layoutMobile.rendered = templateLayoutRendered;
 
 Template._loginButtonsAdditionalLoggedInDropdownActions.events({
     'click #login-buttons-edit-profile': function(event) {

@@ -11,7 +11,15 @@ Template.forgotpassword.helpers({
   }
 });
 
-Template.forgotpassword.events({
+Template.forgotpassword.events(Object.assign({
+  "click .modal-window .content": function(){
+    return false;
+  },
+  "click #forgot-password": function(){
+    FView.byId("forgot-password").node.slideUp();
+    turnEditingMode(false);
+    $(".hide-on-modal").show();
+  },
   'click #close-reset-button': () =>{
     FView.byId('forgot-password').node.slideUp();
   },
@@ -40,7 +48,7 @@ Template.forgotpassword.events({
     }
     return false;
   }
-});
+}, getModalCloseEventsObj("forgot-password", "forgot-password")));
 
 Template.forgotpassword.rendered = () =>{
     Session.set("sent-email", false);
