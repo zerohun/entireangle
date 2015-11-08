@@ -1,38 +1,28 @@
-template(name="header")
+template(name="headerMobile")
   #top-mobile-nav-bar.black.top-nav-bar
     .row.col-force-bottom-margin-zero
-      .col.m2.l2.offset-m1.offset-l1.col-force-padding-zero
-        a(href="/")
+      .col.s4.col-force-padding-zero
+        a.waves-effect.waves-light(href="/")
           img#logo(src="/images/logo.jpg")
-
-      .col.m2.l2.offset-m1.offset-l1.col-force-padding-top-desktop
+      .col.s1.offset-s3.col-force-padding-top
         a.inpage-buttons(href="/posts")
-          i.material-icons explore
-          | Explorer 
-
-      .col.m2.l2.col-force-padding-top-desktop
+          i.material-icons.small.white-text explore 
+      .col.s1.col-force-padding-top
         a.inpage-buttons(href="/upload")
-          i.material-icons add 
-          | Upload 
-
-      .col.m2.l2.col-force-padding-top-desktop
-        if isLoggedIn
-          a.inpage-buttons(href="/mypage")
-            i.material-icons perm_identity 
-            | Mypage
-        else
-          a.account-button.inpage-buttons
-            i.material-icons perm_identity 
-            | Login
-
-
-      .col.m1.l1.col-force-padding-top-desktop
+          i.material-icons.small.white-text add
+      .col.s1.col-force-padding-top
         a.inpage-buttons.header-modal-trigger(href="#notification-modal")
           i.material-icons.small.white-text textsms 
           if unreadNotificationCount
             span.red.circle.noti-count
               | {{unreadNotificationCount}}
-
+      .col.s1.col-force-padding-top
+        if isLoggedIn
+          a.inpage-buttons(href="/mypage")
+            i.material-icons.small.white-text perm_identity 
+        else
+          a.account-button.inpage-buttons
+            i.material-icons.small.white-text perm_identity 
 
   #notification-modal.modal
     button.btn.btn-floating.right.white.black-text.close-modal-button.waves-effect.waves-light

@@ -82,7 +82,7 @@ class LoadingBox extends Node {
     this.opacityTo(0.0, () => {super.hide();});
   }
   opacityTo(val, done){
-    this.opacityTransitionable.set(val, { duration: 500 }, done);
+    this.opacityTransitionable.set(val, { duration: 200 }, done);
     this.requestUpdate(this.transitionableId);
   }
 }

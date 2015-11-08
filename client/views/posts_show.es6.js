@@ -770,7 +770,6 @@ templatePostsShowRendered = function() {
     });
     $('body').css("overflow", 'hidden');
     newNavbarHeight = $("#top-mobile-nav-bar").height();
-    $("#container").css({"top" : newNavbarHeight+"px"})
     $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
     setArrowBoxPosition();
 
@@ -785,7 +784,6 @@ templatePostsShowRendered = function() {
       }
 
       oldNavbarHeight = newNavbarHeight;
-      $("#container").css({"top": newNavbarHeight+"px"})
       $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
       setArrowBoxPosition();
     },500);

@@ -22,6 +22,7 @@ const templateHeaderHelpers = {
 };
 
 const templateHeaderRendered = ()=>{
+
   $('.dropdown-button').dropdown();
   $('.header-modal-trigger').leanModal({
     ready: function(){
