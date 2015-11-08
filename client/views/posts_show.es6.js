@@ -734,6 +734,7 @@ Template.PostsShow.toggleVRMode = ()=>{
 
 templatePostsShowRendered = function() {
 
+  $("body").css('padding-top','0px');
   leavingPageSrc = Rx.Observable.merge(
                         Rx.Observable.fromEvent(window, "popstate"),
                         Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)"), "click"),
@@ -859,7 +860,15 @@ templatePostsShowRendered = function() {
 const templatePostsShowDestroyed = function(){
   photoOrb.dispose();
   $('body').css("overflow", 'scroll');
+  $('body').css
   delete photoOrb;
+
+  const navHeight = $(".top-nav-bar").height();
+  console.log(navHeight);
+  if(isMobile.phone)
+    $("body").css('padding-top', navHeight + 10 + 'px');
+  else
+    $("body").css('padding-top', navHeight + 20 + 'px');
 };
 
 Template.PostsShowMobile.rendered = templatePostsShowRendered;
