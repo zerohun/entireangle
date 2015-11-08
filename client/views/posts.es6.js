@@ -4,27 +4,9 @@ const SYM_LOCATIONS = Symbol("LOCATIONS");
 const currentTabReact = new ReactiveVar(SYM_PICTURES);
 const postsCountByTagsReact = new ReactiveVar([]);
 const postsCountByLocationsReact = new ReactiveVar([]);
-
-function unveilOrHide(){
-  const HEIGHT_LOADING_BUFFER_SIZE = 200;
-  $(".post-image").toArray().forEach((e) => {
-    const $e = $(e);
-    const $w = $(window);
-    if($e.offset().top > $w.scrollTop() - HEIGHT_LOADING_BUFFER_SIZE && 
-        $e.offset().top + $e.height()  <  $w.scrollTop() + $w.height() + HEIGHT_LOADING_BUFFER_SIZE){
-      $e.attr("src", $e.data("image-src"));
-    }
-    else{
-      //console.log("$e.top :" + $e.offset().top);
-      //console.log("$w.top :" + $w.scrollTop() );
-      //console.log("$e.bottom :" + $e.offset() + $e.height());
-      //console.log("$w.bottom :" + $w.scrollTop() + $w.height());
-      $e.attr("src", "/images/loadingimage.jpg");
-      $e.data("src", $e.attr("image-src"));
-    }
-  });
-
-}
+let scrollObs = Rx.Observable.
+        fromEvent(window, "scroll").
+        throttle(100);
 
 const templatePostListHelpers = {
   SYM_PICTURES: SYM_PICTURES,
@@ -137,16 +119,12 @@ templatePostsRendered = function() {
       setTimeout(unveilOrHide(),500);
     }
   });
-
   unveilOrHide();
-  const scrollObs = Rx.Observable.
-    fromEvent(window, "scroll").
-    throttle(100);
   scrollSubs = scrollObs.subscribe(unveilOrHide);
 };
 templatePostsDestroyed = function(){
   scrollSubs.dispose();
-}
+};
 
 templatePostListRendered = function() {
     FView.byId("loading-box").node.hide();

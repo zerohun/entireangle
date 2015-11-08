@@ -860,6 +860,7 @@ templatePostsShowRendered = function() {
 
 const templatePostsShowDestroyed = function(){
   photoOrb.dispose();
+  $('body').css("overflow", 'scroll');
   delete photoOrb;
 };
 

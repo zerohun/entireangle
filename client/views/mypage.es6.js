@@ -1,5 +1,8 @@
 const postsCountByTagsReact = new ReactiveVar([]);
 const isShowingTagsReact = new ReactiveVar(false);
+let scrollObs = Rx.Observable.
+        fromEvent(window, "scroll").
+        throttle(100);
 
 const mypageHelpers = {
   "postsOptions": function(){
@@ -130,4 +133,16 @@ Template.mypageMobile.rendered = function(){
       $(".hide-on-modal").show();
     }
   });
+  Tracker.autorun(()=>{
+    if(Router.current().ready()){
+      FView.byId("loading-box").node.hide();
+      setTimeout(unveilOrHide(),500);
+    }
+  });
+  unveilOrHide();
+  scrollSubs = scrollObs.subscribe(unveilOrHide);
 };
+templateMypageDestroyed = function(){
+  scrollSubs.dispose();
+};
+Template.mypageMobile.onDestroyed(templateMypageDestroyed);

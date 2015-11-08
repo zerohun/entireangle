@@ -1,6 +1,9 @@
 Template.profileImage.helpers({
   "firstLetterOfUsername": function(){
-    return this.username[0];
+    if(this.username)
+      return this.username[0];
+    else
+      return "";
   },
   "snsProfileImageUrl": function(){
     return this.snsImageUrl;
@@ -15,8 +18,11 @@ Template.profileImage.helpers({
   },
   "textColor": function(){
     const username = this.username;
-    return "#" + username.charCodeAt(0).toString(16) +
-          username.charCodeAt(1).toString(16) +
-          username.charCodeAt(2).toString(16);
+    if(username)
+      return "#" + username.charCodeAt(0).toString(16) +
+            username.charCodeAt(1).toString(16) +
+            username.charCodeAt(2).toString(16);
+    else
+      return "";
   }
 });
