@@ -1,15 +1,16 @@
 template(name="postContent")
   #postContent.modal-window
-    .content
-      .row
-        .col.l12.m12
-          button.btn.btn-floating.right.white.black-text.close-content-modal-button.waves-effect.waves-light
-            i.material-icons close 
-          if isMyPost
-            button#edit-button.btn.btn-floating.view-box.green.darken-3
-              | Edit
-            button#edit-cancel-button.btn.btn-floating.edit-field.orange.darken-4
-              | Cancel 
+    .content.centered-text
+      .top-modal-btn
+        button.btn.btn-floating.white.close-content-modal-button
+          i.material-icons.black-text close 
+        br
+        br
+        if isMyPost
+          button#edit-button.btn.btn-floating.view-box.green.darken-3
+            | Edit
+          button#edit-cancel-button.btn.btn-floating.edit-field.orange.darken-4
+            | Cancel 
 
       if title
         .row.view-box

@@ -363,17 +363,6 @@ function observeViewPosition(orb, callbackFunc) {
     });
 }
 
-function turnEditingMode(onOfOff) {
-  console.log('turnEdit');
-  console.log(onOfOff? 'on':'off');
-  if (onOfOff) {
-        $(".view-box").hide();
-        $(".edit-field").show();
-    } else {
-        $(".view-box").show();
-        $(".edit-field").hide();
-    }
-}
 
 function getCurrentPost() {
     try {
@@ -623,10 +612,13 @@ const postsShowHelpers = {
         return "<iframe width='560' height='315' src='" + address + "' frameborder='0' allowfullscreen></iframe>";
     },
     "didILikeIt": function(){
-      return Like.findOne({
-        userId: Meteor.userId(),
-        postId: Router.current().data()._id
-      });
+      if(Router.current().ready())
+        return Like.findOne({
+          userId: Meteor.userId(),
+          postId: Router.current().data()._id
+        });
+      else
+        return false;
     }
 
 };
@@ -756,51 +748,51 @@ templatePostsShowRendered = function() {
   $(".arrow_box").removeClass('hide');
   $('.dropdown-button').dropdown();
 
-    const albums = getAlbums();
-    Template.tagAutocomplete.albumsReact.set(albums);
+  const albums = getAlbums();
+  Template.tagAutocomplete.albumsReact.set(albums);
 
-    $('.modal-trigger').leanModal({
-      opacity: .5,
-      dismissible: true,
-      ready: function(){
-        $(".lean-overlay").prependTo("#wrapping-container");
-        $(".lean-overlay").click(closeModals);
-        $(".hide-on-modal").hide();
-        $(".arrow_box").addClass("hide");
-        photoOrb.setState("stop")
-      },
-      complete: function(){
-        $(".hide-on-modal").show();
-        $(".arrow_box").removeClass("hide");
-        photoOrb.setState("running");
-        //photoOrb.reRender();
-      }
-    });
-    $('body').css("overflow", 'hidden');
-    newNavbarHeight = $("#top-mobile-nav-bar").height();
+  $('.modal-trigger').leanModal({
+    opacity: .5,
+    dismissible: true,
+    ready: function(){
+      $(".lean-overlay").prependTo("#wrapping-container");
+      $(".lean-overlay").click(closeModals);
+      $(".hide-on-modal").hide();
+      $(".arrow_box").addClass("hide");
+      photoOrb.setState("stop")
+    },
+    complete: function(){
+      $(".hide-on-modal").show();
+      $(".arrow_box").removeClass("hide");
+      photoOrb.setState("running");
+      //photoOrb.reRender();
+    }
+  });
+  $('body').css("overflow", 'hidden');
+  newNavbarHeight = $("#top-mobile-nav-bar").height();
+  $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
+  setArrowBoxPosition();
+
+  var oldNavbarHeight = $("#top-mobile-nav-bar").height();
+  resizeInterval = setInterval(function(){
+    var newNavbarHeight;
+    if(isInVRModeReact.get()){
+      newNavbarHeight = 0;
+    }
+    else{
+      newNavbarHeight = $("#top-mobile-nav-bar").height();
+    }
+
+    oldNavbarHeight = newNavbarHeight;
     $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
     setArrowBoxPosition();
-
-    var oldNavbarHeight = $("#top-mobile-nav-bar").height();
-    resizeInterval = setInterval(function(){
-      var newNavbarHeight;
-      if(isInVRModeReact.get()){
-        newNavbarHeight = 0;
-      }
-      else{
-        newNavbarHeight = $("#top-mobile-nav-bar").height();
-      }
-
-      oldNavbarHeight = newNavbarHeight;
-      $("#desktop-menu-bar").css({"top": newNavbarHeight + 15 +"px"})
-      setArrowBoxPosition();
-    },500);
-    Session.set("posts-show-url", location.href);
-    
-    leavingPageSrc = Rx.Observable.merge(
-                          Rx.Observable.fromEvent(window, "popstate"),
-                          Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)"), "click"),
-                          Rx.Observable.fromEvent($("button.page-change"), "click"));
+  },500);
+  Session.set("posts-show-url", location.href);
+  
+  leavingPageSrc = Rx.Observable.merge(
+                        Rx.Observable.fromEvent(window, "popstate"),
+                        Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)"), "click"),
+                        Rx.Observable.fromEvent($("button.page-change"), "click"));
 
     //const closeModalSub = leavingPageSrc.
       //subscribe(function(e) {
@@ -809,60 +801,56 @@ templatePostsShowRendered = function() {
           //closeModalSub.dispose();
       //});
 
-    photoOrb = renderPhotoSphere("#container", "/images/canvas_loading.png");
-    window.pho = photoOrb;
+  photoOrb = renderPhotoSphere("#container", "/images/canvas_loading.png");
+  window.pho = photoOrb;
 
-    if(location.search.search("isUploading") > -1)
-      turnEditingMode(true);
-    else 
-      turnEditingMode(false);
 
-    Tracker.autorun(function(){
-      const imageId = Session.get("showingImageId");
-      if(imageId){
-        const image = Models.Image.findOne(imageId);
-        if(image.isUploaded()){
-          const imageFilePath = image.url();
-          photoOrb.mesh.material.map.dispose();
-          photoOrb.mesh.material.dispose();
-          console.log("actual material : " + imageFilePath);
-          photoOrb.setMaterial(
-            new THREE.MeshBasicMaterial({
-              map: THREE.loader.load(imageFilePath, function() {
-                FView.byId("loading-box").node.hide();
-              },
-              $.noop,
-              function(error) {
-                  console.log('error while loading texture - ');
-                  console.log(error);
-              })
+  Tracker.autorun(function(){
+    const imageId = Session.get("showingImageId");
+    if(imageId){
+      const image = Models.Image.findOne(imageId);
+      if(image.isUploaded()){
+        const imageFilePath = image.url();
+        photoOrb.mesh.material.map.dispose();
+        photoOrb.mesh.material.dispose();
+        console.log("actual material : " + imageFilePath);
+        photoOrb.setMaterial(
+          new THREE.MeshBasicMaterial({
+            map: THREE.loader.load(imageFilePath, function() {
+              FView.byId("loading-box").node.hide();
+            },
+            $.noop,
+            function(error) {
+                console.log('error while loading texture - ');
+                console.log(error);
             })
-          );
-        }
-      }
-    });
-
-    post = Router.current().data(); 
-    if(post){
-      var image = Models.Image.findOne({
-          _id: post.imageId
-      });
-      if(image){
-        var imageFilePath = image.url({
-          store: 'images'
-        });
-
+          })
+        );
       }
     }
+  });
 
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1018333888196733&version=v2.0";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+  post = Router.current().data(); 
+  if(post){
+    var image = Models.Image.findOne({
+        _id: post.imageId
+    });
+    if(image){
+      var imageFilePath = image.url({
+        store: 'images'
+      });
+
+    }
+  }
+
+  (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1018333888196733&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 
 }
 
@@ -878,6 +866,9 @@ const templatePostsShowDestroyed = function(){
     $("body").css('padding-top', navHeight + 10 + 'px');
   else
     $("body").css('padding-top', navHeight + 20 + 'px');
+
+
+  FView.byId("post-content").node.slideUp();
 };
 
 Template.PostsShowMobile.rendered = templatePostsShowRendered;

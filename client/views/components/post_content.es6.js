@@ -44,11 +44,15 @@ AutoForm.hooks({
 
 const templatePostsContentHelpers = {
   "isMyPost": function() {
+    if(Router.current().ready()){
       try {
           return Router.current().data().user._id == Meteor.userId();
       } catch (e) {
           return false;
       }
+    }
+    else
+      return false;
   },
   "embedUrl": function() {
       var hrefList = location.href.split('/');
@@ -77,7 +81,6 @@ const templatePostsContentEvents = Object.assign({
     FView.byId("post-content").node.slideUp();
     $(".hide-on-modal").show();
     return false;
-
   },
   "click #edit-button": function() {
       turnEditingMode(true);
@@ -92,5 +95,13 @@ const templatePostsContentEvents = Object.assign({
 Template.postContent.helpers(templatePostsContentHelpers);
 Template.postContent.events(templatePostsContentEvents);
 Template.postContent.rendered = function(){
+  setInterval(()=>{
+    const modalLeft = $("#postContent .content").offset().left - ($(".top-modal-btn").width()/4);
+    $(".top-modal-btn").css('left', modalLeft + 'px');
+  },500);
+  if(location.search.search("isUploading") > -1)
+    turnEditingMode(true);
+  else 
+    turnEditingMode(false);
 
 };
