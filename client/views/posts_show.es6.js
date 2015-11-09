@@ -290,32 +290,33 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
         $("#info").show();
         const params = Router.current().params.query;
         const post = Router.current().data();
-        if(params.x && params.y && params.z){
-          orb.controls.object.position.x = Number.parseFloat(params.x);
-          orb.controls.object.position.y = Number.parseFloat(params.y);
-          orb.controls.object.position.z = Number.parseFloat(params.z);
+        if(post){
+          if(params.x && params.y && params.z){
+            orb.controls.object.position.x = Number.parseFloat(params.x);
+            orb.controls.object.position.y = Number.parseFloat(params.y);
+            orb.controls.object.position.z = Number.parseFloat(params.z);
+          }
+          else if ( post && post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
+              orb.controls.object.position.x = post.viewPosition.x;
+              orb.controls.object.position.y = post.viewPosition.y;
+              orb.controls.object.position.z = post.viewPosition.z;
+          }
+          else{
+              orb.controls.object.position.x = -500;
+              orb.controls.object.position.y = 500;
+              orb.controls.object.position.z = -50;
+          }
+          
+          if (Meteor.userId() && Meteor.userId() == post.user._id)
+              observeViewPosition(orb, ()=>{
+                $("#position-save-button").show();
+              });
         }
-        else if ( post && post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
-            orb.controls.object.position.x = post.viewPosition.x;
-            orb.controls.object.position.y = post.viewPosition.y;
-            orb.controls.object.position.z = post.viewPosition.z;
-        }
-        else{
-            orb.controls.object.position.x = -500;
-            orb.controls.object.position.y = 500;
-            orb.controls.object.position.z = -50;
-        }
-        
-        if (Meteor.userId() && Meteor.userId() == post.user._id)
-            observeViewPosition(orb, ()=>{
-              $("#position-save-button").show();
-            });
 
     }
     console.log('orb render');
     orb.render();
     
-
     if (vrDeviceInfo.type === "MOBILE"){
 
         $(window).scrollTop(0);
@@ -454,7 +455,13 @@ function toggleDOMode(orb) {
 }
 
 function getPostsInfo(){
-  const postIds = Session.get("postIds"); 
+  let postIds;
+  
+  if(location.search.search("isUploading"))
+    postIds = Session.get("uploadingPostIds"); 
+  else
+    postIds = Session.get("postIds"); 
+  
   if(!postIds) return null;
   const postId = Router.current().data()._id;
   const index = postIds.indexOf(postId);
@@ -543,7 +550,7 @@ const postsShowHelpers = {
       return (location.search.search("isUploading=1") > -1) && Post.find().count() > 5;
     },
     "forcusedPosts": function(){
-      const postIds = Session.get("postIds"); 
+      const postIds = Session.get("uploadingPostIds"); 
       if(!postIds) return null;
       const posts = Post.find({
         _id: {
@@ -836,14 +843,16 @@ templatePostsShowRendered = function() {
     });
 
     post = Router.current().data(); 
-    var image = Models.Image.findOne({
-        _id: post.imageId
-    });
-    if(image){
-      var imageFilePath = image.url({
-        store: 'images'
+    if(post){
+      var image = Models.Image.findOne({
+          _id: post.imageId
       });
+      if(image){
+        var imageFilePath = image.url({
+          store: 'images'
+        });
 
+      }
     }
 
     (function(d, s, id) {
