@@ -18,6 +18,17 @@ SwipingDirection.UP = Symbol("UP");
 SwipingDirection.DOWN = Symbol("DOWN");
 SwipingDirection.NONE = Symbol("NONE");
 
+function turnEditingMode(onOfOff) {
+  console.log('turnEdit');
+  console.log(onOfOff? 'on':'off');
+  if (onOfOff) {
+        $(".view-box").hide();
+        $(".edit-field").show();
+    } else {
+        $(".view-box").show();
+        $(".edit-field").hide();
+    }
+}
 let clickedPublishButton = false;
 function closeModals(){
     $(".modal").closeModal();
@@ -732,6 +743,11 @@ Template.PostsShow.toggleVRMode = ()=>{
 };
 
 templatePostsShowRendered = function() {
+
+  if(location.search.search("isUploading") > -1)
+    turnEditingMode(true);
+  else 
+    turnEditingMode(false);
 
   $("body").css('padding-top','0px');
   leavingPageSrc = Rx.Observable.merge(
