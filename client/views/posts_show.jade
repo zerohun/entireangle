@@ -64,6 +64,13 @@ template(name='PostsShow')
           a#position-save-button.waves-effect.waves-light.inpage-buttons.width-fill
             i.stroke.mdi-editor-vertical-align-bottom.white-text
             
+      .col.l1.m1
+        a.waves-effect.waves-light.modal-trigger.inpage-buttons(href="#view-mode-modal-mobile")
+          //if isInVRMode
+            //i.mdi-action-visibility.yellow-text
+          //else
+          i.stroke.mdi-action-visibility.white-text
+
             
   #share-modal.modal.modal-opacity
     .modal-content.centered-text
@@ -94,3 +101,19 @@ template(name='PostsShow')
 
 
 
+  #view-mode-modal-mobile.modal.bottom-sheet.modal-opacity
+    .modal-content
+      ul
+        li.more-menu-items
+          a#ball-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row(class=modeBALLSelectedClass)
+              .col.s4.right-text
+                  i.mdi-action-swap-vert-circle.black-text
+              .col.s8.left-text.black-text
+                | Mirror Ball 
+          a#planet-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row(class=modePlanetSelectedClass)
+              .col.s4.right-text
+                  i.mdi-image-lens.black-text
+              .col.s8.left-text.black-text
+                | Little Planet 
