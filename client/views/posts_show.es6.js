@@ -18,6 +18,24 @@ SwipingDirection.UP = Symbol("UP");
 SwipingDirection.DOWN = Symbol("DOWN");
 SwipingDirection.NONE = Symbol("NONE");
 
+
+const ViewType = {};
+ViewType.ball = Symbol("BALL");
+ViewType.zoomIn = Symbol("ZOOM-IN");
+
+function setViewType(zoomType, orb){
+  if(zoomType === ViewType.ball){
+    orb.controls.object.position.x = -500;
+    orb.controls.object.position.y = 500;
+    orb.controls.object.position.z = -50;
+  }
+  else if(zoomType === ViewType.zoomIn){
+    orb.controls.object.position.x = 0;
+    orb.controls.object.position.y = 0;
+    orb.controls.object.position.z = 0;
+  }
+}
+
 function turnEditingMode(onOfOff) {
   console.log('turnEdit');
   console.log(onOfOff? 'on':'off');
@@ -312,9 +330,7 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
               orb.controls.object.position.z = post.viewPosition.z;
           }
           else{
-              orb.controls.object.position.x = -500;
-              orb.controls.object.position.y = 500;
-              orb.controls.object.position.z = -50;
+            setViewType(ViewType.ball, orb);
           }
           
           if (Meteor.userId() && Meteor.userId() == post.user._id)
@@ -408,6 +424,8 @@ function disableVRMode(orb) {
 
     orb.setFullScreen(false);
     isInVRModeReact.set(false);
+    setViewType(ViewType.ball, orb);
+
 }
 
 function enableVRMode(orb) {
@@ -417,6 +435,7 @@ function enableVRMode(orb) {
     orb.setFullScreen(true);
     isInDOModeReact.set(false);
     isInVRModeReact.set(true);
+    setViewType(ViewType.zoomIn, orb);
 }
 
 function enableDOMode(orb) {
@@ -424,12 +443,15 @@ function enableDOMode(orb) {
   OrbBuilders.setOrb(OrbBuilders.MobileControlOrbBuilder, orb);
   isInVRModeReact.set(false);
   isInDOModeReact.set(true);
+  setViewType(ViewType.zoomIn, orb);
+
   //enableHorizontalSwipe();
 }
 function disableDOMode(orb) {
   console.log('disable DO');
   OrbBuilders.setOrb(OrbBuilders.NormalControlOrbBuilder, orb);
   isInDOModeReact.set(false);
+  setViewType(ViewType.ball, orb);
 }
 
 function toggleVRMode(orb) {
@@ -509,6 +531,10 @@ function savePosition(){
 
 
 const postsShowHelpers = {
+    "isHMDDevice": function(){
+      vrDeviceInfo = getVRDeviceInfo();
+      return vrDeviceInfo.type === "HMD";
+    },
     "numberOfComments": function(){
       if(Router.current().ready())
         return Comment.find({postId: Router.current().data()._id}).count();
