@@ -463,7 +463,7 @@ function getPostsInfo(){
 
   let postIds;
   
-  if(location.search.search("isUploading"))
+  if(location.search.search("isUploading=1") > -1)
     postIds = Session.get("uploadingPostIds"); 
   else
     postIds = Session.get("postIds"); 
