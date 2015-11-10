@@ -3,6 +3,8 @@ var vrDeviceInfo;
 var vrButton;
 var isInVRModeReact = new ReactiveVar(false);
 var isInDOModeReact = new ReactiveVar(false);
+var isInBALLModeReact = new ReactiveVar(true);
+var isInPlanetModeReact = new ReactiveVar(false);
 var post = null;
 var originalPosition = new THREE.Vector3();
 let leavingPageSrc; 
@@ -22,17 +24,26 @@ SwipingDirection.NONE = Symbol("NONE");
 const ViewType = {};
 ViewType.ball = Symbol("BALL");
 ViewType.zoomIn = Symbol("ZOOM-IN");
+ViewType.littlePlanet = Symbol("LITTLE-PLANET");
 
 function setViewType(zoomType, orb){
   if(zoomType === ViewType.ball){
+    orb.camera.fov = 80;
     orb.controls.object.position.x = -500;
     orb.controls.object.position.y = 500;
     orb.controls.object.position.z = -50;
   }
   else if(zoomType === ViewType.zoomIn){
+    orb.camera.fov = 80;
     orb.controls.object.position.x = 0;
     orb.controls.object.position.y = 0;
     orb.controls.object.position.z = 0;
+  }
+  else if(zoomType === ViewType.littlePlanet){
+    orb.camera.fov = 120;
+    orb.controls.object.position.x = -178.5087862035209;
+    orb.controls.object.position.y = 338.5963307031741;
+    orb.controls.object.position.z = -14.321762384763504;
   }
 }
 
@@ -434,17 +445,37 @@ function enableVRMode(orb) {
 
     orb.setFullScreen(true);
     isInDOModeReact.set(false);
+    isInBALLModeReact.set(false);
     isInVRModeReact.set(true);
+    isInPlanetModeReact.set(false);
     setViewType(ViewType.zoomIn, orb);
 }
 
+function enablePlanetMode(orb){
+    isInDOModeReact.set(false);
+    isInBALLModeReact.set(false);
+    isInVRModeReact.set(false);
+    isInPlanetModeReact.set(true);
+    setViewType(ViewType.littlePlanet, orb);
+}
 function enableDOMode(orb) {
   console.log('enable DO');
   OrbBuilders.setOrb(OrbBuilders.MobileControlOrbBuilder, orb);
   isInVRModeReact.set(false);
   isInDOModeReact.set(true);
+  isInBALLModeReact.set(false);
+  isInPlanetModeReact.set(false);
   setViewType(ViewType.zoomIn, orb);
-
+  //enableHorizontalSwipe();
+}
+function enableBALLMode(orb) {
+  console.log('enable DO');
+  OrbBuilders.setOrb(OrbBuilders.NormalControlOrbBuilder, orb);
+  isInVRModeReact.set(false);
+  isInDOModeReact.set(false);
+  isInBALLModeReact.set(true);
+  isInPlanetModeReact.set(false);
+  setViewType(ViewType.ball, orb);
   //enableHorizontalSwipe();
 }
 function disableDOMode(orb) {
@@ -452,6 +483,14 @@ function disableDOMode(orb) {
   OrbBuilders.setOrb(OrbBuilders.NormalControlOrbBuilder, orb);
   isInDOModeReact.set(false);
   setViewType(ViewType.ball, orb);
+}
+
+function toggleBALLMode(orb) {
+    if (isInVRModeReact.get()) {
+        disableBALLMode(orb);
+    } else {
+        enableBALLMode(orb);
+    }
 }
 
 function toggleVRMode(orb) {
@@ -560,6 +599,18 @@ const postsShowHelpers = {
       else
         return "/images/loading.gif";
     },
+    "modeBALLSelectedClass": function(){
+      if(isInBALLModeReact.get()){
+        return 'selected-mode';
+      }
+      return '';
+    },
+    "modePlanetSelectedClass": function(){
+      if(isInPlanetModeReact.get()){
+        return 'selected-mode';
+      }
+      return '';
+    },
     "modeVRSelectedClass": function(){
       if(isInVRModeReact.get()){
         return 'selected-mode';
@@ -638,6 +689,9 @@ const postsShowHelpers = {
       else{
         return null;
       }
+    },
+    "isInBALLMode": function(){
+      return isInBALLModeReact.get();
     },
     "isInVRMode": function(){
       return isInVRModeReact.get();
@@ -734,21 +788,43 @@ const postsShowEvents = {
     previewOrb.setState("stop");
     photoOrb.setState("running");
   },
+  "click #ball-mode-button": function(){
+    enableBALLMode(photoOrb);
+    closeModals();
+  },
   "click #do-mode-button": function(){
     toggleDOMode(photoOrb);
     closeModals();
   },
+  "click #planet-mode-button": function() {
+    enablePlanetMode(photoOrb);
+    closeModals();
+  },
   "click #vr-mode-button": function() {
     toggleVRMode(photoOrb);
-    $(".modal").closeModal();
-    $(".lean-overlay").remove();
+    closeModals();
   },
   "click #home-button": function() {
       Router.go("home");
   },
   "click #container": function() {
-      if (isInVRModeReact.get()) toggleVRMode(photoOrb);
+      if (isInVRModeReact.get()) {
+        enableBALLMode(photoOrb);
+        
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+
+        closeModals();
+      }
   },
+
   "click #remove-button": function() {
       var post = getCurrentPost();
       Router.go('Posts');

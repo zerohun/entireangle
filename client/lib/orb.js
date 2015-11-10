@@ -7,6 +7,7 @@ window.Orb = function(reqiredParams, options) {
     var controls = reqiredParams.controls;
     var container = reqiredParams.container;
     var camera = reqiredParams.camera;
+    this.camera = camera;
     var renderer = reqiredParams.renderer;
     var effect = reqiredParams.effect;
     var renderable = renderer;

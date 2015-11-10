@@ -45,6 +45,7 @@ var createNormalControlOrbBuilder = function() {
             camera.far = this.far;
             var controls = new THREE.OrbitControls(camera, orb.getElement());
             orb.setControls(controls);
+            orb.renderable = orb.renderer;
         }
     };
 };
@@ -136,6 +137,7 @@ var createCardboardControlOrbBuilder = function() {
             orb.setEffect(effect);
             orb.renderer = clonedRenderer;
             orb.setFullScreen = getSetFullScreenFunc(orb.container);
+            orb.render();
         }
     };
 };
