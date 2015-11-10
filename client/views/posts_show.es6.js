@@ -285,7 +285,6 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
     console.log("loading material");
     var material = new THREE.MeshBasicMaterial({
         map: THREE.loader.load(imageFilePath, function() {
-          FView.byId("loading-box").node.hide();
         }, $.noop,function(error) {
             console.log('error while loading texture - ');
             console.log(error);
