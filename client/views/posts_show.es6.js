@@ -875,7 +875,9 @@ templatePostsShowRendered = function() {
         photoOrb.setMaterial(
           new THREE.MeshBasicMaterial({
             map: THREE.loader.load(imageFilePath, function() {
-              FView.byId("loading-box").node.hide();
+              photoOrb.afterRender(()=>{
+                FView.byId("loading-box").node.hide();
+              });
             },
             $.noop,
             function(error) {
