@@ -91,7 +91,6 @@ const mypageEvents = {
         if(err) alert(err.message);
         else {
           Router.go("home"); 
-          registerLoginBtnCallback();
         }
       });
     } 

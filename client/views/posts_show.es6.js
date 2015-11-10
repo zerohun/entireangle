@@ -452,6 +452,7 @@ function enableVRMode(orb) {
 }
 
 function enablePlanetMode(orb){
+    OrbBuilders.setOrb(OrbBuilders.NormalControlOrbBuilder, orb);
     isInDOModeReact.set(false);
     isInBALLModeReact.set(false);
     isInVRModeReact.set(false);
