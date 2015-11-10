@@ -3,7 +3,7 @@ var vrDeviceInfo;
 var vrButton;
 let isInVRModeReact = new ReactiveVar(false);
 let isInDOModeReact = new ReactiveVar(false);
-let isInBALLModeReact = new ReactiveVar(true);
+let isInBALLModeReact = new ReactiveVar(false);
 let isInPlanetModeReact = new ReactiveVar(false);
 var post = null;
 var originalPosition = new THREE.Vector3();
@@ -266,13 +266,15 @@ function onClickSavePreviewButton(){
   const position = {
     x: photoOrb.controls.object.position.x,
     y: photoOrb.controls.object.position.y,
-    z: photoOrb.controls.object.position.z
+    z: photoOrb.controls.object.position.z,
+    fov: photoOrb.camera.fov
   };
   let url = Router.current().data().url;
   if(url.search(/\?x=/)){
     url = url.replace(/\?x=.+/, "");
   }
   url = url + "?" + $.param(position);
+  Session.set("posts-show-url", url);
 
   photoOrb.onWindowResize();
   photoOrb.reRender();
@@ -322,33 +324,11 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
 
     if (vrDeviceInfo.type === "HMD") {
         orb = OrbBuilders.createOrb(OrbBuilders.HMDControlOrbBuilder, material, container);
-    //} else if (vrDeviceInfo.type === "MOBILE") {
+    } else  {
         //orb = OrbBuilders.createOrb(OrbBuilders.MobileControlOrbBuilder, material, container);
-    } else {
         orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
         $("#info").show();
-        const params = Router.current().params.query;
-        const post = Router.current().data();
-        if(post){
-          if(params.x && params.y && params.z){
-            orb.controls.object.position.x = Number.parseFloat(params.x);
-            orb.controls.object.position.y = Number.parseFloat(params.y);
-            orb.controls.object.position.z = Number.parseFloat(params.z);
-          }
-          else if ( post && post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
-              orb.controls.object.position.x = post.viewPosition.x;
-              orb.controls.object.position.y = post.viewPosition.y;
-              orb.controls.object.position.z = post.viewPosition.z;
-          }
-          else{
-            setViewType(ViewType.ball, orb);
-          }
-          
-          if (Meteor.userId() && Meteor.userId() == post.user._id)
-              observeViewPosition(orb, ()=>{
-                $("#position-save-button").show();
-              });
-        }
+
 
     }
     console.log('orb render');
@@ -861,7 +841,7 @@ templatePostsShowRendered = function() {
 
   isInVRModeReact = new ReactiveVar(false);
   isInDOModeReact = new ReactiveVar(false);
-  isInBALLModeReact = new ReactiveVar(true);
+  isInBALLModeReact = new ReactiveVar(false);
   isInPlanetModeReact = new ReactiveVar(false);
 
   if(location.search.search("isUploading") > -1)
@@ -994,6 +974,38 @@ templatePostsShowRendered = function() {
           })
         );
       }
+    }
+  });
+  Tracker.autorun(function(){
+    if(Router.current().ready()){
+      const params = Router.current().params.query;
+      const post = Router.current().data();
+
+      if(params.x && params.y && params.z && params.fov){
+        photoOrb.controls.object.position.x = Number.parseFloat(params.x);
+        photoOrb.controls.object.position.y = Number.parseFloat(params.y);
+        photoOrb.controls.object.position.z = Number.parseFloat(params.z);
+        photoOrb.camera.fov = Number.parseFloat(params.fov);
+        console.log('params')
+        
+      }
+      else if ( post && post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
+          photoOrb.controls.object.position.x = post.viewPosition.x;
+          photoOrb.controls.object.position.y = post.viewPosition.y;
+          photoOrb.controls.object.position.z = post.viewPosition.z;
+          if(post.viewPosition.fov)
+            photoOrb.camera.fov = post.viewPosition.fov;
+          console.log('saved Position');
+      }
+      else{
+        setViewType(ViewType.ball, photoOrb);
+          console.log('else');
+      }
+      
+      if (Meteor.userId() && Meteor.userId() == post.user._id)
+          observeViewPosition(photoOrb, ()=>{
+            $("#position-save-button").show();
+          });
     }
   });
 
