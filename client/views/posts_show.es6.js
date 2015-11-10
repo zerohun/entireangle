@@ -1,10 +1,10 @@
 var container;
 var vrDeviceInfo;
 var vrButton;
-var isInVRModeReact = new ReactiveVar(false);
-var isInDOModeReact = new ReactiveVar(false);
-var isInBALLModeReact = new ReactiveVar(true);
-var isInPlanetModeReact = new ReactiveVar(false);
+let isInVRModeReact = new ReactiveVar(false);
+let isInDOModeReact = new ReactiveVar(false);
+let isInBALLModeReact = new ReactiveVar(true);
+let isInPlanetModeReact = new ReactiveVar(false);
 var post = null;
 var originalPosition = new THREE.Vector3();
 let leavingPageSrc; 
@@ -857,6 +857,11 @@ Template.PostsShow.toggleVRMode = ()=>{
 };
 
 templatePostsShowRendered = function() {
+
+  isInVRModeReact = new ReactiveVar(false);
+  isInDOModeReact = new ReactiveVar(false);
+  isInBALLModeReact = new ReactiveVar(true);
+  isInPlanetModeReact = new ReactiveVar(false);
 
   if(location.search.search("isUploading") > -1)
     turnEditingMode(true);
