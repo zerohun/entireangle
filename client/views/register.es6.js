@@ -43,10 +43,7 @@ Template.register.helpers({
   isFacebookuser: isFacebookuser
 });
 Template.register.events(Object.assign({
-  'click #close-register-button': function(){
-    FView.byId("register-form").node.slideUp(); 
-    return false;
-  },
+
   'submit #register-form' : function(e, t) {
     let canCreateUser = true;
     let snsImageUrl;

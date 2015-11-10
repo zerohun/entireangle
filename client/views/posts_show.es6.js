@@ -455,6 +455,13 @@ function toggleDOMode(orb) {
 }
 
 function getPostsInfo(){
+  if(!Router.current().ready())
+    return {
+      postIds: [],
+      postId: null,
+      index: 0
+    }
+
   let postIds;
   
   if(location.search.search("isUploading"))
@@ -504,7 +511,10 @@ function savePosition(){
 
 const postsShowHelpers = {
     "numberOfComments": function(){
-      return Comment.find({postId: Router.current().data()._id}).count();
+      if(Router.current().ready())
+        return Comment.find({postId: Router.current().data()._id}).count();
+      else
+        return 0;
     },
     thumbUrl: function(imageId, isVideo) {
       let image
@@ -541,7 +551,10 @@ const postsShowHelpers = {
       return (location.search.search("isUploading=1") > -1);
     },
     "isArrowVisible": function(){
-      return (location.search.search("isUploading=1") > -1) && !(Router.current().data().isPublished);
+      if(Router.current().ready())
+        return (location.search.search("isUploading=1") > -1) && !(Router.current().data().isPublished);
+      else
+        return false;
     },
     "post": function(){
       return Router.current().data();
@@ -573,7 +586,7 @@ const postsShowHelpers = {
       return posts.slice(startIndex, lastIndex);
     },
     "posts": function(){
-      const postIds = Session.get("postIds"); 
+      const postIds = Session.get("uploadingPostIds"); 
       if(!postIds) return null;
       return Post.find({
         _id: {
@@ -766,6 +779,35 @@ templatePostsShowRendered = function() {
 
   const albums = getAlbums();
   Template.tagAutocomplete.albumsReact.set(albums);
+
+
+  if (location.search.search("isUploading=1") > -1){
+    const modalInterval = setInterval(()=>{
+      if($('.more-items .modal-trigger').length > 0){
+        clearInterval(modalInterval);
+        $('.more-items .modal-trigger').leanModal({
+            opacity: .5,
+            dismissible: true,
+            ready: function(){
+              $(".lean-overlay").prependTo("#wrapping-container");
+              $(".lean-overlay").click(closeModals);
+              $(".hide-on-modal").hide();
+              $(".arrow_box").addClass("hide");
+              photoOrb.setState("stop")
+            },
+            complete: function(){
+              $(".hide-on-modal").show();
+              $(".arrow_box").removeClass("hide");
+              photoOrb.setState("running");
+              //photoOrb.reRender();
+            }
+        });
+      }
+    }, 200);
+  } 
+
+
+
 
   $('.modal-trigger').leanModal({
     opacity: .5,

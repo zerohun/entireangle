@@ -21,9 +21,6 @@ const templateLayoutRendered = function(){
 
     //$('body').css({overflow: "scroll"});
 
-    if(!Meteor.user())
-      registerLoginBtnCallback();
-
     if(Meteor.user()){
       Meteor.subscribe("notifications", 10);
     }
