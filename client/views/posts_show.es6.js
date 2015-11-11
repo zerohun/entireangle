@@ -976,7 +976,7 @@ templatePostsShowRendered = function() {
       }
     }
   });
-  Tracker.autorun(function(){
+  Tracker.autorun(function(c){
     if(Router.current().ready()){
       const params = Router.current().params.query;
       const post = Router.current().data();
@@ -1006,6 +1006,7 @@ templatePostsShowRendered = function() {
           observeViewPosition(photoOrb, ()=>{
             $("#position-save-button").show();
           });
+      c.stop();
     }
   });
 
