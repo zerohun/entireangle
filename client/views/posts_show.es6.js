@@ -575,7 +575,7 @@ const postsShowHelpers = {
           });
 
       }
-      if(image.isUploaded())
+      if(image && image.isUploaded())
         return image.url({store: 'thumbs'}); 
       else
         return "/images/loading.gif";
@@ -954,7 +954,7 @@ templatePostsShowRendered = function() {
     const imageId = Session.get("showingImageId");
     if(imageId){
       const image = Models.Image.findOne(imageId);
-      if(image.isUploaded()){
+      if(image && image.isUploaded()){
         const imageFilePath = image.url();
         photoOrb.mesh.material.map.dispose();
         photoOrb.mesh.material.dispose();

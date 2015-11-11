@@ -25,8 +25,10 @@ Template.login.events(
   },
   'click .login-with-facebook': ()=>{
     Meteor.loginWithFacebook({
-      requestPermissions: ['email'],
-      redirectUrl: location.href 
+      requestPermissions: ['email', 'user_about_me'],
+      redirectUrl: location.href,
+      loginStyle: 'redirect' 
+
     }, function (err) {
     if (err){
       alert(err.reason);

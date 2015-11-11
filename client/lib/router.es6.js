@@ -136,10 +136,10 @@ Router.route('/posts/:_id', {
         Meteor.subscribe('comments', {postId: this.params._id}),
         Meteor.subscribe("likes", this.params._id)
       ];
-      if(this.params.query.isUploading === '1'){
+      if(this.params.query.isUploading === '1' && Session.get("uploadingPostIds") && Session.get("uploadingPostIds").indexOf(this.params._id) > -1){
         result.push(Meteor.subscribe("postIdList", Session.get("uploadingPostIds")));
       }
-      else if(Session.get("postIds")){
+      else if(Session.get("postIds") && Session.get("postIds").indexOf(this.params._id) > -1){
         result.push(Meteor.subscribe("postIdList", Session.get("postIds")));
       }
       else{
