@@ -1,3 +1,4 @@
+let clickedPublishButton = false;
 function turnEditingMode(onOfOff) {
   console.log('turnEdit');
   console.log(onOfOff? 'on':'off');
@@ -43,6 +44,9 @@ AutoForm.hooks({
 });
 
 const templatePostsContentHelpers = {
+  "post": function(){
+    return Router.current().data();
+  },
   "isMyPost": function() {
     if(Router.current().ready()){
       try {
@@ -76,6 +80,9 @@ const templatePostsContentHelpers = {
     }
 };
 const templatePostsContentEvents = Object.assign({
+  "click #red-publish-button": function(e){
+    clickedPublishButton = true;
+  },
   "click .close-content-modal-button" : function(){
     turnEditingMode(false);
     FView.byId("post-content").node.slideUp();
@@ -95,6 +102,7 @@ const templatePostsContentEvents = Object.assign({
 Template.postContent.helpers(templatePostsContentHelpers);
 Template.postContent.events(templatePostsContentEvents);
 Template.postContent.rendered = function(){
+  let clickedPublishButton = false;
   setInterval(()=>{
     const modalLeft = $("#postContent .content").offset().left - ($(".top-modal-btn").width()/4);
     $(".top-modal-btn").css('left', modalLeft + 'px');

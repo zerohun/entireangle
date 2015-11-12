@@ -109,20 +109,17 @@
   text-align: center;
 }
 
+td.sns-icon-box{
+  width: 100%;
+  text-align:center;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
 #share-modal{
   z-index: 99999;
 }
 
-#share-modal .sns-icon-box{
-  width: 15%;
-}
-.sns-icon-box a{
-  padding-top: 10%;
-  padding-bottom: 10%;
-}
-
 .sns-icon-box i{
-  width: 30px;
   text-align:center;
 }
 
