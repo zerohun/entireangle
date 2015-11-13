@@ -171,7 +171,13 @@ Router.route('/posts/:_id', {
                 });
             }
             post.thumbnail = function() {
-                return imageUrl;
+                const postUrl = Session.get("posts-show-url");
+                if(postUrl.search('\\?') > -1){
+                  const postUrlParams = postUrl.split('?')[1];
+                  return imageUrl + '&' + postUrlParams;
+                }
+                else 
+                  return imageUrl;
             };
         } else {
             console.log('post is null id:' + this.params._id);

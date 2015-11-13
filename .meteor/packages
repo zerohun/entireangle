@@ -19,7 +19,6 @@ meteorhacks:npm
 jquery
 sbe:rxjs
 mquandalle:jade
-gadicohen:famous
 gadicohen:famous-views
 accounts-base
 logandk:validator
@@ -61,3 +60,4 @@ meteorhacks:aggregate
 mrt:cookies
 manuelschoebel:wait-on-lib
 cfs:gridfs
+gadicohen:famous@=0.5.2

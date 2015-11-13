@@ -551,6 +551,9 @@ function savePosition(){
 
 
 const postsShowHelpers = {
+    "post": function(){
+      return Rounter.current().data(); 
+    },
     "isHMDDevice": function(){
       vrDeviceInfo = getVRDeviceInfo();
       return vrDeviceInfo.type === "HMD";
