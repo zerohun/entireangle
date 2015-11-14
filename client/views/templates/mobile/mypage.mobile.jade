@@ -4,27 +4,27 @@ template(name='mypageMobile')
       .modal-dialog
         .modal-content
           .row
-            form#user-form.centered-text.col.s12(role='form', style='max-width: 300px;')
+            form#user-form.centered-text.col.l12.m12.s12(role='form')
               .row
-                .col.s12.mypage-profile-padding
+                .col.l12.m12.s12.mypage-profile-padding
                   +profileImage myUserInfo 
               .row
-                .col.s12.centered-text
+                .col.l12.m12.s12.centered-text
                   .file-field.input-field.centered-text.profile-image-field
                     .btn.btn-tiny.orange.centered-text
                       .span Upload profile image
                       input.mypage-image-field(type='file')
 
               .row
-                .input-field.col.s12
+                .input-field.col.l12.m12.s12
                   input(type='text', name='username', placeholder='Username' value='{{username}}')
               .row
-                .input-field.col.s12
+                .input-field.col.l12.m12.s12
                   textarea(name='desc', placeholder='Introduce yourself' value='{{desc}}')
               .row
-                .col.s6.centered-text
+                .col.l6.m6.s6.centered-text
                   button.btn.red.width-fill.centered-text.col-force-padding-zero(type='submit') Save
-                .col.s6.centered-text
+                .col.l6.m6.s6.centered-text
                   a.modal-close.btn.width-fill.centered-text.col-force-padding-zero(type='button') Cancel
   #mypage
     .row

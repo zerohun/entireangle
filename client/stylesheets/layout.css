@@ -473,3 +473,6 @@ a.shareit-google-colors{
   z-index:9999;
 }
 
+#edit-modal{
+  max-width: 300px;
+}
