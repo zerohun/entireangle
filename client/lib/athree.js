@@ -36789,6 +36789,14 @@ THREE.OrbitControls = function ( object, domElement ) {
 	var startEvent = { type: 'start' };
 	var endEvent = { type: 'end' };
 
+
+  this.disable = function(){
+    scope.enabled = false;
+  }
+  this.enable = function(){
+    scope.enabled = true;
+  }
+
 	this.rotateLeft = function ( angle ) {
 
 		if ( angle === undefined ) {
@@ -37151,7 +37159,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		if ( scope.enabled === false || scope.noZoom === true || state !== STATE.NONE ) return;
 
-		event.preventDefault();
+		//event.preventDefault();
 		event.stopPropagation();
 
 		var delta = 0;

@@ -45,7 +45,12 @@ AutoForm.hooks({
 
 const templatePostsContentHelpers = {
   "post": function(){
-    return Router.current().data();
+    try{
+      return Router.current().data();
+    }
+    catch(e){
+      return null;
+    }
   },
   "isMyPost": function() {
     if(Router.current().ready()){

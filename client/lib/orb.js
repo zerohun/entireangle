@@ -49,8 +49,9 @@ window.Orb = function(reqiredParams, options) {
     };
     
     this.setState = function(state){
+      const oldState = this.state;
       self.state = state;
-      if(self.state === "running"){
+      if(oldState !== "running" && self.state === "running"){
         //init();
         animate();
       }

@@ -127,6 +127,7 @@ var createCardboardControlOrbBuilder = function() {
             });
         },
         set: function(orb) {
+            orb.setState("stop");
             var camera = orb.getCamera();
             camera.far = this.far;
             var controls = new THREE.DeviceOrientationControls(camera, true);

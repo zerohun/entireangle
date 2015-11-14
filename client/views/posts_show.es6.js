@@ -47,6 +47,17 @@ function setViewType(zoomType, orb){
   }
 }
 
+function enableControl(orb){
+  if(orb.controls.enable){
+    orb.controls.enable();
+  }
+}
+function disableControl(orb){
+  if(orb.controls.disable){
+    orb.controls.disable();
+  }
+}
+
 function turnEditingMode(onOfOff) {
   console.log('turnEdit');
   console.log(onOfOff? 'on':'off');
@@ -66,7 +77,9 @@ function closeModals(){
     $(".arrow_box").removeClass("hide");
 
     photoOrb.setState("running");
+    enableControl(photoOrb);
 }
+
 
 function setArrowBoxPosition(){
   const $editButton = $(".content-edit-button");
@@ -714,7 +727,7 @@ Template.PostsShow.helpers(postsShowHelpers);
 Template.PostsShowMobile.helpers(postsShowHelpers);
 
 const postsShowEvents = {
-  "click .content-edit-button": function(){
+ "click .content-edit-button": function(){
     $(".hide-on-modal").hide();
     FView.byId("post-content").node.slideDown();
   },
@@ -769,8 +782,8 @@ const postsShowEvents = {
   },
   "click #share-modal-close-btn":  function(){
     //$("#shareModal").modal('hide');
-    previewOrb.setState("stop");
-    photoOrb.setState("running");
+    //previewOrb.setState("stop");
+    //photoOrb.setState("running");
   },
   "click #ball-mode-button": function(){
     enableBALLMode(photoOrb);
@@ -781,6 +794,7 @@ const postsShowEvents = {
     closeModals();
   },
   "click #planet-mode-button": function() {
+    console.log('click pla');
     enablePlanetMode(photoOrb);
     closeModals();
   },
@@ -844,7 +858,7 @@ templatePostsShowRendered = function() {
 
   isInVRModeReact = new ReactiveVar(false);
   isInDOModeReact = new ReactiveVar(false);
-  isInBALLModeReact = new ReactiveVar(false);
+  isInBALLModeReact = new ReactiveVar(true);
   isInPlanetModeReact = new ReactiveVar(false);
 
   if(location.search.search("isUploading") > -1)
@@ -883,12 +897,12 @@ templatePostsShowRendered = function() {
               $(".lean-overlay").click(closeModals);
               $(".hide-on-modal").hide();
               $(".arrow_box").addClass("hide");
-              photoOrb.setState("stop")
+              //photoOrb.setState("stop")
             },
             complete: function(){
               $(".hide-on-modal").show();
               $(".arrow_box").removeClass("hide");
-              photoOrb.setState("running");
+              //photoOrb.setState("running");
               //photoOrb.reRender();
             }
         });
@@ -908,12 +922,14 @@ templatePostsShowRendered = function() {
       $(".hide-on-modal").hide();
       $(".arrow_box").addClass("hide");
       photoOrb.setState("stop")
+      disableControl(photoOrb);
+
     },
     complete: function(){
       $(".hide-on-modal").show();
       $(".arrow_box").removeClass("hide");
       photoOrb.setState("running");
-      //photoOrb.reRender();
+      enableControl(photoOrb);
     }
   });
   $('body').css("overflow", 'hidden');
