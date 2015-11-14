@@ -14,31 +14,31 @@ template(name="postContent")
 
       if title
         .row.view-box
-          .col.l12.m12
+          .col.l12.m12.s12
             h4#myModalLabel.modal-title {{title}}
       if desc
         .row.view-box
-          .col.l12.m12
+          .col.l12.m12.s12
             pre.centered-text.flow-text
               |  {{desc}}
             hr
             if tags
              .row
-               .col.l12.m12
+               .col.l12.m12.s12
                  | tags
                  .tags
                    each albums
                      span.chip 
                        | {{title}}
       .row.view-box
-        .col.l12.m12
+        .col.l12.m12.s12
           | {{createdAt.toLocaleString}}
       if address
         .row.view-box
-          .col.l12.m12
+          .col.l12.m12.s12
             | {{address.fullAddress}}
       .row.view-box
-        .view-box.col.l4.m4.offset-m4.offset-l4.profile-padding
+        .view-box.col.l4.m4.s4.s4.offset-m4.offset-l4.offset-s4.profile-padding
           a(href="/users/{{user._id}}")
             +profileImage user
             br
@@ -46,31 +46,31 @@ template(name="postContent")
 
 
       .row
-        .col.l12.m12
+        .col.l12.m12.s12
           .edit-field
             .row
-              +autoForm id="editPost" type="update" collection="Post" doc=post class="col l12 m12"
+              +autoForm id="editPost" type="update" collection="Post" doc=post class="col l12 m12 s12"
                 .row
-                  +afQuickField name='title' class="col l12 m12"
+                  +afQuickField name='title' class="col l12 m12 s12"
                 .row
-                  +afQuickField name='desc' type="textarea" class="col l12 m12"
+                  +afQuickField name='desc' type="textarea" class="col l12 m12 s12"
                 if isArrowVisible
                   .row
                     button.btn.red#red-publish-button(type="submit") Publish!
                 else
                   .row
-                    +afFieldInput  name="isPublished" type="switch" class="col l12 m12" trueLabel="Published" falseLabel="Private"
+                    +afFieldInput  name="isPublished" type="switch" class="col l12 m12 s12" trueLabel="Published" falseLabel="Private"
                 .row 
-                  +afQuickField name="address" type="googleplace" opts=optsGoogleplace class="col l12 m12 input-field"
+                  +afQuickField name="address" type="googleplace" opts=optsGoogleplace class="col l12 m12 s12 input-field"
                 .row
-                  .tag-edit.input-field.col.l12.m12
+                  .tag-edit.input-field.col.l12.m12.s12
                     +tagAutocomplete
                 .row
-                  .col.m12.l12
+                  .col.m12.l12.s12
                     if isMyPost
                       button.btn.btn-tiny.light-green.darken-4(type='submit')
                         | Save 
       .row.grey.lighten-3
-        .view-box.col.l12.m12
+        .view-box.col.l12.m12.s12
           br
           +comments
