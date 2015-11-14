@@ -4,11 +4,11 @@ class SlideDownWindow extends SlideWindow {
   constructor(){
     super();
     this.slideStatus = SlideWindow.UP;
+    this.slideUpFuncs = [];
     this.resize();
     this.setMountPoint(0.5, 0.0);
     const upPosition = this.upPosition();
     this.setPosition(upPosition[0], upPosition[1], upPosition[2]);
-
   }
   upPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 
@@ -26,6 +26,12 @@ class SlideDownWindow extends SlideWindow {
   slideUp(){
     $(".hide-on-modal").show();
     super.slideUp();
+    this.slideUpFuncs.forEach((f)=>{
+      f();
+    });
+  }
+  onSlideUpOnce(func){
+    this.slideUpFuncs.push(func);
   }
 }
 

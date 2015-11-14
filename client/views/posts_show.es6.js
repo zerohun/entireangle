@@ -730,6 +730,10 @@ const postsShowEvents = {
  "click .content-edit-button": function(){
     $(".hide-on-modal").hide();
     FView.byId("post-content").node.slideDown();
+    photoOrb.controls.disable();
+    FView.byId("post-content").node.onSlideUpOnce(()=>{
+      photoOrb.controls.enable();
+    });
   },
   "click .share-button": function(e){
     onClickSavePreviewButton();
