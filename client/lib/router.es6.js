@@ -42,7 +42,8 @@ Session.set("myPagePostsQuery", {isPublished: false});
 Session.set("postsQuery", {isPublished: true});
 
 Router.configure({
-    layoutTemplate: getTemplate("layout") 
+    layoutTemplate: getTemplate("layout"), 
+    trackPageView: true
 });
 Router.onBeforeAction(function() {
 
