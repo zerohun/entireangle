@@ -592,7 +592,7 @@ const postsShowHelpers = {
 
       }
       if(image && image.isUploaded())
-        return image.url({store: 'thumbs'}); 
+        return image.url({store: 'grid_thumbs'}); 
       else
         return "/images/loading.gif";
     },
@@ -1040,7 +1040,7 @@ templatePostsShowRendered = function() {
     });
     if(image){
       var imageFilePath = image.url({
-        store: 'images'
+        store: 'grid_images'
       });
 
     }

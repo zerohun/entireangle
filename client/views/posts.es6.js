@@ -105,7 +105,7 @@ var templatePostHelper = {
           var image = Models.Image.findOne({
               _id: imageId
           });
-          return image.url({store: 'thumbs'}) + "&uploadAt=" + image._getInfo('thumbs').updatedAt.getTime();
+          return image.url({store: 'grid_thumbs'}) + "&uploadAt=" + image._getInfo('thumbs').updatedAt.getTime();
       }
     }
 };
