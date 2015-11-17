@@ -40,7 +40,7 @@ const templatePostListHelpers = {
       get().
       map((p)=>{
         return {
-          country: p._id.country,
+          country: getCountryName(p._id.country),
           state: p._id.state, 
           city: p._id.city,
           count: p.count
