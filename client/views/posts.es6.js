@@ -40,7 +40,7 @@ const templatePostListHelpers = {
       get().
       map((p)=>{
         return {
-          country: getCountryName(p._id.country),
+          country: p._id.country,
           state: p._id.state, 
           city: p._id.city,
           count: p.count
@@ -67,6 +67,7 @@ const templatePostListEvents = {
 
 
 var templatePostsHelpers = {
+
   posts: function() {
     console.log('post helers first line');
     if(this.posts) {

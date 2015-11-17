@@ -3,7 +3,7 @@ template(name="places")
     each locations
       .col.m12.l12.tag-list
         a.btn.centered-text.fill(href="/locations/posts?country={{country}}&city={{city}}{{userId}}")
-          | {{country}}
+          | {{getCountryName country}}
           | {{state}}
           | {{city}}
           br

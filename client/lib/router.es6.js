@@ -314,11 +314,11 @@ Router.route("/locations/posts", {
     if(this.params.query.country){
       result.address = {};
       result.address.country = this.params.query.country;
-      if(this.params.query.city)
+      if(this.params.query.city && this.params.query.city !== "")
         result.address.city = this.params.query.city;
     }
 
-    result.title = this.params.query.country;
+    result.title = getCountryName(this.params.query.country);
     if(this.params.query.city && this.params.query.city != "")
       result.title = result.title.concat("-" + this.params.query.city);
     const userId = this.params.query.userId;
