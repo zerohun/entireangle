@@ -13,14 +13,17 @@ const templatePostListHelpers = {
   SYM_TAGS: SYM_TAGS,
   SYM_LOCATIONS: SYM_LOCATIONS,
   isTabVisible: function(symbol){
+    console.log('isTabVisible');
     return symbol === currentTabReact.get();
   },
   "postsCountByTagId": function(tagId){
+    console.log('postsCountByTagId');
     return postsCountByTagsReact.get().
             filter((c)=> c._id.albumId === tagId)[0].
             count;
   },
   tags: function(){
+    console.log('tags');
     const tagCounts = postsCountByTagsReact.get();
     return Album.find({
       _id:{
@@ -32,6 +35,7 @@ const templatePostListHelpers = {
     });
   },
   "locations": function(){
+    console.log('locatoins');
     return postsCountByLocationsReact.
       get().
       map((p)=>{
@@ -48,12 +52,15 @@ const templatePostListHelpers = {
 
 const templatePostListEvents = {
   "click #pictures-tab-btn": function(){
+    console.log("click event");
     currentTabReact.set(SYM_PICTURES);
   },
   "click #tags-tab-btn": function(){
+    console.log("click event");
     currentTabReact.set(SYM_TAGS);
   },
   "click #locations-tab-btn": function(){
+    console.log("click event");
     currentTabReact.set(SYM_LOCATIONS);
   }
 };
@@ -61,18 +68,23 @@ const templatePostListEvents = {
 
 var templatePostsHelpers = {
   posts: function() {
+    console.log('post helers first line');
     if(this.posts) {
+      console.log('post helers');
       Session.set("postIds", this.posts.fetch().map((p) => p._id));
       return this.posts;
     }
-    const posts = Post.find(Session.get("postsQuery"), {
-      sort:{
-        createdAt: -1
-      }
-    });
+    else{
+      console.log('post helers none params');
+      const posts = Post.find(Session.get("postsQuery"), {
+        sort:{
+          createdAt: -1
+        }
+      });
 
-    Session.set("postIds", posts.fetch().map((p) => p._id));
-    return posts;
+      Session.set("postIds", posts.fetch().map((p) => p._id));
+      return posts;
+    }
   }
 };
 
@@ -81,6 +93,7 @@ var templatePostsEvents = {
       FView.byId("loading-box").node.show();
   },
   "click #image-list": function() {
+      console.log('imagelist helers');
       Session.set('isVideo', false);
       Session.set('PostsLimit', 10);
   },
@@ -89,6 +102,7 @@ var templatePostsEvents = {
       Session.set('PostsLimit', 10);
   },
   "click .user-link": function(){
+      console.log('click -userlinke');
       Session.set('UserPostsLimit', 10);
   }
 };
@@ -115,6 +129,7 @@ templatePostsRendered = function() {
   $("body").css("overflow", "scroll");
   Tracker.autorun(()=>{
     if(Router.current().ready()){
+      console.log('autorun');
       FView.byId("loading-box").node.hide();
       setTimeout(unveilOrHide(),500);
     }
@@ -129,11 +144,13 @@ templatePostsDestroyed = function(){
 templatePostListRendered = function() {
     FView.byId("loading-box").node.hide();
     Meteor.call("getPostsCountByTags", function(err, result){
-      postsCountByTagsReact.set(result);
+      if(result)
+        postsCountByTagsReact.set(result);
     });
     Meteor.call("getPostsCountByLocations", 
         function(err, result){
-          postsCountByLocationsReact.set(result);
+          if(result)
+            postsCountByLocationsReact.set(result);
         }
     );
     enableEndlessScroll("PostsLimit", Post);

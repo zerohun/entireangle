@@ -35,11 +35,11 @@ template(name="Posts")
 template(name='post')
   .col.m3.l3.post-desk-font-size
     .thumbnail-box.row
-      .col.m12.l12
+      .col.m12.l12.centered-text
         a(href="/posts/{{_id}}").row
-         .col.m12.l12
+         .col.m12.l12.centered-text
            img.post-image.circle.responsive-img(src="/images/loadingimage.jpg" data-src='{{thumbUrl imageId isVideo}}' data-image-src='{{thumbUrl imageId isVideo}}')
-         .post-info.col.m12.l12
+         .post-info.col.m12.l12.centered-text
            .row.zero-margin-bottom
              .col.m12.l12.centered-text
                if title

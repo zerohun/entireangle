@@ -72,6 +72,7 @@ Router.route('/posts', {
     name: "Posts",
     template: getTemplate("PostList"),
     subscriptions: function() {
+      console.log('subs');
         $("#list-fetching-bar").fadeOut(1000);
         Session.set("postsQuery", {
           isPublished: true,
@@ -80,19 +81,6 @@ Router.route('/posts', {
         return Meteor.subscribe("posts", 
             Session.get("PostsLimit"), 
             Session.get("postsQuery"));
-    },
-    data: function() {
-        var limit = Session.get("PostsLimit");
-        return {
-            posts: Post.find(Session.get("postsQuery"), 
-               {
-                 limit: limit,
-                 sort: {
-                   createdAt: -1
-                 }
-               }),
-            limit: limit
-        };
     }
 });
 Router.route('/upload', {

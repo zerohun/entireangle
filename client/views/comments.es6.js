@@ -37,7 +37,7 @@ Template.comments.helpers({
     return Comment.find({}).count() > 0;
   },
   "comments": function(){
-    if(!Router.current().ready())
+    if(!Router.current().ready() || !Router.current().data)
       return null;
     return Comment.find({
       postId: Router.current().data()._id
