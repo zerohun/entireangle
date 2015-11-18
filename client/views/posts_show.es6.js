@@ -5,6 +5,7 @@ let isInVRModeReact = new ReactiveVar(false);
 let isInDOModeReact = new ReactiveVar(false);
 let isInBALLModeReact = new ReactiveVar(false);
 let isInPlanetModeReact = new ReactiveVar(false);
+let isVRSupportedReact = new ReactiveVar(false);
 var post = null;
 var originalPosition = new THREE.Vector3();
 let leavingPageSrc; 
@@ -334,16 +335,7 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
             console.log(error);
         })
     });
-
-    if (vrDeviceInfo.type === "HMD") {
-        orb = OrbBuilders.createOrb(OrbBuilders.HMDControlOrbBuilder, material, container);
-    } else  {
-        //orb = OrbBuilders.createOrb(OrbBuilders.MobileControlOrbBuilder, material, container);
-        orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
-        $("#info").show();
-
-
-    }
+    orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
     console.log('orb render');
     orb.render();
     
@@ -424,7 +416,7 @@ function getDefaultControls(camera, element) {
 
 function disableVRMode(orb) {
     if (vrDeviceInfo.type === "MOBILE")
-        OrbBuilders.setOrb(OrbBuilders.MobileControlOrbBuilder, orb);
+        OrbBuilders.setOrb(OrbBuilders.NormalControlOrbBuilder, orb);
 
     orb.setFullScreen(false);
     isInVRModeReact.set(false);
@@ -433,15 +425,14 @@ function disableVRMode(orb) {
 }
 
 function enableVRMode(orb) {
-    if (vrDeviceInfo.type === "MOBILE")
-        OrbBuilders.setOrb(OrbBuilders.CardboardControlOrbBuilder, orb);
-
+    setViewType(ViewType.zoomIn, orb);
+    OrbBuilders.setOrb(OrbBuilders.HMDControlOrbBuilder, orb);
     orb.setFullScreen(true);
     isInDOModeReact.set(false);
     isInBALLModeReact.set(false);
     isInVRModeReact.set(true);
     isInPlanetModeReact.set(false);
-    setViewType(ViewType.zoomIn, orb);
+
 }
 
 function enablePlanetMode(orb){
@@ -719,8 +710,10 @@ const postsShowHelpers = {
         });
       else
         return false;
+    },
+    "isVRSupported": function(){
+      return isVRSupportedReact.get();
     }
-
 };
 
 Template.PostsShow.helpers(postsShowHelpers);
@@ -853,10 +846,6 @@ const postsShowEvents = {
 };
 Template.PostsShow.events(postsShowEvents);
 Template.PostsShowMobile.events(postsShowEvents);
-
-Template.PostsShow.toggleVRMode = ()=>{
-    toggleVRMode();
-};
 
 templatePostsShowRendered = function() {
 
@@ -1045,6 +1034,10 @@ templatePostsShowRendered = function() {
 
     }
   }
+
+  navigator.getVRDevices().then(function(myDevices) {
+    isVRSupportedReact.set(myDevices[0].deviceName.search("mouse") === -1);
+  });
 
   (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];

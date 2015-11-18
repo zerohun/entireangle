@@ -73,12 +73,13 @@ template(name='PostsShowMobile')
                   i.mdi-device-screen-rotation.black-text
               .col.s8.left-text.black-text
                 | Device Orientation
-          a#vr-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
-            .row(class=modeVRSelectedClass)
-              .col.s4.right-text
-                  i.mdi-action-visibility.black-text
-              .col.s8.left-text.black-text
-                | VR Mode
+          if isVRSupported
+            a#vr-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+              .row(class=modeVRSelectedClass)
+                .col.s4.right-text
+                    i.mdi-action-visibility.black-text
+                .col.s8.left-text.black-text
+                  | VR Mode
           
   #more-modal-mobile.modal.bottom-sheet.modal-opacity
     .modal-content

@@ -103,15 +103,26 @@ template(name='PostsShow')
     .modal-content
       ul
         li.more-menu-items
+
           a#ball-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
             .row(class=modeBALLSelectedClass)
               .col.s4.right-text
                   i.mdi-action-swap-vert-circle.black-text
               .col.s8.left-text.black-text
                 | Mirror Ball 
+
           a#planet-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
             .row(class=modePlanetSelectedClass)
               .col.s4.right-text
                   i.mdi-image-lens.black-text
               .col.s8.left-text.black-text
                 | Little Planet 
+
+          if isVRSupported
+            a#vr-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+              .row(class=modeVRSelectedClass)
+                .col.s4.right-text
+                    i.mdi-action-visibility.black-text
+                .col.s8.left-text.black-text
+                  | VR Mode
+
