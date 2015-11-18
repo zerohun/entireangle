@@ -1,11 +1,25 @@
 body {
   background-color: black;
   color: white;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+  -ms-user-select: none;
+  user-select: none; 
 
 }
 a:link, a:visited, a:hover, a:active{
   color: white;
   text-decoration: none;
+}
+
+#wrapping-container.desktop{
+  min-width: 1024px;
 }
 
 #loading-box{
@@ -404,7 +418,7 @@ a.shareit-google-colors{
     -webkit-animation: rotating 2s linear infinite;
 }
 .post-desk-font-size{
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .mobileFrame{

@@ -4,8 +4,10 @@ window.isLoggedIn = ()=>{
 
 Template.registerHelper("isLoggedIn", window.isLoggedIn);
 Template.registerHelper("shortenText", function(num,text){
-  return text.substr(0,num).concat('...'); 
-
+  if(text.length > num)
+    return text.substr(0,num).concat('...'); 
+  else
+    return text;
 });
 Template.registerHelper("isMobile", function(){return isMobile.phone});
 Template.registerHelper("isDesktop", function(){return !isMobile.phone});

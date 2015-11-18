@@ -43,7 +43,7 @@ template(name='post')
            .row.zero-margin-bottom
              .col.m12.l12.centered-text
                if title
-                 | {{title}}
+                 | {{shortenText 15 title}}
                else
                  | &nbsp;
 
@@ -60,6 +60,6 @@ template(name='post')
              tr
                td.text-outline
                  if $not hideUserThumbnail
-                   | {{user.username}}
+                   | {{shortenText 15 user.username}}
                  else
                    | &nbsp;
