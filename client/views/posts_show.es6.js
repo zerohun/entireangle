@@ -1053,7 +1053,6 @@ templatePostsShowRendered = function() {
 const templatePostsShowDestroyed = function(){
   photoOrb.dispose();
   $('body').css("overflow", 'scroll');
-  $('body').css
   delete photoOrb;
 
   const navHeight = $(".top-nav-bar").height();
@@ -1064,6 +1063,7 @@ const templatePostsShowDestroyed = function(){
     $("body").css('padding-top', navHeight + 20 + 'px');
 
 
+  clearInterval(resizeInterval);
   FView.byId("post-content").node.slideUp();
 };
 

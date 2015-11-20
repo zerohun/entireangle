@@ -490,3 +490,7 @@ a.shareit-google-colors{
 #edit-modal{
   max-width: 300px;
 }
+
+.profile-wrapper img{
+  max-width: 50px;
+}
