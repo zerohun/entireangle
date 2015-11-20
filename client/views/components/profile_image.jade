@@ -1,10 +1,13 @@
 template(name="profileImage")
   .profile-image.fill.circle
-    if uploadedProfileImageUrl
-      img.fill.circle(src="{{uploadedProfileImageUrl}}" width="300" height="300")
+    if externalImageUrl
+        img.fill.circle(src="{{externalImageUrl}}" width="300" height="300")
     else
-      if snsProfileImageUrl
-        img.circle(src="{{snsProfileImageUrl}}")
+      if uploadedProfileImageUrl
+        img.fill.circle(src="{{uploadedProfileImageUrl}}" width="300" height="300")
       else
-        span.username-profile.fill(style="color: {{textColor}}") 
-          | {{firstLetterOfUsername}}
+        if snsProfileImageUrl
+          img.circle(src="{{snsProfileImageUrl}}")
+        else
+          span.username-profile.fill(style="color: {{textColor}}") 
+            | {{firstLetterOfUsername}}

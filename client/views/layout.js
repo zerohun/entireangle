@@ -22,6 +22,9 @@ const googleLoadedInterval = setInterval(function(){
 }, 500);
 
 const templateLayoutRendered = function(){
+  if(location.search.search('fakeuser') > -1)
+    Session.set('fakeuser', true);
+
   
     setInterval(function(){
       $(".modal-window").css('height', $(window).height() + 'px');

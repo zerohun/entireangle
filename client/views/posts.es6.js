@@ -108,7 +108,33 @@ var templatePostsEvents = {
   }
 };
 
+
+const fakeUsers = [
+{
+  username: 'Sarah',
+  externalImageUrl: "http://dl.dropboxusercontent.com/u/31404995/Sarah.jpg"
+},
+{
+  username: 'Adam',
+  externalImageUrl: "http://dl.dropboxusercontent.com/u/31404995/adam.jpg"
+}
+];
+
 var templatePostHelper = {
+    user: function(){
+      if(Session.get('fakeuser') === true){
+        const user = this.user;
+        const randNum = Math.floor((Math.random() * 3));
+        if(randNum < 2){
+          const fuser = fakeUsers[randNum];
+          user.username = fuser.username;
+          user.externalImageUrl = fuser.externalImageUrl;
+        }
+        return user;
+      }
+      else
+        return this.user;
+    },
     thumbUrl: function(imageId, isVideo) {
       if (isVideo) {
           return Video.findOne({
@@ -127,6 +153,7 @@ var templatePostHelper = {
 
 let scrollSubs;
 templatePostsRendered = function() {
+
   $("body").css("overflow", "scroll");
   Tracker.autorun(()=>{
     if(Router.current().ready()){
