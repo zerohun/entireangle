@@ -10,7 +10,7 @@ function hideSlideDownNode(fNode){
 }
 
 function getTemplate(templateName){
-  return isMobile.any? templateName + "Mobile": templateName;
+  return isMobile.phone? templateName + "Mobile": templateName;
 }
 
 function forceLogin(afterLoginCallback){
