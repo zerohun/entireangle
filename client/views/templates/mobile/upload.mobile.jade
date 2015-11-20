@@ -13,13 +13,14 @@ template(name="uploadMobile")
       .row.tags-field.hide
         .input-field.col.s12
           +tagAutocomplete
-  .row
-    .col.s12.center-align
-      button.btn.btn-tiny.show-address-field.light-green.darken-4 Add address
-  .row.address-field.hide
-    .col.s12
-      .row
-        .input-field.col.s12
-          +addressForm
-            
+  if isGoogleLoaded
+    .row
+      .col.s12.center-align
+        button.btn.btn-tiny.show-address-field.light-green.darken-4 Add address
+    .row.address-field.hide
+      .col.s12
+        .row
+          .input-field.col.s12
+            +addressForm
+              
 

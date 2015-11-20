@@ -60,9 +60,10 @@ template(name="postContent")
                 else
                   .row
                     +afFieldInput  name="isPublished" type="switch" class="col l12 m12 s12" trueLabel="Published" falseLabel="Private"
-                .row 
-                  .col.input-field.m12.s12.l12
-                    +afQuickField name="address" type="googleplace" opts=optsGoogleplace 
+                if isGoogleLoaded
+                  .row 
+                    .col.input-field.m12.s12.l12
+                      +afQuickField name="address" type="googleplace" opts=optsGoogleplace 
                 .row
                   .tag-edit.input-field.col.l12.m12.s12
                     +tagAutocomplete

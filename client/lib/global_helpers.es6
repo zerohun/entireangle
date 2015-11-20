@@ -2,6 +2,9 @@ window.isLoggedIn = ()=>{
   return Meteor.user() && Meteor.user().isActivated != false;
 }
 
+Template.registerHelper("isGoogleLoaded", function(){
+  return Session.get("isGoogleLoaded");
+});
 Template.registerHelper("isLoggedIn", window.isLoggedIn);
 Template.registerHelper("shortenText", function(num,text){
   if(text.length > num)

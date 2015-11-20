@@ -12,6 +12,15 @@ if(isMobile.phone)
       content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
   });
 
+
+Session.set("isGoogleLoaded", false);
+const googleLoadedInterval = setInterval(function(){
+    if(typeof google !== "undefined"){
+      Session.set("isGoogleLoaded", true);
+      clearInterval(googleLoadedInterval);
+    }
+}, 500);
+
 const templateLayoutRendered = function(){
   
     setInterval(function(){
