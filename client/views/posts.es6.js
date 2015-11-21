@@ -117,6 +117,18 @@ const fakeUsers = [
 {
   username: 'Adam',
   externalImageUrl: "http://dl.dropboxusercontent.com/u/31404995/adam.jpg"
+},
+{
+  username: 'yh',
+  externalImageUrl: "http://dl.dropboxusercontent.com/u/31404995/1.jpg"
+},
+{
+  username: 'Young',
+  externalImageUrl: "http://dl.dropboxusercontent.com/u/31404995/3.jpg"
+},
+{
+  username: 'Turtle',
+  externalImageUrl: "http://dl.dropboxusercontent.com/u/31404995/2.jpg"
 }
 ];
 
@@ -124,8 +136,8 @@ var templatePostHelper = {
     user: function(){
       if(Session.get('fakeuser') === true){
         const user = this.user;
-        const randNum = Math.floor((Math.random() * 3));
-        if(randNum < 2){
+        const randNum = Math.floor((Math.random() * 6));
+        if(randNum < 5){
           const fuser = fakeUsers[randNum];
           user.username = fuser.username;
           user.externalImageUrl = fuser.externalImageUrl;

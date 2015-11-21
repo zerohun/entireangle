@@ -13,7 +13,7 @@ else{
 
 ShareIt.configure({
     iconOnly: true,
-    siteOrder: ['facebook', 'twitter', 'googleplus', 'instagram'],
+    siteOrder: ['facebook', 'twitter', 'googleplus'],
     sites: {
       'facebook': facebookConfig
     }

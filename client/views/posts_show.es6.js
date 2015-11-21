@@ -851,7 +851,7 @@ templatePostsShowRendered = function() {
 
   isInVRModeReact = new ReactiveVar(false);
   isInDOModeReact = new ReactiveVar(false);
-  isInBALLModeReact = new ReactiveVar(true);
+  isInBALLModeReact = new ReactiveVar(false);
   isInPlanetModeReact = new ReactiveVar(false);
 
   if(location.search.search("isUploading") > -1)
