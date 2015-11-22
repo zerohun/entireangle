@@ -62,3 +62,4 @@ manuelschoebel:wait-on-lib
 cfs:gridfs
 gadicohen:famous@=0.5.2
 reywood:iron-router-ga
+aramk:requirejs
