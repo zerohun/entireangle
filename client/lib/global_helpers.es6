@@ -2,6 +2,9 @@ window.isLoggedIn = ()=>{
   return Meteor.user() && Meteor.user().isActivated != false;
 }
 
+Template.registerHelper("isCordovaWebview", function(){
+  return navigator.userAgent.search("Entireangle") > -1;
+});
 Template.registerHelper("isGoogleLoaded", function(){
   return Session.get("isGoogleLoaded");
 });

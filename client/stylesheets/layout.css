@@ -499,3 +499,12 @@ a.shareit-google-colors{
   width: 20px !important;
   height: 20px !important;
 }
+
+.camera-button{
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  font-size: 15px;
+  height: 30px;
+  text-align: center;
+}

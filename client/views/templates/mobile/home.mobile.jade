@@ -3,3 +3,17 @@ template(name="homeMobile")
   .row
     .col.s12.centered-text
       a.btn(href="/posts") More
+
+  if isCameraButtonVisible 
+    .camera-button
+      if $eq cameraStatus "success"
+        button.btn.take-photo-button
+          i.material-icons camera
+      else
+        if $eq cameraStatus "in progress"
+          i.material-icons linked_camera
+          img(src="/images/loding.gif")
+        else
+          button.btn.connect-camera-button
+            i.material-icons linked_camera
+
