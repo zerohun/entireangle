@@ -5,7 +5,7 @@ Meta.config({
     }
 });
 
-if(isMobile.phone)
+if(isMobile.any)
   Meta.set({
       name: 'name',
       property: 'viewport',
