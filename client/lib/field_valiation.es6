@@ -5,13 +5,16 @@ const trimInput = (val) =>{
 window.validateEmailFieldonKeyDown = (cssSelector, msgKey) =>{
   Rx.Observable.fromEvent($(cssSelector), "keydown").
     subscribe(e => {
-      let value = trimInput($(cssSelector).val());
+      const val = $(cssSecetor).val();
+      if(val === "") return;
+      let value = trimInput(val);
       $(cssSelector).val(value);
     });
 };
 
 window.validateEmail = (cssSelector, msgKey) =>{
   const val = $(cssSelector).val();
+
   if(validator.isEmail(val)){
     Session.set(msgKey, "");
     return true;
