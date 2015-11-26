@@ -266,6 +266,7 @@ function onClickSavePreviewButton(){
     url = url.replace(/\?x=.+/, "");
   }
   url = url + "?" + $.param(position);
+  window.passModalCheck = true;
   Session.set("posts-show-url", url);
 
   photoOrb.onWindowResize();

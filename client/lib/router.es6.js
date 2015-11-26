@@ -52,7 +52,11 @@ Router.configure({
 
 Router.onBeforeAction(function() {
 
-    if(window.cancelLoginCallback){
+    if(window.passModalCheck){
+      window.passModalCheck = false;
+      this.next();
+    }
+    else if(window.cancelLoginCallback){
       window.cancelLoginCallback = null;
       if(window.afterLoginCallback)
         window.afterLoginCallback = null;
