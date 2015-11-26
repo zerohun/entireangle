@@ -1,4 +1,3 @@
-var container;
 var vrDeviceInfo;
 var vrButton;
 let isInVRModeReact = new ReactiveVar(false);
@@ -48,17 +47,6 @@ function setViewType(zoomType, orb){
   }
 }
 
-function enableControl(orb){
-  if(orb.controls.enable){
-    orb.controls.enable();
-  }
-}
-function disableControl(orb){
-  if(orb.controls.disable){
-    orb.controls.disable();
-  }
-}
-
 function turnEditingMode(onOfOff) {
   console.log('turnEdit');
   console.log(onOfOff? 'on':'off');
@@ -71,16 +59,6 @@ function turnEditingMode(onOfOff) {
     }
 }
 let clickedPublishButton = false;
-function closeModals(){
-    $(".modal").closeModal();
-    $(".lean-overlay").remove();
-    $(".hide-on-modal").show();
-    $(".arrow_box").removeClass("hide");
-
-    photoOrb.setState("running");
-    enableControl(photoOrb);
-}
-
 
 function setArrowBoxPosition(){
   const $editButton = $(".content-edit-button");
@@ -440,7 +418,7 @@ function enablePlanetMode(orb){
     isInDOModeReact.set(false);
     isInBALLModeReact.set(false);
     isInVRModeReact.set(false);
-    isInPlanetModeReact.set(true);
+    ifviewsInPlanetModeReact.set(true);
     setViewType(ViewType.littlePlanet, orb);
 }
 function enableDOMode(orb) {
@@ -500,7 +478,7 @@ function toggleDOMode(orb) {
 }
 
 function getPostsInfo(){
-  if(!Router.current().ready())
+  if(!Router.current().ready() && Router.current().data)
     return {
       postIds: [],
       postId: null,
@@ -556,14 +534,14 @@ function savePosition(){
 
 const postsShowHelpers = {
     "post": function(){
-      return Rounter.current().data(); 
+      return Router.current().data(); 
     },
     "isHMDDevice": function(){
       vrDeviceInfo = getVRDeviceInfo();
       return vrDeviceInfo.type === "HMD";
     },
     "numberOfComments": function(){
-      if(Router.current().ready())
+      if(Router.current().ready() && Router.current().data)
         return Comment.find({postId: Router.current().data()._id}).count();
       else
         return 0;
@@ -615,7 +593,7 @@ const postsShowHelpers = {
       return (location.search.search("isUploading=1") > -1);
     },
     "isArrowVisible": function(){
-      if(Router.current().ready())
+      if(Router.current().ready() && Router.current().data)
         return (location.search.search("isUploading=1") > -1) && !(Router.current().data().isPublished);
       else
         return false;
@@ -703,7 +681,7 @@ const postsShowHelpers = {
         return "<iframe width='560' height='315' src='" + address + "' frameborder='0' allowfullscreen></iframe>";
     },
     "didILikeIt": function(){
-      if(Router.current().ready())
+      if(Router.current().ready() && Router.current().data)
         return Like.findOne({
           userId: Meteor.userId(),
           postId: Router.current().data()._id
@@ -915,14 +893,14 @@ templatePostsShowRendered = function() {
       $(".hide-on-modal").hide();
       $(".arrow_box").addClass("hide");
       photoOrb.setState("stop")
-      disableControl(photoOrb);
+      photoOrb.disableControl();
 
     },
     complete: function(){
       $(".hide-on-modal").show();
       $(".arrow_box").removeClass("hide");
       photoOrb.setState("running");
-      enableControl(photoOrb);
+      photoOrb.enableControl();
     }
   });
   $('body').css("overflow", 'hidden');
@@ -989,7 +967,7 @@ templatePostsShowRendered = function() {
     }
   });
   Tracker.autorun(function(c){
-    if(Router.current().ready()){
+    if(Router.current().ready() && Router.current().data){
       const params = Router.current().params.query;
       const post = Router.current().data();
 

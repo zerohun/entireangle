@@ -18,6 +18,10 @@ a:link, a:visited, a:hover, a:active{
   text-decoration: none;
 }
 
+.modal{
+  opacity: 0;
+}
+
 #wrapping-container.desktop{
   min-width: 1024px;
 }

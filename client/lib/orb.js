@@ -71,6 +71,16 @@ window.Orb = function(reqiredParams, options) {
       this.material = material; 
       this.mesh.material = material;
     };
+    this.enableControl = function(){
+      if(this.controls.enable){
+        this.controls.enable();
+      }
+    };
+    this.disableControl = function(){
+      if(this.controls.disable){
+        this.controls.disable();
+      }
+    };
     function init() {
 
       console.log('orb init');
@@ -145,4 +155,5 @@ window.Orb = function(reqiredParams, options) {
     this.reRender = function(){
       self.renderable.render(this.scene, camera);
     }
+    window.Orb.oneInstance = this;
 };

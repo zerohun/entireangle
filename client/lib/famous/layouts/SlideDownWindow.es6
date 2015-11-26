@@ -22,6 +22,7 @@ class SlideDownWindow extends SlideWindow {
   slideDown(){
     $(".hide-on-modal").hide();
     super.slideDown();
+    this._isVisible = true;
   }
   slideUp(){
     $(".hide-on-modal").show();
@@ -29,6 +30,7 @@ class SlideDownWindow extends SlideWindow {
     this.slideUpFuncs.forEach((f)=>{
       f();
     });
+    this._isVisible = false;
   }
   onSlideUpOnce(func){
     this.slideUpFuncs.push(func);

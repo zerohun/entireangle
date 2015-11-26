@@ -42,3 +42,45 @@ window.unveilOrHide = function(){
   }, 100);
 };
 
+window.closeModals = function(){
+    let result = false;
+    const $modals = $(".modal");
+    for(var i=0; i < $modals.length; i++){
+      if($($modals[i]).css("opacity") === "1"){
+        result = true;
+      }
+    }
+    $(".modal").closeModal();
+    $(".lean-overlay").remove();
+    $(".hide-on-modal").show();
+    $(".arrow_box").removeClass("hide");
+
+    if(Orb.oneInstance){
+      Orb.oneInstance.setState("running");
+      Orb.oneInstance.enableControl();
+    }
+    return result;
+}
+
+window.closeAllWindowAndModal = function(){
+  let result = false;
+  const windowIdList = [
+    "login-form",
+    "register-form",
+    "forgot-password",
+    "reset-form",
+    "post-content"
+  ];
+
+  windowIdList.forEach((id)=>{
+    const fview = FView.byId(id);
+    if(!fview) return;
+    const node = fview.node;
+    if(node.isVisible()) {
+      result = true;
+      node.slideUp(); 
+    }
+  });
+  result = result || closeModals();
+  return result;
+}

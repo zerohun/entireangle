@@ -22,6 +22,10 @@ Template.login.events(
   },
   'click #close-login-button': () =>{
     FView.byId("login-form").node.slideUp(); 
+    if(window.cancelLoginCallback){ 
+      window.cancelLoginCallback();
+      window.cancelLoginCallback = null;
+    }
   },
   'click .login-with-facebook': ()=>{
     Meteor.loginWithFacebook({
@@ -59,6 +63,10 @@ Template.login.events(
             setTimeout(function(){
               Session.set("login-msg", "");
               FView.byId("login-form").node.slideUp(); 
+              if(window.afterLoginCallback){
+                window.afterLoginCallback();
+                window.afterLoginCallback = null;
+              }
             }, 1000);
               // The user has been logged in.
           }

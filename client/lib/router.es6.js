@@ -14,17 +14,21 @@ function getTemplate(templateName){
 }
 
 function forceLogin(afterLoginCallback){
+
   if(!Meteor.user()){
+    window.afterLoginCallback = afterLoginCallback;
+    window.cancelLoginCallback = function(){
+      window.history.go(-1);
+    }
     try{
       Materialize.toast('You need to login to upload images', 1000);
       FView.byId("login-form").node.slideDown();
-      Router.go("/");
     }
     catch(e){
       setTimeout(function(){
         FView.byId("loading-box").node.hide();              
         FView.byId("login-form").node.slideDown();
-        Router.go("Posts");
+        //Router.go("Posts");
       }, 1000);
     }
   }
@@ -45,14 +49,28 @@ Router.configure({
     layoutTemplate: getTemplate("layout"), 
     trackPageView: true
 });
+
 Router.onBeforeAction(function() {
 
-    var $ele = $("#orb-player");
-    if ($ele.count > 0)
-        $ele.remove();
+    if(window.cancelLoginCallback){
+      window.cancelLoginCallback = null;
+      if(window.afterLoginCallback)
+        window.afterLoginCallback = null;
+      closeAllWindowAndModal();
+      this.next();
+    }
+    else if(closeAllWindowAndModal()){
+      window.history.go(1);
+    }
+    else{
+      var $ele = $("#orb-player");
+      if ($ele.count > 0)
+          $ele.remove();
 
-    //$(".lean-overlay").remove();
-    this.next();
+      //$(".lean-overlay").remove();
+
+      this.next();
+    }
 });
 Router.route('/', {
     name: "home",

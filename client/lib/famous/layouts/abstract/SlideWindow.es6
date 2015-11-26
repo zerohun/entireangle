@@ -4,6 +4,7 @@ class SlideWindow extends Node {
   constructor(){
     super();
     this.onSizeChangeFuncs = [];
+    this._isVisible = false;
     Rx.Observable.fromEvent($(window), "resize").
       subscribe(()=>{
         this.resize();
@@ -43,6 +44,9 @@ class SlideWindow extends Node {
         func({width: this.width, height:this.height});
       });
     }
+  }
+  isVisible(){
+    return this._isVisible;
   }
   onWindowSizeChange(func){
     this.onSizeChangeFuncs.push(func);
