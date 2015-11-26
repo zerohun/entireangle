@@ -266,7 +266,6 @@ function onClickSavePreviewButton(){
     url = url.replace(/\?x=.+/, "");
   }
   url = url + "?" + $.param(position);
-  window.passModalCheck = true;
   Session.set("posts-show-url", url);
 
   photoOrb.onWindowResize();
@@ -708,8 +707,8 @@ const postsShowEvents = {
     });
   },
   "click .share-button": function(e){
-    onClickSavePreviewButton();
     e.preventDefault();
+    onClickSavePreviewButton();
     return false;
   },
   "click .zoom-in-btn": function(e){

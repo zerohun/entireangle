@@ -50,21 +50,25 @@ Router.configure({
     trackPageView: true
 });
 
+let prevUrl;
 Router.onBeforeAction(function() {
-
-    if(window.passModalCheck){
-      window.passModalCheck = false;
-      this.next();
-    }
-    else if(window.cancelLoginCallback){
+    if(window.cancelLoginCallback){
       window.cancelLoginCallback = null;
       if(window.afterLoginCallback)
         window.afterLoginCallback = null;
       closeAllWindowAndModal();
+      prevUrl = Router.current().url;
       this.next();
     }
-    else if(closeAllWindowAndModal()){
-      window.history.go(1);
+    else if(areThereOpendWindows()){
+      if(prevUrl !== Router.current().url){
+        closeAllWindowAndModal();
+        window.history.go(1);
+      }
+      else{
+        console.log('same loc');
+        this.next();
+      }
     }
     else{
       var $ele = $("#orb-player");
@@ -73,8 +77,10 @@ Router.onBeforeAction(function() {
 
       //$(".lean-overlay").remove();
 
+      prevUrl = Router.current().url;
       this.next();
     }
+
 });
 Router.route('/', {
     name: "home",
@@ -199,6 +205,7 @@ Router.route('/posts/:_id', {
         return post;
     },
     action: function(){
+
       if(this.data() && this.data().imageId){
         Session.set("showingImageId", 
             this.data().imageId);
