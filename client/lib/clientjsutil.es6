@@ -43,6 +43,7 @@ window.unveilOrHide = function(){
 };
 
 window.closeModals = function(){
+  if(areThereOpendMaterialModals()){
     $(".modal").closeModal();
     $(".lean-overlay").remove();
     $(".hide-on-modal").show();
@@ -52,6 +53,7 @@ window.closeModals = function(){
       Orb.oneInstance.setState("running");
       Orb.oneInstance.enableControl();
     }
+  }
 }
 const windowIdList = [
   "login-form",
@@ -61,8 +63,7 @@ const windowIdList = [
   "post-content"
 ];
 
-
-window.areThereOpendWindows = function(){
+function areThereOpendFViewWindow(){
   let result = false;
   windowIdList.forEach((id)=>{
     const fview = FView.byId(id);
@@ -73,14 +74,21 @@ window.areThereOpendWindows = function(){
       return;
     }
   });
+  return result;
+}
 
-  if(result) return true;
+function areThereOpendMaterialModals(){
   const $modals = $(".modal");
   for(var i=0; i < $modals.length; i++){
     if($($modals[i]).css("opacity") === "1")
       return true;
   }
   return false;
+}
+
+window.areThereOpendWindows = function(){
+  return areThereOpendFViewWindow() || 
+    areThereOpendMaterialModals();
 }
 window.closeAllWindowAndModal = function(){
   windowIdList.forEach((id)=>{

@@ -16,8 +16,8 @@ class SlideDownWindow extends SlideWindow {
   }
   downPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 
-    const navbarHeight = 25;
-    return [centerPoint.x, navbarHeight, 1000];
+    const windowTop = $(window).scrollTop() + 20;
+    return [centerPoint.x, windowTop, 1000];
   }
   slideDown(){
     $(".hide-on-modal").hide();

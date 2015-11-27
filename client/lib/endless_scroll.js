@@ -25,7 +25,7 @@ window.enableEndlessScroll =  function(limitSessionKey, pCollection){
         var limit = Session.get(limitSessionKey); 
         if (pCollection.find().count() >= limit)
           FView.byId("loading-box").node.show();
-          Session.set(limitSessionKey, limit + 10);
+          Session.set(limitSessionKey, limit + 40);
     });
 
     var pushstateSub = Rx.Observable.fromEvent(window, 'popstate').
