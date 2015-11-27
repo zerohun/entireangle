@@ -16,13 +16,15 @@ class SlideDownWindow extends SlideWindow {
   }
   downPosition(){
     const centerPoint = SlideWindow.getCenterPoint(); 
-    const navbarHeight = $(".top-nav-bar").height();
+    const navbarHeight = 25;
     return [centerPoint.x, navbarHeight, 1000];
   }
   slideDown(){
     $(".hide-on-modal").hide();
     super.slideDown();
-    this._isVisible = true;
+    setTimeout(()=>{
+      this._isVisible = true;
+    }, 500);
   }
   slideUp(){
     $(".hide-on-modal").show();
@@ -30,7 +32,9 @@ class SlideDownWindow extends SlideWindow {
     this.slideUpFuncs.forEach((f)=>{
       f();
     });
-    this._isVisible = false;
+    setTimeout(()=>{
+      this._isVisible = false;
+    }, 500);
   }
   onSlideUpOnce(func){
     this.slideUpFuncs.push(func);

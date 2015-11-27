@@ -1,4 +1,12 @@
 const templateHeaderEvents = {
+  "click .header-bar": (e)=>{
+    if(areThereOpendWindows()){
+      closeAllWindowAndModal();
+      e.preventDefault();
+      return false;
+    }
+    return true;
+  },
   "click .account-button": ()=>{
       FView.byId("login-form").node.slideDown();
   }, 
