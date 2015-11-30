@@ -418,7 +418,7 @@ function enablePlanetMode(orb){
     isInDOModeReact.set(false);
     isInBALLModeReact.set(false);
     isInVRModeReact.set(false);
-    ifviewsInPlanetModeReact.set(true);
+    isInPlanetModeReact.set(true);
     setViewType(ViewType.littlePlanet, orb);
 }
 function enableDOMode(orb) {
