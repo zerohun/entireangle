@@ -819,6 +819,20 @@ const postsShowEvents = {
   "click a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)": function(){
       FView.byId("loading-box").node.show();
   },
+  "click #vr-slide-show-start-button": function(){
+    enableVRMode(photoOrb);
+    closeModals();
+    const interval = setInterval(()=>{
+      const res = getPostsInfo();
+      if(!res) clearInterval(interval); 
+      if(res.postIds[res.index + 1]){
+        Router.go(getUrlOfPostIndex(res.postIds[res.index+1], res.postIds));
+      }
+      else{
+        clearInterval(interval);
+      }
+    }, 5000);
+  },
   "click #position-save-button": savePosition, 
   "click #save-preview-button": onClickSavePreviewButton
 };
