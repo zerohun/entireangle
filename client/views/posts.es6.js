@@ -169,8 +169,6 @@ templatePostsRendered = function() {
   $("body").css("overflow", "scroll");
   Tracker.autorun(()=>{
     if(Router.current().ready()){
-      console.log('autorun');
-      FView.byId("loading-box").node.hide();
       setTimeout(unveilOrHide(),500);
     }
   });

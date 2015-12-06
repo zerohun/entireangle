@@ -24,7 +24,6 @@ window.enableEndlessScroll =  function(limitSessionKey, pCollection){
     var scrollEventSub = scrollEventSrc.subscribe(function(e) {
         var limit = Session.get(limitSessionKey); 
         if (pCollection.find().count() >= limit)
-          FView.byId("loading-box").node.show();
           Session.set(limitSessionKey, limit + 40);
     });
 

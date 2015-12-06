@@ -4,6 +4,17 @@ Meteor.subscribe("albums", 100, {});
 Meteor.subscribe("notifications", 10);
 Meteor.subscribe("users");
 
+
+function showAndHideLoading(router){
+  const loadingView = FView.byId('loading-box');
+  if(router.ready()){
+    if(loadingView) loadingView.node.hide();
+  }
+  else if(!this._rendered){
+    if(loadingView) loadingView.node.show();
+  }
+}
+
 function hideSlideDownNode(fNode){
     fNode.hide();
     fNode.slideDown();
@@ -37,9 +48,9 @@ function forceLogin(afterLoginCallback){
   }
 }
 
-Session.set("PostsLimit", 10);
-Session.set("UserPostsLimit", 10);
-Session.set("StoriesLimit", 10);
+Session.set("PostsLimit", 30);
+Session.set("UserPostsLimit", 30);
+Session.set("StoriesLimit", 30);
 Session.set("isVideo", false);
 Session.set('posts-show-url', "");
 Session.set("myPagePostsQuery", {isPublished: false});
@@ -109,6 +120,10 @@ Router.route('/posts', {
         return Meteor.subscribe("posts", 
             Session.get("PostsLimit"), 
             Session.get("postsQuery"));
+    },
+    action: function(){
+      showAndHideLoading(this);
+      this.render(getTemplate('PostList'));
     }
 });
 Router.route('/upload', {
@@ -244,6 +259,10 @@ Router.route('/users/:_id', {
           Meteor.subscribe("userlikes", this.params._id),
           Meteor.subscribe("posts", Session.get('UserPostsLimit'), Session.get("postsQuery"))
       ];
+    },
+    action: function(){
+      showAndHideLoading(this);
+      this.render(getTemplate('UsersShow'));
     }
 });
 
@@ -288,6 +307,10 @@ Router.route("/mypage", {
         Meteor.subscribe("users"),
         Meteor.subscribe("myPosts", Session.get('PostsLimit'), Session.get("postsQuery"))
     ];
+  },
+  action: function(){
+    showAndHideLoading(this);
+    this.render(getTemplate('mypage'));
   }
 });
 

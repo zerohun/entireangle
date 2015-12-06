@@ -106,12 +106,12 @@ Template.mypageMobile.helpers(mypageHelpers);
 Template.mypageMobile.events(mypageEvents);
 
 Template.mypageMobile.rendered = function(){
+  $("body").css("overflow", "scroll");
   Session.set('PostsLimit', 10);
   Session.set("postsQuery", {
     isPublished: false
   });
 
-  FView.byId("loading-box").node.hide();
   Meteor.call("getMyPostsCountByTags", function(err, postsCount){
     postsCountByTagsReact.set(postsCount);
   });
@@ -132,14 +132,15 @@ Template.mypageMobile.rendered = function(){
       $(".hide-on-modal").show();
     }
   });
-  Tracker.autorun(()=>{
+  Tracker.autorun((computation)=>{
     if(Router.current().ready()){
-      FView.byId("loading-box").node.hide();
       setTimeout(unveilOrHide(),500);
+      computation.stop();
     }
   });
   unveilOrHide();
   scrollSubs = scrollObs.subscribe(unveilOrHide);
+  FView.byId("loading-box").node.hide();
 };
 templateMypageDestroyed = function(){
   scrollSubs.dispose();

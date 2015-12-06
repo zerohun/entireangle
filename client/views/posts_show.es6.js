@@ -240,7 +240,6 @@ function enableHorizontalSwipe(){
   const popStateSub = Rx.Observable.fromEvent(window, "popstate").
                         subscribe(()=>{
                           popStateSub.dispose();
-                          FView.byId("loading-box").node.show();
                         });
 
 }
@@ -831,7 +830,7 @@ const postsShowEvents = {
       else{
         clearInterval(interval);
       }
-    }, 5000);
+    }, 10000);
   },
   "click #position-save-button": savePosition, 
   "click #save-preview-button": onClickSavePreviewButton
@@ -857,7 +856,6 @@ templatePostsShowRendered = function() {
                         Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)"), "click"),
                         Rx.Observable.fromEvent($("button.page-change"), "click"));
   const leavingPageSub = leavingPageSrc.subscribe(()=>{
-    FView.byId("loading-box").node.show();
     leavingPageSub.dispose();
   });
 
