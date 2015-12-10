@@ -80,7 +80,7 @@ function areThereOpendFViewWindow(){
 function areThereOpendMaterialModals(){
   const $modals = $(".modal");
   for(var i=0; i < $modals.length; i++){
-    if(Number($($modals[i]).css("opacity")) > 0.0)
+    if(Number($($modals[i]).css("opacity")) == 1.0)
       return true;
   }
   return false;

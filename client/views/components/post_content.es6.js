@@ -107,6 +107,7 @@ const templatePostsContentEvents = Object.assign({
 Template.postContent.helpers(templatePostsContentHelpers);
 Template.postContent.events(templatePostsContentEvents);
 Template.postContent.rendered = function(){
+  turnEditingMode(false);
   let clickedPublishButton = false;
   setInterval(()=>{
     const modalLeft = $("#postContent .content").offset().left - ($(".top-modal-btn").width()/4);

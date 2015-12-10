@@ -96,15 +96,15 @@ var templatePostsEvents = {
   "click #image-list": function() {
       console.log('imagelist helers');
       Session.set('isVideo', false);
-      Session.set('PostsLimit', 10);
+      Session.set('PostsLimit', 30);
   },
   "click #video-list": function() {
       Session.set('isVideo', true);
-      Session.set('PostsLimit', 10);
+      Session.set('PostsLimit', 30);
   },
   "click .user-link": function(){
       console.log('click -userlinke');
-      Session.set('UserPostsLimit', 10);
+      Session.set('UserPostsLimit', 30);
   }
 };
 

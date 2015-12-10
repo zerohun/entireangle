@@ -1041,6 +1041,7 @@ templatePostsShowRendered = function() {
 }
 
 const templatePostsShowDestroyed = function(){
+  closeAllWindowAndModal();
   photoOrb.dispose();
   $('body').css("overflow", 'scroll');
   delete photoOrb;

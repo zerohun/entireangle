@@ -143,6 +143,7 @@ Template.mypageMobile.rendered = function(){
   FView.byId("loading-box").node.hide();
 };
 templateMypageDestroyed = function(){
+  closeAllWindowAndModal();
   scrollSubs.dispose();
 };
 Template.mypageMobile.onDestroyed(templateMypageDestroyed);

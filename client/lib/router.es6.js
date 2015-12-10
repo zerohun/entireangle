@@ -63,34 +63,13 @@ Router.configure({
 
 let prevUrl;
 Router.onBeforeAction(function() {
-    if(window.cancelLoginCallback){
-      window.cancelLoginCallback = null;
-      if(window.afterLoginCallback)
-        window.afterLoginCallback = null;
-      closeAllWindowAndModal();
-      prevUrl = Router.current().url;
-      this.next();
-    }
-    else if(areThereOpendWindows()){
-      if(prevUrl !== Router.current().url){
-        closeAllWindowAndModal();
-        window.history.go(1);
-      }
-      else{
-        console.log('same loc');
-        this.next();
-      }
-    }
-    else{
-      var $ele = $("#orb-player");
-      if ($ele.count > 0)
-          $ele.remove();
 
-      //$(".lean-overlay").remove();
+    var $ele = $("#orb-player");
+    if ($ele.count > 0)
+        $ele.remove();
 
-      prevUrl = Router.current().url;
-      this.next();
-    }
+    //$(".lean-overlay").remove();
+    this.next();
 
 });
 Router.route('/', {
@@ -333,7 +312,7 @@ Router.route("/mytags/:_id", {
     }
   },
   subscriptions: function(){
-    Session.set('UserPostsLimt', 10);
+    Session.set('UserPostsLimt', 30);
     Session.set('postsQuery', {
       albumIds: {
         $in: [this.params._id]
