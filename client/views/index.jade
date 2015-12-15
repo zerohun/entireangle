@@ -1,6 +1,7 @@
 body
   script(type="text/javascript")
     | function initMap(){ }
+  script(type="text/javascript", src="https://sdk.altvr.com/libs/altspace.js/latest/altspace.min.js", defer)
   script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2iyiluxtd-IHmoe-OaQTVY2l7h8dfbuA&libraries=places&callback=initMap" defer)
   if isMobile
     +headerMobile

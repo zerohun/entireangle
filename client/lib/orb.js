@@ -47,7 +47,7 @@ window.Orb = function(reqiredParams, options) {
     this.registerWindowResizeListener = function() {
         window.addEventListener('resize', onWindowResize, false);
     };
-    
+
     this.setState = function(state){
       const oldState = this.state;
       self.state = state;
@@ -68,7 +68,7 @@ window.Orb = function(reqiredParams, options) {
     };
 
     this.setMaterial = function(material){
-      this.material = material; 
+      this.material = material;
       this.mesh.material = material;
     };
     this.enableControl = function(){
@@ -104,7 +104,8 @@ window.Orb = function(reqiredParams, options) {
 
     function refreshScene(){
         self.scene = new THREE.Scene();
-        self.scene.add(camera);
+        if(camera)
+          self.scene.add(camera);
         self.scene.add(self.mesh);
     }
 
@@ -119,8 +120,10 @@ window.Orb = function(reqiredParams, options) {
 
     function onWindowResize() {
         var containersize = getSize(container);
-        camera.aspect = containersize.width / containersize.height;
-        camera.updateProjectionMatrix();
+        if(camera){
+          camera.aspect = containersize.width / containersize.height;
+          camera.updateProjectionMatrix();
+        }
         renderable.setSize(containersize.width, containersize.height);
     }
     this.onWindowResize = onWindowResize;
@@ -143,10 +146,14 @@ window.Orb = function(reqiredParams, options) {
         //        console.log(controls);
         onWindowResize();
         //		camera.updateProjectionMatrix();
-        self.controls.update(dt);
+        if(controls)
+          self.controls.update(dt);
         //				camera.position.copy( camera.target ).negate();
-        self.renderable.render(self.scene, camera);
-        
+        if(camera)
+          self.renderable.render(self.scene, camera);
+        else
+          self.renderer.render(self.scene);
+
         if(self.afterRenderCallbacks.length > 0){
           self.afterRenderCallbacks[0](self);
           self.afterRenderCallbacks.shift();

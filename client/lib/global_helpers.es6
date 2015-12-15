@@ -5,10 +5,13 @@ window.isLoggedIn = ()=>{
 Template.registerHelper("isGoogleLoaded", function(){
   return Session.get("isGoogleLoaded");
 });
+Template.registerHelper("isOnAltVR", function(){
+  return navigator.userAgent.search("AltspaceVR") > -1;
+});
 Template.registerHelper("isLoggedIn", window.isLoggedIn);
 Template.registerHelper("shortenText", function(num,text){
   if(text.length > num)
-    return text.substr(0,num).concat('...'); 
+    return text.substr(0,num).concat('...');
   else
     return text;
 });

@@ -7,7 +7,7 @@ let isInPlanetModeReact = new ReactiveVar(false);
 let isVRSupportedReact = new ReactiveVar(false);
 var post = null;
 var originalPosition = new THREE.Vector3();
-let leavingPageSrc; 
+let leavingPageSrc;
 let resizeInterval;
 let isPreviewRendered;
 let previewOrb, photoOrb;
@@ -27,6 +27,7 @@ ViewType.zoomIn = Symbol("ZOOM-IN");
 ViewType.littlePlanet = Symbol("LITTLE-PLANET");
 
 function setViewType(zoomType, orb){
+  if(!orb.camera || !orb.controls) return;
   if(zoomType === ViewType.ball){
     orb.camera.fov = 80;
     orb.controls.object.position.x = -500;
@@ -64,8 +65,8 @@ function setArrowBoxPosition(){
   const $editButton = $(".content-edit-button");
   if($editButton.length > 0){
     const editButtonPosition = $editButton.position();
-    const editBtnWidth = $editButton.width(); 
-    const editBtnHeight = $editButton.height(); 
+    const editBtnWidth = $editButton.width();
+    const editBtnHeight = $editButton.height();
     const $arrowBox = $(".arrow_box");
     if(isMobile.phone){
       $arrowBox.css({
@@ -108,7 +109,7 @@ function enableHorizontalSwipe(){
   const windowHeight = $(window).height();
 
   let verticalSwipeObs, horizontalSwipeObs, verticalUpSwipeObs, verticalDownSwipeObs;
-  let verticalObserverFunc, verticalUpCompleteFunc, verticalDownCompleteFunc, 
+  let verticalObserverFunc, verticalUpCompleteFunc, verticalDownCompleteFunc,
       horizontalObserverFunc, horizontalCompleteFunc;
   let verticalSubs, horizontalSubs;
 
@@ -158,7 +159,7 @@ function enableHorizontalSwipe(){
     //takeUntil(Rx.Observable.fromEvent(body, "touchend")).
     //filter(eventPair =>{
       //const swipeDirection = getSwipingDirection(eventPair);
-      //return (swipeDirection === SwipingDirection.UP || 
+      //return (swipeDirection === SwipingDirection.UP ||
               //swipeDirection === SwipingDirection.DOWN);
     //}).takeUntil(horizontalSwipeObs);
 
@@ -208,7 +209,7 @@ function enableHorizontalSwipe(){
             var prevPoint = intersects[0].point;
             var prevHorizontalPoint = new THREE.Vector3(prevPoint.x, 0, prevPoint.z);
 
-            var angle =  -Math.acos( horizontalPoint.dot(prevHorizontalPoint) / horizontalPoint.length() / prevHorizontalPoint.length() ); 
+            var angle =  -Math.acos( horizontalPoint.dot(prevHorizontalPoint) / horizontalPoint.length() / prevHorizontalPoint.length() );
             var axis = horizontalPoint.cross(prevHorizontalPoint).normalize();
             if(angle !== 0 && (axis.x !== 0 || axis.y !== 0 || axis.z !== 0 )){
                 var rotQuat = new THREE.Quaternion();
@@ -271,7 +272,7 @@ function onClickSavePreviewButton(){
   photoOrb.reRender();
   photoOrb.afterRender(()=>{
     setTimeout(function() {
-      saveCanvasSnapshotToImageStore("#container canvas", "snsThumbs", 
+      saveCanvasSnapshotToImageStore("#container canvas", "snsThumbs",
       {centerCrop: false},
       ()=> {
         FView.byId("loading-box").node.hide();
@@ -301,7 +302,7 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
     var SLIDE_UP_HANDLE_SIZE = famous.customLayouts.SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE;
 
     vrDeviceInfo = getVRDeviceInfo();
-    
+
     container = $(cssSelector)[0];
 
     console.log("loading material");
@@ -310,15 +311,17 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
         }, $.noop,function(error) {
             console.log('error while loading texture - ');
             console.log(error);
+            alert(error);
+            alert(error.message);
         })
     });
     if(navigator.userAgent.search("AltspaceVR") > -1)
-      orb = OrbBuilders.create(OrbBuilders.createAltspaceVRContorlOrbBuilder(material, container));
+      orb = OrbBuilders.createOrb(OrbBuilders.AltspaceVRContorlOrbBuilder, material, container);
     else
       orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
     console.log('orb render');
     orb.render();
-    
+
     if (vrDeviceInfo.type === "MOBILE"){
 
         $(window).scrollTop(0);
@@ -347,18 +350,19 @@ function getSwipingDirection(eventPair){
 }
 
 function observeViewPosition(orb, callbackFunc) {
+    if(!orb.controls) return;
     originalPosition.copy(orb.controls.object.position);
 
     var positionCheckSrc = Rx.Observable.
     interval(100).
     takeUntil(leavingPageSrc);
-    
+
     var positionCheckSub = positionCheckSrc.subscribe(function() {
         var currentPosition = orb.controls.object.position;
         if (originalPosition.x != currentPosition.x ||
             originalPosition.y != currentPosition.y ||
             originalPosition.z != currentPosition.z) {
-        
+
             callbackFunc();
             positionCheckSub.dispose();
         }
@@ -488,19 +492,19 @@ function getPostsInfo(){
     }
 
   let postIds;
-  
+
   if(location.search.search("isUploading=1") > -1)
-    postIds = Session.get("uploadingPostIds"); 
+    postIds = Session.get("uploadingPostIds");
   else
-    postIds = Session.get("postIds"); 
-  
+    postIds = Session.get("postIds");
+
   if(!postIds) return null;
   const postId = Router.current().data()._id;
   const index = postIds.indexOf(postId);
 
   if(postIds.length <= 1 || !postId || index === -1)
     return null;
-  
+
   return {
     postIds: postIds,
     postId: postId,
@@ -520,8 +524,8 @@ function savePosition(){
   FView.byId("loading-box").node.show();
   post = getCurrentPost();
   Meteor.call("updatePostViewPosition", post, photoOrb.controls.object.position);
-  
-  saveCanvasSnapshotToImageStore($("#container canvas"), "thumbs", 
+
+  saveCanvasSnapshotToImageStore($("#container canvas"), "thumbs",
   {centerCrop: true},
   ()=> {
     FView.byId("loading-box").node.hide();
@@ -536,7 +540,7 @@ function savePosition(){
 
 const postsShowHelpers = {
     "post": function(){
-      return Router.current().data(); 
+      return Router.current().data();
     },
     "isHMDDevice": function(){
       vrDeviceInfo = getVRDeviceInfo();
@@ -563,7 +567,7 @@ const postsShowHelpers = {
 
       }
       if(image && image.isUploaded())
-        return image.url({store: 'thumbs'}); 
+        return image.url({store: 'thumbs'});
       else
         return "/images/loading.gif";
     },
@@ -607,7 +611,7 @@ const postsShowHelpers = {
       return (location.search.search("isUploading=1") > -1) && Post.find().count() > 5;
     },
     "forcusedPosts": function(){
-      const postIds = Session.get("uploadingPostIds"); 
+      const postIds = Session.get("uploadingPostIds");
       if(!postIds) return null;
       const posts = Post.find({
         _id: {
@@ -620,7 +624,7 @@ const postsShowHelpers = {
       }).fetch().sort((a,b) => postIds.indexOf(a._id) > postIds.indexOf(b._id));;
       const currentPostId = Router.current().data()._id;
       const post = posts.filter((p)=> currentPostId === p._id)[0];
-      const currentIndex = posts.indexOf(post); 
+      const currentIndex = posts.indexOf(post);
       let lastIndex = Math.min(posts.length, currentIndex + 4);
       let startIndex = lastIndex - 6;
       if(startIndex < 0){
@@ -630,7 +634,7 @@ const postsShowHelpers = {
       return posts.slice(startIndex, lastIndex);
     },
     "posts": function(){
-      const postIds = Session.get("uploadingPostIds"); 
+      const postIds = Session.get("uploadingPostIds");
       if(!postIds) return null;
       return Post.find({
         _id: {
@@ -785,7 +789,7 @@ const postsShowEvents = {
   "click #container": function() {
       if (isInVRModeReact.get()) {
         enableBALLMode(photoOrb);
-        
+
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.msExitFullscreen) {
@@ -826,7 +830,7 @@ const postsShowEvents = {
     closeModals();
     const interval = setInterval(()=>{
       const res = getPostsInfo();
-      if(!res) clearInterval(interval); 
+      if(!res) clearInterval(interval);
       if(res.postIds[res.index + 1]){
         Router.go(getUrlOfPostIndex(res.postIds[res.index+1], res.postIds));
       }
@@ -835,7 +839,7 @@ const postsShowEvents = {
       }
     }, 10000);
   },
-  "click #position-save-button": savePosition, 
+  "click #position-save-button": savePosition,
   "click #save-preview-button": onClickSavePreviewButton
 };
 Template.PostsShow.events(postsShowEvents);
@@ -850,7 +854,7 @@ templatePostsShowRendered = function() {
 
   if(location.search.search("isUploading") > -1)
     turnEditingMode(true);
-  else 
+  else
     turnEditingMode(false);
 
   $("body").css('padding-top','0px');
@@ -894,7 +898,7 @@ templatePostsShowRendered = function() {
         });
       }
     }, 200);
-  } 
+  }
 
 
 
@@ -938,7 +942,7 @@ templatePostsShowRendered = function() {
     setArrowBoxPosition();
   },500);
   Session.set("posts-show-url", location.href);
-  
+
   leavingPageSrc = Rx.Observable.merge(
                         Rx.Observable.fromEvent(window, "popstate"),
                         Rx.Observable.fromEvent($("a[target!='_blank']:not(.share-buttons a):not(.inpage-buttons)"), "click"),
@@ -951,7 +955,13 @@ templatePostsShowRendered = function() {
           //closeModalSub.dispose();
       //});
 
+  try{
   photoOrb = renderPhotoSphere("#container", "/images/canvas_loading.png");
+  }
+  catch(e){
+    alert(e);
+    alert(e.message);
+  }
   window.pho = photoOrb;
 
 
@@ -975,47 +985,50 @@ templatePostsShowRendered = function() {
             function(error) {
                 console.log('error while loading texture - ');
                 console.log(error);
+                alert(error);
+                alert(error.message);
             })
           })
         );
       }
     }
   });
-  Tracker.autorun(function(c){
-    if(Router.current().ready() && Router.current().data){
-      const params = Router.current().params.query;
-      const post = Router.current().data();
+  if(photoOrb.controls)
+    Tracker.autorun(function(c){
+      if(Router.current().ready() && Router.current().data){
+        const params = Router.current().params.query;
+        const post = Router.current().data();
 
-      if(params.x && params.y && params.z && params.fov){
-        photoOrb.controls.object.position.x = Number.parseFloat(params.x);
-        photoOrb.controls.object.position.y = Number.parseFloat(params.y);
-        photoOrb.controls.object.position.z = Number.parseFloat(params.z);
-        photoOrb.camera.fov = Number.parseFloat(params.fov);
-        console.log('params')
-        
-      }
-      else if ( post && post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
-          photoOrb.controls.object.position.x = post.viewPosition.x;
-          photoOrb.controls.object.position.y = post.viewPosition.y;
-          photoOrb.controls.object.position.z = post.viewPosition.z;
-          if(post.viewPosition.fov)
-            photoOrb.camera.fov = post.viewPosition.fov;
-          console.log('saved Position');
-      }
-      else{
-        setViewType(ViewType.ball, photoOrb);
-          console.log('else');
-      }
-      
-      if (Meteor.userId() && Meteor.userId() == post.user._id)
-          observeViewPosition(photoOrb, ()=>{
-            $("#position-save-button").show();
-          });
-      c.stop();
-    }
-  });
+        if(params.x && params.y && params.z && params.fov){
+          photoOrb.controls.object.position.x = Number.parseFloat(params.x);
+          photoOrb.controls.object.position.y = Number.parseFloat(params.y);
+          photoOrb.controls.object.position.z = Number.parseFloat(params.z);
+          photoOrb.camera.fov = Number.parseFloat(params.fov);
+          console.log('params')
 
-  post = Router.current().data(); 
+        }
+        else if ( post && post.viewPosition && vrDeviceInfo.type !== "HMD" && vrDeviceInfo.type !== "MOBILE"){
+            photoOrb.controls.object.position.x = post.viewPosition.x;
+            photoOrb.controls.object.position.y = post.viewPosition.y;
+            photoOrb.controls.object.position.z = post.viewPosition.z;
+            if(post.viewPosition.fov)
+              photoOrb.camera.fov = post.viewPosition.fov;
+            console.log('saved Position');
+        }
+        else{
+          setViewType(ViewType.ball, photoOrb);
+            console.log('else');
+        }
+
+        if (Meteor.userId() && Meteor.userId() == post.user._id)
+            observeViewPosition(photoOrb, ()=>{
+              $("#position-save-button").show();
+            });
+        c.stop();
+      }
+    });
+
+  post = Router.current().data();
   if(post){
     var image = Models.Image.findOne({
         _id: post.imageId

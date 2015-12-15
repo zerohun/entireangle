@@ -80,10 +80,10 @@ var createMobileControlOrbBuilder = function() {
     };
 };
 
-var createAltspaceVRContorlOrbBuilder = function(material, container){
+var createAltspaceVRContorlOrbBuilder = function(){
     return {
         create: function(material, container){
-            var renderer = altspace.utilities.shims.dualRenderer;
+            var renderer = altspace.getThreeJSRenderer();
             return new Orb({
                 material: material,
                 container: container,
@@ -229,5 +229,6 @@ window.OrbBuilders = {
     NormalControlOrbBuilder: createNormalControlOrbBuilder(),
     MobileControlOrbBuilder: createMobileControlOrbBuilder(),
     CardboardControlOrbBuilder: createCardboardControlOrbBuilder(),
-    HMDControlOrbBuilder: createHMDControlOrbBuilder()
+    HMDControlOrbBuilder: createHMDControlOrbBuilder(),
+    AltspaceVRContorlOrbBuilder: createAltspaceVRContorlOrbBuilder()
 };
