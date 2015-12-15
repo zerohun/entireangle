@@ -312,7 +312,10 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
             console.log(error);
         })
     });
-    orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
+    if(navigator.userAgent.search("AltspaceVR") > -1)
+      orb = OrbBuilders.create(OrbBuilders.createAltspaceVRContorlOrbBuilder(material, container));
+    else
+      orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
     console.log('orb render');
     orb.render();
     

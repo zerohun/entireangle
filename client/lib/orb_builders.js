@@ -80,6 +80,19 @@ var createMobileControlOrbBuilder = function() {
     };
 };
 
+var createAltspaceVRContorlOrbBuilder = function(material, container){
+    return {
+        create: function(material, container){
+            var renderer = altspace.utilities.shims.dualRenderer;
+            return new Orb({
+                material: material,
+                container: container,
+                renderer: renderer
+            });
+        }
+    };
+}
+
 var createCardboardControlOrbBuilder = function() {
     var getSetFullScreenFunc = function(container) {
         return function(trueOrFalse) {

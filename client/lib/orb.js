@@ -85,7 +85,8 @@ window.Orb = function(reqiredParams, options) {
 
       console.log('orb init');
         self.scene = new THREE.Scene();
-        self.scene.add(camera);
+        if(camera)
+          self.scene.add(camera);
 
         geometry = new THREE.SphereGeometry(400, 60, 40);
         geometry.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
