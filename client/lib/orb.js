@@ -88,7 +88,7 @@ window.Orb = function(reqiredParams, options) {
         if(camera)
           self.scene.add(camera);
 
-        geometry = new THREE.SphereGeometry(400, 60, 40);
+        geometry = new THREE.SphereGeometry(600, 60, 40);
         geometry.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
         geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, 0));
 
@@ -98,8 +98,10 @@ window.Orb = function(reqiredParams, options) {
         self.scene.add(self.mesh);
         self.scene.name = 'scene';
 
-        var element = renderer.domElement;
-        container.appendChild(element);
+        if(renderer.domElement){
+          var element = renderer.domElement;
+          container.appendChild(element);
+        }
     }
 
     function refreshScene(){
@@ -124,7 +126,8 @@ window.Orb = function(reqiredParams, options) {
           camera.aspect = containersize.width / containersize.height;
           camera.updateProjectionMatrix();
         }
-        renderable.setSize(containersize.width, containersize.height);
+        if(typeof renderable.setSize === "function")
+          renderable.setSize(containersize.width, containersize.height);
     }
     this.onWindowResize = onWindowResize;
 

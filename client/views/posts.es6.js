@@ -41,7 +41,7 @@ const templatePostListHelpers = {
       map((p)=>{
         return {
           country: p._id.country,
-          state: p._id.state, 
+          state: p._id.state,
           city: p._id.city,
           count: p.count
         };
@@ -185,7 +185,7 @@ templatePostListRendered = function() {
       if(result)
         postsCountByTagsReact.set(result);
     });
-    Meteor.call("getPostsCountByLocations", 
+    Meteor.call("getPostsCountByLocations",
         function(err, result){
           if(result)
             postsCountByLocationsReact.set(result);
@@ -198,7 +198,7 @@ templatePostListRendered = function() {
 
 Template.Posts.helpers(templatePostsHelpers);
 Template.Posts.events(templatePostsEvents);
-Template.Posts.rendered = templatePostsRendered; 
+Template.Posts.rendered = templatePostsRendered;
 
 Template.PostsMobile.helpers(templatePostsHelpers);
 Template.PostsMobile.events(templatePostsEvents);

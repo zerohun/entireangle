@@ -311,12 +311,16 @@ function renderPhotoSphere(cssSelector, imageFilePath) {
         }, $.noop,function(error) {
             console.log('error while loading texture - ');
             console.log(error);
-            alert(error);
-            alert(error.message);
+            $("#console-div").append(error);
+            $("#console-div").append(error.message);
+            $("#console-div").append(error.stack);
+            $("#console-div").append(error.line);
         })
-    });
-    if(navigator.userAgent.search("AltspaceVR") > -1)
+      });
+    if(navigator.userAgent.search("AltspaceVR") > -1){
       orb = OrbBuilders.createOrb(OrbBuilders.AltspaceVRContorlOrbBuilder, material, container);
+      $("body").hide();
+    }
     else
       orb = OrbBuilders.createOrb(OrbBuilders.NormalControlOrbBuilder, material, container);
     console.log('orb render');
@@ -956,11 +960,13 @@ templatePostsShowRendered = function() {
       //});
 
   try{
-  photoOrb = renderPhotoSphere("#container", "/images/canvas_loading.png");
+      photoOrb = renderPhotoSphere("#container", "/images/canvas_loading.png");
   }
   catch(e){
-    alert(e);
-    alert(e.message);
+    $("#console-div").append(e);
+    $("#console-div").append(e.message);
+    $("#console-div").append(e.stack);
+    $("#console-div").append(e.line);
   }
   window.pho = photoOrb;
 
@@ -985,8 +991,10 @@ templatePostsShowRendered = function() {
             function(error) {
                 console.log('error while loading texture - ');
                 console.log(error);
-                alert(error);
-                alert(error.message);
+                $("#console-div").append(error);
+                $("#console-div").append(error.message);
+                $("#console-div").append(error.line);
+                $("#console-div").append(error.stack);
             })
           })
         );
