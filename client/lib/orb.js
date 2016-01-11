@@ -3,10 +3,11 @@ window.Orb = function(reqiredParams, options) {
     var scene, element, mesh;
     var clock = new THREE.Clock();
 
-    var material = reqiredParams.material;
+    this.material = reqiredParams.material;
     var controls = reqiredParams.controls;
     var container = reqiredParams.container;
     var camera = reqiredParams.camera;
+    this.camera = camera;
     var renderer = reqiredParams.renderer;
     var effect = reqiredParams.effect;
     var renderable = renderer;
@@ -19,7 +20,7 @@ window.Orb = function(reqiredParams, options) {
         return element;
     };
     this.setControls = function(newControls) {
-        controls = newControls;
+        this.controls = newControls;
     };
     this.setEffect = function(effect) {
         if (effect) renderable = effect;
@@ -27,7 +28,7 @@ window.Orb = function(reqiredParams, options) {
         this.renderable = renderable;
     };
     this.removeEffect = function() {
-        this.renderable = renderer;
+        this.renderable = this.renderer;
     };
     this.setEffect(effect);
 
@@ -48,9 +49,10 @@ window.Orb = function(reqiredParams, options) {
     };
     
     this.setState = function(state){
+      const oldState = this.state;
       self.state = state;
-      if(self.state === "running"){
-        init();
+      if(oldState !== "running" && self.state === "running"){
+        //init();
         animate();
       }
     };
@@ -59,8 +61,29 @@ window.Orb = function(reqiredParams, options) {
       this.afterRenderCallbacks.push(callbackFunc);
     };
 
+    this.dispose = function(){
+      this.mesh.material.map.dispose();
+      this.mesh.material.dispose();
+      this.setState("stop");
+    };
+
+    this.setMaterial = function(material){
+      this.material = material; 
+      this.mesh.material = material;
+    };
+    this.enableControl = function(){
+      if(this.controls.enable){
+        this.controls.enable();
+      }
+    };
+    this.disableControl = function(){
+      if(this.controls.disable){
+        this.controls.disable();
+      }
+    };
     function init() {
 
+      console.log('orb init');
         self.scene = new THREE.Scene();
         self.scene.add(camera);
 
@@ -68,8 +91,11 @@ window.Orb = function(reqiredParams, options) {
         geometry.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
         geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0, 0));
 
-        self.mesh = new THREE.Mesh(geometry, material);
+        self.material.name = "material";
+        self.mesh = new THREE.Mesh(geometry, self.material);
+        self.mesh.name = "mesh";
         self.scene.add(self.mesh);
+        self.scene.name = 'scene';
 
         var element = renderer.domElement;
         container.appendChild(element);
@@ -101,26 +127,33 @@ window.Orb = function(reqiredParams, options) {
 
     function animate() {
       if(self.state === "running"){
-        requestAnimationFrame(animate);
+        const animationID = requestAnimationFrame(animate);
+
+        if(window.aniDebug){
+          console.log(animationID);
+        }
         //    var dt = clock.getDelta();
         update();
       }
     }
+    this.animate = animate;
 
     function update(dt) {
         //        console.log(controls);
         onWindowResize();
         //		camera.updateProjectionMatrix();
-        controls.update(dt);
+        self.controls.update(dt);
         //				camera.position.copy( camera.target ).negate();
-        renderable.render(self.scene, camera);
+        self.renderable.render(self.scene, camera);
         
         if(self.afterRenderCallbacks.length > 0){
           self.afterRenderCallbacks[0](self);
           self.afterRenderCallbacks.shift();
         }
     }
+    this.update = update;
     this.reRender = function(){
-      renderable.render(this.scene, camera);
+      self.renderable.render(this.scene, camera);
     }
+    window.Orb.oneInstance = this;
 };

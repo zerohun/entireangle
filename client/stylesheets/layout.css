@@ -1,11 +1,29 @@
 body {
   background-color: black;
   color: white;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+  -ms-user-select: none;
+  user-select: none; 
 
 }
 a:link, a:visited, a:hover, a:active{
   color: white;
   text-decoration: none;
+}
+
+.modal{
+  opacity: 0;
+}
+
+#wrapping-container.desktop{
+  min-width: 1024px;
 }
 
 #loading-box{
@@ -19,12 +37,6 @@ a:link, a:visited, a:hover, a:active{
   margin-left: auto;
   margin-right: auto;
   font-size: 20px;
-  border-color: white;
-  border-width: 3px;
-  border-style: solid;
-  padding: 5px;
-  width: 150px;
-  height: 50px;
   text-align:center;
 }
 
@@ -47,7 +59,8 @@ a:link, a:visited, a:hover, a:active{
     background-color: lightgray;
 }
 #story-post-list img{
-    width: 100%
+    width: 100%;
+    max-width: 100px;
 }
 
 #list-fetching-bar{
@@ -68,25 +81,13 @@ a:link, a:visited, a:hover, a:active{
 .form-loading{
   display: none;
 }
-#account-box{
-  background-color: #111;
-  color: black;
-  width: 100%;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-#account-box #login-btn{
-  background-color: #111;
-  color: darkgray;
-  border-color: darkgray;
+.black-account-window .content{
+  background-color: black;
+  color: white;
+  border-color: white;
+  border-width: 1px;
   border-style: solid;
-  padding-right: 10%;
-  padding-left: 10%;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  text-align: center;
 }
 
 
@@ -99,7 +100,8 @@ a:link, a:visited, a:hover, a:active{
 
   }
   img#logo{
-    width: 125px;
+    width: 100%;
+    max-width: 150px;
   }
 }
 @media screen and (min-device-width: 550px){
@@ -109,9 +111,6 @@ a:link, a:visited, a:hover, a:active{
   .tab span{
     font-size: 30px;
 
-  }
-  img#logo{
-    width: 250px;
   }
 }
 
@@ -181,9 +180,326 @@ a.shareit-google-colors{
 
 .profile-image{
   display:inline-block;
-  width: 50px; 
-  height: 50px; 
   font-size:30px; 
   text-align:center; 
   background-color: black;
+}
+
+.col-force-padding-zero{
+  padding: 0px!important;
+}
+.col-force-padding-top{
+  padding-top: 10px!important;
+}
+.col-force-bottom-margin-zero{
+  margin-bottom: 0px!important;
+}
+
+
+.col-force-padding-top-desktop{
+  padding-top: 10px!important;
+}
+.white-text{
+  color: white;
+}
+.black-text{
+  color: black;
+}
+
+.thumbnail-box{
+  margin-bottom: 5px;
+}
+
+.post-info {
+  position: relative;
+  top: -16px;
+}
+.post-info table{
+  line-height: 0.5;
+}
+.post-info table td{
+  width: 75%;
+  padding: 0px;
+}
+.post-info table th{
+  width: 35%;
+  padding: 0px;
+}
+
+#logo{
+  width: 100%;
+}
+
+.btn-tiny{
+  height: 24px;
+  line-height: 18px;
+  padding: 0 0.5rem;
+  font-size: 0.8em!important;
+}
+
+.no-left-padding{
+  padding-left: 0px!important;
+}
+
+.no-side-padding{
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+}
+
+.top-modal-btn{
+  position: fixed;
+}
+#edit-cancel-button{
+  color: white;
+  font-size: 0.6rem;
+}
+#edit-button{
+  color: white;
+  font-size: 0.6rem
+}
+
+.close-modal-button i{
+  color: black;
+}
+
+.clear-both{
+  clear:both;
+}
+
+.width-fill{
+  width: 100%;
+}
+
+.right-text{
+  text-align: right;
+}
+
+.left-text{
+  text-align: left;
+}
+
+.tags .chip{
+  margin: 3px;
+}
+.file-field{
+  float: none!important;
+}
+#notification-modal a{
+  color: black;
+}
+
+.centered-text{
+  text-align: center;
+}
+
+.small-margin-bottom{
+  margin-bottom: 10px!important;
+}
+
+.text-outline{
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: grey;
+  text-shadow: 1px 1px black;
+}
+.zero-left-padding{
+  padding-left: 0px!important;
+}
+#toast-container .toast{
+  line-height: 20px!important;
+}
+
+.fill{
+  width: 100%;
+  height: 100%;
+}
+.mypage-profile-image .profile-image{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: black;
+}
+
+.small-line-height{
+  line-height: 23px;
+}
+
+
+.black-tabs{
+  background-color:#1A1919;
+}
+
+.tag-list .collection{
+  border-color: #554A4A;
+}
+.tag-list .collection-item{
+  background-color:#1A1919;
+  border-color: #554A4A;
+  color: #DAB4B4!important;
+}
+.profile-image-field{
+  display: inline-block;
+}
+/*.no-margin-bottom{*/
+  /*margin-bottom: 0px;*/
+/*}*/
+
+/*.top-mypage-menu .collection-item{*/
+  /*background-color: #282828;*/
+  /*color: white*/
+/*}*/
+
+
+.location-list .collection{
+  border-color: #554A4A;
+}
+
+.location-list .collection-item{
+  background-color:#1A1919;
+  border-color: #554A4A;
+}
+
+.noti-count{
+  position: relative;
+  bottom: 24px;
+  left: 15px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#user-info{
+  padding-top: 20px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+#user-info, #user-info .profile-image{
+  background-color: #1C1C1C;
+}
+
+#profile-tab{
+  font-size: 12px;
+}
+
+#profile-tab li{
+  margin-top: 3%;
+}
+
+.no-bottom-margin{
+  margin-bottom: 0px;
+}
+
+.profile-image-padding{
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.userpage-profile .profile-image{
+  margin-top: 5px;
+}
+.profile-padding{
+  padding-left: 7%!important;
+  padding-right: 7%!important;
+}
+
+
+.mypage-profile-padding{
+  padding-left: 35%!important;
+  padding-right: 35%!important;
+}
+
+.tags-showheader-row{
+  padding-top: 10px;  
+}
+
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation: rotating 2s linear infinite;
+}
+.post-desk-font-size{
+  font-size: 20px;
+}
+
+.mobileFrame{
+  width: 360px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-left-color: #1A1A1A;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-right-color: #1A1A1A;
+  border-right-width: 1px;
+  border-right-style: solid;
+  padding-top: 20px;
+}
+
+.desktop-center{
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.zero-margin-bottom{
+  margin-bottom: 0px!important;
+}
+
+#desktop-shareit table{
+  width: 200px!important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-window{
+  padding-top: 20px;
+}
+.modal-window .content{
+  overflow-y: scroll;
+  width: 90%;
+  height: 90%;
+  max-width: 600px;
+  margin-right:auto;
+  margin-left:auto;
+}
+#postContent .content{
+  background-color: white;
+  color: black;
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.top-nav-bar {
+  position: fixed; 
+  top:0;
+  left:0;
+  width: 100%;
+  z-index:9999;
+}
+
+#edit-modal{
+  max-width: 300px;
+}
+.profile-wrapper.desktop img{
+  width: 35px !important;
+  height: 35px !important;
+}
+
+.profile-wrapper.mobile img{
+  width: 20px !important;
+  height: 20px !important;
 }

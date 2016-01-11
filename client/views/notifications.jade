@@ -1,0 +1,32 @@
+template(name="notifications")
+  #notifications
+    ul.collection
+      if notificaions
+        each notifications
+          li.collection-item.notification
+            if $eq notiType "comment"
+              +commentNotification
+            if $eq notiType "like"
+              +likeNotification
+      else
+        | There isn't any notifications yet.
+
+template(name="commentNotification")
+  .comment-notification.post-notification
+    a.noti-btn.waves-effect.waves-light(href="/posts/{{post._id}}?from_notification=1")
+      with post.user
+        +profileImage  
+      | {{actioner.username}} commented on {{receiverName post.user}} photo
+      | - 
+      span
+        | {{livestamp createdAt}}
+ 
+template(name="likeNotification")
+  .like-notification.post-notification
+    a.noti-btn.waves-effect.waves-light(href="/posts/{{post._id}}?from_notification=1")
+      with post.user
+        +profileImage  
+      | {{actioner.username}} liked {{receiverName post.user}} photo
+      | - 
+      span
+        | {{livestamp createdAt}}

@@ -10,7 +10,8 @@ Template.login.helpers({
   }
 });
 
-Template.login.events({
+Template.login.events(
+  Object.assign({
   'click #register-button': () =>{
     FView.byId("login-form").node.slideUp(); 
     FView.byId("register-form").node.slideDown(); 
@@ -21,10 +22,17 @@ Template.login.events({
   },
   'click #close-login-button': () =>{
     FView.byId("login-form").node.slideUp(); 
+    if(window.cancelLoginCallback){ 
+      window.cancelLoginCallback();
+      window.cancelLoginCallback = null;
+    }
   },
   'click .login-with-facebook': ()=>{
     Meteor.loginWithFacebook({
-      requestPermissions: ['email']
+      requestPermissions: ['email', 'user_about_me'],
+      redirectUrl: location.href,
+      loginStyle: 'redirect' 
+
     }, function (err) {
     if (err){
       alert(err.reason);
@@ -55,6 +63,10 @@ Template.login.events({
             setTimeout(function(){
               Session.set("login-msg", "");
               FView.byId("login-form").node.slideUp(); 
+              if(window.afterLoginCallback){
+                window.afterLoginCallback();
+                window.afterLoginCallback = null;
+              }
             }, 1000);
               // The user has been logged in.
           }
@@ -62,7 +74,8 @@ Template.login.events({
       }
       return false; 
     }
-});
+  }, getModalCloseEventsObj('login-window', 'login-form'))
+);
 
 
 Template.login.rendered = () =>{

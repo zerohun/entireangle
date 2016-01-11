@@ -1,28 +1,3 @@
-//Accounts.ui.config({
-    //requestPermissions: {},
-    //extraSignupFields: [{
-        //fieldName: 'username',
-        //fieldLabel: 'username',
-        //inputType: 'text',
-        //visible: true,
-        //saveToProfile: true
-    //}, {
-        //fieldName: 'terms',
-        //fieldLabel: 'I accept the <a href="/private_policy">terms and conditions</a>',
-        //inputType: 'checkbox',
-        //visible: true,
-        //saveToProfile: false,
-        //validate: function(value, errorFunction) {
-            //if (value) {
-                //return true;
-            //} else {
-                //errorFunction('You must accept the terms and conditions.');
-                //return false;
-            //}
-        //}
-    //}]
-//});
-
 Meta.config({
     options: {
         title: "EntireAngle - Pictures for Virtual reality",
@@ -30,55 +5,41 @@ Meta.config({
     }
 });
 
-Meta.set({
-    name: 'name',
-    property: 'viewport',
-    content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
-});
+if(isMobile.any)
+  Meta.set({
+      name: 'name',
+      property: 'viewport',
+      content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+  });
 
-Template.layout.helpers({
-    "menuItems": [
-      {
-        title: "gallery",
-        url: "/posts"
-      },
-      {
-        title: "upload",
-        url: "/posts/new"
-      }
-    ]
-});
 
-Template.layout.rendered = function(){
-    $('body').css({overflow: "scroll"});
-    var tabNode = FView.byId('tab').node;
-    $("#loading-box").css({width: $(window).width(), height: $(window).height()});
-    var Position = famous.components.Position;
-    var position = new Position(tabNode);
-    position.set(0, 0, 0, { duration: 500, curve: 'inOutQuart' });
+Session.set("isGoogleLoaded", false);
+const googleLoadedInterval = setInterval(function(){
+    if(typeof google !== "undefined"){
+      Session.set("isGoogleLoaded", true);
+      clearInterval(googleLoadedInterval);
+    }
+}, 500);
 
-    $('body').css({overflow: "scroll"});
-    var fview = FView.byId('header-footer');
+const templateLayoutRendered = function(){
+  if(location.search.search('fakeuser') > -1)
+    Session.set('fakeuser', true);
 
-    FView.byId("tabMenu").node.reflow();
+  
+    setInterval(function(){
+      $(".modal-window").css('height', $(window).height() + 'px');
+      $(".modal-window .content").css('height', ($(window).height() /10 * 9) + 'px');
+    }, 500);
 
-    if(!Meteor.user())
-      registerLoginBtnCallback();
-      
-    var slideUpWindow = FView.byId("slide-up-menu").node;
-    Session.set('slideUpVisible', false);
+    //$('body').css({overflow: "scroll"});
 
-    Tracker.autorun(function () {
-      if(Session.get('slideUpVisible') === true){
-        slideUpWindow.show();
-      }
-      else{
-        slideUpWindow.slideDown();
-        slideUpWindow.hide();
-      }
-    });
-    $("img.lazy").unveil();
+    if(Meteor.user()){
+      Meteor.subscribe("notifications", 10);
+    }
 };
+
+Template.layout.rendered = templateLayoutRendered;
+Template.layoutMobile.rendered = templateLayoutRendered;
 
 Template._loginButtonsAdditionalLoggedInDropdownActions.events({
     'click #login-buttons-edit-profile': function(event) {
@@ -86,3 +47,4 @@ Template._loginButtonsAdditionalLoggedInDropdownActions.events({
     }
 
 });
+

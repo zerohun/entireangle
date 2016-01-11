@@ -1,0 +1,17 @@
+template(name="tagsShow")
+  #tags-show-desktop
+    .row.grey.darken-4.tags-showheader-row
+      if user
+        .col.l1.m1
+          +profileImage user
+          span
+            | {{user.username}}
+        .col.l11.m11.centered-text
+          h4
+            | {{title}}
+
+      else
+        .col.l12.m12.centered-text
+          h4
+            | {{title}}
+    +Posts postsOptions=postsOptions posts=posts

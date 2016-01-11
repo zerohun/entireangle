@@ -1,0 +1,34 @@
+{
+  "name": "vr-devices",
+  "authors": [
+    "Younghun Choi <choi0hun@gmail.com>"
+  ],
+  "description": "Simple function to detect VR devices",
+  "main": "src/vr_devices.js",
+  "keywords": [
+    "VR",
+    "Carboard",
+    "HMD"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "isMobile": "~0.3.6"
+  },
+  "homepage": "https://github.com/zerohun/VRDevices",
+  "_release": "5192009b6c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "5192009b6c114fd5ee4bac8426cde8aa996d85db"
+  },
+  "_source": "git@github.com:zerohun/VRDevices.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:zerohun/VRDevices.git"
+}

@@ -2,12 +2,10 @@ const SlideWindow = famous.customLayouts.SlideWindow;
 
 class SlideUpWindow extends SlideWindow {
   constructor(){
-
     super();
     this.setMountPoint(0.5, 0.0);
     this.slideStatus = SlideWindow.UP;
     this.resize();
-
     const downPosition = this.downPosition();
     this.setPosition(downPosition[0], downPosition[1], downPosition[2]);
     this.slideStatus = SlideWindow.DOWN;
@@ -26,6 +24,7 @@ class SlideUpWindow extends SlideWindow {
     console.log(2 * centerPoint.y - SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE);
     return [centerPoint.x,  2 * centerPoint.y - SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE, 998];
   }
+
 
 }
 SlideUpWindow.constants = {};

@@ -45,6 +45,7 @@ var createNormalControlOrbBuilder = function() {
             camera.far = this.far;
             var controls = new THREE.OrbitControls(camera, orb.getElement());
             orb.setControls(controls);
+            orb.renderable = orb.renderer;
         }
     };
 };
@@ -72,6 +73,8 @@ var createMobileControlOrbBuilder = function() {
             camera.far = this.far;
             orb.removeEffect();
             var controls = new THREE.DeviceOrientationControls(camera, true);
+            controls.connect();
+            controls.update();
             orb.setControls(controls);
         }
     };
@@ -124,21 +127,45 @@ var createCardboardControlOrbBuilder = function() {
             });
         },
         set: function(orb) {
+            orb.setState("stop");
             var camera = orb.getCamera();
             camera.far = this.far;
             var controls = new THREE.DeviceOrientationControls(camera, true);
             orb.setControls(controls);
             var renderer = orb.renderer;
+            var clonedRenderer = jQuery.extend(true, {}, renderer);
             var effect = new THREE.StereoEffect(renderer);
             orb.setEffect(effect);
+            orb.renderer = clonedRenderer;
             orb.setFullScreen = getSetFullScreenFunc(orb.container);
+            orb.render();
         }
     };
 };
 var createHMDControlOrbBuilder = function() {
     var getSetFullScreen = function(orb) {
         return function(trueOrFalse) {
-            orb.renderable.setFullScreen(trueOrFalse);
+            if (trueOrFalse) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                } else if (container.mozRequestFullScreen) {
+                    container.mozRequestFullScreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
         };
     };
     return {
@@ -151,8 +178,6 @@ var createHMDControlOrbBuilder = function() {
             var effect = new THREE.VREffect(renderer, function(error) {
                 if (error) {
                     alert(error);
-                    vrButton.innerHTML = error;
-                    vrButton.classList.add('error');
                 }
             });
             var orb = new Orb({
@@ -172,11 +197,10 @@ var createHMDControlOrbBuilder = function() {
             camera.far = this.far;
             var controls = new THREE.VRControls(camera, function(error) {});
             orb.setControls(controls);
+            var renderer = orb.renderer;
             var effect = new THREE.VREffect(renderer, function(error) {
                 if (error) {
                     alert(error);
-                    vrButton.innerHTML = error;
-                    vrButton.classList.add('error');
                 }
             });
             orb.setEffect(effect);

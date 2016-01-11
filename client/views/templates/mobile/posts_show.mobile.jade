@@ -1,0 +1,117 @@
+template(name='PostsShowMobile')
+  #container(style='width:100%; height:100%')
+  if nextPostUrl
+    #nextPostButton.next-prev-post.hide-on-modal
+      a.waves-effect.waves-light(href=nextPostUrl)
+        i.stroke.material-icons &#xE409;
+  if prevPostUrl
+    #prevPostButton.next-prev-post.hide-on-modal
+      a.waves-effect.waves-light(href=prevPostUrl)
+        i.stroke.material-icons &#xE408;
+  if isArrowVisible 
+    .arrow_box.hide
+      | Write about your picture and publish! 
+
+  .zoom-buttons.mobile.hide-on-modal
+    a.zoom-in-btn.inpage-buttons(href="")
+      i.stroke.material-icons.white-text zoom_in
+    br
+    a.zoom-out-btn.inpage-buttons(href="")
+      i.stroke.material-icons.white-text zoom_out
+  #menu-bar.hide-on-modal
+    table
+      tr
+        td.menu-button
+          a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#share-modal-mobile")
+            i.stroke.mdi-social-share.white-text
+
+        td.menu-button
+          if didILikeIt
+            a.waves-effect.waves-light.unlike-button.inpage-buttons
+              i.stroke.mdi-action-star-rate.yellow-text
+          else
+            a.waves-effect.waves-light.like-button.inpage-buttons
+              i.stroke.mdi-action-star-rate.white-text
+
+        td.menu-button
+          a.waves-effect.waves-light.inpage-buttons.content-edit-button
+            i.stroke.mdi-content-create.white-text
+            span.red.comment-count-number
+              | {{numberOfComments}}
+
+        td.menu-button
+          a.waves-effect.waves-light.modal-trigger.inpage-buttons(href="#view-mode-modal-mobile")
+            //if isInVRMode
+              //i.mdi-action-visibility.yellow-text
+            //else
+            i.stroke.mdi-action-visibility.white-text
+
+
+        if isMyPost
+          td.more-button
+            a.waves-effect.waves-light.modal-trigger.inpage-buttons(href="#more-modal-mobile")
+              i.stroke.mdi-navigation-more-vert.white-text
+  #view-mode-modal-mobile.modal.bottom-sheet.modal-opacity
+    .modal-content
+      ul
+        li.more-menu-items
+          a#ball-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row(class=modeBALLSelectedClass)
+              .col.s4.right-text
+                  i.mdi-action-swap-vert-circle.black-text
+              .col.s8.left-text.black-text
+                | Mirror Ball 
+          a#planet-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row(class=modePlanetSelectedClass)
+              .col.s4.right-text
+                  i.mdi-image-lens.black-text
+              .col.s8.left-text.black-text
+                | Little Planet 
+          a#do-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row(class=modeDOSelectedClass)
+              .col.s4.right-text
+                  i.mdi-device-screen-rotation.black-text
+              .col.s8.left-text.black-text
+                | Device Orientation
+          if isVRSupported
+            a#vr-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+              .row(class=modeVRSelectedClass)
+                .col.s4.right-text
+                    i.mdi-action-visibility.black-text
+                .col.s8.left-text.black-text
+                  | VR Mode
+
+            a#vr-slide-show-start-button.waves-effect.waves-light.inpage-buttons.width-fill
+              .row
+                .col.s4.right-text
+                    i.mdi-action-visibility.black-text
+                .col.s8.left-text.black-text
+                  | VR Slide show
+          
+  #more-modal-mobile.modal.bottom-sheet.modal-opacity
+    .modal-content
+      ul
+        li.more-menu-items
+          a#remove-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row
+              .col.s4.right-text
+                i.mdi-action-delete.black-text
+              .col.s8.left-text.black-text
+                | Delete
+        li.more-menu-items
+          a#position-save-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row
+              .col.s4.right-text
+                i.mdi-editor-vertical-align-bottom.black-text
+              .col.s8.left-text.black-text
+                | Save this position 
+            
+  #share-modal-mobile.modal.bottom-sheet.modal-opacity
+    .modal-content
+      h4 Sharing action
+      hr
+      +shareit
+
+  #content-modal-mobile.mobile.modal.modal-opacity
+    .modal-content.centered-text
+

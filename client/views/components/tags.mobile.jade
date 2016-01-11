@@ -1,0 +1,16 @@
+template(name="tagsMobile")
+  .row
+    .col.s12.tag-list
+      .collection
+        each tags
+          a.collection-item(href="/tags/{{_id}}")
+            | {{title}}({{count}})
+
+template(name="myTagsMobile")
+  .row
+    .col.s12.tag-list
+      .collection
+        each tags
+          a.collection-item(href="/myTags/{{_id}}")
+            | {{title}}({{count}})
+
