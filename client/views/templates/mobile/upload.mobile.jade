@@ -1,0 +1,26 @@
+template(name="uploadMobile")
+  .row
+    form#upload-files.col.s12
+      .row
+        .col.s12.center-align
+          .file-field.input-field.btn.width-fill
+              span#upload-btn-label Select files to upload
+              input#file-upload(type="file" name="files-select" multiple)
+
+      .row
+        .col.s12.center-align
+          button.btn.btn-tiny.show-tags-field.light-green.darken-4 Add Tags
+      .row.tags-field.hide
+        .input-field.col.s12
+          +tagAutocomplete
+  if isGoogleLoaded
+    .row
+      .col.s12.center-align
+        button.btn.btn-tiny.show-address-field.light-green.darken-4 Add address
+    .row.address-field.hide
+      .col.s12
+        .row
+          .input-field.col.s12
+            +addressForm
+              
+

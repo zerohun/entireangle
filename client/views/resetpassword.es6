@@ -15,6 +15,14 @@ Template.resetpassword.helpers({
 });
 
 Template.resetpassword.events({
+  "click .modal-window .content": function(){
+    return false;
+  },
+  "click #reset-window": function(){
+    FView.byId("reset-form").node.slideUp();
+    turnEditingMode(false);
+    $(".hide-on-modal").show();
+  },
   'click #close-reset-button': function(){
     FView.byId("reset-form").node.slideUp(); 
     return false;

@@ -1,67 +1,82 @@
 template(name='register') 
-  #register-window.account-window.center-block.text-center
-    if isLoggedIn
-        <h3>Successfully signed up and logged in</h3>
-    else
-      h3 Register 
-      hr
-      form#register-form.center-block.text-center(action='action')
-        #facebook-image.form-group
-        br
-        .form-group.center-block.text-center
-          input#register-email.email-field.form-control.text-center(type='email', placeholder="email")
-          if emailMsg
-            .error-message 
-              ul
-                li
-                  | {{emailMsg}}
-        .form-group.center-block.text-center
-          input#register-username.email-field.form-control.text-center(type='username', placeholder="username")
-          if usernameMsg
-            .error-message 
-              ul
-                li
-                  | {{usernameMsg}}
-
-        br
-        .password-fields
-          +password_input
-          if passwordMsg
-            .error-message
-              ul
-                li
-                  | {{passwordMsg}}
-          if passwordMatchMsg
-            .error-message
-              ul
-                li
-                  | {{passwordMatchMsg}}
-
-        label.checkbox
-          input#private-policy-checkbox(type="checkbox")
-          | I accept the 
-          button.btn.btn-default
-            a#term-button(href="/private_policy" target="_blank") terms and conditions 
-        #register-private-policy-msg.error-message 
-          if privatePolicyMsg
-            ul
-              li
-                | {{privatePolicyMsg}}
-        br
-        br
-
-        if registerMsg
-          #register-msg.error-message 
-            ul
-              li
-                | {{registerMsg}}
+  #register-window.account-window.center-block.text-center.black-account-window.modal-window
+    .content
+      if isLoggedIn
+          <h3>Successfully signed up and logged in</h3>
+      else
+        .row.small-margin-bottom
+          .col.s12.centered-text
+            h6 Sign up 
+        .row.small-margin-bottom
+          form#register-form.col.s12(action='action')
+            .row.small-margin-bottom
+              .col.s12
+                #facebook-image.form-group
+            .row.small-margin-bottom
+              .col.s12.input-field.centered-text
+                input#register-email.email-field(type='email', name='email')
+                label(for='email') Email
+                if emailMsg
+                  .error-message 
+                    ul
+                      li
+                        | {{emailMsg}}
+            .row.small-margin-bottom
+              .col.s12.input-field.centered-text
+                input#register-username(type='text', name="username")
+                label(for='username') Username
+                if usernameMsg
+                  .error-message 
+                    ul
+                      li
+                        | {{usernameMsg}}
 
 
-        input#register-button.btn.btn-warning.btn-large(type='submit', value='Sign up')
-        button#close-register-button.btn.btn-default.btn-large Cancel 
-        br
-        
-      br
-      br
-      button.btn.btn-primary.login-with-facebook 
-       | Sign up with Facebook
+            +password_input
+            .row.small-margin-bottom
+              .col.s12.input-field.password-fields
+                if passwordMsg
+                  .error-message
+                    ul
+                      li
+                        | {{passwordMsg}}
+                if passwordMatchMsg
+                  .error-message
+                    ul
+                      li
+                        | {{passwordMatchMsg}}
+
+
+            .row.small-margin-bottom
+              .col.s12.input-field.centered-text
+                input#private-policy-checkbox.fill-in(type="checkbox")
+                label(for="private-policy-checkbox")
+                  | I accept the 
+                  button.btn.btn-tiny.grey
+                    a#term-button(href="/private_policy" target="_blank") terms and conditions 
+            .row.small-margin-bottom
+              .col.s12.centered-text
+                #register-private-policy-msg.error-message 
+                  if privatePolicyMsg
+                    ul
+                      li
+                        | {{privatePolicyMsg}}
+
+            .row.small-margin-bottom
+              .col.s12.centered-text
+                if registerMsg
+                  #register-msg.error-message 
+                    ul
+                      li
+                        | {{registerMsg}}
+            br
+            .row.small-margin-bottom.centered-text
+              .col.s6.zero-left-padding
+                input#register-button.btn.green(type='submit', value='Sign up')
+              .col.s6.zero-left-padding
+                button#close-register-button.btn Cancel 
+
+      .row
+        .col.s12.centered-text
+          button.btn.btn-primary.login-with-facebook.blue 
+           | Sign up with Facebook

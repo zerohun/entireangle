@@ -64,12 +64,13 @@ Template.slideUpMenu.events({
 Template.slideUpMenu.rendered = ()=>{
   const HANDLE_SIZE = famous.customLayouts.SlideUpWindow.constants.SLIDE_UP_HANDLE_SIZE;
   $("#slide-up-menu #slide-up-handle").css('height', HANDLE_SIZE + 'px' );
-  const resizeCallbackFunc = (size)=>{
+  const resizeCallbackFunc = function(size){
     const windowHeight = size.height; 
     $('#slide-up-menu #scrollable').css("height", (windowHeight - HANDLE_SIZE) + 'px');
-  }
+  };
   const slideUpWindow = FView.byId("slide-up-menu").node;
-  slideUpWindow.onSizeChange(resizeCallbackFunc);
+  slideUpWindow.hide();
+  slideUpWindow.onWindowSizeChange(resizeCallbackFunc);
   Tracker.autorun(()=>{
     slideUpWindow.resize();
   });

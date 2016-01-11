@@ -4,11 +4,8 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 yasinuslu:blaze-meta
-twbs:bootstrap
 accounts-password
-grigio:babel
 cfs:graphicsmagick
 mquandalle:bower
 chrismbeckett:toastr
@@ -19,15 +16,49 @@ cfs:filesystem
 meteorhacks:npm
 
 
-npm-container
 jquery
 sbe:rxjs
 mquandalle:jade
-gadicohen:famous
 gadicohen:famous-views
 accounts-base
 logandk:validator
 luisalmeida:unveil
-joshowens:shareit
 accounts-facebook
 service-configuration
+raix:handlebar-helpers
+copleykj:livestamp
+grigio:babel
+matb33:collection-hooks
+aldeed:autoform
+aldeed:collection2
+cfs:ui
+aldeed:delete-button
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
+
+
+npm-container
+joshowens:shareit
+materialize:materialize@=0.97.0
+mizzao:autocomplete
+reactive-var
+lukemadera:autoform-googleplace
+gildaspk:autoform-materialize
+poetic:materialize-scss
+meteorhacks:aggregate
+mrt:cookies
+manuelschoebel:wait-on-lib
+cfs:gridfs
+gadicohen:famous@=0.5.2
+reywood:iron-router-ga

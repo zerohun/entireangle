@@ -1,0 +1,25 @@
+{
+  "name": "vr-devices",
+  "version": "0.0.0.1",
+  "authors": [
+    "Younghun Choi <choi0hun@gmail.com>"
+  ],
+  "description": "Simple function to detect VR devices",
+  "main": "src/vr_devices.js",
+  "keywords": [
+    "VR",
+    "Carboard",
+    "HMD"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "isMobile": "~0.3.6"
+  }
+}

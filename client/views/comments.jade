@@ -4,31 +4,41 @@ template(name="comments")
       form#comment-form
         input.width-fill(type="text" name="commentText" placeholder="Write comment")
     else
-      button.width-fill.please-login Plase login to write comment 
+      button.btn.width-fill.please-login Plase login to write comment 
+      br
+      br
+      br
       
-    hr
-    br
-    each comments
-      .comment.row(data-id="{{_id}}")
-        .comment-content  
-          .col-md-1.col-lg-1
-            +profileImage user
-          .col-md-2.col-lg-2.text-center
-            | &nbsp; {{user.username}}
-          .col-md-7.col-lg-7
-            | {{commentText}}
-          .col-md-2.col-lg-2
-            if isMyComment this
-              button.btn.btn-xs.edit-comment-button edit
-              button.btn.btn-danger.btn-xs.remove-comment-button remove
-        .col-md-12.col-lg-12
-          .row.comment-edit-form-wrapper
-            .col-md-10.col-lg-10
-              form.comment-edit-form
-                input.width-fill(type="text" name="commentText" value="{{commentText}}")
-            .col-md-2.col-lg-2
-              button.btn.btn-xs.cancel-comment-button cancel
-      hr
-    if showMoreCommentButton
-      button.btn.btn-xs#comment-more-button
-        | More comments
+    if hasAnyComments
+      each comments
+        .comment.row(data-id="{{_id}}")
+          .comment-content.col.s12.m12.l12.no-side-padding 
+            .row
+              .col.s3.l1.m1.no-side-padding
+                .commentProfileImage
+                  a(href="/users/{{user._id}}")
+                    +profileImage user
+                .commentUserName
+                  | {{user.username}}
+              .col.s7.l9.m9.comment-text
+                | {{commentText}}
+              .col.s2.l2.m2
+                if isMyComment this
+                  button.btn.edit-comment-button.small-padding-btn
+                    i.material-icons mode_edit
+                  button.btn.remove-comment-button.small-padding-btn.red.darken-2
+                    i.material-icons remove 
+          .col.s12.l12.m12.comment-edit-form-wrapper
+            .row
+              .col.s12.m12.l12.no-side-padding 
+                  form.comment-edit-form
+                    input.width-fill(type="text" name="commentText" value="{{commentText}}")
+                    br
+                    button.btn.btn-tiny.green(type='submit') Save
+                    button.btn.btn-tiny.cancel-comment-button.white.black-text Cancel
+          hr
+      if showMoreCommentButton
+        button.btn.btn-xs#comment-more-button
+          | More comments
+    else
+      .no-comment-text There isn't any comments

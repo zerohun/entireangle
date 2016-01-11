@@ -3,14 +3,14 @@ let facebookConfig;
 if(Meteor.absoluteUrl().search("entireangle.com") > - 1){
   facebookConfig = {
       appId: "1018333888196733",
-      loginStyle: "popup",
+      loginStyle: "redirect",
       secret: "d707144fdfca9e7d8bfdaaefbfa486fe"
   };
 }
 else{
   facebookConfig = {
       appId: "1129515350411919",
-      loginStyle: "popup",
+      loginStyle: "redirect",
       secret: "681902127c2afb85abdb0a97a255f98c"
   };
 }

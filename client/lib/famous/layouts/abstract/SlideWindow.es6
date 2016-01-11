@@ -4,6 +4,7 @@ class SlideWindow extends Node {
   constructor(){
     super();
     this.onSizeChangeFuncs = [];
+    this._isVisible = false;
     Rx.Observable.fromEvent($(window), "resize").
       subscribe(()=>{
         this.resize();
@@ -11,8 +12,8 @@ class SlideWindow extends Node {
   }
   calculateSize(){
     const centerPoint = SlideWindow.getCenterPoint();
-    this.width = Math.max(300, centerPoint.x/2);
-    this.height = Math.max(300, centerPoint.y);
+    this.width = $(window).width();
+    this.height = $(window).height();
   }
   slideTo(coords){
     //const centerPoint = getCenterPoint();
@@ -44,7 +45,10 @@ class SlideWindow extends Node {
       });
     }
   }
-  onSizeChange(func){
+  isVisible(){
+    return this._isVisible;
+  }
+  onWindowSizeChange(func){
     this.onSizeChangeFuncs.push(func);
   }
 }

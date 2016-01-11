@@ -1,0 +1,17 @@
+template(name="tagsShowMobile")
+  #tags-show
+    .row.grey.darken-4.tags-showheader-row
+      if user
+        .col.s3
+          +profileImage user
+          span
+            | {{user.username}}
+        .col.s9.centered-text
+          h4
+            | {{title}}
+
+      else
+        .col.s12.centered-text
+          h4
+            | {{title}}
+    +PostsMobile postsOptions=postsOptions

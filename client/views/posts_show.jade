@@ -1,87 +1,134 @@
 template(name='PostsShow')
-  #container.loading-bg(style='width:100%; height:100%')
-  #info
-    #button-container.btn-group(role='group')
-      unless isEmbedded
-        button#home-button.btn.btn-warning.btn-xs Explore
-        button.btn.btn-primary.btn-xs.shareModalOpenBtn Share
-        button.btn.btn-info.btn-xs(data-toggle='modal', data-target='#infoModal') Info
+  #container(style='width:100%; height:100%')
+  if nextPostUrl
+    #nextPostButton.next-prev-post.hide-on-modal
+      a.waves-effect.waves-light(href=nextPostUrl)
+        i.stroke.material-icons &#xE409;
+  if prevPostUrl
+    #prevPostButton.next-prev-post.hide-on-modal
+      a.waves-effect.waves-light(href=prevPostUrl)
+        i.stroke.material-icons &#xE408;
+  if isArrowVisible 
+    .arrow_box.hide
+      | Write about your picture and publish! 
+  .zoom-buttons.desktop.hide-on-modal
+    a.zoom-in-btn.inpage-buttons(href="")
+      i.stroke.material-icons.white-text zoom_in
+    br
+    a.zoom-out-btn.inpage-buttons(href="")
+      i.stroke.material-icons.white-text zoom_out
 
-      button#vr-mode-button.btn.btn-success.btn-xs VR mode
-      unless isEmbedded
-        if isMyPost                                               
-          button#remove-button.btn.btn-danger.btn-xs Delete
 
-        button#position-save-button.btn.btn-success.btn-xs(style='display:none') Save Position
-  unless isEmbedded
+  if isUploadingListVisible
+    #uploading-list.hide-on-modal
+      ul
+        each forcusedPosts 
+          if $eq post._id _id
+            li.uploading-item.active
+              a(href="/posts/{{_id}}?isUploading=1")
+                img(src="{{thumbUrl imageId false}}")
+          else
+            li.uploading-item
+              a(href="/posts/{{_id}}?isUploading=1")
+                img(src="{{thumbUrl imageId false}}")
+        if moreButtonVisible 
+          li.more-items.uploading-item
+            a.modal-trigger.inpage-buttons(href="#more-posts-modal")
+              img(src="/images/morebtn.png")
 
-    #shareModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-      .modal-dialog
-        .modal-content
-          .modal-body
-            button#share-modal-close-btn.close(type='button', aria-label='Close')
-              span(aria-hidden='true') ×
-            h3 Share
-            h5 Share preview
-            #share-buttons-layout.block-center.text-center
-              .share-preview
-              button.btn.btn-default#save-preview-button Share this view
-              hr
-              .btn-group(role='group').text-center.block-center.sns-buttons
-                +shareit
-            br
-            br
-            br
-            h4.text-center Embed
-            hr
-            input#embed-url-string(type='text', value='{{embedUrl}}')
+      
 
-    #infoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-      .modal-dialog
-        .modal-content
-          form#edit-post
-            .modal-header
-              button.close(type='button', data-dismiss='modal', aria-label='Close')
-                span(aria-hidden='true') ×
-              h4#myModalLabel.modal-title.view-box {{title}}
-              input.edit-field(type='text', name='title', value='{{title}}')
-            .modal-body
-              p.timestamp
-                | {{createdAt}}
-              p.view-box
-                pre
-                  | \n{{desc}}                    
+  #desktop-menu-bar.hide-on-modal
+    .row
+      .col.l1.m1
+        a.waves-effect.waves-light.share-button.modal-trigger.inpage-buttons(href="#share-modal")
+          i.stroke.mdi-social-share.white-text
+      .col.l1.m1
+        if didILikeIt
+          a.waves-effect.waves-light.unlike-button.inpage-buttons
+            i.stroke.mdi-action-star-rate.yellow-text
+        else
+          a.waves-effect.waves-light.like-button.inpage-buttons
+            i.stroke.mdi-action-star-rate.white-text
+      .col.l1.m1
+        a.waves-effect.waves-light.inpage-buttons.content-edit-button
+          i.stroke.mdi-content-create.white-text
+          span.red.comment-count-number
+            | {{numberOfComments}}
+      if isMyPost
+        .col.l1.m1
+          a#remove-button.waves-effect.waves-light.inpage-buttons.width-fill
+            i.stroke.mdi-action-delete.white-text
+      if isMyPost
+        .col.l1.m1
+          a#position-save-button.waves-effect.waves-light.inpage-buttons.width-fill
+            i.stroke.mdi-editor-vertical-align-bottom.white-text
+            
+      .col.l1.m1
+        a.waves-effect.waves-light.modal-trigger.inpage-buttons(href="#view-mode-modal-mobile")
+          //if isInVRMode
+            //i.mdi-action-visibility.yellow-text
+          //else
+          i.stroke.mdi-action-visibility.white-text
 
-              input.edit-field(type="checkbox" name="isPublished" checked="{{isPublished}}")
-              label.edit-field(for="isPublished") Publish on list
-              br
-              textarea.edit-field(name='desc') {{desc}}
-              br
-              if isMyPost
-                button.btn.btn-xs.btn.edit-field(type='submit')
-                  | Done
-                button#edit-button.btn.btn-warning.btn-xs.view-box
-                  | Edit
-                  
-          .modal-body
-            +comments
-                  
-          .modal-footer
+            
+  #share-modal.modal.bottom-sheet.modal-opacity
+    .modal-content.centered-text
+      .modal-content.centered-text
+        h4.centered-text Sharing action
+        hr
+        .snsList
+          +shareit
 
-  #NoneVRModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') ×
-          h4#myModalLabel.modal-title Your web browser is not supporting VR mode
-        .modal-body
-          h4 HMD(ex Oculus Rift) with Windows or Mac osx
-          p.lead
-            | You need to visit this website with 
-            a(href='https://nightly.mozilla.org') Firefox Nightly
-            |  or 
-            a(href='https://code.google.com/p/chromium') Chromium
-          h4 For Android user.(EX: Google cardboard)
-          p.lead
-            | You need to use a web browers that support WebL(ex: Chrome)
+
+  #more-posts-modal.modal.modal-opacity
+    button.btn.btn-floating.left.white.black-text.close-modal-button.waves-effect.waves-light
+      i.material-icons close 
+    .modal-content
+      .row#all-posts-list
+        each posts
+          .col.l3.m3
+            if $eq post._id _id
+              .uploading-item.active
+                a(href="/posts/{{_id}}?isUploading=1")
+                  img(src="{{thumbUrl imageId false}}")
+            else
+              .uploading-item
+                a(href="/posts/{{_id}}?isUploading=1")
+                  img(src="{{thumbUrl imageId false}}")
+
+
+
+  #view-mode-modal-mobile.modal.bottom-sheet.modal-opacity
+    .modal-content
+      ul
+        li.more-menu-items
+
+          a#ball-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row(class=modeBALLSelectedClass)
+              .col.s4.right-text
+                  i.mdi-action-swap-vert-circle.black-text
+              .col.s8.left-text.black-text
+                | Mirror Ball 
+
+          a#planet-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+            .row(class=modePlanetSelectedClass)
+              .col.s4.right-text
+                  i.mdi-image-lens.black-text
+              .col.s8.left-text.black-text
+                | Little Planet 
+
+          if isVRSupported
+            a#vr-mode-button.waves-effect.waves-light.inpage-buttons.width-fill
+              .row(class=modeVRSelectedClass)
+                .col.s4.right-text
+                    i.mdi-action-visibility.black-text
+                .col.s8.left-text.black-text
+                  | VR Mode
+
+            a#vr-slide-show-start-button.waves-effect.waves-light.inpage-buttons.width-fill
+              .row
+                .col.s4.right-text
+                    i.mdi-action-visibility.black-text
+                .col.s8.left-text.black-text
+                  | VR Slide show

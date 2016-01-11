@@ -42,11 +42,8 @@ Template.register.helpers({
   },
   isFacebookuser: isFacebookuser
 });
-Template.register.events({
-  'click #close-register-button': function(){
-    FView.byId("register-form").node.slideUp(); 
-    return false;
-  },
+Template.register.events(Object.assign({
+
   'submit #register-form' : function(e, t) {
     let canCreateUser = true;
     let snsImageUrl;
@@ -111,7 +108,9 @@ Template.register.events({
   'click .login-with-facebook': (event)=>{
     event.preventDefault();
     Meteor.loginWithFacebook({
-      requestPermissions: ['email', 'user_about_me']
+      requestPermissions: ['email', 'user_about_me'],
+      redirectUrl: location.href,
+      loginStyle: 'redirect' 
     }, function (err) {
       if (err){
         alert(err.reason);
@@ -121,7 +120,7 @@ Template.register.events({
       }
     });
   }
-});
+}, getModalCloseEventsObj("register-window","register-form")));
 
 Template.register.rendered = () =>{
   validateEmailFieldonKeyDown("#register-email", 'register-email-msg');

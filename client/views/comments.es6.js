@@ -33,8 +33,15 @@ function resetCommentFields(){
 
 
 Template.comments.helpers({
+  "hasAnyComments": function(){
+    return Comment.find({}).count() > 0;
+  },
   "comments": function(){
-    return Comment.find({}, {
+    if(!Router.current().ready() || !Router.current().data)
+      return null;
+    return Comment.find({
+      postId: Router.current().data()._id
+    }, {
       limit: Session.get("commentsLimit"),
       sort:{
         createdAt: -1
@@ -60,6 +67,7 @@ Template.comments.events({
     }
   },
   "submit #comment-form": function(event){
+    console.log('submit');
     var commentText = event.target.commentText.value;
     if(commentText.replace(/ /g, '').length > 0){
       var commentObj = {
@@ -95,7 +103,7 @@ Template.comments.events({
   },
   "click .please-login": function(){
     FView.byId("login-form").node.slideDown();
-    FView.byId("slide-up-menu").node.slideDown();
+    FView.byId("post-content").node.slideUp();
   },
   "submit .comment-edit-form": function(event){
     var commentId = getCommentId(event.target);

@@ -76,13 +76,13 @@ class LoadingBox extends Node {
     document.onkeydown  = preventDefaultForScrollKeys;
     
     super.show();
-    this.opacityTo(0.8);
+    this.opacityTo(0.8, $.noop());
   }
   hide(){
-    this.opacityTo(0.0);
+    this.opacityTo(0.0, () => {super.hide();});
   }
-  opacityTo(val){
-    this.opacityTransitionable.set(val, { duration: 500 });
+  opacityTo(val, done){
+    this.opacityTransitionable.set(val, { duration: 200 }, done);
     this.requestUpdate(this.transitionableId);
   }
 }

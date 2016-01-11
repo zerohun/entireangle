@@ -5,13 +5,16 @@ const trimInput = (val) =>{
 window.validateEmailFieldonKeyDown = (cssSelector, msgKey) =>{
   Rx.Observable.fromEvent($(cssSelector), "keydown").
     subscribe(e => {
-      let value = trimInput($(cssSelector).val());
+      const val = $(cssSecetor).val();
+      if(val === "") return;
+      let value = trimInput(val);
       $(cssSelector).val(value);
     });
 };
 
 window.validateEmail = (cssSelector, msgKey) =>{
   const val = $(cssSelector).val();
+
   if(validator.isEmail(val)){
     Session.set(msgKey, "");
     return true;
@@ -48,7 +51,7 @@ window.validateLength = (cssSelector, lengthLimit, msgKey) =>{
 }
 
 window.validatePasswordMatched = (retypeEle, msgKey) =>{
-    const passwordEle = retypeEle.parent().parent().find(".password-input");
+    const passwordEle = retypeEle.parent().parent().parent().find(".password-input");
     if(retypeEle.val() === passwordEle.val()){
       Session.set(msgKey, "");
       return true;

@@ -1,0 +1,60 @@
+template(name="PostListMobile")
+  .row.no-margin-bottom
+    .col.s12
+      ul.tabs.black-tabs
+        li.tab.col.s4.centered-text
+          a#pictures-tab-btn.active Pictures 
+        li.tab.col.s4.centered-text
+          a#tags-tab-btn Tags 
+        li.tab.col.s4.centered-text
+          a#locations-tab-btn Locations 
+
+  if isTabVisible SYM_PICTURES
+    +PostsMobile
+  else
+    if isTabVisible SYM_TAGS
+      .row
+        .col.s12.tag-list
+          .collection
+            each tags
+              a.collection-item(href="/tags/{{_id}}")
+                | {{title}}({{postsCountByTagId _id}})
+    else 
+      if isTabVisible SYM_LOCATIONS
+        +placesMobile locations=locations
+
+template(name="PostsMobile")
+  .row
+    each posts
+      if postsOptions
+        with postsOptions
+          +postMobile 
+      else
+        +postMobile
+
+template(name='postMobile')
+  .col.s4
+    .thumbnail-box
+      a(href="/posts/{{_id}}")
+       div
+         img.post-image.circle.responsive-img(src="/images/loadingimage.jpg" data-src='{{thumbUrl imageId isVideo}}' data-image-src='{{thumbUrl imageId isVideo}}')
+       .post-info
+         table
+           tr
+             th(rowspan='2').profile-wrapper.mobile
+               .right
+                 if $not hideUserThumbnail
+                   +profileImage user
+                 else
+                   | &nbsp;
+             td.text-outline
+               if title
+                 |{{ shortenText 7 title }}
+               else
+                 | &nbsp;
+           tr
+             td.text-outline
+               if $not hideUserThumbnail
+                 | {{ shortenText 7 user.username }} 
+               else
+                 | &nbsp;

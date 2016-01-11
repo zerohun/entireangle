@@ -1,0 +1,43 @@
+template(name="header")
+  #top-mobile-nav-bar.black.top-nav-bar.header-bar
+    .row.col-force-bottom-margin-zero
+      .col.m2.l2.offset-m1.offset-l1.col-force-padding-zero
+        a(href="/")
+          img#logo(src="/images/logo.jpg")
+
+      .col.m2.l2.offset-m1.offset-l1.col-force-padding-top-desktop
+        a.inpage-buttons(href="/posts")
+          i.material-icons explore
+          | Explorer 
+
+      .col.m2.l2.col-force-padding-top-desktop
+        a.inpage-buttons(href="/upload")
+          i.material-icons add 
+          | Upload 
+
+      .col.m2.l2.col-force-padding-top-desktop
+        if isLoggedIn
+          a.inpage-buttons(href="/mypage")
+            i.material-icons perm_identity 
+            | Mypage
+        else
+          a.account-button.inpage-buttons
+            i.material-icons perm_identity 
+            | Login
+
+
+      .col.m1.l1.col-force-padding-top-desktop
+        a.inpage-buttons.header-modal-trigger(href="#notification-modal")
+          i.material-icons.small.white-text textsms 
+          if unreadNotificationCount
+            span.red.circle.noti-count
+              | {{unreadNotificationCount}}
+
+
+  #notification-modal.modal
+    button.btn.btn-floating.left.white.black-text.close-modal-button.waves-effect.waves-light
+      i.material-icons close 
+    .modal-content.centered-text
+      .notificaion-title Notificaions
+      br
+      +notifications
