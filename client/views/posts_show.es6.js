@@ -79,7 +79,6 @@ function setArrowBoxPosition(){
         left: `${editButtonPosition.left - $arrowBox.width()/2 + editBtnWidth/2}px`
       });
     }
-
   }
 }
 
@@ -90,7 +89,6 @@ function getAlbums(){
       $in: Router.current().data().albumIds
     }}).fetch();
 }
-
 
 function enableHorizontalSwipe(){
   var prevTouchCoords;
@@ -198,13 +196,13 @@ function enableHorizontalSwipe(){
         touchCoords.y = -(eventPair[1].touches[0].clientY / $(container).height()) * 2 + 1;
         if(prevTouchCoords){
 
-            raycaster.setFromCamera( touchCoords, orb.getCamera() );
-            var intersects = raycaster.intersectObject( orb.mesh );
+            raycaster.setFromCamera( touchCoords, photoOrb.getCamera() );
+            var intersects = raycaster.intersectObject( photoOrb.mesh );
             var point = intersects[0].point;
             var horizontalPoint = new THREE.Vector3(point.x, 0, point.z);
 
-            raycaster.setFromCamera( prevTouchCoords, orb.getCamera() );
-            intersects = raycaster.intersectObject( orb.mesh );
+            raycaster.setFromCamera( prevTouchCoords, photoOrb.getCamera() );
+            intersects = raycaster.intersectObject( photoOrb.mesh );
             var prevPoint = intersects[0].point;
             var prevHorizontalPoint = new THREE.Vector3(prevPoint.x, 0, prevPoint.z);
 
@@ -214,12 +212,12 @@ function enableHorizontalSwipe(){
                 var rotQuat = new THREE.Quaternion();
                 rotQuat.setFromAxisAngle(axis, angle);
                 //console.log(axis, angle);
-                orb.mesh.quaternion.multiply(rotQuat);
+                photoOrb.mesh.quaternion.multiply(rotQuat);
             }
         }
         prevTouchCoords = touchCoords;
       } catch(ex){
-          //alert(ex.message);
+          alert(ex.message);
       }
   };
 
@@ -428,7 +426,7 @@ function enableDOMode(orb) {
   isInBALLModeReact.set(false);
   isInPlanetModeReact.set(false);
   setViewType(ViewType.zoomIn, orb);
-  //enableHorizontalSwipe();
+  enableHorizontalSwipe();
 }
 function enableBALLMode(orb) {
   console.log('enable DO');
